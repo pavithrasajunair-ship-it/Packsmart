@@ -1,0 +1,671 @@
+import React, { useMemo, useState } from 'react';
+import {
+  ArrowRight,
+  Calendar,
+  Check,
+  CloudSun,
+  Loader2,
+  MapPin,
+  Plus,
+  ShieldCheck,
+  Sparkles,
+  X,
+} from 'lucide-react';
+import type {
+  PackingList,
+  PersonalEssential,
+  TripType,
+  UserAccount,
+  WeatherPreference,
+  WeatherReport,
+} from '../../types';
+import {
+  calculateTripDays,
+  createDefaultBeforeLeaveTasks,
+  daysUntilDate,
+  generateSmartPackingItems,
+  generateSmartTimeline,
+  MemoryLearningInsights,
+} from '../../utils/packingEngine';
+import { uid } from '../../utils/storage';
+import type { PlatformRoute } from './HomePage';
+
+import kyotoCoverImg from '../../assets/images/editorial_destination_kyoto_1795242652961.jpg';
+import amalfiCoverImg from '../../assets/images/editorial_destination_amalfi_1795242652302.jpg';
+import horizonCoverImg from '../../assets/images/spatial_trip_horizon_1795246613797.jpg';
+
+interface TripPlannerViewProps {
+  user: UserAccount;
+  lists: PackingList[];
+  selectedTripId: string | null;
+  personalEssentials: PersonalEssential[];
+  memoryInsights: MemoryLearningInsights;
+  defaultAllowanceKg: number;
+  isOnline: boolean;
+  onSelectTrip: (tripId: string) => void;
+  onCreateList: (created: PackingList) => void;
+  onUpdateList: (updated: PackingList) => void;
+  onSaveWeather: (tripId: string, weather: WeatherReport) => void;
+  onNavigate: (route: PlatformRoute) => void;
+}
+
+const TRIP_TYPES: TripType[] = ['Vacation', 'Business', 'Adventure', 'College', 'Family', 'Other'];
+const WEATHER_PREFS: WeatherPreference[] = [
+  'Auto (Live Weather)',
+  'Warm & Sunny',
+  'Mild & Layered',
+  'Rainy / Monsoon',
+  'Cold & Winter',
+];
+const ACTIVITY_OPTIONS = [
+  'City Sightseeing',
+  'Fine Dining',
+  'Beach / Swimming',
+  'Hiking / Outdoors',
+  'Business Meetings',
+  'Photography',
+];
+
+export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
+  user,
+  lists,
+  selectedTripId,
+  personalEssentials,
+  memoryInsights,
+  defaultAllowanceKg,
+  isOnline,
+  onSelectTrip,
+  onCreateList,
+  onUpdateList,
+  onSaveWeather,
+  onNavigate,
+}) => {
+  const activeTrip = useMemo(
+    () =>
+      lists.find((l) => l.id === selectedTripId) ||
+      lists.find((l) => !l.completed) ||
+      lists[0] ||
+      null,
+    [lists, selectedTripId]
+  );
+
+  const [showComposer, setShowComposer] = useState(false);
+  const [destination, setDestination] = useState('');
+  const [title, setTitle] = useState('');
+  const [startDate, setStartDate] = useState(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 10);
+    return d.toISOString().slice(0, 10);
+  });
+  const [endDate, setEndDate] = useState(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 15);
+    return d.toISOString().slice(0, 10);
+  });
+  const [tripType, setTripType] = useState<TripType>('Vacation');
+  const [weatherPreference, setWeatherPreference] =
+    useState<WeatherPreference>('Auto (Live Weather)');
+  const [selectedActivities, setSelectedActivities] = useState<string[]>([
+    'City Sightseeing',
+    'Fine Dining',
+  ]);
+  const [creating, setCreating] = useState(false);
+  const [weatherBusy, setWeatherBusy] = useState(false);
+  const [weatherError, setWeatherError] = useState('');
+
+  const coverPool = [kyotoCoverImg, amalfiCoverImg, horizonCoverImg];
+
+  const toggleActivity = (act: string) => {
+    setSelectedActivities((prev) =>
+      prev.includes(act) ? prev.filter((a) => a !== act) : [...prev, act]
+    );
+  };
+
+  const handleCreateTrip = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!destination.trim()) return;
+    setCreating(true);
+
+    let liveWeather: WeatherReport | null = null;
+    if (isOnline && weatherPreference === 'Auto (Live Weather)') {
+      try {
+        const params = new URLSearchParams({
+          city: destination.trim(),
+          startDate,
+          endDate,
+        });
+        const res = await fetch(`/api/weather?${params.toString()}`);
+        if (res.ok) {
+          liveWeather = (await res.json()) as WeatherReport;
+        }
+      } catch {
+        // Proceed with smart fallback weather preference
+      }
+    }
+
+    const mode = tripType === 'Business' ? 'Work' : tripType === 'College' ? 'College' : 'Travel';
+    const items = generateSmartPackingItems({
+      mode,
+      tripType,
+      destination: destination.trim(),
+      startDate,
+      endDate,
+      travellers: 1,
+      purpose: tripType,
+      travelMethod: 'Flight',
+      accommodation: 'Hotel',
+      weatherPreference,
+      laundryAvailable: false,
+      activities: selectedActivities,
+      preference: 'Balanced',
+      weather: liveWeather,
+      personalEssentials,
+      includePersonalEssentials: true,
+      memoryInsights,
+    });
+
+    const created: PackingList = {
+      id: uid('trip'),
+      title: title.trim() || `${destination.trim()} ${tripType}`,
+      mode,
+      tripType,
+      destination: destination.trim(),
+      coverImage: coverPool[lists.length % coverPool.length],
+      startDate,
+      endDate,
+      travellers: 1,
+      purpose: tripType,
+      travelMethod: 'Flight',
+      accommodation: 'Hotel',
+      weatherPreference,
+      laundryAvailable: false,
+      activities: selectedActivities,
+      preference: 'Balanced',
+      customCategories: [],
+      items,
+      deletedItems: [],
+      weather: liveWeather,
+      luggageType: 'Carry-On Spinner (40L)',
+      luggageCapacityLiters: 40,
+      baggageAllowanceKg: defaultAllowanceKg,
+      bagWeightKg: 2.5,
+      dayOutfits: [],
+      beforeLeaveTasks: createDefaultBeforeLeaveTasks(),
+      timelineTasks: generateSmartTimeline(startDate, destination.trim(), tripType, 'Flight'),
+      shoppingBudget: 5000,
+      shoppingItems: [],
+      isShared: false,
+      shareCode: Math.random().toString(36).slice(2, 8).toUpperCase(),
+      allowMemberEdits: true,
+      groupMembers: [
+        {
+          id: 'm-owner',
+          name: user.name,
+          role: 'Owner',
+          initials: user.initials,
+          color: '#171717',
+        },
+      ],
+      groupActivity: [],
+      groupSuggestions: [],
+      postTripMemory: null,
+      completed: false,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    onCreateList(created);
+    onSelectTrip(created.id);
+    setDestination('');
+    setTitle('');
+    setShowComposer(false);
+    setCreating(false);
+  };
+
+  const handleRefreshWeather = async () => {
+    if (!activeTrip) return;
+    const city = activeTrip.destination || activeTrip.title;
+    if (!city || !isOnline) return;
+    setWeatherBusy(true);
+    setWeatherError('');
+    try {
+      const params = new URLSearchParams({
+        city,
+        startDate: activeTrip.startDate,
+        endDate: activeTrip.endDate,
+      });
+      const res = await fetch(`/api/weather?${params.toString()}`);
+      const data = await res.json();
+      if (!res.ok) {
+        setWeatherError(data.error || 'Could not load forecast for this city.');
+      } else {
+        onSaveWeather(activeTrip.id, data as WeatherReport);
+      }
+    } catch {
+      setWeatherError('Unable to reach weather service right now.');
+    } finally {
+      setWeatherBusy(false);
+    }
+  };
+
+  const handleToggleTimeline = (taskId: string) => {
+    if (!activeTrip) return;
+    onUpdateList({
+      ...activeTrip,
+      timelineTasks: activeTrip.timelineTasks.map((t) =>
+        t.id === taskId ? { ...t, completed: !t.completed } : t
+      ),
+      updatedAt: new Date().toISOString(),
+    });
+  };
+
+  const handleToggleBeforeLeave = (taskId: string) => {
+    if (!activeTrip) return;
+    onUpdateList({
+      ...activeTrip,
+      beforeLeaveTasks: activeTrip.beforeLeaveTasks.map((t) =>
+        t.id === taskId ? { ...t, completed: !t.completed } : t
+      ),
+      updatedAt: new Date().toISOString(),
+    });
+  };
+
+  return (
+    <div className="bg-[#F7F4EF] min-h-[calc(100vh-4rem)] py-8 sm:py-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        {/* ==================== HEADER ==================== */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="space-y-1">
+            <p className="text-xs font-medium text-[#171717]/60">Trip Planner</p>
+            <h1 className="font-serif text-3xl sm:text-4xl font-medium text-[#171717]">
+              Itineraries &amp; Preparation
+            </h1>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setShowComposer((v) => !v)}
+            className="h-10 px-5 rounded-lg bg-[#171717] text-[#FFFFFF] text-sm font-medium inline-flex items-center justify-center gap-1.5 hover:bg-[#171717]/88 transition-colors self-start sm:self-auto whitespace-nowrap"
+          >
+            {showComposer ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+            <span>{showComposer ? 'Close Composer' : 'New Trip'}</span>
+          </button>
+        </div>
+
+        {/* ==================== COLLAPSIBLE TRIP COMPOSER ==================== */}
+        {showComposer && (
+          <form
+            onSubmit={handleCreateTrip}
+            className="rounded-xl bg-[#FFFFFF] border border-[#171717]/15 p-6 space-y-5"
+          >
+            <div className="space-y-1">
+              <h2 className="font-serif text-2xl font-medium text-[#171717]">
+                Plan a New Journey
+              </h2>
+              <p className="text-xs text-[#171717]/65">
+                PackSmart will fetch live destination weather and build your checklist, timeline, and departure tasks automatically.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <label className="space-y-1.5 text-xs font-medium text-[#171717]/75">
+                <span>Destination City *</span>
+                <input
+                  type="text"
+                  required
+                  value={destination}
+                  onChange={(e) => setDestination(e.target.value)}
+                  placeholder="e.g., Kyoto, Lisbon, Goa"
+                  className="w-full h-10 px-3 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-sm text-[#171717]"
+                />
+              </label>
+
+              <label className="space-y-1.5 text-xs font-medium text-[#171717]/75">
+                <span>Trip Name (Optional)</span>
+                <input
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  placeholder="e.g., Autumn in Kyoto"
+                  className="w-full h-10 px-3 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-sm text-[#171717]"
+                />
+              </label>
+
+              <label className="space-y-1.5 text-xs font-medium text-[#171717]/75">
+                <span>Departure Date</span>
+                <input
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  className="w-full h-10 px-3 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-sm text-[#171717]"
+                />
+              </label>
+
+              <label className="space-y-1.5 text-xs font-medium text-[#171717]/75">
+                <span>Return Date</span>
+                <input
+                  type="date"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  className="w-full h-10 px-3 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-sm text-[#171717]"
+                />
+              </label>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label className="space-y-1.5 text-xs font-medium text-[#171717]/75">
+                <span>Trip Purpose</span>
+                <select
+                  value={tripType}
+                  onChange={(e) => setTripType(e.target.value as TripType)}
+                  className="w-full h-10 px-3 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-sm text-[#171717]"
+                >
+                  {TRIP_TYPES.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="space-y-1.5 text-xs font-medium text-[#171717]/75">
+                <span>Climate &amp; Weather</span>
+                <select
+                  value={weatherPreference}
+                  onChange={(e) => setWeatherPreference(e.target.value as WeatherPreference)}
+                  className="w-full h-10 px-3 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-sm text-[#171717]"
+                >
+                  {WEATHER_PREFS.map((w) => (
+                    <option key={w} value={w}>
+                      {w}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-xs font-medium text-[#171717]/75">Planned Activities</p>
+              <div className="flex flex-wrap gap-2">
+                {ACTIVITY_OPTIONS.map((act) => {
+                  const selected = selectedActivities.includes(act);
+                  return (
+                    <button
+                      key={act}
+                      type="button"
+                      onClick={() => toggleActivity(act)}
+                      className={`h-9 px-3.5 rounded-lg text-xs font-medium border transition-colors ${
+                        selected
+                          ? 'bg-[#171717] text-[#FFFFFF] border-[#171717]'
+                          : 'bg-[#F7F4EF] text-[#171717] border-[#171717]/15 hover:border-[#171717]'
+                      }`}
+                    >
+                      {act}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-3 pt-2 border-t border-[#171717]/10">
+              <button
+                type="button"
+                onClick={() => setShowComposer(false)}
+                className="h-10 px-4 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-sm font-medium text-[#171717]"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                disabled={creating || !destination.trim()}
+                className="h-10 px-6 rounded-lg bg-[#171717] text-[#FFFFFF] text-sm font-medium inline-flex items-center gap-2 hover:bg-[#171717]/88 disabled:opacity-50"
+              >
+                {creating && <Loader2 className="w-4 h-4 animate-spin" />}
+                <span>Create Trip &amp; Smart Checklist</span>
+              </button>
+            </div>
+          </form>
+        )}
+
+        {/* ==================== UNIFORM DESTINATION CARDS GRID (METADATA BELOW IMAGE) ==================== */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {lists.map((trip, idx) => {
+            const isSelected = activeTrip?.id === trip.id;
+            const days = calculateTripDays(trip.startDate, trip.endDate);
+            const until = daysUntilDate(trip.startDate);
+            const packed = trip.items.filter((i) => i.packed).length;
+            const coverSrc =
+              trip.coverImage && trip.coverImage.startsWith('http')
+                ? coverPool[idx % coverPool.length]
+                : trip.coverImage || coverPool[idx % coverPool.length];
+
+            return (
+              <button
+                key={trip.id}
+                type="button"
+                onClick={() => onSelectTrip(trip.id)}
+                className={`text-left rounded-xl bg-[#FFFFFF] overflow-hidden border transition-colors flex flex-col ${
+                  isSelected
+                    ? 'border-[#171717] ring-1 ring-[#171717]'
+                    : 'border-[#171717]/10 hover:border-[#171717]/35'
+                }`}
+              >
+                <div className="w-full aspect-[16/9] bg-[#F7F4EF] overflow-hidden">
+                  <img
+                    src={coverSrc}
+                    alt={trip.title}
+                    className="w-full h-full object-cover block"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-5 flex-1 flex flex-col justify-between gap-4">
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between gap-2 text-xs text-[#171717]/60">
+                      <span>{trip.tripType}</span>
+                      <span className="tabular-nums">
+                        {until >= 0 ? `In ${until} days` : `${days} days`}
+                      </span>
+                    </div>
+                    <h3 className="font-serif text-2xl font-medium text-[#171717]">
+                      {trip.title}
+                    </h3>
+                    <p className="text-xs text-[#171717]/65 inline-flex items-center gap-1">
+                      <MapPin className="w-3.5 h-3.5" />
+                      <span>
+                        {trip.destination || 'Flexible destination'} · {trip.startDate}
+                      </span>
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-[#171717]/10 flex items-center justify-between text-xs tabular-nums">
+                    <span className="text-[#171717]/65">
+                      {packed}/{trip.items.length} packed
+                    </span>
+                    <span className="font-medium text-[#171717]">
+                      {isSelected ? 'Selected' : 'Inspect'}
+                    </span>
+                  </div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* ==================== SELECTED TRIP DETAIL: TIMELINE + BEFORE YOU LEAVE ==================== */}
+        {activeTrip && (
+          <div className="space-y-6">
+            {/* Weather & Quick Route Bar */}
+            <div className="rounded-xl bg-[#B9D8EF]/28 border border-[#171717]/10 p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+              <div className="space-y-1">
+                <p className="text-xs font-medium text-[#171717]/65">Active Itinerary</p>
+                <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[#171717]">
+                  {activeTrip.title}
+                </h2>
+                <p className="text-sm text-[#171717]/75 inline-flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center gap-1 tabular-nums">
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>
+                      {activeTrip.startDate} to {activeTrip.endDate}
+                    </span>
+                  </span>
+                  {activeTrip.weather && (
+                    <>
+                      <span>·</span>
+                      <span className="tabular-nums font-medium text-[#171717]">
+                        {activeTrip.weather.summary.avgLow}°–{activeTrip.weather.summary.avgHigh}°C ·{' '}
+                        {activeTrip.weather.summary.primaryCondition}
+                      </span>
+                    </>
+                  )}
+                </p>
+                {weatherError && (
+                  <p className="text-xs text-[#171717] bg-[#F5BDA5]/60 rounded-md px-3 py-1.5 mt-2 inline-block">
+                    {weatherError}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2.5">
+                <button
+                  type="button"
+                  onClick={handleRefreshWeather}
+                  disabled={weatherBusy || !isOnline}
+                  className="h-10 px-4 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-xs font-medium text-[#171717] inline-flex items-center gap-1.5 hover:border-[#171717] transition-colors disabled:opacity-50"
+                >
+                  {weatherBusy ? (
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  ) : (
+                    <CloudSun className="w-3.5 h-3.5" />
+                  )}
+                  <span>{activeTrip.weather ? 'Refresh Weather' : 'Load Weather'}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('smart-packing')}
+                  className="h-10 px-4 rounded-lg bg-[#171717] text-[#FFFFFF] text-xs font-medium inline-flex items-center gap-1.5 hover:bg-[#171717]/88 transition-colors"
+                >
+                  <span>Smart Packing</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('ai-outfit-studio')}
+                  className="h-10 px-4 rounded-lg bg-[#D8C9EC]/70 text-[#171717] text-xs font-medium inline-flex items-center gap-1.5 hover:bg-[#D8C9EC] transition-colors"
+                >
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Plan Outfits</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+              {/* Preparation Timeline */}
+              <div className="lg:col-span-6 rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-medium text-[#171717]/60">Countdown Schedule</p>
+                    <h3 className="font-serif text-2xl font-medium text-[#171717]">
+                      Preparation Timeline
+                    </h3>
+                  </div>
+                  <span className="text-xs font-medium text-[#171717]/65 tabular-nums">
+                    {activeTrip.timelineTasks.filter((t) => t.completed).length}/
+                    {activeTrip.timelineTasks.length}
+                  </span>
+                </div>
+
+                <div className="divide-y divide-[#171717]/8">
+                  {activeTrip.timelineTasks.map((task) => (
+                    <button
+                      key={task.id}
+                      type="button"
+                      onClick={() => handleToggleTimeline(task.id)}
+                      className="w-full py-3 flex items-start justify-between gap-3 text-left hover:bg-[#F7F4EF]/60 px-2 -mx-2 rounded-lg transition-colors"
+                    >
+                      <div className="flex items-start gap-3 min-w-0">
+                        <span
+                          className={`mt-0.5 w-4 h-4 rounded flex items-center justify-center border shrink-0 ${
+                            task.completed
+                              ? 'bg-[#171717] border-[#171717] text-[#FFFFFF]'
+                              : 'border-[#171717]/30 bg-[#FFFFFF]'
+                          }`}
+                        >
+                          {task.completed && <Check className="w-3 h-3" />}
+                        </span>
+                        <div className="min-w-0">
+                          <p
+                            className={`text-sm ${
+                              task.completed
+                                ? 'line-through text-[#171717]/45'
+                                : 'text-[#171717] font-medium'
+                            }`}
+                          >
+                            {task.title}
+                          </p>
+                          {task.notes && (
+                            <p className="text-xs text-[#171717]/55 mt-0.5">{task.notes}</p>
+                          )}
+                        </div>
+                      </div>
+                      <span className="text-xs text-[#171717]/55 tabular-nums shrink-0">
+                        {task.dueDate}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Before You Leave Mode */}
+              <div className="lg:col-span-6 rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-medium text-[#171717]/60">Departure Safety</p>
+                    <h3 className="font-serif text-2xl font-medium text-[#171717]">
+                      Before You Leave
+                    </h3>
+                  </div>
+                  <ShieldCheck className="w-4 h-4 text-[#171717]/65" />
+                </div>
+
+                <div className="divide-y divide-[#171717]/8">
+                  {activeTrip.beforeLeaveTasks.map((task) => (
+                    <button
+                      key={task.id}
+                      type="button"
+                      onClick={() => handleToggleBeforeLeave(task.id)}
+                      className="w-full py-3 flex items-center justify-between gap-3 text-left hover:bg-[#F7F4EF]/60 px-2 -mx-2 rounded-lg transition-colors"
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <span
+                          className={`w-4 h-4 rounded flex items-center justify-center border shrink-0 ${
+                            task.completed
+                              ? 'bg-[#171717] border-[#171717] text-[#FFFFFF]'
+                              : 'border-[#171717]/30 bg-[#FFFFFF]'
+                          }`}
+                        >
+                          {task.completed && <Check className="w-3 h-3" />}
+                        </span>
+                        <span
+                          className={`text-sm ${
+                            task.completed
+                              ? 'line-through text-[#171717]/45'
+                              : 'text-[#171717] font-medium'
+                          }`}
+                        >
+                          {task.title}
+                        </span>
+                      </div>
+                      <span className="text-[11px] font-medium px-2 py-0.5 rounded bg-[#F7F4EF] text-[#171717]/65 shrink-0">
+                        {task.category}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};

@@ -1,0 +1,8 @@
+{
+  "name": "PackSmart",
+  "description": "Pack less stress. Travel with confidence. Intelligent packing lists, live weather forecasts, secure document vault, luggage weight & budget tracking, group packing, and PackSmart AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
