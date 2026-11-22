@@ -58,6 +58,7 @@ interface DeckModule {
   description: string;
   stat: string;
   cta: string;
+  features: string[];
   surface: string;
   ink: string;
 }
@@ -225,6 +226,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           ? `${packedCount} of ${totalCount} packed, ${metrics.totalVolumeLiters}L used`
           : '40L carry-on optimizer',
       cta: 'Open Smart Packing',
+      features: ['Suitcase volume tracking','Weight and allowance checks','Checklist by category'],
       surface: '#101010',
       ink: '#FFFFFF',
     },
@@ -236,6 +238,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         'Upload clothes you own and get weather-ready looks that never repeat across the trip.',
       stat: `${wardrobe.length} pieces owned, ${savedOutfits.length} looks saved`,
       cta: 'Open AI Outfit Studio',
+      features: ['Weather-ready looks','No repeated outfits','Built from clothes you own'],
       surface: '#D9C9F2',
       ink: '#101010',
     },
@@ -249,6 +252,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         ? activeTrip.destination || activeTrip.title
         : `${lists.length} itineraries`,
       cta: 'Open Trip Planner',
+      features: ['Live destination forecast','Departure countdown','Saved itineraries'],
       surface: '#B8D9F2',
       ink: '#101010',
     },
@@ -260,6 +264,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         'Catalogue your tops, bottoms, dresses, shoes and outerwear with AI tagging from a photo.',
       stat: `${wardrobe.filter((w) => w.photoId).length} items scanned from photos`,
       cta: 'Browse Wardrobe',
+      features: ['AI tagging from a photo','Tops to outerwear','Search and filters'],
       surface: '#FFFFFF',
       ink: '#101010',
     },
@@ -638,9 +643,17 @@ export const HomePage: React.FC<HomePageProps> = ({
                       color: m.ink,
                       gridArea: '1 / 1',
                     }}
-                    className="ps-card w-[min(72vw,330px)] h-[360px] sm:h-[430px] rounded-[28px] p-7 flex flex-col justify-between border border-[#101010]/15 outline-none focus-visible:ring-2 focus-visible:ring-[#101010]"
+                    className="ps-card w-[min(72vw,330px)] h-[360px] sm:h-[430px] rounded-[28px] p-7 flex flex-col justify-between gap-6 border border-[#101010]/15 outline-none focus-visible:ring-2 focus-visible:ring-[#101010]"
                   >
                     <Icon className="w-7 h-7" />
+                    <ul className="space-y-2.5 text-sm font-medium">
+                      {m.features.map((f) => (
+                        <li key={f} className="flex items-center gap-2.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-current shrink-0" aria-hidden="true" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
                     <div className="space-y-3">
                       <h3 className="font-serif text-[2.1rem] leading-[1.02]">{m.title}</h3>
                       <p className="text-sm tabular-nums" style={{ opacity: 0.75 }}>
