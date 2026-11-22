@@ -2,12 +2,12 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* Type: Fraunces carries big headlines; Hanken Grotesk carries everything small. */
-  --font-serif: "Fraunces", Georgia, serif;
-  --font-editorial: "Fraunces", Georgia, serif;
-  --font-display: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-sans: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  /* Type: one family, Plus Jakarta Sans. Headlines are heavy and tight, body is regular. */
+  --font-serif: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-editorial: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* PackSmart palette: five colours, nothing else. */
   --color-black: #101010;
@@ -45,12 +45,12 @@
     background-color: var(--ps-white);
   }
 
-  /* Serif only for big headlines; small headings stay in the sans for legibility. */
+  /* Big headlines: heavy and tight. Small headings: semibold. */
   h1, h2, .font-editorial {
     font-family: var(--font-serif);
     font-optical-sizing: auto;
-    font-weight: 500;
-    letter-spacing: -0.02em;
+    font-weight: 700;
+    letter-spacing: -0.035em;
     text-wrap: balance;
   }
   h3, h4 {

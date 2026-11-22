@@ -62,6 +62,47 @@ interface DeckModule {
   ink: string;
 }
 
+/** A big line of words that slides sideways as the page scrolls past it. */
+const ScrollMarquee: React.FC<{ words: string[]; reverse?: boolean }> = ({ words, reverse }) => {
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const rowRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    const row = rowRef.current;
+    if (!wrap || !row || prefersReducedMotion()) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        row,
+        { xPercent: reverse ? -34 : 0 },
+        {
+          xPercent: reverse ? 0 : -34,
+          ease: 'none',
+          scrollTrigger: { trigger: wrap, start: 'top bottom', end: 'bottom top', scrub: 0.6 },
+        }
+      );
+    }, wrap);
+    return () => ctx.revert();
+  }, [reverse]);
+
+  const line = [...words, ...words, ...words];
+  return (
+    <div ref={wrapRef} aria-hidden="true" className="relative overflow-hidden py-8 sm:py-12 select-none">
+      <div
+        ref={rowRef}
+        className="flex w-max items-center gap-8 sm:gap-14 text-[clamp(3.5rem,11vw,9rem)] leading-none font-extrabold tracking-[-0.05em] text-[#101010] will-change-transform"
+      >
+        {line.map((w, i) => (
+          <React.Fragment key={`${w}-${i}`}>
+            <span>{w}</span>
+            <span className="w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-[#FFFFFF] shrink-0" />
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export const HomePage: React.FC<HomePageProps> = ({
   lists,
   wardrobe,
@@ -125,8 +166,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           },
         },
       });
-      tl.to(hero, { backgroundColor: '#D9C9F2' }, 0)
-        .to(headRef.current, { yPercent: -22, opacity: 0, ease: 'power2.in' }, 0.05)
+      tl.to(headRef.current, { yPercent: -22, opacity: 0, ease: 'power2.in' }, 0.05)
         .to(caseWrapRef.current, { xPercent: -46, scale: 1.18, ease: 'power2.inOut' }, 0)
         .fromTo(captionRef.current, { opacity: 0, y: 24 }, { opacity: 1, y: 0, ease: 'power2.out' }, 0.55);
       return () => {
@@ -209,7 +249,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         ? activeTrip.destination || activeTrip.title
         : `${lists.length} itineraries`,
       cta: 'Open Trip Planner',
-      surface: '#FFC5A8',
+      surface: '#B8D9F2',
       ink: '#101010',
     },
     {
@@ -298,6 +338,72 @@ export const HomePage: React.FC<HomePageProps> = ({
     return () => ctx.revert();
   }, [packedPct]);
 
+  /* ------------------------------------------------------------------ */
+  /* Whole-page choreography: the sky shifts colour, the deck pins and    */
+  /* advances with scroll, the summary columns drift at different speeds. */
+  /* ------------------------------------------------------------------ */
+  const rootRef = useRef<HTMLDivElement | null>(null);
+  const skyRef = useRef<HTMLDivElement | null>(null);
+  const deckRef = useRef<HTMLElement | null>(null);
+
+  useLayoutEffect(() => {
+    const root = rootRef.current;
+    const sky = skyRef.current;
+    if (!root || !sky || prefersReducedMotion()) return;
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: { trigger: root, start: 'top top', end: 'bottom bottom', scrub: 0.8 },
+      });
+      tl.to(sky, { backgroundColor: '#D9C9F2', duration: 1 })
+        .to(sky, { backgroundColor: '#FFC5A8', duration: 1 })
+        .to(sky, { backgroundColor: '#B8D9F2', duration: 1 })
+        .to(sky, { backgroundColor: '#D9C9F2', duration: 1 });
+    }, root);
+    return () => ctx.revert();
+  }, []);
+
+  useLayoutEffect(() => {
+    const deck = deckRef.current;
+    if (!deck || prefersReducedMotion()) return;
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 1024px)', () => {
+      const st = ScrollTrigger.create({
+        trigger: deck,
+        start: 'top top',
+        end: '+=320%',
+        pin: true,
+        anticipatePin: 1,
+        refreshPriority: 4.5,
+        onUpdate: (self) => {
+          setActive(Math.min(count - 1, Math.floor(self.progress * count)));
+        },
+      });
+      return () => st.kill();
+    });
+    return () => mm.revert();
+  }, [count]);
+
+  useEffect(() => {
+    const section = summaryRef.current;
+    if (!section || prefersReducedMotion()) return;
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray<HTMLElement>('[data-speed]').forEach((el) => {
+        const speed = Number(el.dataset.speed || 0);
+        gsap.fromTo(
+          el,
+          { y: -speed * 60 },
+          {
+            y: speed * 60,
+            ease: 'none',
+            scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: true },
+          }
+        );
+      });
+    }, section);
+    return () => ctx.revert();
+  }, []);
+
   const handleBlueprint = (bp: EditorialBlueprint) => {
     if (bp.kind === 'wardrobe_jump') onNavigate('ai-outfit-studio');
     else if (bp.kind === 'suitcase_jump') onNavigate('smart-packing');
@@ -306,21 +412,29 @@ export const HomePage: React.FC<HomePageProps> = ({
   };
 
   return (
-    <div className="bg-[#FFFFFF] text-[#101010]">
+    <div ref={rootRef} className="relative text-[#101010]">
+      {/* One continuous sky behind every scene: dawn powder, dusk lavender, sunset peach. */}
+      <div
+        ref={skyRef}
+        aria-hidden="true"
+        className="fixed inset-0 z-0 pointer-events-none bg-[#B8D9F2]"
+        style={{ backgroundImage: 'radial-gradient(70% 55% at 75% 15%, rgba(255,255,255,0.65), rgba(255,255,255,0) 70%)' }}
+      />
+      <div className="relative z-10">
       {/* ==================== SCENE 1: HERO, PINNED ON DESKTOP ==================== */}
       <section
         ref={heroRef}
         onPointerMove={handleHeroMove}
         aria-label="PackSmart introduction"
-        className="relative bg-[#B8D9F2] min-h-[100svh] overflow-hidden flex items-center"
+        className="relative min-h-[100svh] overflow-hidden flex items-center"
       >
         <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10 pt-24 pb-24 lg:pt-20 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
           <div ref={headRef} className="lg:col-span-6 relative z-10 space-y-8">
             <LineRevealText
               as="h1"
               trigger="mount"
-              className="font-serif text-[clamp(2.9rem,8.2vw,7.4rem)] leading-[0.95] tracking-[-0.03em] text-[#101010]"
-              lines={['Pack less stress.', 'Travel with', <em key="c" className="italic font-normal">confidence.</em>]}
+              className="font-serif text-[clamp(2.9rem,7.6vw,6.8rem)] leading-[0.96] tracking-[-0.045em] text-[#101010]"
+              lines={['Pack less stress.', 'Travel with', 'confidence.']}
             />
             <p className="max-w-md text-base sm:text-lg leading-relaxed text-[#101010]/75">
               Plan the trip, read the forecast, fit the suitcase and style every day from clothes you already own.
@@ -391,19 +505,22 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
+      <ScrollMarquee words={['Plan', 'Pack', 'Style', 'Go']} />
+
       {/* ==================== SCENE 2: PACKING STORY, PINNED ==================== */}
       <PackingStorySection onOpenSuitcaseOptimizer={() => onNavigate('smart-packing')} />
 
       {/* ==================== SCENE 3: SPATIAL DECK ==================== */}
       <section
+        ref={deckRef}
         aria-label="Browse the four PackSmart tools"
-        className="relative bg-[#B8D9F2] text-[#101010] min-h-screen flex items-center overflow-hidden"
+        className="relative text-[#101010] min-h-screen flex items-center overflow-hidden"
       >
         <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10 py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-6 items-center">
           <div className="lg:col-span-5 space-y-7 relative z-10">
             <LineRevealText
               as="h2"
-              className="font-serif text-[clamp(2.4rem,5.4vw,4.6rem)] leading-[1] tracking-[-0.025em]"
+              className="font-serif text-[clamp(2.4rem,5.4vw,4.4rem)] leading-[1.02] tracking-[-0.04em]"
               lines={['Four tools.', 'One calm trip.']}
             />
             <div className="min-h-[188px]" aria-live="polite">
@@ -432,6 +549,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </motion.div>
               </AnimatePresence>
             </div>
+            <p className="hidden lg:block text-sm text-[#101010]/70">Scroll to move through the tools, or drag the cards.</p>
             <div className="flex items-center gap-3">
               <button
                 type="button"
@@ -540,13 +658,17 @@ export const HomePage: React.FC<HomePageProps> = ({
       {/* ==================== SCENE 4: HORIZONTAL JOURNEYS, PINNED ==================== */}
       <HorizontalGallerySection onSelectBlueprint={handleBlueprint} />
 
+      <ScrollMarquee words={['Forecast', 'Fit', 'Outfits', 'Documents']} reverse />
+
       {/* ==================== SCENE 5: LIVE JOURNEY ==================== */}
-      <section ref={summaryRef} className="bg-[#FFFFFF] py-24 sm:py-28">
+      <section ref={summaryRef} className="relative py-24 sm:py-32 overflow-hidden">
+        <div data-speed="1.4" aria-hidden="true" className="absolute -left-24 top-10 w-72 h-72 rounded-full bg-[#FFFFFF]/45" />
+        <div data-speed="-1" aria-hidden="true" className="absolute right-[-4rem] bottom-0 w-96 h-96 rounded-full bg-[#B8D9F2]/55" />
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-7">
+          <div data-speed="0.5" className="lg:col-span-7 space-y-7">
             <LineRevealText
               as="h2"
-              className="font-serif text-[clamp(2.4rem,5.4vw,4.8rem)] leading-[1] tracking-[-0.025em]"
+              className="font-serif text-[clamp(2.4rem,5.4vw,4.4rem)] leading-[1.02] tracking-[-0.04em]"
               lines={
                 activeTrip
                   ? [activeTrip.title]
@@ -576,10 +698,10 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
           </div>
 
-          <div className="lg:col-span-5 flex flex-col items-center gap-6">
+          <div data-speed="-0.5" className="lg:col-span-5 flex flex-col items-center gap-6">
             <div className="relative w-[220px] h-[220px] sm:w-[260px] sm:h-[260px]">
               <svg viewBox="0 0 200 200" className="w-full h-full -rotate-90" role="img" aria-label={`Packing readiness ${packedPct} percent`}>
-                <circle cx="100" cy="100" r="88" fill="none" stroke="#D9C9F2" strokeWidth="10" />
+                <circle cx="100" cy="100" r="88" fill="none" stroke="#FFFFFF" strokeWidth="10" />
                 <circle
                   ref={ringRef}
                   cx="100"
@@ -625,11 +747,11 @@ export const HomePage: React.FC<HomePageProps> = ({
       </section>
 
       {/* ==================== FOOTER ==================== */}
-      <footer className="bg-[#101010] text-[#FFFFFF]">
+      <footer className="relative border-t border-[#101010]/15 text-[#101010]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 py-12 flex flex-col sm:flex-row sm:items-end justify-between gap-8">
           <div className="space-y-1">
             <p className="font-serif text-4xl">PackSmart</p>
-            <p className="text-sm text-[#FFFFFF]/60">Pack less stress. Travel with confidence.</p>
+            <p className="text-sm text-[#101010]/70">Pack less stress. Travel with confidence.</p>
           </div>
           <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
             {(
@@ -645,7 +767,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 key={route}
                 type="button"
                 onClick={() => onNavigate(route)}
-                className="text-[#FFFFFF]/75 hover:text-[#FFC5A8] transition-colors"
+                className="text-[#101010]/75 hover:text-[#101010] underline-offset-4 hover:underline transition-colors"
               >
                 {label}
               </button>
@@ -653,13 +775,14 @@ export const HomePage: React.FC<HomePageProps> = ({
             <button
               type="button"
               onClick={onOpenVault}
-              className="text-[#FFFFFF]/75 hover:text-[#FFC5A8] transition-colors"
+              className="text-[#101010]/75 hover:text-[#101010] underline-offset-4 hover:underline transition-colors"
             >
               Document Vault
             </button>
           </nav>
         </div>
       </footer>
+      </div>
     </div>
   );
 };

@@ -142,7 +142,7 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
         start: 'top top',
         end: '+=190%',
         pin: true,
-        refreshPriority: 5,
+        refreshPriority: 6,
         scrub: 1.2,
         anticipatePin: 1,
         onUpdate: (self) => {
@@ -191,33 +191,21 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
     <section
       id="packing-story"
       ref={sectionRef}
-      className="relative bg-[#101010] text-[#FFFFFF] min-h-screen flex items-center overflow-hidden border-t border-white/10"
+      className="relative text-[#101010] min-h-screen flex items-center overflow-hidden"
     >
-      {/* Oversized Sideways Editorial Typography */}
-      <div
-        ref={sidewaysRef}
-        aria-hidden="true"
-        className="hidden xl:flex pointer-events-none select-none absolute right-5 top-1/2 -translate-y-1/2 vertical-editorial font-editorial italic text-[6.5rem] leading-none tracking-tight text-[#D9C9F2]/20"
-      >
-        Pack Less Stress
-      </div>
-
       <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10 py-20 lg:py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center relative z-10">
         {/* Left Editorial Narrative Column */}
         <div className="lg:col-span-5 space-y-8">
           <div className="space-y-4">
-            <p className="font-mono text-xs tracking-[0.16em] text-[#FFC5A8]">
-              02 / THE TRANSFORMATION
-            </p>
             <LineRevealText
               as="h2"
               lines={['From closet chaos', 'to 40-liter calm.']}
-              className="font-editorial text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.02] font-normal tracking-tight text-[#FFFFFF]"
+              className="text-4xl sm:text-5xl lg:text-[3.75rem] leading-[1.02] tracking-[-0.035em] text-[#101010]"
             />
           </div>
 
           {/* Interactive / Scroll-Driven Chapter Indicator */}
-          <div className="space-y-5 border-t border-white/15 pt-6">
+          <div className="space-y-5 border-t border-[#101010]/15 pt-6">
             <div className="flex items-center gap-3">
               {CHAPTERS.map((ch, idx) => (
                 <button
@@ -226,44 +214,44 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
                   onClick={() => setProgress(idx === 0 ? 0.05 : idx === 1 ? 0.5 : 0.95)}
                   className={`min-h-[40px] px-3 font-mono text-xs transition-colors border-b-2 ${
                     chapterIndex === idx
-                      ? 'border-[#FFC5A8] text-[#FFC5A8] font-semibold'
-                      : 'border-transparent text-white/70 hover:text-white/80'
+                      ? 'border-[#101010] text-[#101010] font-semibold'
+                      : 'border-transparent text-[#101010]/70 hover:text-[#101010]/80'
                   }`}
                 >
                   {ch.num}
                 </button>
               ))}
-              <span className="ml-auto font-mono text-[11px] text-white/70 tabular-nums">
+              <span className="ml-auto font-mono text-[11px] text-[#101010]/70 tabular-nums">
                 {Math.round(easedT * 100)}% organized
               </span>
             </div>
 
             <div className="min-h-[120px] space-y-2.5">
-              <h3 className="font-sans text-xl sm:text-2xl font-semibold text-[#FFFFFF]">
+              <h3 className="font-sans text-xl sm:text-2xl font-semibold text-[#101010]">
                 {activeChapter.title}
               </h3>
-              <p className="text-sm text-white/75 leading-relaxed max-w-md">
+              <p className="text-sm text-[#101010]/75 leading-relaxed max-w-md">
                 {activeChapter.copy}
               </p>
             </div>
 
             {/* Live Quantified Packing Telemetry */}
-            <div className="grid grid-cols-3 gap-4 border-t border-white/15 pt-5 tabular-nums">
+            <div className="grid grid-cols-3 gap-4 border-t border-[#101010]/15 pt-5 tabular-nums">
               <div>
-                <p className="font-mono text-[11px] text-white/70">Total Weight</p>
-                <p className="font-mono text-lg sm:text-xl font-semibold text-[#B8D9F2] mt-1">
+                <p className="font-mono text-[11px] text-[#101010]/70">Total Weight</p>
+                <p className="font-mono text-lg sm:text-xl font-semibold text-[#101010] mt-1">
                   {activeChapter.metricWeight}
                 </p>
               </div>
               <div>
-                <p className="font-mono text-[11px] text-white/70">Capsule Count</p>
-                <p className="font-mono text-lg sm:text-xl font-semibold text-[#D9C9F2] mt-1">
+                <p className="font-mono text-[11px] text-[#101010]/70">Capsule Count</p>
+                <p className="font-mono text-lg sm:text-xl font-semibold text-[#101010] mt-1">
                   {activeChapter.metricPieces}
                 </p>
               </div>
               <div>
-                <p className="font-mono text-[11px] text-white/70">Status</p>
-                <p className="text-xs font-semibold text-[#FFC5A8] mt-1.5 leading-snug">
+                <p className="font-mono text-[11px] text-[#101010]/70">Status</p>
+                <p className="text-xs font-semibold text-[#101010] mt-1.5 leading-snug">
                   {activeChapter.metricStatus}
                 </p>
               </div>
@@ -273,7 +261,7 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
               <div className="pt-1">
                 <label
                   htmlFor="packing-scrubber"
-                  className="block font-mono text-[11px] text-white/75 mb-2"
+                  className="block font-mono text-[11px] text-[#101010]/75 mb-2"
                 >
                   Drag to preview packing choreography
                 </label>
@@ -284,7 +272,7 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
                   max={100}
                   value={Math.round(progress * 100)}
                   onChange={(e) => setProgress(Number(e.target.value) / 100)}
-                  className="w-full accent-[#FFC5A8]"
+                  className="w-full accent-[#101010]"
                 />
               </div>
             )}
@@ -294,7 +282,7 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
                 type="button"
                 onClick={onOpenSuitcaseOptimizer}
                 cursorLabel="PACK"
-                className="min-h-[48px] px-6 bg-[#FFC5A8] text-[#101010] text-sm font-bold tracking-tight inline-flex items-center gap-2.5 hover:bg-[#FFFFFF] transition-colors"
+                className="min-h-[48px] px-6 rounded-full bg-[#101010] text-[#FFFFFF] text-sm font-semibold inline-flex items-center gap-2.5 hover:bg-[#101010]/85 transition-colors"
               >
                 <span>Open Suitcase Space Optimizer</span>
                 <ArrowRight className="w-4 h-4" />
@@ -305,30 +293,31 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
 
         {/* Right Architectural Suitcase Choreography Stage */}
         <div className="lg:col-span-7 flex flex-col items-center justify-center">
-          <div className="relative w-full max-w-[560px] p-5 sm:p-7 border border-white/25 bg-white/[0.04] overflow-hidden rounded-2xl">
+          <div className="relative w-full max-w-[560px] p-5 sm:p-7 border border-[#101010]/25 bg-[#FFFFFF]/60 overflow-hidden rounded-2xl">
             {/* Suitcase Frame Header */}
-            <div className="flex items-center justify-between border-b border-white/15 pb-3.5 mb-5">
+            <div className="flex items-center justify-between border-b border-[#101010]/15 pb-3.5 mb-5">
               <div className="flex items-center gap-2.5">
-                <span className="font-mono text-xs text-[#B8D9F2]">40L CARRY-ON ARCHITECTURE</span>
+                <span className="font-mono text-xs font-semibold text-[#101010]">40L CARRY-ON ARCHITECTURE</span>
               </div>
-              <span className="font-mono text-xs text-white/70 tabular-nums">
+              <span className="font-mono text-xs text-[#101010]/70 tabular-nums">
                 55 × 35 × 23 cm
               </span>
             </div>
 
             {/* Dynamic Garment Grid — flies from chaos coordinates into architectural precision */}
             <div className="grid grid-cols-12 gap-3 relative min-h-[320px]">
-              {STORY_GARMENTS.map((garment) => {
-                const tx = garment.chaosX * 0.38 * (1 - easedT);
-                const ty = garment.chaosY * 0.38 * (1 - easedT);
-                const rot = garment.chaosRotate * 0.45 * (1 - easedT);
-                const scale = 0.92 + 0.08 * easedT;
+              {STORY_GARMENTS.map((garment, order) => {
+                // Pieces lift in one after another and settle into place. No scatter.
+                const startAt = (order / STORY_GARMENTS.length) * 0.7;
+                const local = Math.min(1, Math.max(0, (organizeT - startAt) / 0.3));
+                const eased = 1 - Math.pow(1 - local, 3);
 
                 return (
                   <div
                     key={garment.id}
                     style={{
-                      transform: `translate3d(${tx}px, ${ty}px, 0) rotate(${rot}deg) scale(${scale})`,
+                      transform: `translate3d(0, ${(1 - eased) * 44}px, 0) scale(${0.96 + 0.04 * eased})`,
+                      opacity: 0.12 + 0.88 * eased,
                       backgroundColor: garment.tone,
                       color: '#101010',
                     }}
@@ -338,7 +327,7 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
                       <span className="text-xs font-medium text-[#101010]/75">
                         {garment.category}
                       </span>
-                      {easedT > 0.85 && (
+                      {organizeT > 0.95 && (
                         <Check className="w-3.5 h-3.5 text-[#101010] shrink-0" />
                       )}
                     </div>
@@ -356,16 +345,16 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
             </div>
 
             {/* Suitcase Compression Progress Track */}
-            <div className="mt-6 pt-4 border-t border-white/15 space-y-2">
+            <div className="mt-6 pt-4 border-t border-[#101010]/15 space-y-2">
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-white/75">Volume Fit</span>
-                <span className="text-[#FFC5A8] tabular-nums">
+                <span className="text-[#101010]/75">Volume Fit</span>
+                <span className="text-[#101010] font-semibold tabular-nums">
                   {easedT > 0.85 ? '27.2L / 40.0L · Optimal' : `${(47.2 - easedT * 20).toFixed(1)}L / 40.0L`}
                 </span>
               </div>
-              <div className="w-full h-1.5 bg-white/10 overflow-hidden">
+              <div className="w-full h-1.5 rounded-full bg-[#101010]/10 overflow-hidden">
                 <div
-                  className="h-full bg-[#FFC5A8] transition-all duration-150"
+                  className="h-full bg-[#101010] transition-all duration-150"
                   style={{ width: `${Math.max(24, Math.min(100, 100 - easedT * 32))}%` }}
                 />
               </div>

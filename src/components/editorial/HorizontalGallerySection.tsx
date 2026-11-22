@@ -167,28 +167,16 @@ export const HorizontalGallerySection: React.FC<HorizontalGallerySectionProps> =
     <section
       id="curated-stories"
       ref={sectionRef}
-      className="relative bg-[#FFC5A8] text-[#101010] overflow-hidden border-t border-[#101010]/10"
+      className="relative text-[#101010] overflow-hidden"
     >
-      {/* Sideways Vertical Editorial Label */}
-      <div
-        ref={sidewaysRef}
-        aria-hidden="true"
-        className="hidden xl:flex pointer-events-none select-none absolute left-4 top-1/2 -translate-y-1/2 vertical-editorial font-editorial italic text-[5.25rem] leading-none text-[#101010]/12"
-      >
-        Curated Journeys
-      </div>
-
       <div className="min-h-screen flex flex-col justify-center py-16 lg:py-12">
         {/* Section Header */}
         <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
-            <p className="font-mono text-xs tracking-[0.16em] text-[#101010]/70">
-              04 / HORIZONTAL LOOKBOOK &amp; BLUEPRINTS
-            </p>
             <LineRevealText
               as="h2"
               lines={['Destinations styled', 'before you depart.']}
-              className="font-editorial text-4xl sm:text-5xl lg:text-[3.75rem] leading-[1.0] font-normal tracking-tight text-[#101010]"
+              className="text-4xl sm:text-5xl lg:text-[3.75rem] leading-[1.02] tracking-[-0.035em] text-[#101010]"
             />
           </div>
           <p className="text-sm text-[#101010]/75 max-w-sm leading-relaxed">
@@ -212,7 +200,7 @@ export const HorizontalGallerySection: React.FC<HorizontalGallerySectionProps> =
               >
                 <article
                   style={{ backgroundColor: bp.surface }}
-                  className={`h-full border border-[#101010]/15 flex flex-col justify-between overflow-hidden group ${
+                  className={`h-full rounded-3xl border border-[#101010]/10 flex flex-col justify-between overflow-hidden group ${
                     isDark ? 'text-[#FFFFFF]' : 'text-[#101010]'
                   }`}
                 >
@@ -239,7 +227,7 @@ export const HorizontalGallerySection: React.FC<HorizontalGallerySectionProps> =
                         <span>{bp.climate}</span>
                       </div>
 
-                      <h3 className="font-editorial text-3xl sm:text-[2.15rem] leading-[1.08] font-medium">
+                      <h3 className="text-3xl sm:text-[2.15rem] leading-[1.1] font-bold tracking-[-0.03em]">
                         {bp.title}
                       </h3>
 
@@ -269,7 +257,7 @@ export const HorizontalGallerySection: React.FC<HorizontalGallerySectionProps> =
                         type="button"
                         onClick={() => onSelectBlueprint(bp)}
                         cursorLabel="LOAD"
-                        className={`min-h-[42px] px-4 text-xs font-bold inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 transition-colors ${
+                        className={`min-h-[42px] px-4 rounded-full text-xs font-bold inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 transition-colors ${
                           isDark
                             ? 'bg-[#FFC5A8] text-[#101010] hover:bg-[#FFFFFF]'
                             : 'bg-[#101010] text-[#FFFFFF] hover:bg-[#101010]/85'
