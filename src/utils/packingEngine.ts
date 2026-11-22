@@ -250,14 +250,14 @@ export interface SuitcaseAnalysis {
 }
 
 const COMPARTMENT_COLORS: Record<string, string> = {
-  Clothing: '#6E5DE7',
-  Footwear: '#111834',
-  Electronics: '#0F968C',
-  Toiletries: '#38BDF8',
-  Accessories: '#F59E0B',
-  'Medicines & First Aid': '#EC4899',
-  Documents: '#64748B',
-  Miscellaneous: '#8B5CF6',
+  Clothing: '#D9C9F2',
+  Footwear: '#101010',
+  Electronics: '#B8D9F2',
+  Toiletries: '#B8D9F2',
+  Accessories: '#FFC5A8',
+  'Medicines & First Aid': '#FFC5A8',
+  Documents: '#101010',
+  Miscellaneous: '#D9C9F2',
 };
 
 export function analyzeSuitcaseSpace(
@@ -293,7 +293,7 @@ export function analyzeSuitcaseSpace(
       volumeLiters: Number(data.vol.toFixed(1)),
       percentOfBag: Math.round((data.vol / Math.max(capacityLiters, totalVolumeLiters)) * 100),
       weightKg: Number((data.grams / 1000).toFixed(2)),
-      color: COMPARTMENT_COLORS[category] || '#6E5DE7',
+      color: COMPARTMENT_COLORS[category] || '#D9C9F2',
     }))
     .sort((a, b) => b.volumeLiters - a.volumeLiters);
 

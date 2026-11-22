@@ -128,6 +128,7 @@ export const HorizontalGallerySection: React.FC<HorizontalGallerySectionProps> =
           start: 'top top',
           end: () => `+=${Math.max(900, getScrollAmount() * 1.15)}`,
           pin: true,
+        refreshPriority: 4,
           scrub: 0.85,
           invalidateOnRefresh: true,
           anticipatePin: 1,

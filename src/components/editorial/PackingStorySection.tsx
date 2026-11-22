@@ -142,10 +142,11 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
         start: 'top top',
         end: '+=190%',
         pin: true,
+        refreshPriority: 5,
         scrub: 0.9,
         anticipatePin: 1,
         onUpdate: (self) => {
-          setProgress(self.progress);
+          setProgress(Math.round(self.progress * 100) / 100);
         },
       });
 

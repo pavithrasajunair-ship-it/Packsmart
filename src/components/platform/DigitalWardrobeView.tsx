@@ -42,7 +42,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
   const [manualName, setManualName] = useState('');
   const [manualCategory, setManualCategory] = useState<WardrobeCategory>('Tops');
   const [manualColor, setManualColor] = useState('Warm Ivory');
-  const [manualHex, setManualHex] = useState('#D8C9EC');
+  const [manualHex, setManualHex] = useState('#D9C9F2');
   const [manualWarmth, setManualWarmth] =
     useState<WardrobeItem['warmth']>('All-Season');
 
@@ -146,7 +146,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
   };
 
   return (
-    <div className="bg-[#F7F4EF] min-h-[calc(100vh-4rem)] py-8 sm:py-10">
+    <div className="bg-[#FFFFFF] min-h-[calc(100vh-4rem)] py-8 sm:py-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         {/* ==================== HEADER ==================== */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
@@ -197,12 +197,12 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
         </div>
 
         {notice && (
-          <div className="rounded-lg bg-[#B9D8EF]/40 border border-[#171717]/12 px-4 py-3 text-sm font-medium text-[#171717]">
+          <div className="rounded-lg bg-[#B8D9F2]/40 border border-[#171717]/12 px-4 py-3 text-sm font-medium text-[#171717]">
             {notice}
           </div>
         )}
         {error && (
-          <div className="rounded-lg bg-[#F5BDA5]/50 border border-[#171717]/15 px-4 py-3 text-sm font-medium text-[#171717]">
+          <div className="rounded-lg bg-[#FFC5A8]/50 border border-[#171717]/15 px-4 py-3 text-sm font-medium text-[#171717]">
             {error}
           </div>
         )}
@@ -221,7 +221,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                 value={manualName}
                 onChange={(e) => setManualName(e.target.value)}
                 placeholder="e.g., Ivory Linen Shirt"
-                className="w-full h-10 px-3 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-sm text-[#171717]"
+                className="w-full h-10 px-3 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-sm text-[#171717]"
               />
             </label>
             <label className="space-y-1 text-xs font-medium text-[#171717]/75">
@@ -229,7 +229,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
               <select
                 value={manualCategory}
                 onChange={(e) => setManualCategory(e.target.value as WardrobeCategory)}
-                className="w-full h-10 px-3 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-sm text-[#171717]"
+                className="w-full h-10 px-3 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-sm text-[#171717]"
               >
                 {WARDROBE_CATEGORIES.map((c) => (
                   <option key={c} value={c}>
@@ -243,7 +243,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
               <select
                 value={manualWarmth}
                 onChange={(e) => setManualWarmth(e.target.value as WardrobeItem['warmth'])}
-                className="w-full h-10 px-3 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-sm text-[#171717]"
+                className="w-full h-10 px-3 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-sm text-[#171717]"
               >
                 <option value="Warm Weather">Warm Weather</option>
                 <option value="All-Season">All-Season</option>
@@ -256,7 +256,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                 aria-label="Color swatch"
                 value={manualHex}
                 onChange={(e) => setManualHex(e.target.value)}
-                className="h-10 w-10 rounded-lg border border-[#171717]/15 bg-[#F7F4EF] p-1 shrink-0"
+                className="h-10 w-10 rounded-lg border border-[#171717]/15 bg-[#FFFFFF] p-1 shrink-0"
               />
               <button
                 type="submit"
@@ -281,7 +281,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                   className={`h-8 px-3 rounded-md text-xs font-medium transition-colors ${
                     active
                       ? 'bg-[#171717] text-[#FFFFFF]'
-                      : 'bg-[#F7F4EF] text-[#171717]/70 hover:text-[#171717]'
+                      : 'bg-[#FFFFFF] text-[#171717]/70 hover:text-[#171717]'
                   }`}
                 >
                   {cat}
@@ -294,7 +294,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
             aria-label="Filter by season warmth"
             value={warmthFilter}
             onChange={(e) => setWarmthFilter(e.target.value)}
-            className="h-9 px-3 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-xs font-medium text-[#171717]"
+            className="h-9 px-3 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-xs font-medium text-[#171717]"
           >
             <option value="All">All Climates</option>
             <option value="Warm Weather">Warm Weather</option>
@@ -314,7 +314,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                 onClick={() => setSelectedItem(item)}
                 className="text-left rounded-xl bg-[#FFFFFF] border border-[#171717]/10 overflow-hidden hover:border-[#171717]/40 transition-colors flex flex-col"
               >
-                <div className="aspect-square w-full bg-[#F7F4EF] flex items-center justify-center overflow-hidden">
+                <div className="aspect-square w-full bg-[#FFFFFF] flex items-center justify-center overflow-hidden">
                   {photo ? (
                     <img
                       src={photo}
@@ -373,7 +373,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                   type="button"
                   onClick={() => setSelectedItem(null)}
                   aria-label="Close modal"
-                  className="w-9 h-9 rounded-lg bg-[#F7F4EF] flex items-center justify-center text-[#171717] hover:bg-[#171717] hover:text-[#FFFFFF] transition-colors"
+                  className="w-9 h-9 rounded-lg bg-[#FFFFFF] flex items-center justify-center text-[#171717] hover:bg-[#171717] hover:text-[#FFFFFF] transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -381,7 +381,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
 
               <div className="p-6 space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-center">
-                  <div className="aspect-square rounded-xl bg-[#F7F4EF] border border-[#171717]/10 overflow-hidden flex items-center justify-center">
+                  <div className="aspect-square rounded-xl bg-[#FFFFFF] border border-[#171717]/10 overflow-hidden flex items-center justify-center">
                     {selectedItem.photoId && wardrobePhotos[selectedItem.photoId] ? (
                       <img
                         src={wardrobePhotos[selectedItem.photoId]}
@@ -436,7 +436,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                       onDeleteWardrobeItem(selectedItem.id);
                       setSelectedItem(null);
                     }}
-                    className="h-10 px-4 rounded-lg bg-[#F5BDA5]/45 text-xs font-medium text-[#171717] inline-flex items-center gap-1.5 hover:bg-[#F5BDA5] transition-colors"
+                    className="h-10 px-4 rounded-lg bg-[#FFC5A8]/45 text-xs font-medium text-[#171717] inline-flex items-center gap-1.5 hover:bg-[#FFC5A8] transition-colors"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                     <span>Remove Item</span>

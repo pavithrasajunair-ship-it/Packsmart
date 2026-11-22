@@ -448,7 +448,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
   }, [swappingSlot, wardrobe, wardrobeMap]);
 
   return (
-    <div className="bg-[#F7F4EF] min-h-[calc(100vh-4rem)] py-8 sm:py-10">
+    <div className="bg-[#FFFFFF] min-h-[calc(100vh-4rem)] py-8 sm:py-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* ==================== HEADER ==================== */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
@@ -492,13 +492,13 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
         </div>
 
         {(uploadNotice || statusMessage) && (
-          <div className="rounded-lg bg-[#B9D8EF]/40 border border-[#171717]/12 px-4 py-3 text-sm font-medium text-[#171717]">
+          <div className="rounded-lg bg-[#B8D9F2]/40 border border-[#171717]/12 px-4 py-3 text-sm font-medium text-[#171717]">
             {uploadNotice || statusMessage}
           </div>
         )}
 
         {(uploadError || matchError) && (
-          <div className="rounded-lg bg-[#F5BDA5]/50 border border-[#171717]/15 px-4 py-3 text-sm font-medium text-[#171717]">
+          <div className="rounded-lg bg-[#FFC5A8]/50 border border-[#171717]/15 px-4 py-3 text-sm font-medium text-[#171717]">
             {uploadError || matchError}
           </div>
         )}
@@ -520,7 +520,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
                 aria-label="Link to trip"
                 value={activeTrip.id}
                 onChange={(e) => handleSelectTripChange(e.target.value)}
-                className="h-10 px-3.5 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-xs font-medium text-[#171717]"
+                className="h-10 px-3.5 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-xs font-medium text-[#171717]"
               >
                 {lists.map((l) => (
                   <option key={l.id} value={l.id}>
@@ -538,7 +538,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
                 type="text"
                 value={destination}
                 onChange={(e) => setDestination(e.target.value)}
-                className="w-full h-10 px-3 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-sm text-[#171717]"
+                className="w-full h-10 px-3 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-sm text-[#171717]"
               />
             </label>
 
@@ -547,7 +547,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
               <select
                 value={durationDays}
                 onChange={(e) => setDurationDays(Number(e.target.value))}
-                className="w-full h-10 px-3 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-sm text-[#171717]"
+                className="w-full h-10 px-3 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-sm text-[#171717]"
               >
                 {[2, 3, 4, 5, 6, 7].map((d) => (
                   <option key={d} value={d}>
@@ -564,7 +564,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
                 list="weather-presets"
                 value={weatherSummary}
                 onChange={(e) => setWeatherSummary(e.target.value)}
-                className="w-full h-10 px-3 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-sm text-[#171717]"
+                className="w-full h-10 px-3 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-sm text-[#171717]"
               />
               <datalist id="weather-presets">
                 {WEATHER_OPTIONS.map((opt) => (
@@ -587,7 +587,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
                     className={`h-9 px-3.5 rounded-lg text-xs font-medium border transition-colors ${
                       selected
                         ? 'bg-[#171717] text-[#FFFFFF] border-[#171717]'
-                        : 'bg-[#F7F4EF] text-[#171717] border-[#171717]/15 hover:border-[#171717]'
+                        : 'bg-[#FFFFFF] text-[#171717] border-[#171717]/15 hover:border-[#171717]'
                     }`}
                   >
                     {occ}
@@ -629,7 +629,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
         {session && activeOutfit && (
           <div className="space-y-6">
             {/* Capsule Metrics & Sync Bar */}
-            <div className="rounded-xl bg-[#D8C9EC]/45 border border-[#171717]/10 p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+            <div className="rounded-xl bg-[#D9C9F2]/45 border border-[#171717]/10 p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-5">
               <div className="space-y-1 max-w-2xl">
                 <p className="text-xs font-medium text-[#171717]/65">Capsule Efficiency Summary</p>
                 <p className="text-sm font-medium text-[#171717] leading-relaxed">
@@ -695,7 +695,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
                 <button
                   type="button"
                   onClick={() => handleSaveLook(activeOutfit)}
-                  className="h-10 px-4 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-xs font-medium text-[#171717] inline-flex items-center gap-1.5 hover:border-[#171717] transition-colors shrink-0 self-start"
+                  className="h-10 px-4 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-xs font-medium text-[#171717] inline-flex items-center gap-1.5 hover:border-[#171717] transition-colors shrink-0 self-start"
                 >
                   <Heart className="w-3.5 h-3.5" />
                   <span>Save Outfit</span>
@@ -719,7 +719,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
                         isSwappingThis ? 'border-[#171717] ring-1 ring-[#171717]' : 'border-[#171717]/10'
                       }`}
                     >
-                      <div className="aspect-square w-full bg-[#F7F4EF] flex items-center justify-center overflow-hidden">
+                      <div className="aspect-square w-full bg-[#FFFFFF] flex items-center justify-center overflow-hidden">
                         {photo ? (
                           <img
                             src={photo}
@@ -753,7 +753,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
                                 : { outfitId: activeOutfit.id, itemId }
                             )
                           }
-                          className="w-full h-8 rounded-md bg-[#F7F4EF] border border-[#171717]/12 text-[11px] font-medium text-[#171717] inline-flex items-center justify-center gap-1 hover:border-[#171717] transition-colors"
+                          className="w-full h-8 rounded-md bg-[#FFFFFF] border border-[#171717]/12 text-[11px] font-medium text-[#171717] inline-flex items-center justify-center gap-1 hover:border-[#171717] transition-colors"
                         >
                           <RefreshCw className="w-3 h-3" />
                           <span>{isSwappingThis ? 'Cancel Swap' : 'Swap Piece'}</span>
@@ -766,7 +766,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
 
               {/* Inline Swap Selector Panel */}
               {swappingSlot && swappingSlot.outfitId === activeOutfit.id && (
-                <div className="rounded-xl bg-[#F7F4EF] border border-[#171717]/15 p-4 space-y-3">
+                <div className="rounded-xl bg-[#FFFFFF] border border-[#171717]/15 p-4 space-y-3">
                   <p className="text-xs font-semibold text-[#171717]">
                     Choose a replacement from your wardrobe:
                   </p>
@@ -798,13 +798,13 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
 
               {/* Styling Explanation */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t border-[#171717]/10">
-                <div className="rounded-lg bg-[#F7F4EF] p-4 space-y-1">
+                <div className="rounded-lg bg-[#FFFFFF] p-4 space-y-1">
                   <p className="text-xs font-semibold text-[#171717]">Why this combination works</p>
                   <p className="text-sm text-[#171717]/75 leading-relaxed">
                     {activeOutfit.whyItWorks}
                   </p>
                 </div>
-                <div className="rounded-lg bg-[#B9D8EF]/25 p-4 space-y-1">
+                <div className="rounded-lg bg-[#B8D9F2]/25 p-4 space-y-1">
                   <p className="text-xs font-semibold text-[#171717]">Styling note</p>
                   <p className="text-sm text-[#171717]/75 leading-relaxed">
                     {activeOutfit.stylingTip}
@@ -826,12 +826,12 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
                   {session.missingPieces.map((piece) => (
                     <div
                       key={piece.name}
-                      className="rounded-xl bg-[#F7F4EF] border border-[#171717]/10 p-4 flex flex-col justify-between gap-3"
+                      className="rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-4 flex flex-col justify-between gap-3"
                     >
                       <div className="space-y-1">
                         <div className="flex items-center justify-between gap-2">
                           <p className="text-sm font-semibold text-[#171717]">{piece.name}</p>
-                          <span className="text-[11px] font-medium px-2 py-0.5 rounded bg-[#F5BDA5]/60 text-[#171717] shrink-0">
+                          <span className="text-[11px] font-medium px-2 py-0.5 rounded bg-[#FFC5A8]/60 text-[#171717] shrink-0">
                             +{piece.unlockedCombosCount} looks
                           </span>
                         </div>
@@ -887,7 +887,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
               {savedOutfits.slice(0, 6).map((look) => (
                 <div
                   key={look.id}
-                  className="rounded-xl bg-[#F7F4EF]/65 border border-[#171717]/10 p-4 flex flex-col justify-between gap-3"
+                  className="rounded-xl bg-[#FFFFFF]/65 border border-[#171717]/10 p-4 flex flex-col justify-between gap-3"
                 >
                   <div className="space-y-1.5">
                     <div className="flex items-start justify-between gap-2">

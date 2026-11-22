@@ -370,7 +370,7 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
           name: user.name,
           role: 'Owner',
           initials: user.initials,
-          color: '#6E5DE7',
+          color: '#D9C9F2',
         },
       ],
       groupActivity: [
@@ -399,15 +399,15 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
           type="button"
           onClick={() => (step > 1 ? setStep((step - 1) as 1 | 2) : onCancel())}
           aria-label="Go back"
-          className="min-h-[44px] min-w-[44px] -ml-2 flex items-center justify-center rounded-2xl text-[#111834] dark:text-white hover:bg-[#EDEAE3] dark:hover:bg-[#1B2344]"
+          className="min-h-[44px] min-w-[44px] -ml-2 flex items-center justify-center rounded-2xl text-[#101010] dark:text-white hover:bg-[#FFFFFF] dark:hover:bg-[#FFFFFF0f]"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
         <div>
-          <h1 className="font-display text-xl sm:text-2xl font-extrabold text-[#111834] dark:text-white tracking-tight">
+          <h1 className="font-display text-xl sm:text-2xl font-extrabold text-[#101010] dark:text-white tracking-tight">
             Intelligent Trip Creation
           </h1>
-          <p className="text-xs text-[#646B84] dark:text-[#9AA3C2]">
+          <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8]">
             Step {step} of 3 ·{' '}
             {step === 1
               ? 'Destination, Dates & Trip Type'
@@ -424,23 +424,23 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
           <div
             key={n}
             className={`h-1.5 rounded-full transition-colors ${
-              n <= step ? 'bg-[#6E5DE7]' : 'bg-[#E3DFD7] dark:bg-[#232D52]'
+              n <= step ? 'bg-[#101010]' : 'bg-[#10101014] dark:bg-[#FFFFFF0f]'
             }`}
           />
         ))}
       </div>
 
       {validationError && (
-        <div role="alert" className="p-3.5 rounded-2xl bg-[#FEF2F2] dark:bg-[#3A1620] text-[#DC2626] dark:text-[#F87171] text-xs font-medium">
+        <div role="alert" className="p-3.5 rounded-2xl bg-[#FFC5A866] dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#FFC5A8] text-xs font-medium">
           {validationError}
         </div>
       )}
 
       {/* STEP 1 */}
       {step === 1 && (
-        <div className="bg-white dark:bg-[#131A33] rounded-3xl p-5 sm:p-6 border border-[#E6E2DA] dark:border-[#242E52] space-y-5">
+        <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 sm:p-6 border border-[#1010101f] dark:border-[#FFFFFF24] space-y-5">
           <div>
-            <label className="block text-xs font-semibold text-[#474E68] dark:text-[#B4BCD9] mb-2.5">
+            <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-2.5">
               Trip Type
             </label>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -454,12 +454,12 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
                   }}
                   className={`min-h-[54px] px-3.5 py-2.5 rounded-2xl border text-left transition-all ${
                     tripType === opt.type
-                      ? 'bg-[#111834] dark:bg-[#6E5DE7] border-[#111834] dark:border-[#6E5DE7] text-white'
-                      : 'bg-[#FAF9F7] dark:bg-[#0D1326] border-[#E6E2DA] dark:border-[#242E52] text-[#111834] dark:text-[#F4F3EF]'
+                      ? 'bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] border-[#101010] dark:border-[#FFFFFF24] text-white'
+                      : 'bg-[#FFFFFF] dark:bg-[#101010] border-[#1010101f] dark:border-[#FFFFFF24] text-[#101010] dark:text-[#FFFFFF]'
                   }`}
                 >
                   <p className="text-xs font-bold">{opt.type}</p>
-                  <p className={`text-[10px] mt-0.5 truncate ${tripType === opt.type ? 'text-white/75' : 'text-[#646B84] dark:text-[#9AA3C2]'}`}>
+                  <p className={`text-[10px] mt-0.5 truncate ${tripType === opt.type ? 'text-white/75' : 'text-[#101010b2] dark:text-[#FFFFFFa8]'}`}>
                     {opt.subtitle}
                   </p>
                 </button>
@@ -469,24 +469,24 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="create-dest" className="block text-xs font-semibold text-[#474E68] dark:text-[#B4BCD9] mb-1.5">
+              <label htmlFor="create-dest" className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
                 Destination City
               </label>
               <div className="relative">
-                <MapPin className="w-4 h-4 text-[#848BA6] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <MapPin className="w-4 h-4 text-[#10101099] absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   id="create-dest"
                   type="text"
                   value={destination}
                   onChange={(e) => setDestination(e.target.value)}
                   placeholder="e.g., Kochi, Tokyo, Zurich, Manali"
-                  className="w-full min-h-[46px] pl-10 pr-4 rounded-xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#E2DDD4] dark:border-[#28335C] text-sm text-[#111834] dark:text-white"
+                  className="w-full min-h-[46px] pl-10 pr-4 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="create-title" className="block text-xs font-semibold text-[#474E68] dark:text-[#B4BCD9] mb-1.5">
+              <label htmlFor="create-title" className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
                 Trip Name (optional)
               </label>
               <input
@@ -495,57 +495,57 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="e.g., Kerala Monsoon Escape"
-                className="w-full min-h-[46px] px-4 rounded-xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#E2DDD4] dark:border-[#28335C] text-sm text-[#111834] dark:text-white"
+                className="w-full min-h-[46px] px-4 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label htmlFor="create-start" className="block text-xs font-semibold text-[#474E68] dark:text-[#B4BCD9] mb-1.5">
+              <label htmlFor="create-start" className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
                 Departure Date
               </label>
               <div className="relative">
-                <Calendar className="w-4 h-4 text-[#848BA6] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <Calendar className="w-4 h-4 text-[#10101099] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   id="create-start"
                   type="date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
-                  className="w-full min-h-[46px] pl-10 pr-3 rounded-xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#E2DDD4] dark:border-[#28335C] text-sm font-mono text-[#111834] dark:text-white"
+                  className="w-full min-h-[46px] pl-10 pr-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm font-mono text-[#101010] dark:text-white"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="create-end" className="block text-xs font-semibold text-[#474E68] dark:text-[#B4BCD9] mb-1.5">
+              <label htmlFor="create-end" className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
                 Return Date
               </label>
               <div className="relative">
-                <Calendar className="w-4 h-4 text-[#848BA6] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <Calendar className="w-4 h-4 text-[#10101099] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   id="create-end"
                   type="date"
                   value={endDate}
                   min={startDate}
                   onChange={(e) => setEndDate(e.target.value)}
-                  className="w-full min-h-[46px] pl-10 pr-3 rounded-xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#E2DDD4] dark:border-[#28335C] text-sm font-mono text-[#111834] dark:text-white"
+                  className="w-full min-h-[46px] pl-10 pr-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm font-mono text-[#101010] dark:text-white"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#474E68] dark:text-[#B4BCD9] mb-1.5">
+              <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
                 Number of Travellers
               </label>
-              <div className="min-h-[46px] px-3 rounded-xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#E2DDD4] dark:border-[#28335C] flex items-center justify-between">
-                <Users className="w-4 h-4 text-[#848BA6]" />
+              <div className="min-h-[46px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] flex items-center justify-between">
+                <Users className="w-4 h-4 text-[#10101099]" />
                 <div className="flex items-center gap-3">
                   <button
                     type="button"
                     onClick={() => setTravellers((t) => Math.max(1, t - 1))}
                     aria-label="Decrease travellers"
-                    className="w-8 h-8 rounded-lg bg-white dark:bg-[#192243] border border-[#E2DDD4] dark:border-[#2A3562] font-bold text-sm"
+                    className="w-8 h-8 rounded-lg bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] font-bold text-sm"
                   >
                     −
                   </button>
@@ -554,7 +554,7 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
                     type="button"
                     onClick={() => setTravellers((t) => Math.min(12, t + 1))}
                     aria-label="Increase travellers"
-                    className="w-8 h-8 rounded-lg bg-white dark:bg-[#192243] border border-[#E2DDD4] dark:border-[#2A3562] font-bold text-sm"
+                    className="w-8 h-8 rounded-lg bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] font-bold text-sm"
                   >
                     +
                   </button>
@@ -563,7 +563,7 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
             </div>
           </div>
 
-          <p className="text-xs text-[#646B84] dark:text-[#9AA3C2] font-mono tabular-nums">
+          <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] font-mono tabular-nums">
             Trip duration: {days} day{days === 1 ? '' : 's'} · Auto-generates Smart Timeline, Outfits & Before You Leave checklist
           </p>
         </div>
@@ -572,11 +572,11 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
       {/* STEP 2 */}
       {step === 2 && (
         <div className="space-y-4">
-          <div className="bg-white dark:bg-[#131A33] rounded-3xl p-5 sm:p-6 border border-[#E6E2DA] dark:border-[#242E52] space-y-5">
+          <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 sm:p-6 border border-[#1010101f] dark:border-[#FFFFFF24] space-y-5">
             {/* Luggage Type */}
             <div>
-              <label className="flex items-center gap-1.5 text-xs font-semibold text-[#474E68] dark:text-[#B4BCD9] mb-2">
-                <Luggage className="w-4 h-4 text-[#0F968C]" />
+              <label className="flex items-center gap-1.5 text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-2">
+                <Luggage className="w-4 h-4 text-[#101010]" />
                 <span>Luggage Type & Space Capacity</span>
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -587,12 +587,12 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
                     onClick={() => setLuggageType(preset.type)}
                     className={`min-h-[52px] px-3.5 py-2.5 rounded-2xl border text-left transition-colors ${
                       luggageType === preset.type
-                        ? 'bg-[#111834] dark:bg-[#6E5DE7] border-[#111834] dark:border-[#6E5DE7] text-white'
-                        : 'bg-[#FAF9F7] dark:bg-[#0D1326] border-[#E6E2DA] dark:border-[#242E52] text-[#111834] dark:text-[#F4F3EF]'
+                        ? 'bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] border-[#101010] dark:border-[#FFFFFF24] text-white'
+                        : 'bg-[#FFFFFF] dark:bg-[#101010] border-[#1010101f] dark:border-[#FFFFFF24] text-[#101010] dark:text-[#FFFFFF]'
                     }`}
                   >
                     <p className="text-xs font-bold">{preset.type}</p>
-                    <p className={`text-[11px] font-mono mt-0.5 ${luggageType === preset.type ? 'text-white/75' : 'text-[#646B84] dark:text-[#9AA3C2]'}`}>
+                    <p className={`text-[11px] font-mono mt-0.5 ${luggageType === preset.type ? 'text-white/75' : 'text-[#101010b2] dark:text-[#FFFFFFa8]'}`}>
                       {preset.defaultAllowanceKg}kg limit · {preset.dimensions}
                     </p>
                   </button>
@@ -602,13 +602,13 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-[#474E68] dark:text-[#B4BCD9] mb-2">
+                <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-2">
                   Weather Preference
                 </label>
                 <select
                   value={weatherPreference}
                   onChange={(e) => setWeatherPreference(e.target.value as WeatherPreference)}
-                  className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#E2DDD4] dark:border-[#28335C] text-sm text-[#111834] dark:text-white"
+                  className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
                 >
                   {WEATHER_PREFS.map((wp) => (
                     <option key={wp} value={wp}>
@@ -619,14 +619,14 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#474E68] dark:text-[#B4BCD9] mb-2">
+                <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-2">
                   Travel Method & Stay
                 </label>
                 <div className="grid grid-cols-2 gap-2">
                   <select
                     value={travelMethod}
                     onChange={(e) => setTravelMethod(e.target.value as TravelMethod)}
-                    className="min-h-[44px] px-3 rounded-xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#E2DDD4] dark:border-[#28335C] text-xs text-[#111834] dark:text-white"
+                    className="min-h-[44px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs text-[#101010] dark:text-white"
                   >
                     {(['Flight', 'Train', 'Bus', 'Car', 'Local'] as TravelMethod[]).map((tm) => (
                       <option key={tm} value={tm}>{tm}</option>
@@ -635,7 +635,7 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
                   <select
                     value={accommodation}
                     onChange={(e) => setAccommodation(e.target.value as AccommodationType)}
-                    className="min-h-[44px] px-3 rounded-xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#E2DDD4] dark:border-[#28335C] text-xs text-[#111834] dark:text-white"
+                    className="min-h-[44px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs text-[#101010] dark:text-white"
                   >
                     {(['Hotel', 'Hostel', 'Resort', 'Camping', 'Home / Family', 'Not Applicable'] as AccommodationType[]).map((a) => (
                       <option key={a} value={a}>{a}</option>
@@ -647,7 +647,7 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
 
             {/* Activities */}
             <div>
-              <label className="block text-xs font-semibold text-[#474E68] dark:text-[#B4BCD9] mb-2">
+              <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-2">
                 Planned Activities
               </label>
               <div className="flex flex-wrap gap-2">
@@ -660,8 +660,8 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
                       onClick={() => toggleActivity(act)}
                       className={`min-h-[40px] px-3.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors ${
                         selected
-                          ? 'bg-[#6E5DE7] text-white'
-                          : 'bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#E2DDD4] dark:border-[#28335C] text-[#505770] dark:text-[#B4BCD9]'
+                          ? 'bg-[#101010] text-white'
+                          : 'bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-[#101010cc] dark:text-[#FFFFFFa8]'
                       }`}
                     >
                       {selected && <Check className="w-3.5 h-3.5" />}
@@ -674,7 +674,7 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
 
             {/* Special Requirements */}
             <div>
-              <label htmlFor="create-special" className="block text-xs font-semibold text-[#474E68] dark:text-[#B4BCD9] mb-1.5">
+              <label htmlFor="create-special" className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
                 Special Requirements (optional)
               </label>
               <input
@@ -683,13 +683,13 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
                 value={specialRequirements}
                 onChange={(e) => setSpecialRequirements(e.target.value)}
                 placeholder="e.g., Travelling with baby, DSLR camera gear, prescription meds"
-                className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#E2DDD4] dark:border-[#28335C] text-sm text-[#111834] dark:text-white"
+                className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
               />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-[#F0EDE7] dark:border-[#202948]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-[#1010101f] dark:border-[#FFFFFF24]">
               <div>
-                <label className="block text-xs font-semibold text-[#474E68] dark:text-[#B4BCD9] mb-2">
+                <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-2">
                   Packing Style
                 </label>
                 <div className="grid grid-cols-3 gap-1.5">
@@ -700,8 +700,8 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
                       onClick={() => setPreference(p)}
                       className={`min-h-[42px] rounded-xl text-xs font-semibold ${
                         preference === p
-                          ? 'bg-[#111834] dark:bg-[#6E5DE7] text-white'
-                          : 'bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#E2DDD4] dark:border-[#28335C] text-[#505770] dark:text-[#B4BCD9]'
+                          ? 'bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white'
+                          : 'bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-[#101010cc] dark:text-[#FFFFFFa8]'
                       }`}
                     >
                       {p}
@@ -711,26 +711,26 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
               </div>
 
               <div className="space-y-2">
-                <label className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#E6E2DA] dark:border-[#242E52] cursor-pointer">
-                  <span className="text-xs font-semibold text-[#111834] dark:text-white">
+                <label className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] cursor-pointer">
+                  <span className="text-xs font-semibold text-[#101010] dark:text-white">
                     Laundry available mid-trip
                   </span>
                   <input
                     type="checkbox"
                     checked={laundryAvailable}
                     onChange={(e) => setLaundryAvailable(e.target.checked)}
-                    className="w-5 h-5 accent-[#6E5DE7]"
+                    className="w-5 h-5 accent-[#10101073]"
                   />
                 </label>
-                <label className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#E6E2DA] dark:border-[#242E52] cursor-pointer">
-                  <span className="text-xs font-semibold text-[#111834] dark:text-white">
+                <label className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] cursor-pointer">
+                  <span className="text-xs font-semibold text-[#101010] dark:text-white">
                     Include Reusable Staples ({personalEssentials.filter((p) => p.autoInclude).length})
                   </span>
                   <input
                     type="checkbox"
                     checked={includePersonalEssentials}
                     onChange={(e) => setIncludePersonalEssentials(e.target.checked)}
-                    className="w-5 h-5 accent-[#0F968C]"
+                    className="w-5 h-5 accent-[#10101073]"
                   />
                 </label>
               </div>
@@ -738,12 +738,12 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
           </div>
 
           {/* Smart Quantity Math */}
-          <div className="p-4 rounded-3xl bg-[#F4F2FF] dark:bg-[#191F40] border border-[#E2DCFF] dark:border-[#2C3566]">
-            <div className="flex items-center gap-2 text-xs font-bold text-[#5645D2] dark:text-[#BDB2FF] mb-1.5">
+          <div className="p-4 rounded-3xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] border border-[#D9C9F2] dark:border-[#FFFFFF24]">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#101010] dark:text-[#D9C9F2] mb-1.5">
               <Shirt className="w-4 h-4" />
               <span>Smart Clothing Quantity Math</span>
             </div>
-            <p className="text-xs text-[#3F4560] dark:text-[#C5CBE3] mb-3">{clothingMath.note}</p>
+            <p className="text-xs text-[#101010cc] dark:text-[#FFFFFF] mb-3">{clothingMath.note}</p>
             <div className="grid grid-cols-4 gap-2 text-center">
               {[
                 { label: 'Tops', val: clothingMath.tops },
@@ -751,9 +751,9 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
                 { label: 'Undergarments', val: clothingMath.underwear },
                 { label: 'Socks', val: clothingMath.socks },
               ].map((stat) => (
-                <div key={stat.label} className="bg-white dark:bg-[#121830] rounded-2xl py-2 px-1">
-                  <p className="font-mono text-lg font-bold text-[#111834] dark:text-white tabular-nums">{stat.val}</p>
-                  <p className="text-[10px] text-[#646B84] dark:text-[#9AA3C2]">{stat.label}</p>
+                <div key={stat.label} className="bg-white dark:bg-[#FFFFFF0f] rounded-2xl py-2 px-1">
+                  <p className="font-mono text-lg font-bold text-[#101010] dark:text-white tabular-nums">{stat.val}</p>
+                  <p className="text-[10px] text-[#101010b2] dark:text-[#FFFFFFa8]">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -765,13 +765,13 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
       {step === 3 && (
         <div className="space-y-4">
           {memoryBoostCount > 0 && (
-            <div className="p-4 rounded-3xl bg-[#EEF9F7] dark:bg-[#102928] border border-[#AEE5DE] dark:border-[#1E5652] flex items-start gap-3">
-              <Brain className="w-5 h-5 text-[#0F968C] dark:text-[#2AB5A8] shrink-0 mt-0.5" />
+            <div className="p-4 rounded-3xl bg-[#B8D9F266] dark:bg-[#101010] border border-[#10101040] dark:border-[#FFFFFF24] flex items-start gap-3">
+              <Brain className="w-5 h-5 text-[#101010] dark:text-[#FFFFFF] shrink-0 mt-0.5" />
               <div>
-                <p className="text-xs font-bold text-[#0C7A72] dark:text-[#2AB5A8]">
+                <p className="text-xs font-bold text-[#101010] dark:text-[#FFFFFF]">
                   Post-Trip Memory Applied Automatically
                 </p>
-                <p className="text-xs text-[#2B4F4C] dark:text-[#B9E2DD] mt-0.5">
+                <p className="text-xs text-[#101010] dark:text-[#FFFFFF] mt-0.5">
                   Prioritized {memoryBoostCount} item{memoryBoostCount === 1 ? '' : 's'} you previously forgot so they won't be missed on this trip.
                 </p>
               </div>
@@ -779,11 +779,11 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
           )}
 
           {/* Live Weather Card */}
-          <div className="bg-white dark:bg-[#131A33] rounded-3xl p-5 border border-[#E6E2DA] dark:border-[#242E52]">
+          <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 border border-[#1010101f] dark:border-[#FFFFFF24]">
             <div className="flex items-center justify-between gap-3 mb-3">
               <div className="flex items-center gap-2">
-                <CloudSun className="w-5 h-5 text-[#6E5DE7]" />
-                <h2 className="font-display text-base font-bold text-[#111834] dark:text-white">
+                <CloudSun className="w-5 h-5 text-[#101010]" />
+                <h2 className="font-display text-base font-bold text-[#101010] dark:text-white">
                   Live Weather Check
                 </h2>
               </div>
@@ -792,7 +792,7 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
                   type="button"
                   onClick={fetchLiveWeather}
                   disabled={weatherLoading}
-                  className="min-h-[38px] px-3.5 rounded-xl bg-[#F4F2FF] dark:bg-[#1D254A] text-[#5645D2] dark:text-[#BDB2FF] text-xs font-semibold flex items-center gap-1.5"
+                  className="min-h-[38px] px-3.5 rounded-xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#D9C9F2] text-xs font-semibold flex items-center gap-1.5"
                 >
                   {weatherLoading && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
                   <span>{weather ? 'Refresh' : 'Fetch Forecast'}</span>
@@ -802,15 +802,15 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
 
             {weather ? (
               <div className="space-y-2.5">
-                <div className="flex flex-wrap items-center justify-between gap-2 p-3.5 rounded-2xl bg-[#111834] text-white">
+                <div className="flex flex-wrap items-center justify-between gap-2 p-3.5 rounded-2xl bg-[#101010] text-white">
                   <div>
                     <p className="text-sm font-bold">{weather.locationName}</p>
-                    <p className="text-xs text-[#D1C9FF] mt-0.5">
+                    <p className="text-xs text-[#D9C9F2] mt-0.5">
                       {weather.source === 'live_forecast' ? 'Actual Live Forecast' : 'Current Preview (trip >16d out)'} · {weather.summary.primaryCondition}
                     </p>
                   </div>
                   <div className="text-right font-mono tabular-nums">
-                    <p className="text-lg font-bold text-[#2AB5A8]">
+                    <p className="text-lg font-bold text-[#101010]">
                       {weather.summary.avgLow}°–{weather.summary.avgHigh}°C
                     </p>
                     <p className="text-[11px] text-white/75 flex items-center justify-end gap-1">
@@ -819,10 +819,10 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
                     </p>
                   </div>
                 </div>
-                <p className="text-xs text-[#646B84] dark:text-[#9AA3C2]">{weather.note}</p>
+                <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8]">{weather.note}</p>
               </div>
             ) : (
-              <p className="text-xs text-[#646B84] dark:text-[#9AA3C2]">
+              <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8]">
                 {weatherLoading
                   ? `Fetching live Open-Meteo weather for ${destination}...`
                   : weatherError ||
@@ -832,14 +832,14 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
           </div>
 
           {/* Optional PackSmart AI Enhancement */}
-          <div className="bg-[#F4F2FF] dark:bg-[#191F40] rounded-3xl p-4 border border-[#E2DCFF] dark:border-[#2C3566] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="bg-[#D9C9F266] dark:bg-[#FFFFFF0f] rounded-3xl p-4 border border-[#D9C9F2] dark:border-[#FFFFFF24] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="flex items-start gap-3">
-              <Sparkles className="w-5 h-5 text-[#5645D2] dark:text-[#A799FF] shrink-0 mt-0.5" />
+              <Sparkles className="w-5 h-5 text-[#101010] dark:text-[#D9C9F2] shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-bold text-[#111834] dark:text-white">
+                <p className="text-sm font-bold text-[#101010] dark:text-white">
                   Enhance with PackSmart AI
                 </p>
-                <p className="text-xs text-[#505770] dark:text-[#A5AED0]">
+                <p className="text-xs text-[#101010cc] dark:text-[#FFFFFFa8]">
                   {aiExtras.length > 0
                     ? `Added ${aiExtras.length} destination-specific AI items below.`
                     : aiError || 'Add smart destination-specific essentials tailored to your itinerary.'}
@@ -850,7 +850,7 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
               type="button"
               onClick={handleEnhanceWithAI}
               disabled={aiLoading}
-              className="min-h-[42px] px-4 rounded-xl bg-[#6E5DE7] text-white text-xs font-semibold flex items-center justify-center gap-1.5 whitespace-nowrap shrink-0 disabled:opacity-60"
+              className="min-h-[42px] px-4 rounded-xl bg-[#101010] text-white text-xs font-semibold flex items-center justify-center gap-1.5 whitespace-nowrap shrink-0 disabled:opacity-60"
             >
               {aiLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
               <span>{aiLoading ? 'Thinking...' : aiExtras.length > 0 ? 'Regenerate AI' : 'Add AI Picks'}</span>
@@ -858,12 +858,12 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
           </div>
 
           {/* Generated Preview */}
-          <div className="bg-white dark:bg-[#131A33] rounded-3xl p-5 border border-[#E6E2DA] dark:border-[#242E52]">
+          <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 border border-[#1010101f] dark:border-[#FFFFFF24]">
             <div className="mb-4">
-              <h2 className="font-display text-base font-bold text-[#111834] dark:text-white">
+              <h2 className="font-display text-base font-bold text-[#101010] dark:text-white">
                 Complete Trip Preparation Preview
               </h2>
-              <p className="text-xs text-[#646B84] dark:text-[#9AA3C2] font-mono tabular-nums mt-0.5">
+              <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] font-mono tabular-nums mt-0.5">
                 {generatedItems.length} items · Est.{' '}
                 {generatedItems.reduce((s, i) => s + i.volumeLiters * i.quantity, 0).toFixed(1)}L /{' '}
                 {selectedLuggage.capacityLiters}L ({selectedLuggage.type.split(' ')[0]}) · 10 Timeline steps · 7 Departure safety checks
@@ -875,21 +875,21 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
                 const catItems = generatedItems.filter((i) => i.category === cat);
                 return (
                   <div key={cat}>
-                    <p className="text-xs font-bold text-[#5645D2] dark:text-[#A799FF] mb-1.5">
+                    <p className="text-xs font-bold text-[#101010] dark:text-[#D9C9F2] mb-1.5">
                       {cat} ({catItems.length})
                     </p>
-                    <div className="divide-y divide-[#F3F0EA] dark:divide-[#1F2747]">
+                    <div className="divide-y divide-[#1010101f] dark:divide-[#FFFFFF24]">
                       {catItems.map((it) => (
                         <div key={it.id} className="py-2 flex items-center justify-between gap-2 text-sm">
                           <div className="min-w-0">
-                            <p className="font-medium text-[#111834] dark:text-[#F4F3EF] truncate">{it.name}</p>
+                            <p className="font-medium text-[#101010] dark:text-[#FFFFFF] truncate">{it.name}</p>
                             {it.memoryPriorityReason && (
-                              <p className="text-[11px] text-[#5645D2] dark:text-[#BDB2FF] truncate">
+                              <p className="text-[11px] text-[#101010] dark:text-[#D9C9F2] truncate">
                                 {it.memoryPriorityReason}
                               </p>
                             )}
                           </div>
-                          <span className="font-mono text-xs text-[#646B84] dark:text-[#9AA3C2] tabular-nums shrink-0">
+                          <span className="font-mono text-xs text-[#101010b2] dark:text-[#FFFFFFa8] tabular-nums shrink-0">
                             ×{it.quantity}
                           </span>
                         </div>
@@ -908,7 +908,7 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
         <button
           type="button"
           onClick={() => (step > 1 ? setStep((step - 1) as 1 | 2) : onCancel())}
-          className="min-h-[48px] px-5 rounded-2xl bg-white dark:bg-[#131A33] border border-[#E6E2DA] dark:border-[#242E52] text-sm font-semibold text-[#505770] dark:text-[#B4BCD9]"
+          className="min-h-[48px] px-5 rounded-2xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm font-semibold text-[#101010cc] dark:text-[#FFFFFFa8]"
         >
           {step === 1 ? 'Cancel' : 'Back'}
         </button>
@@ -917,7 +917,7 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
           <button
             type="button"
             onClick={handleStepNext}
-            className="flex-1 sm:flex-none min-h-[48px] px-7 rounded-2xl bg-[#111834] dark:bg-[#6E5DE7] text-white text-sm font-semibold flex items-center justify-center gap-2 shadow-md"
+            className="flex-1 sm:flex-none min-h-[48px] px-7 rounded-2xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white text-sm font-semibold flex items-center justify-center gap-2 shadow-md"
           >
             <span>Continue</span>
             <ArrowRight className="w-4 h-4" />
@@ -926,7 +926,7 @@ export const CreateListScreen: React.FC<CreateListScreenProps> = ({
           <button
             type="button"
             onClick={handleFinalize}
-            className="flex-1 sm:flex-none min-h-[48px] px-7 rounded-2xl bg-[#0F968C] hover:bg-[#0C7D74] text-white text-sm font-bold flex items-center justify-center gap-2 shadow-md"
+            className="flex-1 sm:flex-none min-h-[48px] px-7 rounded-2xl bg-[#101010] hover:bg-[#101010] text-white text-sm font-bold flex items-center justify-center gap-2 shadow-md"
           >
             <Check className="w-4 h-4" />
             <span>Create Trip & Open Workspace</span>

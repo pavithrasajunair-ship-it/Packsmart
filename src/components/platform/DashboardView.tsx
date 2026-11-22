@@ -171,7 +171,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   };
 
   return (
-    <div className="bg-[#F7F4EF] min-h-[calc(100vh-4rem)] py-8 sm:py-10">
+    <div className="bg-[#FFFFFF] min-h-[calc(100vh-4rem)] py-8 sm:py-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         {/* ==================== PAGE HEADER ==================== */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2">
@@ -280,7 +280,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                         </span>
                       </p>
                     </div>
-                    <span className="text-xs font-medium px-2.5 py-1 rounded-md bg-[#F7F4EF] border border-[#171717]/10 text-[#171717]">
+                    <span className="text-xs font-medium px-2.5 py-1 rounded-md bg-[#FFFFFF] border border-[#171717]/10 text-[#171717]">
                       {activeTrip.luggageType}
                     </span>
                   </div>
@@ -292,7 +292,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                         <span className="text-[#171717]/65">Checklist Progress</span>
                         <span className="font-semibold text-[#171717]">{packedPct}%</span>
                       </div>
-                      <div className="h-2 rounded-full bg-[#F7F4EF] overflow-hidden">
+                      <div className="h-2 rounded-full bg-[#101010]/10 overflow-hidden">
                         <div
                           className="h-full bg-[#171717] rounded-full transition-all duration-300"
                           style={{ width: `${packedPct}%` }}
@@ -307,10 +307,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                           {metrics.volumePercent}%
                         </span>
                       </div>
-                      <div className="h-2 rounded-full bg-[#F7F4EF] overflow-hidden">
+                      <div className="h-2 rounded-full bg-[#101010]/10 overflow-hidden">
                         <div
                           className={`h-full rounded-full transition-all duration-300 ${
-                            metrics.isVolumeOverloaded ? 'bg-[#F5BDA5]' : 'bg-[#B9D8EF]'
+                            metrics.isVolumeOverloaded ? 'bg-[#FFC5A8]' : 'bg-[#B8D9F2]'
                           }`}
                           style={{ width: `${Math.min(100, metrics.volumePercent)}%` }}
                         />
@@ -331,7 +331,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   <button
                     type="button"
                     onClick={() => onNavigate('ai-outfit-studio')}
-                    className="h-10 px-4 rounded-lg bg-[#D8C9EC]/55 text-[#171717] text-xs font-medium inline-flex items-center gap-1.5 hover:bg-[#D8C9EC] transition-colors duration-150"
+                    className="h-10 px-4 rounded-lg bg-[#D9C9F2]/55 text-[#171717] text-xs font-medium inline-flex items-center gap-1.5 hover:bg-[#D9C9F2] transition-colors duration-150"
                   >
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>Match Outfits</span>
@@ -339,7 +339,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   <button
                     type="button"
                     onClick={() => onOpenClassicTripSubTab(activeTrip.id, 'before_leave')}
-                    className="h-10 px-4 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-[#171717] text-xs font-medium hover:border-[#171717] transition-colors duration-150"
+                    className="h-10 px-4 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-[#171717] text-xs font-medium hover:border-[#171717] transition-colors duration-150"
                   >
                     Before You Leave ({activeTrip.beforeLeaveTasks.filter((t) => t.completed).length}/
                     {activeTrip.beforeLeaveTasks.length})
@@ -364,7 +364,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </div>
 
           {/* Clean Weather Summary (5 cols — Supporting Powder Blue Surface) */}
-          <div className="lg:col-span-5 rounded-xl bg-[#B9D8EF]/28 border border-[#171717]/10 p-6 flex flex-col justify-between gap-5">
+          <div className="lg:col-span-5 rounded-xl bg-[#B8D9F2]/28 border border-[#171717]/10 p-6 flex flex-col justify-between gap-5">
             <div className="space-y-4">
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -391,7 +391,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               </div>
 
               {weatherError && (
-                <p className="text-xs font-medium text-[#171717] bg-[#F5BDA5]/60 rounded-lg p-3">
+                <p className="text-xs font-medium text-[#171717] bg-[#FFC5A8]/60 rounded-lg p-3">
                   {weatherError}
                 </p>
               )}
@@ -486,13 +486,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                     value={quickItem}
                     onChange={(e) => setQuickItem(e.target.value)}
                     placeholder="Add an item to pack..."
-                    className="flex-1 h-10 px-3 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-sm text-[#171717] placeholder:text-[#171717]/45"
+                    className="flex-1 h-10 px-3 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-sm text-[#171717] placeholder:text-[#171717]/45"
                   />
                   <select
                     aria-label="Category"
                     value={quickCat}
                     onChange={(e) => setQuickCat(e.target.value)}
-                    className="h-10 px-2.5 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-xs font-medium text-[#171717]"
+                    className="h-10 px-2.5 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-xs font-medium text-[#171717]"
                   >
                     <option value="Clothing">Clothing</option>
                     <option value="Electronics">Electronics</option>
@@ -515,7 +515,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                       key={item.id}
                       type="button"
                       onClick={() => handleToggleItem(item.id)}
-                      className="w-full py-2.5 flex items-center justify-between gap-3 text-left min-h-[44px] hover:bg-[#F7F4EF]/60 px-2 -mx-2 rounded-lg transition-colors duration-150"
+                      className="w-full py-2.5 flex items-center justify-between gap-3 text-left min-h-[44px] hover:bg-[#FFFFFF]/60 px-2 -mx-2 rounded-lg transition-colors duration-150"
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         <span
@@ -578,7 +578,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                       key={task.id}
                       type="button"
                       onClick={() => handleToggleTimeline(task.id)}
-                      className="w-full py-2.5 flex items-start justify-between gap-3 text-left min-h-[44px] hover:bg-[#F7F4EF]/60 px-2 -mx-2 rounded-lg transition-colors duration-150"
+                      className="w-full py-2.5 flex items-start justify-between gap-3 text-left min-h-[44px] hover:bg-[#FFFFFF]/60 px-2 -mx-2 rounded-lg transition-colors duration-150"
                     >
                       <div className="flex items-start gap-3 min-w-0">
                         <span
@@ -635,7 +635,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               <button
                 type="button"
                 onClick={() => onNavigate('digital-wardrobe')}
-                className="h-9 px-4 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-xs font-medium text-[#171717] hover:border-[#171717] transition-colors"
+                className="h-9 px-4 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-xs font-medium text-[#171717] hover:border-[#171717] transition-colors"
               >
                 Manage Wardrobe ({wardrobe.length})
               </button>
@@ -657,9 +657,9 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   key={item.id}
                   type="button"
                   onClick={() => onNavigate('digital-wardrobe')}
-                  className="text-left rounded-lg border border-[#171717]/10 bg-[#F7F4EF]/50 overflow-hidden hover:border-[#171717]/35 transition-colors flex flex-col"
+                  className="text-left rounded-lg border border-[#171717]/10 bg-[#FFFFFF]/50 overflow-hidden hover:border-[#171717]/35 transition-colors flex flex-col"
                 >
-                  <div className="aspect-square w-full bg-[#F7F4EF] flex items-center justify-center overflow-hidden">
+                  <div className="aspect-square w-full bg-[#FFFFFF] flex items-center justify-center overflow-hidden">
                     {photo ? (
                       <img
                         src={photo}
@@ -696,7 +696,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             className="rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-5 text-left flex items-center justify-between gap-4 hover:border-[#171717]/35 transition-colors"
           >
             <div className="flex items-center gap-3.5 min-w-0">
-              <div className="w-10 h-10 rounded-lg bg-[#F5BDA5]/45 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-lg bg-[#FFC5A8]/45 flex items-center justify-center shrink-0">
                 <ShieldCheck className="w-4 h-4 text-[#171717]" />
               </div>
               <div className="min-w-0">
@@ -719,7 +719,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             className="rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-5 text-left flex items-center justify-between gap-4 hover:border-[#171717]/35 transition-colors"
           >
             <div className="flex items-center gap-3.5 min-w-0">
-              <div className="w-10 h-10 rounded-lg bg-[#D8C9EC]/55 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-lg bg-[#D9C9F2]/55 flex items-center justify-center shrink-0">
                 <Users className="w-4 h-4 text-[#171717]" />
               </div>
               <div className="min-w-0">
@@ -738,7 +738,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             className="rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-5 text-left flex items-center justify-between gap-4 hover:border-[#171717]/35 transition-colors"
           >
             <div className="flex items-center gap-3.5 min-w-0">
-              <div className="w-10 h-10 rounded-lg bg-[#B9D8EF]/55 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-lg bg-[#B8D9F2]/55 flex items-center justify-center shrink-0">
                 <Sparkles className="w-4 h-4 text-[#171717]" />
               </div>
               <div className="min-w-0">

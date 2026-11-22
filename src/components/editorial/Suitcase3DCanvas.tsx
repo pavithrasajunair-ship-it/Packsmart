@@ -11,8 +11,8 @@ export const SUITCASE_FINISHES: Record<
 > = {
   noir: {
     label: 'Obsidian Matte',
-    shellHex: '#151515',
-    frameHex: '#D8D8D8',
+    shellHex: '#101010',
+    frameHex: '#FFFFFF',
     tagHex: '#FFC5A8',
     rough: 0.34,
     metal: 0.45,
@@ -20,7 +20,7 @@ export const SUITCASE_FINISHES: Record<
   powder: {
     label: 'Powder Blue',
     shellHex: '#B8D9F2',
-    frameHex: '#181818',
+    frameHex: '#101010',
     tagHex: '#101010',
     rough: 0.28,
     metal: 0.22,
@@ -28,7 +28,7 @@ export const SUITCASE_FINISHES: Record<
   lavender: {
     label: 'Soft Lavender',
     shellHex: '#D9C9F2',
-    frameHex: '#181818',
+    frameHex: '#101010',
     tagHex: '#101010',
     rough: 0.28,
     metal: 0.22,
@@ -36,7 +36,7 @@ export const SUITCASE_FINISHES: Record<
   peach: {
     label: 'Sunset Peach',
     shellHex: '#FFC5A8',
-    frameHex: '#181818',
+    frameHex: '#101010',
     tagHex: '#101010',
     rough: 0.3,
     metal: 0.2,
@@ -221,10 +221,10 @@ export const Suitcase3DCanvas: React.FC<Suitcase3DCanvasProps> = ({
     camera.lookAt(0, 1.24, 0);
 
     // 3-Point Studio Lighting Rig
-    const hemiLight = new THREE.HemisphereLight(0xf6f8ff, 0x262626, 0.9);
+    const hemiLight = new THREE.HemisphereLight(0xffffff, 0x101010, 0.9);
     scene.add(hemiLight);
 
-    const keyLight = new THREE.DirectionalLight(0xfff5eb, 2.2);
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
     keyLight.position.set(3.8, 5.6, 4.4);
     keyLight.castShadow = !isSoftwareGl;
     keyLight.shadow.mapSize.set(1024, 1024);
@@ -277,20 +277,20 @@ export const Suitcase3DCanvas: React.FC<Suitcase3DCanvasProps> = ({
     frameMatRef.current = frameMaterial;
 
     const brushedSteelMaterial = new THREE.MeshStandardMaterial({
-      color: '#D8D8D8',
+      color: '#FFFFFF',
       roughness: 0.18,
       metalness: 0.94,
       envMapIntensity: 1.35,
     });
 
     const rubberMaterial = new THREE.MeshStandardMaterial({
-      color: '#121212',
+      color: '#101010',
       roughness: 0.84,
       metalness: 0.05,
     });
 
     const gripMaterial = new THREE.MeshStandardMaterial({
-      color: '#191919',
+      color: '#101010',
       roughness: 0.68,
       metalness: 0.1,
     });
@@ -695,7 +695,7 @@ export const Suitcase3DCanvas: React.FC<Suitcase3DCanvasProps> = ({
               y1="108"
               x2={rx}
               y2="308"
-              stroke={spec.shellHex === '#151515' ? 'rgba(255,255,255,0.16)' : 'rgba(16,16,16,0.16)'}
+              stroke={spec.shellHex === '#101010' ? 'rgba(255,255,255,0.16)' : 'rgba(16,16,16,0.16)'}
               strokeWidth="3"
               strokeLinecap="round"
             />
