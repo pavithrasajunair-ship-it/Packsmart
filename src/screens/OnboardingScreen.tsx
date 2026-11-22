@@ -53,7 +53,7 @@ export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onFinish }) 
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-[#F8F7F4] dark:bg-[#0B0F1E] text-[#111834] dark:text-[#F4F3EF]">
+    <div className="min-h-screen flex flex-col justify-between bg-[#FFFFFF] dark:bg-[#101010] text-[#101010] dark:text-[#FFFFFF]">
       {/* Compact Top Bar */}
       <div className="flex items-center justify-between px-5 pt-5 pb-3 max-w-3xl w-full mx-auto">
         <div className="flex items-center gap-2.5">
@@ -63,7 +63,7 @@ export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onFinish }) 
         <button
           type="button"
           onClick={onFinish}
-          className="min-h-[44px] px-3 text-sm font-medium text-[#646B84] hover:text-[#111834] dark:text-[#9AA3C2] dark:hover:text-white transition-colors"
+          className="min-h-[44px] px-3 text-sm font-medium text-[#101010b2] hover:text-[#101010] dark:text-[#FFFFFFa8] dark:hover:text-white transition-colors"
         >
           Skip
         </button>
@@ -80,7 +80,7 @@ export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onFinish }) 
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center"
           >
-            <div className="rounded-3xl overflow-hidden bg-white dark:bg-[#131A33] border border-[#E6E2DA] dark:border-[#242E52] shadow-sm aspect-[4/3]">
+            <div className="rounded-3xl overflow-hidden bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] shadow-sm aspect-[4/3]">
               <SafeImage
                 src={current.image}
                 alt={current.alt}
@@ -90,20 +90,20 @@ export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onFinish }) 
             </div>
 
             <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#5645D2] dark:text-[#A799FF]">
+              <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#101010] dark:text-[#D9C9F2]">
                 <Icon className="w-4 h-4 shrink-0" />
                 <span>{current.highlight}</span>
               </div>
 
-              <h1 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight text-[#111834] dark:text-white">
+              <h1 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight text-[#101010] dark:text-white">
                 {current.title}
               </h1>
 
-              <p className="text-[15px] leading-relaxed text-[#505770] dark:text-[#A5AED0]">
+              <p className="text-[15px] leading-relaxed text-[#101010cc] dark:text-[#FFFFFFa8]">
                 {current.description}
               </p>
 
-              <div className="pt-1 flex items-center gap-2 text-xs text-[#0F968C] dark:text-[#2AB5A8] font-medium">
+              <div className="pt-1 flex items-center gap-2 text-xs text-[#101010] dark:text-[#FFFFFF] font-medium">
                 <CheckCircle2 className="w-4 h-4 shrink-0" />
                 <span>Works offline anytime · Private encrypted vault</span>
               </div>
@@ -124,8 +124,8 @@ export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onFinish }) 
                 onClick={() => setStep(idx)}
                 className={`h-2 rounded-full transition-all duration-200 ${
                   idx === step
-                    ? 'w-7 bg-[#111834] dark:bg-[#A799FF]'
-                    : 'w-2 bg-[#D6D1C7] dark:bg-[#2C375E]'
+                    ? 'w-7 bg-[#101010] dark:bg-[#D9C9F2]'
+                    : 'w-2 bg-[#10101014] dark:bg-[#FFFFFF0f]'
                 }`}
               />
             ))}
@@ -134,7 +134,7 @@ export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onFinish }) 
           <button
             type="button"
             onClick={handleNext}
-            className="min-h-[48px] px-6 rounded-2xl bg-[#111834] dark:bg-[#6E5DE7] text-white font-semibold text-sm flex items-center gap-2 shadow-lg shadow-[#111834]/15 active:scale-[0.98] transition-transform whitespace-nowrap shrink-0"
+            className="min-h-[48px] px-6 rounded-2xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white font-semibold text-sm flex items-center gap-2 shadow-lg shadow-[#101010]/15 active:scale-[0.98] transition-transform whitespace-nowrap shrink-0"
           >
             <span>{step === SLIDES.length - 1 ? 'Get Started' : 'Continue'}</span>
             <ArrowRight className="w-4 h-4" />

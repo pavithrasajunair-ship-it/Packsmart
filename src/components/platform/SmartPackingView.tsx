@@ -22,6 +22,7 @@ import {
   MemoryLearningInsights,
 } from '../../utils/packingEngine';
 import { uid } from '../../utils/storage';
+import { OpenSuitcase3D, type SuitcaseCameraView } from '../spatial/OpenSuitcase3D';
 
 interface SmartPackingViewProps {
   lists: PackingList[];
@@ -119,6 +120,8 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
     ];
     return checks.filter((c) => !c.match.some((kw) => names.some((n) => n.includes(kw))));
   }, [activeTrip]);
+
+  const [cameraView, setCameraView] = useState<SuitcaseCameraView>('editorial');
 
   const handleToggleItem = (itemId: string) => {
     if (!activeTrip) return;
@@ -307,7 +310,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
 
   if (!activeTrip || !analysis) {
     return (
-      <div className="bg-[#F7F4EF] min-h-[calc(100vh-4rem)] py-12">
+      <div className="bg-[#FFFFFF] min-h-[calc(100vh-4rem)] py-12">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-10 space-y-3">
           <h1 className="font-serif text-3xl font-medium text-[#171717]">Smart Packing</h1>
           <p className="text-sm text-[#171717]/70">
@@ -319,7 +322,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
   }
 
   return (
-    <div className="bg-[#F7F4EF] min-h-[calc(100vh-4rem)] py-8 sm:py-10">
+    <div className="bg-[#FFFFFF] min-h-[calc(100vh-4rem)] py-8 sm:py-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         {/* ==================== HEADER ==================== */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2">
@@ -360,7 +363,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
         </div>
 
         {addedFeedback && (
-          <div className="rounded-lg bg-[#B9D8EF]/45 border border-[#171717]/15 px-4 py-3 text-sm font-medium text-[#171717]">
+          <div className="rounded-lg bg-[#B8D9F2]/45 border border-[#171717]/15 px-4 py-3 text-sm font-medium text-[#171717]">
             {addedFeedback}
           </div>
         )}
@@ -377,7 +380,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
             <p className="font-serif text-3xl font-medium text-[#171717] tabular-nums">
               {packedPct}%
             </p>
-            <div className="h-2 rounded-full bg-[#F7F4EF] overflow-hidden">
+            <div className="h-2 rounded-full bg-[#101010]/10 overflow-hidden">
               <div
                 className="h-full bg-[#171717] rounded-full transition-all duration-300"
                 style={{ width: `${packedPct}%` }}
@@ -398,10 +401,10 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
                 / {analysis.capacityLiters}L
               </span>
             </p>
-            <div className="h-2 rounded-full bg-[#F7F4EF] overflow-hidden">
+            <div className="h-2 rounded-full bg-[#101010]/10 overflow-hidden">
               <div
                 className={`h-full rounded-full transition-all duration-300 ${
-                  analysis.isVolumeOverloaded ? 'bg-[#F5BDA5]' : 'bg-[#B9D8EF]'
+                  analysis.isVolumeOverloaded ? 'bg-[#FFC5A8]' : 'bg-[#B8D9F2]'
                 }`}
                 style={{ width: `${Math.min(100, analysis.volumePercent)}%` }}
               />
@@ -421,10 +424,10 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
                 / {analysis.allowanceKg} kg
               </span>
             </p>
-            <div className="h-2 rounded-full bg-[#F7F4EF] overflow-hidden">
+            <div className="h-2 rounded-full bg-[#101010]/10 overflow-hidden">
               <div
                 className={`h-full rounded-full transition-all duration-300 ${
-                  analysis.isWeightOverloaded ? 'bg-[#F5BDA5]' : 'bg-[#D8C9EC]'
+                  analysis.isWeightOverloaded ? 'bg-[#FFC5A8]' : 'bg-[#D9C9F2]'
                 }`}
                 style={{
                   width: `${Math.min(
@@ -434,6 +437,49 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
                 }}
               />
             </div>
+          </div>
+        </div>
+
+        {/* ==================== OPEN SUITCASE, LIVE IN 3D ==================== */}
+        <div className="rounded-2xl bg-[#B8D9F2] border border-[#171717]/10 overflow-hidden">
+          <div className="flex flex-wrap items-center justify-between gap-3 px-5 pt-5">
+            <div>
+              <h2 className="font-serif text-2xl text-[#171717]">Your suitcase, open</h2>
+              <p className="text-xs text-[#171717]/65 mt-0.5">
+                Select a piece to drop it in or lift it out. Packed items settle into the case.
+              </p>
+            </div>
+            <div role="radiogroup" aria-label="Camera angle" className="flex items-center gap-1.5">
+              {(
+                [
+                  ['editorial', 'Angled'],
+                  ['flatlay', 'Top down'],
+                  ['low', 'Low'],
+                ] as Array<[SuitcaseCameraView, string]>
+              ).map(([view, label]) => (
+                <button
+                  key={view}
+                  type="button"
+                  role="radio"
+                  aria-checked={cameraView === view}
+                  onClick={() => setCameraView(view)}
+                  className={`h-8 px-3.5 rounded-full text-xs font-medium transition-colors ${
+                    cameraView === view
+                      ? 'bg-[#101010] text-[#FFFFFF]'
+                      : 'bg-[#FFFFFF]/70 text-[#101010] hover:bg-[#FFFFFF]'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="h-[340px] sm:h-[420px]">
+            <OpenSuitcase3D
+              items={activeTrip.items}
+              cameraView={cameraView}
+              onToggleItem={handleToggleItem}
+            />
           </div>
         </div>
 
@@ -454,7 +500,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
                 <button
                   type="button"
                   onClick={() => onOpenClassicTripSubTab(activeTrip.id, 'group')}
-                  className="h-9 px-3.5 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-xs font-medium text-[#171717] hover:border-[#171717] transition-colors shrink-0"
+                  className="h-9 px-3.5 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-xs font-medium text-[#171717] hover:border-[#171717] transition-colors shrink-0"
                 >
                   Group Packing
                 </button>
@@ -470,13 +516,13 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
                   value={newItemName}
                   onChange={(e) => setNewItemName(e.target.value)}
                   placeholder="Add an item (e.g., Merino cardigan, Power bank)..."
-                  className="sm:col-span-6 h-10 px-3.5 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-sm text-[#171717] placeholder:text-[#171717]/45"
+                  className="sm:col-span-6 h-10 px-3.5 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-sm text-[#171717] placeholder:text-[#171717]/45"
                 />
                 <select
                   aria-label="New item category"
                   value={newItemCategory}
                   onChange={(e) => setNewItemCategory(e.target.value)}
-                  className="sm:col-span-3 h-10 px-3 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-xs font-medium text-[#171717]"
+                  className="sm:col-span-3 h-10 px-3 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-xs font-medium text-[#171717]"
                 >
                   {CATEGORIES.filter((c) => c !== 'All').map((cat) => (
                     <option key={cat} value={cat}>
@@ -491,7 +537,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
                   aria-label="Quantity"
                   value={newItemQty}
                   onChange={(e) => setNewItemQty(Math.max(1, Number(e.target.value) || 1))}
-                  className="sm:col-span-1 h-10 px-2 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-sm text-center text-[#171717] tabular-nums"
+                  className="sm:col-span-1 h-10 px-2 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-sm text-center text-[#171717] tabular-nums"
                 />
                 <button
                   type="submit"
@@ -514,7 +560,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
                       className={`h-8 px-3 rounded-md text-xs font-medium transition-colors duration-150 ${
                         active
                           ? 'bg-[#171717] text-[#FFFFFF]'
-                          : 'bg-[#F7F4EF] text-[#171717]/70 hover:text-[#171717]'
+                          : 'bg-[#FFFFFF] text-[#171717]/70 hover:text-[#171717]'
                       }`}
                     >
                       {cat}
@@ -569,7 +615,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
                         type="button"
                         onClick={() => handleDeleteItem(item.id)}
                         aria-label={`Remove ${item.name}`}
-                        className="w-8 h-8 rounded-lg flex items-center justify-center text-[#171717]/45 hover:text-[#171717] hover:bg-[#F7F4EF] transition-colors shrink-0"
+                        className="w-8 h-8 rounded-lg flex items-center justify-center text-[#171717]/45 hover:text-[#171717] hover:bg-[#FFFFFF] transition-colors shrink-0"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
@@ -584,7 +630,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
           <div className="lg:col-span-5 space-y-5">
             {/* Missing Essentials Alert */}
             {missingCoreEssentials.length > 0 && (
-              <div className="rounded-xl bg-[#F5BDA5]/35 border border-[#171717]/12 p-5 space-y-3">
+              <div className="rounded-xl bg-[#FFC5A8]/35 border border-[#171717]/12 p-5 space-y-3">
                 <div className="flex items-center gap-2">
                   <AlertCircle className="w-4 h-4 text-[#171717]" />
                   <h3 className="text-sm font-semibold text-[#171717]">
@@ -639,10 +685,10 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
                 {analysis.compartments.slice(0, 6).map((comp, idx) => {
                   const barTint =
                     idx % 3 === 0
-                      ? 'bg-[#B9D8EF]'
+                      ? 'bg-[#B8D9F2]'
                       : idx % 3 === 1
-                      ? 'bg-[#D8C9EC]'
-                      : 'bg-[#F5BDA5]';
+                      ? 'bg-[#D9C9F2]'
+                      : 'bg-[#FFC5A8]';
                   return (
                     <div key={comp.category} className="space-y-1">
                       <div className="flex items-center justify-between text-xs tabular-nums">
@@ -651,7 +697,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
                           {comp.volumeLiters}L · {comp.weightKg} kg
                         </span>
                       </div>
-                      <div className="h-2 rounded-full bg-[#F7F4EF] overflow-hidden">
+                      <div className="h-2 rounded-full bg-[#101010]/10 overflow-hidden">
                         <div
                           className={`h-full rounded-full ${barTint}`}
                           style={{ width: `${Math.min(100, Math.max(6, comp.percentOfBag))}%` }}
@@ -668,7 +714,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
                   {analysis.spaceSavingAlternatives.slice(0, 2).map((tip) => (
                     <div
                       key={tip.title}
-                      className="rounded-lg bg-[#F7F4EF] p-3 text-xs space-y-0.5"
+                      className="rounded-lg bg-[#FFFFFF] p-3 text-xs space-y-0.5"
                     >
                       <p className="font-semibold text-[#171717]">
                         {tip.title}{' '}
@@ -684,7 +730,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
             </div>
 
             {/* Packing Assistant */}
-            <div className="rounded-xl bg-[#B9D8EF]/25 border border-[#171717]/10 p-5 space-y-4">
+            <div className="rounded-xl bg-[#B8D9F2]/25 border border-[#171717]/10 p-5 space-y-4">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#171717]" />
                 <h3 className="font-serif text-xl font-medium text-[#171717]">
@@ -723,7 +769,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
                           {turn.suggestedItems.slice(0, 4).map((si) => (
                             <div
                               key={si.name}
-                              className="flex items-center justify-between gap-2 bg-[#F7F4EF] rounded-md px-2.5 py-1.5"
+                              className="flex items-center justify-between gap-2 bg-[#FFFFFF] rounded-md px-2.5 py-1.5"
                             >
                               <span className="font-medium text-[#171717] truncate">
                                 {si.name}

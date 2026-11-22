@@ -163,23 +163,23 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
     <div className="space-y-6 pb-8">
       {/* Transparent Sample Data Notice for First-Time Users */}
       {hasSampleData && !sampleBannerDismissed && (
-        <div className="p-3.5 rounded-2xl bg-[#F4F2FF] dark:bg-[#191F40] border border-[#E2DCFF] dark:border-[#2C3566] flex flex-wrap items-center justify-between gap-3">
-          <p className="text-xs text-[#3F4560] dark:text-[#C5CBE3]">
-            <span className="font-bold text-[#111834] dark:text-white">Sample Trip Data Active:</span>{' '}
+        <div className="p-3.5 rounded-2xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] border border-[#D9C9F2] dark:border-[#FFFFFF24] flex flex-wrap items-center justify-between gap-3">
+          <p className="text-xs text-[#101010cc] dark:text-[#FFFFFF]">
+            <span className="font-bold text-[#101010] dark:text-white">Sample Trip Data Active:</span>{' '}
             Explore Kerala, Tokyo, and Coorg sample trips right away, or clear them anytime for a blank slate.
           </p>
           <div className="flex items-center gap-2 shrink-0">
             <button
               type="button"
               onClick={() => setClearSampleConfirm(true)}
-              className="min-h-[34px] px-3 rounded-xl bg-white dark:bg-[#131A33] border border-[#D8D1FF] dark:border-[#344075] text-xs font-semibold text-[#5645D2] dark:text-[#BDB2FF]"
+              className="min-h-[34px] px-3 rounded-xl bg-white dark:bg-[#FFFFFF0f] border border-[#D9C9F2] dark:border-[#FFFFFF24] text-xs font-semibold text-[#101010] dark:text-[#D9C9F2]"
             >
               Clear Samples
             </button>
             <button
               type="button"
               onClick={onDismissSampleBanner}
-              className="min-h-[34px] px-2.5 text-xs font-medium text-[#646B84] hover:text-[#111834] dark:hover:text-white"
+              className="min-h-[34px] px-2.5 text-xs font-medium text-[#101010b2] hover:text-[#101010] dark:hover:text-white"
             >
               Keep
             </button>
@@ -190,17 +190,17 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       {/* Greeting Header */}
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-sm font-medium text-[#646B84] dark:text-[#9AA3C2]">
+          <p className="text-sm font-medium text-[#101010b2] dark:text-[#FFFFFFa8]">
             {getTimeGreeting()}, {firstName}
           </p>
-          <h1 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-[#111834] dark:text-white mt-0.5">
+          <h1 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-[#101010] dark:text-white mt-0.5">
             Your Travel Command Center
           </h1>
         </div>
         <button
           type="button"
           onClick={() => onOpenAI(nextTrip?.id)}
-          className="min-h-[44px] px-3.5 rounded-2xl bg-[#F4F2FF] dark:bg-[#1D2347] border border-[#E2DCFF] dark:border-[#2F3970] text-[#5645D2] dark:text-[#BDB2FF] text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap shrink-0"
+          className="min-h-[44px] px-3.5 rounded-2xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] border border-[#D9C9F2] dark:border-[#FFFFFF24] text-[#101010] dark:text-[#D9C9F2] text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap shrink-0"
         >
           <Sparkles className="w-4 h-4" />
           <span>PackSmart AI</span>
@@ -211,7 +211,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         <div className="lg:col-span-7">
           {nextTrip ? (
-            <div className="h-full rounded-3xl overflow-hidden bg-[#111834] text-white shadow-lg shadow-[#111834]/12 border border-[#222B52] flex flex-col">
+            <div className="h-full rounded-3xl overflow-hidden bg-[#101010] text-white shadow-lg shadow-[#101010]/12 border border-[#101010] flex flex-col">
               <div className="relative h-40 sm:h-44 overflow-hidden">
                 <SafeImage
                   src={nextTrip.coverImage}
@@ -219,10 +219,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   className="w-full h-full object-cover"
                   fallbackLabel={nextTrip.destination || nextTrip.title}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111834] via-[#111834]/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#101010] via-[#101010]/50 to-transparent" />
                 <div className="absolute bottom-3.5 left-5 right-5 flex items-end justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="text-xs font-medium text-[#D1C9FF]">
+                    <p className="text-xs font-medium text-[#D9C9F2]">
                       {nextTrip.tripType} · {nextTrip.destination || 'Local'}
                       {nextTrip.isSampleData ? ' · Sample Trip' : ''}
                     </p>
@@ -231,7 +231,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                     </h2>
                   </div>
                   <div className="text-right shrink-0">
-                    <span className="font-mono tabular-nums text-lg font-bold text-[#2AB5A8]">
+                    <span className="font-mono tabular-nums text-lg font-bold text-[#101010]">
                       {daysToNext !== null && daysToNext < 0
                         ? 'In progress'
                         : daysToNext === 0
@@ -252,7 +252,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                       percent={nextTripPrepPct}
                       size={58}
                       strokeWidth={5}
-                      progressColor="#2AB5A8"
+                      progressColor="#B8D9F2"
                       trackClassName="stroke-white/15"
                       labelClassName="text-xs font-bold text-white"
                     />
@@ -268,7 +268,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   <button
                     type="button"
                     onClick={() => onOpenList(nextTrip.id, 'checklist')}
-                    className="min-h-[44px] px-4 rounded-xl bg-[#2AB5A8] text-[#0B1726] font-bold text-xs flex items-center gap-1 hover:opacity-95 whitespace-nowrap shrink-0"
+                    className="min-h-[44px] px-4 rounded-xl bg-[#B8D9F2] text-[#101010] font-bold text-xs flex items-center gap-1 hover:opacity-95 whitespace-nowrap shrink-0"
                   >
                     <span>Prepare</span>
                     <ChevronRight className="w-4 h-4" />
@@ -286,9 +286,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                       <div className="flex items-center gap-3 min-w-0">
                         <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
                           {nextTrip.weather.summary.maxRainChance >= 45 ? (
-                            <CloudRain className="w-4 h-4 text-[#A799FF]" />
+                            <CloudRain className="w-4 h-4 text-[#D9C9F2]" />
                           ) : (
-                            <Sun className="w-4 h-4 text-[#FCD34D]" />
+                            <Sun className="w-4 h-4 text-[#101010]" />
                           )}
                         </div>
                         <div className="min-w-0">
@@ -304,12 +304,12 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                           </p>
                         </div>
                       </div>
-                      <span className="text-xs font-semibold text-[#A799FF] shrink-0">Weather</span>
+                      <span className="text-xs font-semibold text-[#D9C9F2] shrink-0">Weather</span>
                     </button>
                   ) : (
                     <div className="flex-1 flex items-center justify-between gap-3">
                       <span className="text-xs text-white/75 flex items-center gap-2">
-                        <CloudSun className="w-4 h-4 text-[#A799FF]" />
+                        <CloudSun className="w-4 h-4 text-[#D9C9F2]" />
                         {weatherLoading
                           ? `Fetching live weather for ${nextTrip.destination}...`
                           : weatherError || `Check live weather for ${nextTrip.destination}`}
@@ -330,9 +330,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               </div>
             </div>
           ) : (
-            <div className="h-full rounded-3xl bg-[#111834] text-white p-6 flex flex-col justify-between gap-5">
+            <div className="h-full rounded-3xl bg-[#101010] text-white p-6 flex flex-col justify-between gap-5">
               <div>
-                <p className="text-xs text-[#D1C9FF]">No upcoming trips planned</p>
+                <p className="text-xs text-[#D9C9F2]">No upcoming trips planned</p>
                 <h2 className="font-display text-2xl font-bold mt-1">Plan your next journey smartly</h2>
                 <p className="text-sm text-white/75 mt-2">
                   Build a tailored preparation timeline, capsule wardrobe plan, suitcase space map, and departure safety checklist in minutes.
@@ -341,7 +341,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <button
                 type="button"
                 onClick={onCreateTrip}
-                className="min-h-[48px] px-5 rounded-2xl bg-[#2AB5A8] text-[#0B1726] font-bold text-sm flex items-center justify-center gap-2 self-start"
+                className="min-h-[48px] px-5 rounded-2xl bg-[#B8D9F2] text-[#101010] font-bold text-sm flex items-center justify-center gap-2 self-start"
               >
                 <Plus className="w-4 h-4" />
                 <span>Create Your First Trip</span>
@@ -358,24 +358,24 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               onClick={() => onOpenList(nextTrip.id, 'before_leave')}
               className={`w-full p-5 rounded-3xl border text-left transition-all flex items-center justify-between gap-4 ${
                 daysToNext !== null && daysToNext <= 3
-                  ? 'bg-[#EEF9F7] dark:bg-[#102928] border-[#99DDD5] dark:border-[#1E5652]'
-                  : 'bg-white dark:bg-[#131A33] border-[#E6E2DA] dark:border-[#242E52]'
+                  ? 'bg-[#B8D9F266] dark:bg-[#101010] border-[#10101040] dark:border-[#FFFFFF24]'
+                  : 'bg-white dark:bg-[#FFFFFF0f] border-[#1010101f] dark:border-[#FFFFFF24]'
               }`}
             >
               <div className="flex items-center gap-3.5 min-w-0">
-                <div className="w-11 h-11 rounded-2xl bg-[#0F968C] text-white flex items-center justify-center shrink-0">
+                <div className="w-11 h-11 rounded-2xl bg-[#101010] text-white flex items-center justify-center shrink-0">
                   <DoorClosed className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[11px] font-bold text-[#0F968C] dark:text-[#2AB5A8]">
+                  <p className="text-[11px] font-bold text-[#101010] dark:text-[#FFFFFF]">
                     {daysToNext !== null && daysToNext <= 3
                       ? 'Activated · Departure Approaching'
                       : 'Departure Safety Checklist'}
                   </p>
-                  <p className="font-display font-bold text-base text-[#111834] dark:text-white truncate">
+                  <p className="font-display font-bold text-base text-[#101010] dark:text-white truncate">
                     Before You Leave Mode
                   </p>
-                  <p className="text-xs text-[#646B84] dark:text-[#9AA3C2] tabular-nums mt-0.5">
+                  <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] tabular-nums mt-0.5">
                     {beforeLeaveStats.done}/{beforeLeaveStats.total} tasks complete · Locks, gas, devices
                   </p>
                 </div>
@@ -384,21 +384,21 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 percent={beforeLeaveStats.pct}
                 size={46}
                 strokeWidth={4}
-                progressColor="#0F968C"
+                progressColor="#B8D9F2"
               />
             </button>
           )}
 
           {/* Connected Workflow Hub Grid */}
-          <div className="bg-white dark:bg-[#131A33] rounded-3xl p-4 border border-[#E6E2DA] dark:border-[#242E52] flex-1 flex flex-col justify-between gap-3">
+          <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-4 border border-[#1010101f] dark:border-[#FFFFFF24] flex-1 flex flex-col justify-between gap-3">
             <div className="flex items-center justify-between">
-              <p className="text-xs font-semibold text-[#646B84] dark:text-[#9AA3C2]">
+              <p className="text-xs font-semibold text-[#101010b2] dark:text-[#FFFFFFa8]">
                 Connected Preparation Tools
               </p>
               <button
                 type="button"
                 onClick={onCreateTrip}
-                className="text-xs font-bold text-[#5645D2] dark:text-[#A799FF] flex items-center gap-1"
+                className="text-xs font-bold text-[#101010] dark:text-[#D9C9F2] flex items-center gap-1"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>New Trip</span>
@@ -408,41 +408,41 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <button
                 type="button"
                 onClick={onOpenWardrobe}
-                className="min-h-[68px] p-3 rounded-2xl bg-[#F4F2FF] dark:bg-[#192042] hover:bg-[#EAE6FF] dark:hover:bg-[#222B56] border border-[#DDD5FF] dark:border-[#323E72] text-left transition-colors"
+                className="min-h-[68px] p-3 rounded-2xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] hover:bg-[#D9C9F266] dark:hover:bg-[#FFFFFF0f] border border-[#D9C9F2] dark:border-[#FFFFFF24] text-left transition-colors"
               >
-                <Shirt className="w-4 h-4 text-[#5645D2] dark:text-[#BDB2FF] mb-1.5" />
-                <p className="text-xs font-bold text-[#111834] dark:text-white">AI Outfit Matcher</p>
-                <p className="text-[11px] text-[#505770] dark:text-[#B4BCD9]">Scan clothes &amp; style</p>
+                <Shirt className="w-4 h-4 text-[#101010] dark:text-[#D9C9F2] mb-1.5" />
+                <p className="text-xs font-bold text-[#101010] dark:text-white">AI Outfit Matcher</p>
+                <p className="text-[11px] text-[#101010cc] dark:text-[#FFFFFFa8]">Scan clothes &amp; style</p>
               </button>
 
               <button
                 type="button"
                 onClick={() => (nextTrip ? onOpenList(nextTrip.id, 'suitcase') : onCreateTrip())}
-                className="min-h-[68px] p-3 rounded-2xl bg-[#FAF9F7] dark:bg-[#0D1326] hover:bg-[#EEF9F7] dark:hover:bg-[#14302E] border border-[#ECE8E0] dark:border-[#222B4C] text-left transition-colors"
+                className="min-h-[68px] p-3 rounded-2xl bg-[#FFFFFF] dark:bg-[#101010] hover:bg-[#B8D9F266] dark:hover:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] text-left transition-colors"
               >
-                <Luggage className="w-4 h-4 text-[#0F968C] dark:text-[#2AB5A8] mb-1.5" />
-                <p className="text-xs font-bold text-[#111834] dark:text-white">Suitcase Space</p>
-                <p className="text-[11px] text-[#646B84] dark:text-[#9AA3C2]">Visual fit & folding</p>
+                <Luggage className="w-4 h-4 text-[#101010] dark:text-[#FFFFFF] mb-1.5" />
+                <p className="text-xs font-bold text-[#101010] dark:text-white">Suitcase Space</p>
+                <p className="text-[11px] text-[#101010b2] dark:text-[#FFFFFFa8]">Visual fit & folding</p>
               </button>
 
               <button
                 type="button"
                 onClick={() => (nextTrip ? onOpenList(nextTrip.id, 'timeline') : onCreateTrip())}
-                className="min-h-[68px] p-3 rounded-2xl bg-[#FAF9F7] dark:bg-[#0D1326] hover:bg-[#F4F2FF] dark:hover:bg-[#1B2344] border border-[#ECE8E0] dark:border-[#222B4C] text-left transition-colors"
+                className="min-h-[68px] p-3 rounded-2xl bg-[#FFFFFF] dark:bg-[#101010] hover:bg-[#D9C9F266] dark:hover:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] text-left transition-colors"
               >
-                <CalendarClock className="w-4 h-4 text-[#5645D2] dark:text-[#A799FF] mb-1.5" />
-                <p className="text-xs font-bold text-[#111834] dark:text-white">Smart Timeline</p>
-                <p className="text-[11px] text-[#646B84] dark:text-[#9AA3C2]">1 week to arrival</p>
+                <CalendarClock className="w-4 h-4 text-[#101010] dark:text-[#D9C9F2] mb-1.5" />
+                <p className="text-xs font-bold text-[#101010] dark:text-white">Smart Timeline</p>
+                <p className="text-[11px] text-[#101010b2] dark:text-[#FFFFFFa8]">1 week to arrival</p>
               </button>
 
               <button
                 type="button"
                 onClick={onOpenEssentials}
-                className="min-h-[68px] p-3 rounded-2xl bg-[#FAF9F7] dark:bg-[#0D1326] hover:bg-[#EEF9F7] dark:hover:bg-[#14302E] border border-[#ECE8E0] dark:border-[#222B4C] text-left transition-colors"
+                className="min-h-[68px] p-3 rounded-2xl bg-[#FFFFFF] dark:bg-[#101010] hover:bg-[#B8D9F266] dark:hover:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] text-left transition-colors"
               >
-                <ShieldCheck className="w-4 h-4 text-[#0F968C] dark:text-[#2AB5A8] mb-1.5" />
-                <p className="text-xs font-bold text-[#111834] dark:text-white">Document Radar</p>
-                <p className="text-[11px] text-[#646B84] dark:text-[#9AA3C2]">
+                <ShieldCheck className="w-4 h-4 text-[#101010] dark:text-[#FFFFFF] mb-1.5" />
+                <p className="text-xs font-bold text-[#101010] dark:text-white">Document Radar</p>
+                <p className="text-[11px] text-[#101010b2] dark:text-[#FFFFFFa8]">
                   {docReadiness?.ready ? 'All valid' : docReadiness?.label || 'Expiry checks'}
                 </p>
               </button>
@@ -454,17 +454,17 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       {/* Actionable Radar Row: Shopping Radar + Post-Trip Memory Intelligence */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Last-Minute Shopping Radar Alert */}
-        <div className="bg-white dark:bg-[#131A33] rounded-3xl p-5 border border-[#E6E2DA] dark:border-[#242E52] flex flex-col justify-between gap-3">
+        <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 border border-[#1010101f] dark:border-[#FFFFFF24] flex flex-col justify-between gap-3">
           <div className="flex items-start justify-between gap-3">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-[#FFFBEB] dark:bg-[#332712] text-[#B45309] dark:text-[#FBBF24] flex items-center justify-center shrink-0">
+              <div className="w-9 h-9 rounded-xl bg-[#FFC5A866] dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#FFC5A8] flex items-center justify-center shrink-0">
                 <ShoppingBag className="w-4 h-4" />
               </div>
               <div>
-                <h2 className="font-display text-base font-bold text-[#111834] dark:text-white">
+                <h2 className="font-display text-base font-bold text-[#101010] dark:text-white">
                   Last-Minute Shopping Radar
                 </h2>
-                <p className="text-xs text-[#646B84] dark:text-[#9AA3C2]">
+                <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8]">
                   {urgentShoppingCount > 0
                     ? `${urgentShoppingCount} item${urgentShoppingCount === 1 ? '' : 's'} still pending for ${nextTrip?.title}`
                     : 'No pending purchases before departure'}
@@ -475,7 +475,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <button
                 type="button"
                 onClick={() => onOpenList(nextTrip.id, 'shopping')}
-                className="min-h-[38px] px-3 rounded-xl bg-[#F4F2FF] dark:bg-[#1B2344] text-[#5645D2] dark:text-[#BDB2FF] text-xs font-semibold shrink-0"
+                className="min-h-[38px] px-3 rounded-xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#D9C9F2] text-xs font-semibold shrink-0"
               >
                 Open
               </button>
@@ -483,17 +483,17 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </div>
 
           {nextTrip && urgentShoppingCount > 0 && (
-            <div className="divide-y divide-[#F0EDE7] dark:divide-[#202948]">
+            <div className="divide-y divide-[#1010101f] dark:divide-[#FFFFFF24]">
               {nextTrip.shoppingItems
                 .filter((s) => s.status === 'To Buy')
                 .slice(0, 2)
                 .map((s) => (
                   <div key={s.id} className="py-2 flex items-center justify-between text-xs">
-                    <span className="font-semibold text-[#111834] dark:text-white flex items-center gap-1.5">
-                      {s.priority === 'Urgent' && <AlertTriangle className="w-3.5 h-3.5 text-[#D97706]" />}
+                    <span className="font-semibold text-[#101010] dark:text-white flex items-center gap-1.5">
+                      {s.priority === 'Urgent' && <AlertTriangle className="w-3.5 h-3.5 text-[#101010]" />}
                       {s.name}
                     </span>
-                    <span className="text-[#646B84] dark:text-[#9AA3C2]">{s.priority}</span>
+                    <span className="text-[#101010b2] dark:text-[#FFFFFFa8]">{s.priority}</span>
                   </div>
                 ))}
             </div>
@@ -501,17 +501,17 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
 
         {/* Post-Trip Memory Learning Card */}
-        <div className="bg-white dark:bg-[#131A33] rounded-3xl p-5 border border-[#E6E2DA] dark:border-[#242E52] flex flex-col justify-between gap-3">
+        <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 border border-[#1010101f] dark:border-[#FFFFFF24] flex flex-col justify-between gap-3">
           <div className="flex items-start justify-between gap-3">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-[#F4F2FF] dark:bg-[#1B2344] text-[#5645D2] dark:text-[#A799FF] flex items-center justify-center shrink-0">
+              <div className="w-9 h-9 rounded-xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#D9C9F2] flex items-center justify-center shrink-0">
                 <Brain className="w-4 h-4" />
               </div>
               <div>
-                <h2 className="font-display text-base font-bold text-[#111834] dark:text-white">
+                <h2 className="font-display text-base font-bold text-[#101010] dark:text-white">
                   Learned From Past Trips
                 </h2>
-                <p className="text-xs text-[#646B84] dark:text-[#9AA3C2]">
+                <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8]">
                   {memoryInsights.totalReviews > 0
                     ? `Active intelligence from ${memoryInsights.totalReviews} post-trip review${memoryInsights.totalReviews === 1 ? '' : 's'}`
                     : 'Complete a post-trip review to make future lists smarter'}
@@ -521,7 +521,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             <button
               type="button"
               onClick={onOpenHistory}
-              className="min-h-[38px] px-3 rounded-xl bg-[#EEF9F7] dark:bg-[#102928] text-[#0C7A72] dark:text-[#2AB5A8] text-xs font-semibold shrink-0"
+              className="min-h-[38px] px-3 rounded-xl bg-[#B8D9F266] dark:bg-[#101010] text-[#101010] dark:text-[#FFFFFF] text-xs font-semibold shrink-0"
             >
               Insights
             </button>
@@ -530,18 +530,18 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           {memoryInsights.totalReviews > 0 && (
             <div className="space-y-1.5 text-xs">
               {memoryInsights.frequentlyForgotten[0] && (
-                <p className="text-[#353C54] dark:text-[#D5DBEE]">
+                <p className="text-[#101010] dark:text-[#FFFFFF]">
                   • Auto-prioritizing{' '}
-                  <span className="font-bold text-[#5645D2] dark:text-[#A799FF]">
+                  <span className="font-bold text-[#101010] dark:text-[#D9C9F2]">
                     {memoryInsights.frequentlyForgotten[0].name}
                   </span>{' '}
                   so it isn't forgotten again.
                 </p>
               )}
               {memoryInsights.frequentlyUnused[0] && (
-                <p className="text-[#353C54] dark:text-[#D5DBEE]">
+                <p className="text-[#101010] dark:text-[#FFFFFF]">
                   • Suggesting to skip{' '}
-                  <span className="font-bold text-[#0F968C] dark:text-[#2AB5A8]">
+                  <span className="font-bold text-[#101010] dark:text-[#FFFFFF]">
                     {memoryInsights.frequentlyUnused[0].name}
                   </span>{' '}
                   (packed previously, never used).
@@ -554,11 +554,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* Upcoming Reminders */}
       {reminders.filter((r) => !r.completed).length > 0 && (
-        <section className="bg-white dark:bg-[#131A33] rounded-3xl p-5 border border-[#E6E2DA] dark:border-[#242E52]">
-          <h2 className="font-display text-base font-bold text-[#111834] dark:text-white mb-3">
+        <section className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 border border-[#1010101f] dark:border-[#FFFFFF24]">
+          <h2 className="font-display text-base font-bold text-[#101010] dark:text-white mb-3">
             Preparation Reminders
           </h2>
-          <div className="divide-y divide-[#F0EDE7] dark:divide-[#202948]">
+          <div className="divide-y divide-[#1010101f] dark:divide-[#FFFFFF24]">
             {reminders
               .filter((r) => !r.completed)
               .slice(0, 3)
@@ -569,12 +569,12 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={() => onToggleReminder(rem.id)}
                   className="w-full py-2.5 flex items-center gap-3 text-left min-h-[46px]"
                 >
-                  <span className="w-5 h-5 rounded-full border-2 border-[#C8C3B8] dark:border-[#394575] flex items-center justify-center shrink-0">
-                    {rem.completed && <CheckCircle2 className="w-4 h-4 text-[#0F968C]" />}
+                  <span className="w-5 h-5 rounded-full border-2 border-[#10101040] dark:border-[#FFFFFF24] flex items-center justify-center shrink-0">
+                    {rem.completed && <CheckCircle2 className="w-4 h-4 text-[#101010]" />}
                   </span>
                   <div className="min-w-0">
-                    <p className="text-sm font-medium text-[#111834] dark:text-white truncate">{rem.title}</p>
-                    <p className="text-xs text-[#646B84] dark:text-[#9AA3C2]">
+                    <p className="text-sm font-medium text-[#101010] dark:text-white truncate">{rem.title}</p>
+                    <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8]">
                       {rem.category} · Due {rem.dueDate}
                     </p>
                   </div>

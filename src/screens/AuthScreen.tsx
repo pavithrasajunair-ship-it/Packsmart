@@ -92,30 +92,30 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ existingAccounts, onAuth
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center bg-[#F8F7F4] dark:bg-[#0B0F1E] px-5 py-8">
+    <div className="min-h-screen flex flex-col justify-center bg-[#FFFFFF] dark:bg-[#101010] px-5 py-8">
       <div className="w-full max-w-md mx-auto">
         <div className="flex flex-col items-center text-center mb-7">
           <BrandLogo size={56} className="mb-4 shadow-md rounded-2xl" />
-          <h1 className="font-display text-2xl font-extrabold text-[#111834] dark:text-white tracking-tight">
+          <h1 className="font-display text-2xl font-extrabold text-[#101010] dark:text-white tracking-tight">
             {mode === 'signup' ? 'Create your PackSmart profile' : 'Welcome back to PackSmart'}
           </h1>
-          <p className="text-sm text-[#646B84] dark:text-[#9AA3C2] mt-1">
+          <p className="text-sm text-[#101010b2] dark:text-[#FFFFFFa8] mt-1">
             Pack less stress. Travel with confidence.
           </p>
         </div>
 
         {/* Transparent Local Device Storage notice */}
-        <div className="mb-5 p-3.5 rounded-2xl bg-[#F4F2FF] dark:bg-[#192040] border border-[#E2DCFF] dark:border-[#2C3566] flex items-start gap-3">
-          <HardDrive className="w-4 h-4 text-[#5645D2] dark:text-[#A799FF] shrink-0 mt-0.5" />
-          <div className="text-xs leading-relaxed text-[#3F4560] dark:text-[#C5CBE3]">
-            <span className="font-semibold text-[#111834] dark:text-white">Local Offline-First Mode:</span>{' '}
+        <div className="mb-5 p-3.5 rounded-2xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] border border-[#D9C9F2] dark:border-[#FFFFFF24] flex items-start gap-3">
+          <HardDrive className="w-4 h-4 text-[#101010] dark:text-[#D9C9F2] shrink-0 mt-0.5" />
+          <div className="text-xs leading-relaxed text-[#101010cc] dark:text-[#FFFFFF]">
+            <span className="font-semibold text-[#101010] dark:text-white">Local Offline-First Mode:</span>{' '}
             Your lists, settings, and PIN-locked documents save persistently on this device. Live weather and PackSmart AI connect through the app server when online.
           </div>
         </div>
 
-        <div className="bg-white dark:bg-[#131A33] rounded-3xl p-6 border border-[#E6E2DA] dark:border-[#242E52] shadow-sm">
+        <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-6 border border-[#1010101f] dark:border-[#FFFFFF24] shadow-sm">
           {/* Segmented Mode Switch */}
-          <div className="grid grid-cols-2 gap-1 p-1 bg-[#F1EFEA] dark:bg-[#0E1428] rounded-xl mb-5">
+          <div className="grid grid-cols-2 gap-1 p-1 bg-[#FFFFFF] dark:bg-[#101010] rounded-xl mb-5">
             <button
               type="button"
               onClick={() => {
@@ -124,8 +124,8 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ existingAccounts, onAuth
               }}
               className={`min-h-[44px] text-sm font-semibold rounded-lg transition-all ${
                 mode === 'signup'
-                  ? 'bg-white dark:bg-[#1D264A] text-[#111834] dark:text-white shadow-xs'
-                  : 'text-[#646B84] dark:text-[#9AA3C2]'
+                  ? 'bg-white dark:bg-[#FFFFFF0f] text-[#101010] dark:text-white shadow-xs'
+                  : 'text-[#101010b2] dark:text-[#FFFFFFa8]'
               }`}
             >
               Sign Up
@@ -138,8 +138,8 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ existingAccounts, onAuth
               }}
               className={`min-h-[44px] text-sm font-semibold rounded-lg transition-all ${
                 mode === 'login'
-                  ? 'bg-white dark:bg-[#1D264A] text-[#111834] dark:text-white shadow-xs'
-                  : 'text-[#646B84] dark:text-[#9AA3C2]'
+                  ? 'bg-white dark:bg-[#FFFFFF0f] text-[#101010] dark:text-white shadow-xs'
+                  : 'text-[#101010b2] dark:text-[#FFFFFFa8]'
               }`}
             >
               Log In
@@ -149,29 +149,29 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ existingAccounts, onAuth
           <form onSubmit={handleSubmit} className="space-y-4">
             {mode === 'signup' && (
               <div>
-                <label htmlFor="auth-name" className="block text-xs font-semibold text-[#474E68] dark:text-[#B4BCD9] mb-1.5">
+                <label htmlFor="auth-name" className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
                   Full Name
                 </label>
                 <div className="relative">
-                  <User className="w-4 h-4 text-[#848BA6] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <User className="w-4 h-4 text-[#10101099] absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     id="auth-name"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="e.g., Pavithra Nair"
-                    className="w-full min-h-[46px] pl-10 pr-4 rounded-xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#E2DDD4] dark:border-[#28335C] text-sm text-[#111834] dark:text-white placeholder:text-[#9399B2] focus:outline-none focus:ring-2 focus:ring-[#6E5DE7]"
+                    className="w-full min-h-[46px] pl-10 pr-4 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white placeholder:text-[#10101085] focus:outline-none focus:ring-2 focus:ring-[#10101073]"
                   />
                 </div>
               </div>
             )}
 
             <div>
-              <label htmlFor="auth-email" className="block text-xs font-semibold text-[#474E68] dark:text-[#B4BCD9] mb-1.5">
+              <label htmlFor="auth-email" className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-[#848BA6] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <Mail className="w-4 h-4 text-[#10101099] absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   id="auth-email"
                   type="email"
@@ -179,17 +179,17 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ existingAccounts, onAuth
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   autoComplete="email"
-                  className="w-full min-h-[46px] pl-10 pr-4 rounded-xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#E2DDD4] dark:border-[#28335C] text-sm text-[#111834] dark:text-white placeholder:text-[#9399B2] focus:outline-none focus:ring-2 focus:ring-[#6E5DE7]"
+                  className="w-full min-h-[46px] pl-10 pr-4 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white placeholder:text-[#10101085] focus:outline-none focus:ring-2 focus:ring-[#10101073]"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="auth-password" className="block text-xs font-semibold text-[#474E68] dark:text-[#B4BCD9] mb-1.5">
+              <label htmlFor="auth-password" className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
                 Password
               </label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-[#848BA6] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <Lock className="w-4 h-4 text-[#10101099] absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   id="auth-password"
                   type="password"
@@ -197,13 +197,13 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ existingAccounts, onAuth
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="At least 6 characters"
                   autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
-                  className="w-full min-h-[46px] pl-10 pr-4 rounded-xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#E2DDD4] dark:border-[#28335C] text-sm text-[#111834] dark:text-white placeholder:text-[#9399B2] focus:outline-none focus:ring-2 focus:ring-[#6E5DE7]"
+                  className="w-full min-h-[46px] pl-10 pr-4 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white placeholder:text-[#10101085] focus:outline-none focus:ring-2 focus:ring-[#10101073]"
                 />
               </div>
             </div>
 
             {error && (
-              <p role="alert" className="text-xs font-medium text-[#DC2626] dark:text-[#F87171] bg-[#FEF2F2] dark:bg-[#3A1620] px-3.5 py-2.5 rounded-xl">
+              <p role="alert" className="text-xs font-medium text-[#101010] dark:text-[#FFC5A8] bg-[#FFC5A866] dark:bg-[#FFFFFF0f] px-3.5 py-2.5 rounded-xl">
                 {error}
               </p>
             )}
@@ -211,7 +211,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ existingAccounts, onAuth
             <button
               type="submit"
               disabled={submitting}
-              className="w-full min-h-[48px] rounded-2xl bg-[#111834] dark:bg-[#6E5DE7] text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-md active:scale-[0.98] transition-transform disabled:opacity-60"
+              className="w-full min-h-[48px] rounded-2xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-md active:scale-[0.98] transition-transform disabled:opacity-60"
             >
               <span>{mode === 'signup' ? 'Create Account & Start Packing' : 'Sign In'}</span>
               <ArrowRight className="w-4 h-4" />
@@ -219,15 +219,15 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ existingAccounts, onAuth
           </form>
 
           <div className="relative my-5 flex items-center justify-center">
-            <div className="border-t border-[#ECE9E2] dark:border-[#242E52] w-full" />
-            <span className="px-3 text-xs text-[#848BA6] bg-white dark:bg-[#131A33] whitespace-nowrap">or</span>
-            <div className="border-t border-[#ECE9E2] dark:border-[#242E52] w-full" />
+            <div className="border-t border-[#1010101f] dark:border-[#FFFFFF24] w-full" />
+            <span className="px-3 text-xs text-[#10101099] bg-white dark:bg-[#FFFFFF0f] whitespace-nowrap">or</span>
+            <div className="border-t border-[#1010101f] dark:border-[#FFFFFF24] w-full" />
           </div>
 
           <button
             type="button"
             onClick={handleQuickDemo}
-            className="w-full min-h-[46px] rounded-2xl bg-[#F4F2FF] dark:bg-[#1B2344] text-[#4C3CC7] dark:text-[#C4BCFF] font-semibold text-sm hover:bg-[#EAE5FF] dark:hover:bg-[#232D57] transition-colors"
+            className="w-full min-h-[46px] rounded-2xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#D9C9F2] font-semibold text-sm hover:bg-[#D9C9F266] dark:hover:bg-[#FFFFFF0f] transition-colors"
           >
             Continue Instantly in Local Demo Mode
           </button>

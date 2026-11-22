@@ -14,9 +14,9 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
   percent,
   size = 56,
   strokeWidth = 5,
-  trackClassName = 'stroke-[#E6E2DA] dark:stroke-[#263156]',
+  trackClassName = 'stroke-[#1010101f] dark:stroke-[#FFFFFF24]',
   progressColor,
-  labelClassName = 'text-xs font-semibold text-[#111834] dark:text-[#F4F3EF]',
+  labelClassName = 'text-xs font-semibold text-[#101010] dark:text-[#FFFFFF]',
   showLabel = true,
 }) => {
   const clamped = Math.max(0, Math.min(100, Math.round(percent)));
@@ -25,7 +25,7 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
   const offset = circumference - (clamped / 100) * circumference;
 
   const strokeColor =
-    progressColor || (clamped === 100 ? '#10B981' : clamped >= 50 ? '#34D399' : '#6E5DE7');
+    progressColor || (clamped === 100 ? '#B8D9F2' : clamped >= 50 ? '#B8D9F2' : '#D9C9F2');
 
   return (
     <div

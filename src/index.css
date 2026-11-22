@@ -2,38 +2,54 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-serif: "Cormorant Garamond", Georgia, serif;
-  --font-editorial: "Cormorant Garamond", Georgia, serif;
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Type: Bodoni Moda carries display; Hanken Grotesk carries everything small. */
+  --font-serif: "Bodoni Moda", "Didot", Georgia, serif;
+  --font-editorial: "Bodoni Moda", "Didot", Georgia, serif;
+  --font-display: "Bodoni Moda", "Didot", Georgia, serif;
+  --font-sans: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  /* PackSmart Luxury Editorial & Minimal SaaS Colour System */
-  --color-ivory: #F7F4EF;
+  /* PackSmart palette: five colours, nothing else. */
+  --color-black: #101010;
+  --color-white: #FFFFFF;
+  --color-powder: #B8D9F2;
+  --color-lavender: #D9C9F2;
+  --color-peach: #FFC5A8;
+  --color-ink: #101010;
   --color-paper: #FFFFFF;
-  --color-ink: #171717;
-  --color-powder: #B9D8EF;
-  --color-peach: #F5BDA5;
-  --color-lavender: #D8C9EC;
+  --color-ivory: #FFFFFF;
 }
 
 @layer base {
+  :root {
+    --ps-black: #101010;
+    --ps-white: #FFFFFF;
+    --ps-powder: #B8D9F2;
+    --ps-lavender: #D9C9F2;
+    --ps-peach: #FFC5A8;
+    --ps-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
   html {
     font-family: var(--font-sans);
     -webkit-tap-highlight-color: transparent;
-    color: #171717;
-    background-color: #F7F4EF;
-    scroll-behavior: smooth;
+    color: var(--ps-black);
+    background-color: var(--ps-white);
+    /* No CSS smooth-scroll: it fights GSAP ScrollTrigger pinning. */
+    scroll-behavior: auto;
   }
 
   body {
     font-family: var(--font-sans);
-    color: #171717;
-    background-color: #F7F4EF;
+    color: var(--ps-black);
+    background-color: var(--ps-white);
   }
 
   h1, h2, h3, .font-editorial {
     font-family: var(--font-serif);
+    font-optical-sizing: auto;
+    font-weight: 500;
+    letter-spacing: -0.015em;
     text-wrap: balance;
   }
 
@@ -54,9 +70,34 @@
   input:focus-visible,
   select:focus-visible,
   textarea:focus-visible {
-    outline: 2px solid #171717;
+    outline: 2px solid var(--ps-black);
     outline-offset: 2px;
   }
+
+  .dark button:focus-visible,
+  .dark a:focus-visible,
+  .dark input:focus-visible,
+  .dark select:focus-visible,
+  .dark textarea:focus-visible {
+    outline-color: var(--ps-white);
+  }
+
+  ::selection {
+    background: var(--ps-lavender);
+    color: var(--ps-black);
+  }
+}
+
+/* Text reveals: each line sits in a mask and slides up out of it (LineRevealText). */
+.line-mask {
+  display: block;
+  overflow: hidden;
+}
+
+/* Rotated side label used by the pinned sections. */
+.vertical-editorial {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -69,6 +110,26 @@
 
 .pb-safe {
   padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+/* Deck cards in the spatial browser keep their 3D transforms on the GPU. */
+.ps-stage {
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+.ps-card {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+@keyframes ps-scroll-cue {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+.ps-scroll-cue {
+  animation: ps-scroll-cue 2.2s var(--ps-ease) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

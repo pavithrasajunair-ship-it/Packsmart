@@ -19,11 +19,11 @@ export const SafeImage: React.FC<SafeImageProps> = ({
   if (failed || !src) {
     return (
       <div
-        className={`flex flex-col items-center justify-center bg-gradient-to-br from-[#111834] via-[#1E2852] to-[#342D6B] text-white/90 ${className}`}
+        className={`flex flex-col items-center justify-center bg-gradient-to-br from-[#101010] via-[#101010] to-[#101010] text-white/90 ${className}`}
         role="img"
         aria-label={alt}
       >
-        <Compass className="w-7 h-7 text-[#34D399] mb-1.5" />
+        <Compass className="w-7 h-7 text-[#101010] mb-1.5" />
         {fallbackLabel && <span className="text-xs font-medium opacity-85">{fallbackLabel}</span>}
       </div>
     );

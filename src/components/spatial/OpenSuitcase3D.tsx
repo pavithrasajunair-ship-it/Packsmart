@@ -43,7 +43,7 @@ function createRoundedRect(width: number, height: number, radius: number): THREE
 }
 
 function createCategoryColorHex(category: string, index: number): number {
-  const palette = [0xb8d9f2, 0xd9c9f2, 0xffc5a8, 0xffffff, 0x262626];
+  const palette = [0xb8d9f2, 0xd9c9f2, 0xffc5a8, 0xffffff, 0x101010];
   if (category === 'Clothing') return index % 2 === 0 ? 0xd9c9f2 : 0xffffff;
   if (category === 'Footwear') return 0x101010;
   if (category === 'Electronics') return 0xb8d9f2;

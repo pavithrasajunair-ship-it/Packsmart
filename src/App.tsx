@@ -446,7 +446,7 @@ export default function App() {
       shareCode: Math.random().toString(36).slice(2, 8).toUpperCase(),
       allowMemberEdits: true,
       groupMembers: [
-        { id: 'm-owner', name: userName, role: 'Owner', initials: userInitials, color: '#6E5DE7' },
+        { id: 'm-owner', name: userName, role: 'Owner', initials: userInitials, color: '#D9C9F2' },
       ],
       groupActivity: [],
       groupSuggestions: [],
@@ -592,7 +592,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F4EF] text-[#171717] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FFFFFF] text-[#171717] flex flex-col font-sans">
       {/* Minimal Editorial Workspace Top Bar (Strict 3-Zone Contract) */}
       <header className="sticky top-0 z-30 h-16 bg-[#FFFFFF]/95 backdrop-blur-sm border-b border-[#171717]/10">
         <div className="max-w-6xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-6">
@@ -652,7 +652,7 @@ export default function App() {
 
           <div className="flex items-center gap-3 shrink-0">
             {!isOnline && (
-              <span className="text-xs font-medium text-[#171717] bg-[#F5BDA5] rounded-md px-2.5 py-1 flex items-center gap-1 whitespace-nowrap">
+              <span className="text-xs font-medium text-[#171717] bg-[#FFC5A8] rounded-md px-2.5 py-1 flex items-center gap-1 whitespace-nowrap">
                 <WifiOff className="w-3.5 h-3.5" />
                 <span>Offline</span>
               </span>
@@ -663,7 +663,7 @@ export default function App() {
                 setSurfaceMode('editorial');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="md:hidden h-9 px-3 rounded-lg bg-[#F7F4EF] border border-[#171717]/15 text-xs font-medium text-[#171717] whitespace-nowrap"
+              className="md:hidden h-9 px-3 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-xs font-medium text-[#171717] whitespace-nowrap"
             >
               Platform
             </button>
@@ -682,7 +682,7 @@ export default function App() {
       {/* Main Responsive Content Canvas */}
       <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-5 pb-24">
         {sharedImportNotice && (
-          <div className="mb-4 p-3.5 rounded-2xl bg-[#EEF9F7] dark:bg-[#102928] text-[#0C7A72] dark:text-[#2AB5A8] text-xs font-semibold">
+          <div className="mb-4 p-3.5 rounded-2xl bg-[#B8D9F266] dark:bg-[#101010] text-[#101010] dark:text-[#FFFFFF] text-xs font-semibold">
             {sharedImportNotice}
           </div>
         )}

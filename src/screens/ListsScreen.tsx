@@ -69,10 +69,10 @@ export const ListsScreen: React.FC<ListsScreenProps> = ({
       {/* Header + Prominent New Trip CTA */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="font-display text-2xl font-extrabold text-[#111834] dark:text-white tracking-tight">
+          <h1 className="font-display text-2xl font-extrabold text-[#101010] dark:text-white tracking-tight">
             My Trips
           </h1>
-          <p className="text-xs text-[#646B84] dark:text-[#9AA3C2] mt-0.5 tabular-nums">
+          <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] mt-0.5 tabular-nums">
             {lists.filter((l) => !l.completed).length} upcoming · {lists.filter((l) => l.completed).length} completed
           </p>
         </div>
@@ -81,15 +81,15 @@ export const ListsScreen: React.FC<ListsScreenProps> = ({
           <button
             type="button"
             onClick={onOpenHistory}
-            className="min-h-[44px] px-3.5 rounded-2xl bg-white dark:bg-[#131A33] border border-[#E6E2DA] dark:border-[#242E52] text-xs font-semibold text-[#111834] dark:text-[#F4F3EF] flex items-center gap-1.5 whitespace-nowrap"
+            className="min-h-[44px] px-3.5 rounded-2xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs font-semibold text-[#101010] dark:text-[#FFFFFF] flex items-center gap-1.5 whitespace-nowrap"
           >
-            <History className="w-4 h-4 text-[#5645D2] dark:text-[#A799FF]" />
+            <History className="w-4 h-4 text-[#101010] dark:text-[#D9C9F2]" />
             <span>Memory</span>
           </button>
           <button
             type="button"
             onClick={onOpenCreate}
-            className="min-h-[44px] px-4 rounded-2xl bg-[#111834] dark:bg-[#6E5DE7] text-white text-xs font-bold flex items-center gap-1.5 shadow-sm whitespace-nowrap"
+            className="min-h-[44px] px-4 rounded-2xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white text-xs font-bold flex items-center gap-1.5 shadow-sm whitespace-nowrap"
           >
             <Plus className="w-4 h-4" />
             <span>New Trip</span>
@@ -99,14 +99,14 @@ export const ListsScreen: React.FC<ListsScreenProps> = ({
 
       {/* Search */}
       <div className="relative">
-        <Search className="w-4 h-4 text-[#848BA6] absolute left-4 top-1/2 -translate-y-1/2" />
+        <Search className="w-4 h-4 text-[#10101099] absolute left-4 top-1/2 -translate-y-1/2" />
         <input
           type="search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search destinations, trip names, or trip types..."
           aria-label="Search trips"
-          className="w-full min-h-[46px] pl-11 pr-4 rounded-2xl bg-white dark:bg-[#131A33] border border-[#E6E2DA] dark:border-[#242E52] text-sm text-[#111834] dark:text-white"
+          className="w-full min-h-[46px] pl-11 pr-4 rounded-2xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
         />
       </div>
 
@@ -119,8 +119,8 @@ export const ListsScreen: React.FC<ListsScreenProps> = ({
             onClick={() => setTypeFilter(t)}
             className={`min-h-[38px] px-3.5 rounded-xl text-xs font-semibold whitespace-nowrap shrink-0 transition-colors ${
               typeFilter === t
-                ? 'bg-[#111834] dark:bg-[#6E5DE7] text-white'
-                : 'bg-white dark:bg-[#131A33] border border-[#E6E2DA] dark:border-[#242E52] text-[#505770] dark:text-[#B4BCD9]'
+                ? 'bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white'
+                : 'bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] text-[#101010cc] dark:text-[#FFFFFFa8]'
             }`}
           >
             {t}
@@ -129,7 +129,7 @@ export const ListsScreen: React.FC<ListsScreenProps> = ({
       </div>
 
       {/* Status Tabs */}
-      <div className="flex items-center gap-5 text-xs font-semibold border-b border-[#EAE6DE] dark:border-[#222B4C]">
+      <div className="flex items-center gap-5 text-xs font-semibold border-b border-[#1010101f] dark:border-[#FFFFFF24]">
         {[
           { id: 'all', label: 'All Trips' },
           { id: 'active', label: 'Upcoming' },
@@ -142,8 +142,8 @@ export const ListsScreen: React.FC<ListsScreenProps> = ({
             onClick={() => setStatusFilter(st.id as typeof statusFilter)}
             className={`pb-2.5 min-h-[40px] border-b-2 transition-colors whitespace-nowrap ${
               statusFilter === st.id
-                ? 'border-[#6E5DE7] text-[#111834] dark:text-white'
-                : 'border-transparent text-[#7D849E] hover:text-[#111834] dark:hover:text-white'
+                ? 'border-[#10101073] text-[#101010] dark:text-white'
+                : 'border-transparent text-[#10101099] hover:text-[#101010] dark:hover:text-white'
             }`}
           >
             {st.label}
@@ -164,7 +164,7 @@ export const ListsScreen: React.FC<ListsScreenProps> = ({
             return (
               <div
                 key={list.id}
-                className="rounded-3xl bg-white dark:bg-[#131A33] border border-[#E6E2DA] dark:border-[#242E52] p-4 flex flex-col justify-between gap-3.5"
+                className="rounded-3xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] p-4 flex flex-col justify-between gap-3.5"
               >
                 <button
                   type="button"
@@ -172,16 +172,16 @@ export const ListsScreen: React.FC<ListsScreenProps> = ({
                   className="flex items-center justify-between gap-3.5 text-left w-full"
                 >
                   <div className="flex items-center gap-3.5 min-w-0">
-                    <ProgressRing percent={pct} size={52} strokeWidth={4.5} progressColor="#0F968C" />
+                    <ProgressRing percent={pct} size={52} strokeWidth={4.5} progressColor="#B8D9F2" />
                     <div className="min-w-0">
-                      <p className="text-[11px] font-semibold text-[#5645D2] dark:text-[#A799FF] truncate">
+                      <p className="text-[11px] font-semibold text-[#101010] dark:text-[#D9C9F2] truncate">
                         {list.tripType} · {list.destination || 'Local'}
                         {list.isSampleData ? ' · Sample' : ''}
                       </p>
-                      <h2 className="font-display font-bold text-base text-[#111834] dark:text-white truncate">
+                      <h2 className="font-display font-bold text-base text-[#101010] dark:text-white truncate">
                         {list.title}
                       </h2>
-                      <p className="text-xs text-[#646B84] dark:text-[#9AA3C2] mt-0.5 font-mono tabular-nums">
+                      <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] mt-0.5 font-mono tabular-nums">
                         {list.completed
                           ? `Completed ${list.completedAt || list.endDate}`
                           : dLeft < 0
@@ -193,7 +193,7 @@ export const ListsScreen: React.FC<ListsScreenProps> = ({
                       </p>
                     </div>
                   </div>
-                  <ChevronRight className="w-5 h-5 text-[#9399B2] shrink-0" />
+                  <ChevronRight className="w-5 h-5 text-[#10101085] shrink-0" />
                 </button>
 
                 {/* Quick Module Jumps */}
@@ -201,41 +201,41 @@ export const ListsScreen: React.FC<ListsScreenProps> = ({
                   <button
                     type="button"
                     onClick={() => onOpenList(list.id, 'suitcase')}
-                    className="min-h-[34px] px-2.5 rounded-xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#EAE6DE] dark:border-[#222B4C] text-[11px] font-semibold text-[#353C54] dark:text-[#C5CBE3] flex items-center gap-1 whitespace-nowrap"
+                    className="min-h-[34px] px-2.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-[11px] font-semibold text-[#101010] dark:text-[#FFFFFF] flex items-center gap-1 whitespace-nowrap"
                   >
-                    <Luggage className="w-3.5 h-3.5 text-[#0F968C]" />
+                    <Luggage className="w-3.5 h-3.5 text-[#101010]" />
                     <span>Suitcase</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => onOpenList(list.id, 'timeline')}
-                    className="min-h-[34px] px-2.5 rounded-xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#EAE6DE] dark:border-[#222B4C] text-[11px] font-semibold text-[#353C54] dark:text-[#C5CBE3] flex items-center gap-1 whitespace-nowrap"
+                    className="min-h-[34px] px-2.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-[11px] font-semibold text-[#101010] dark:text-[#FFFFFF] flex items-center gap-1 whitespace-nowrap"
                   >
-                    <CalendarClock className="w-3.5 h-3.5 text-[#5645D2]" />
+                    <CalendarClock className="w-3.5 h-3.5 text-[#101010]" />
                     <span>Timeline</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => onOpenList(list.id, 'before_leave')}
-                    className="min-h-[34px] px-2.5 rounded-xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#EAE6DE] dark:border-[#222B4C] text-[11px] font-semibold text-[#353C54] dark:text-[#C5CBE3] flex items-center gap-1 whitespace-nowrap"
+                    className="min-h-[34px] px-2.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-[11px] font-semibold text-[#101010] dark:text-[#FFFFFF] flex items-center gap-1 whitespace-nowrap"
                   >
-                    <DoorClosed className="w-3.5 h-3.5 text-[#0F968C]" />
+                    <DoorClosed className="w-3.5 h-3.5 text-[#101010]" />
                     <span>Before Leave</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => onOpenList(list.id, 'memory')}
-                    className="min-h-[34px] px-2.5 rounded-xl bg-[#FAF9F7] dark:bg-[#0D1326] border border-[#EAE6DE] dark:border-[#222B4C] text-[11px] font-semibold text-[#353C54] dark:text-[#C5CBE3] flex items-center gap-1 whitespace-nowrap"
+                    className="min-h-[34px] px-2.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-[11px] font-semibold text-[#101010] dark:text-[#FFFFFF] flex items-center gap-1 whitespace-nowrap"
                   >
-                    <Brain className="w-3.5 h-3.5 text-[#5645D2]" />
+                    <Brain className="w-3.5 h-3.5 text-[#101010]" />
                     <span>{list.postTripMemory ? 'Memory Saved' : 'Review'}</span>
                   </button>
                 </div>
 
                 {/* Footer Actions */}
-                <div className="pt-2.5 border-t border-[#F1EFEA] dark:border-[#202948] flex items-center justify-between gap-2">
-                  <div className="text-xs font-medium text-[#646B84] dark:text-[#9AA3C2] flex items-center gap-1.5">
-                    {list.isShared && <Users className="w-3.5 h-3.5 text-[#5645D2] dark:text-[#A799FF]" />}
+                <div className="pt-2.5 border-t border-[#1010101f] dark:border-[#FFFFFF24] flex items-center justify-between gap-2">
+                  <div className="text-xs font-medium text-[#101010b2] dark:text-[#FFFFFFa8] flex items-center gap-1.5">
+                    {list.isShared && <Users className="w-3.5 h-3.5 text-[#101010] dark:text-[#D9C9F2]" />}
                     <span>{list.luggageType.split(' ')[0]} · {list.luggageCapacityLiters}L</span>
                   </div>
                   <div className="flex items-center gap-1">
@@ -243,7 +243,7 @@ export const ListsScreen: React.FC<ListsScreenProps> = ({
                       type="button"
                       onClick={() => onDuplicateList(list.id)}
                       aria-label={`Duplicate ${list.title}`}
-                      className="min-h-[38px] px-3 rounded-xl text-xs font-semibold text-[#505770] dark:text-[#B4BCD9] hover:bg-[#F4F2FF] dark:hover:bg-[#1E274A] flex items-center gap-1.5"
+                      className="min-h-[38px] px-3 rounded-xl text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] hover:bg-[#D9C9F266] dark:hover:bg-[#FFFFFF0f] flex items-center gap-1.5"
                     >
                       <Copy className="w-3.5 h-3.5" />
                       <span>Reuse</span>
@@ -252,7 +252,7 @@ export const ListsScreen: React.FC<ListsScreenProps> = ({
                       type="button"
                       onClick={() => setPendingDelete(list)}
                       aria-label={`Delete ${list.title}`}
-                      className="min-h-[38px] min-w-[38px] rounded-xl text-[#9399B2] hover:text-[#DC2626] flex items-center justify-center"
+                      className="min-h-[38px] min-w-[38px] rounded-xl text-[#10101085] hover:text-[#101010] flex items-center justify-center"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -263,17 +263,17 @@ export const ListsScreen: React.FC<ListsScreenProps> = ({
           })}
         </div>
       ) : (
-        <div className="rounded-3xl bg-white dark:bg-[#131A33] border border-[#E6E2DA] dark:border-[#242E52] p-8 text-center">
-          <p className="font-display font-bold text-base text-[#111834] dark:text-white">
+        <div className="rounded-3xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] p-8 text-center">
+          <p className="font-display font-bold text-base text-[#101010] dark:text-white">
             No matching trips found
           </p>
-          <p className="text-sm text-[#646B84] dark:text-[#9AA3C2] mt-1">
+          <p className="text-sm text-[#101010b2] dark:text-[#FFFFFFa8] mt-1">
             Create a tailored trip with smart timeline, suitcase optimizer, and outfit planner.
           </p>
           <button
             type="button"
             onClick={onOpenCreate}
-            className="mt-4 min-h-[44px] px-5 rounded-2xl bg-[#111834] dark:bg-[#6E5DE7] text-white text-sm font-semibold inline-flex items-center gap-2"
+            className="mt-4 min-h-[44px] px-5 rounded-2xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white text-sm font-semibold inline-flex items-center gap-2"
           >
             <Plus className="w-4 h-4" />
             <span>Create New Trip</span>
