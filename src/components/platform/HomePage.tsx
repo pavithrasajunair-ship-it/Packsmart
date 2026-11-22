@@ -25,6 +25,7 @@ import {
   type SuitcaseFinish,
 } from '../editorial/Suitcase3DCanvas';
 import { LineRevealText, MagneticButton, prefersReducedMotion } from '../editorial/MotionPrimitives';
+import { CapsuleCalculator, DepartureBoard } from './HomeExtras';
 import { PackingStorySection } from '../editorial/PackingStorySection';
 import {
   HorizontalGallerySection,
@@ -673,7 +674,11 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       <ScrollMarquee words={['Forecast', 'Fit', 'Outfits', 'Documents']} reverse />
 
-      {/* ==================== SCENE 5: LIVE JOURNEY ==================== */}
+      {/* ==================== SCENE 5: DEPARTURE BOARD AND CAPSULE CALCULATOR ==================== */}
+      <DepartureBoard lists={lists} onNavigate={onNavigate} />
+      <CapsuleCalculator onOpenSmartPacking={() => onNavigate('smart-packing')} />
+
+      {/* ==================== SCENE 6: LIVE JOURNEY ==================== */}
       <section ref={summaryRef} className="relative py-24 sm:py-32 overflow-hidden">
         <div data-speed="1.4" aria-hidden="true" className="absolute -left-24 top-10 w-72 h-72 rounded-full bg-[#FFFFFF]/45" />
         <div data-speed="-1" aria-hidden="true" className="absolute right-[-4rem] bottom-0 w-96 h-96 rounded-full bg-[#B8D9F2]/55" />
