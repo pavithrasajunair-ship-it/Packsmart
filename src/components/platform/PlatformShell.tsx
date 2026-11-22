@@ -24,14 +24,14 @@ import { TripPlannerView } from './TripPlannerView';
 import { SmartPackingView } from './SmartPackingView';
 import { AIOutfitStudioPlatform } from './AIOutfitStudioPlatform';
 import { DigitalWardrobeView } from './DigitalWardrobeView';
-import { EditorialCursor, prefersReducedMotion } from '../editorial/MotionPrimitives';
+import { prefersReducedMotion } from '../editorial/MotionPrimitives';
 
 gsap.registerPlugin(ScrollTrigger);
 
 /** Colours the page transition sweeps through, in the order they cover the screen. */
 const CURTAIN_COLOURS = ['#B8D9F2', '#D9C9F2', '#FFC5A8'];
 /** The route swaps while the curtain fully covers the screen. */
-const CURTAIN_SWAP_MS = 640;
+const CURTAIN_SWAP_MS = 760;
 
 interface PlatformShellProps {
   user: UserAccount;
@@ -143,7 +143,10 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
   // Workspace views: their top-level blocks rise into place as they enter the viewport.
   useEffect(() => {
     const el = mainRef.current;
-    if (!el || route === 'home' || prefersReducedMotion()) return;
+    if (!el || prefersReducedMotion()) return;
+    // The new page fades up from the curtain instead of cutting in.
+    gsap.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.9, delay: 0.15, ease: 'power2.out', clearProps: 'opacity' });
+    if (route === 'home') return;
     const blocks = Array.from(el.querySelectorAll<HTMLElement>(':scope > div > div > *'));
     if (blocks.length === 0) return;
     const ctx = gsap.context(() => {
@@ -172,7 +175,6 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
 
   return (
     <div className="min-h-screen bg-[#FFFFFF] text-[#171717] flex flex-col font-sans">
-      <EditorialCursor />
       <motion.div
         aria-hidden="true"
         style={{ scaleX: progressX }}
@@ -187,7 +189,7 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
               style={{ backgroundColor: colour }}
               initial={{ y: '100%' }}
               animate={{ y: ['100%', '0%', '0%', '-100%'] }}
-              transition={{ duration: 1.05, times: [0, 0.45, 0.55, 1], ease: 'easeInOut', delay: i * 0.07 }}
+              transition={{ duration: 1.25, times: [0, 0.42, 0.58, 1], ease: [0.76, 0, 0.24, 1], delay: i * 0.08 }}
             />
           ))}
         </div>

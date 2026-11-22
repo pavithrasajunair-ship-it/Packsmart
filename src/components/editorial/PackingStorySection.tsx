@@ -143,7 +143,7 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
         end: '+=190%',
         pin: true,
         refreshPriority: 5,
-        scrub: 0.9,
+        scrub: 1.2,
         anticipatePin: 1,
         onUpdate: (self) => {
           setProgress(Math.round(self.progress * 100) / 100);
@@ -227,19 +227,19 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
                   className={`min-h-[40px] px-3 font-mono text-xs transition-colors border-b-2 ${
                     chapterIndex === idx
                       ? 'border-[#FFC5A8] text-[#FFC5A8] font-semibold'
-                      : 'border-transparent text-white/45 hover:text-white/80'
+                      : 'border-transparent text-white/70 hover:text-white/80'
                   }`}
                 >
                   {ch.num}
                 </button>
               ))}
-              <span className="ml-auto font-mono text-[11px] text-white/50 tabular-nums">
+              <span className="ml-auto font-mono text-[11px] text-white/70 tabular-nums">
                 {Math.round(easedT * 100)}% organized
               </span>
             </div>
 
             <div className="min-h-[120px] space-y-2.5">
-              <h3 className="font-display text-xl sm:text-2xl font-bold text-[#FFFFFF]">
+              <h3 className="font-sans text-xl sm:text-2xl font-semibold text-[#FFFFFF]">
                 {activeChapter.title}
               </h3>
               <p className="text-sm text-white/75 leading-relaxed max-w-md">
@@ -250,19 +250,19 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
             {/* Live Quantified Packing Telemetry */}
             <div className="grid grid-cols-3 gap-4 border-t border-white/15 pt-5 tabular-nums">
               <div>
-                <p className="font-mono text-[11px] text-white/50">Total Weight</p>
+                <p className="font-mono text-[11px] text-white/70">Total Weight</p>
                 <p className="font-mono text-lg sm:text-xl font-semibold text-[#B8D9F2] mt-1">
                   {activeChapter.metricWeight}
                 </p>
               </div>
               <div>
-                <p className="font-mono text-[11px] text-white/50">Capsule Count</p>
+                <p className="font-mono text-[11px] text-white/70">Capsule Count</p>
                 <p className="font-mono text-lg sm:text-xl font-semibold text-[#D9C9F2] mt-1">
                   {activeChapter.metricPieces}
                 </p>
               </div>
               <div>
-                <p className="font-mono text-[11px] text-white/50">Status</p>
+                <p className="font-mono text-[11px] text-white/70">Status</p>
                 <p className="text-xs font-semibold text-[#FFC5A8] mt-1.5 leading-snug">
                   {activeChapter.metricStatus}
                 </p>
@@ -273,7 +273,7 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
               <div className="pt-1">
                 <label
                   htmlFor="packing-scrubber"
-                  className="block font-mono text-[11px] text-white/60 mb-2"
+                  className="block font-mono text-[11px] text-white/75 mb-2"
                 >
                   Drag to preview packing choreography
                 </label>
@@ -305,7 +305,7 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
 
         {/* Right Architectural Suitcase Choreography Stage */}
         <div className="lg:col-span-7 flex flex-col items-center justify-center">
-          <div className="relative w-full max-w-[560px] p-5 sm:p-7 border border-white/20 bg-white/[0.03]">
+          <div className="relative w-full max-w-[560px] p-5 sm:p-7 border border-white/25 bg-white/[0.04] overflow-hidden rounded-2xl">
             {/* Suitcase Frame Header */}
             <div className="flex items-center justify-between border-b border-white/15 pb-3.5 mb-5">
               <div className="flex items-center gap-2.5">
@@ -319,9 +319,9 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
             {/* Dynamic Garment Grid — flies from chaos coordinates into architectural precision */}
             <div className="grid grid-cols-12 gap-3 relative min-h-[320px]">
               {STORY_GARMENTS.map((garment) => {
-                const tx = garment.chaosX * (1 - easedT);
-                const ty = garment.chaosY * (1 - easedT);
-                const rot = garment.chaosRotate * (1 - easedT);
+                const tx = garment.chaosX * 0.38 * (1 - easedT);
+                const ty = garment.chaosY * 0.38 * (1 - easedT);
+                const rot = garment.chaosRotate * 0.45 * (1 - easedT);
                 const scale = 0.92 + 0.08 * easedT;
 
                 return (
@@ -332,10 +332,10 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
                       backgroundColor: garment.tone,
                       color: '#101010',
                     }}
-                    className={`${garment.slotCol} p-4 flex flex-col justify-between min-h-[104px] will-change-transform border border-[#101010]/15`}
+                    className={`${garment.slotCol} p-4 flex flex-col justify-between min-h-[104px] will-change-transform border border-[#101010]/15 rounded-xl`}
                   >
                     <div className="flex items-start justify-between gap-2">
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-[#101010]/65">
+                      <span className="text-xs font-medium text-[#101010]/75">
                         {garment.category}
                       </span>
                       {easedT > 0.85 && (
@@ -343,10 +343,10 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
                       )}
                     </div>
                     <div className="mt-3">
-                      <p className="font-display text-sm sm:text-base font-bold leading-tight text-[#101010]">
+                      <p className="text-base font-semibold leading-tight text-[#101010]">
                         {garment.name}
                       </p>
-                      <p className="font-mono text-[11px] text-[#101010]/70 mt-0.5 tabular-nums">
+                      <p className="text-xs text-[#101010]/75 mt-0.5 tabular-nums">
                         {garment.spec}
                       </p>
                     </div>
@@ -358,7 +358,7 @@ export const PackingStorySection: React.FC<PackingStorySectionProps> = ({
             {/* Suitcase Compression Progress Track */}
             <div className="mt-6 pt-4 border-t border-white/15 space-y-2">
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-white/60">Volume Fit</span>
+                <span className="text-white/75">Volume Fit</span>
                 <span className="text-[#FFC5A8] tabular-nums">
                   {easedT > 0.85 ? '27.2L / 40.0L · Optimal' : `${(47.2 - easedT * 20).toFixed(1)}L / 40.0L`}
                 </span>

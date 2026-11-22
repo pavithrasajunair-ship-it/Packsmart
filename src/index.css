@@ -2,10 +2,10 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* Type: Bodoni Moda carries display; Hanken Grotesk carries everything small. */
-  --font-serif: "Bodoni Moda", "Didot", Georgia, serif;
-  --font-editorial: "Bodoni Moda", "Didot", Georgia, serif;
-  --font-display: "Bodoni Moda", "Didot", Georgia, serif;
+  /* Type: Fraunces carries big headlines; Hanken Grotesk carries everything small. */
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-editorial: "Fraunces", Georgia, serif;
+  --font-display: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-sans: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
@@ -45,11 +45,17 @@
     background-color: var(--ps-white);
   }
 
-  h1, h2, h3, .font-editorial {
+  /* Serif only for big headlines; small headings stay in the sans for legibility. */
+  h1, h2, .font-editorial {
     font-family: var(--font-serif);
     font-optical-sizing: auto;
     font-weight: 500;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  h3, h4 {
+    font-family: var(--font-sans);
+    font-weight: 600;
     text-wrap: balance;
   }
 

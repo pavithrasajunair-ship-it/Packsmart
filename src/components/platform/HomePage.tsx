@@ -117,7 +117,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           start: 'top top',
           end: '+=120%',
           pin: true,
-          scrub: 0.8,
+          scrub: 1.2,
           anticipatePin: 1,
           refreshPriority: 10,
           onUpdate: (self) => {
