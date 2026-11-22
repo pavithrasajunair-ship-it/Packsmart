@@ -1,6 +1,11 @@
 import React, { useMemo, useRef, useState } from 'react';
+import { motion } from 'motion/react';
 import {
+  Footprints,
+  Glasses,
+  Layers,
   Loader2,
+  Wind,
   Plus,
   Shirt,
   Sparkles,
@@ -21,6 +26,32 @@ interface DigitalWardrobeViewProps {
   onSaveWardrobePhoto: (photoId: string, dataUrl: string) => Promise<void>;
   onDeleteWardrobeItem: (itemId: string) => void;
   onNavigate: (route: PlatformRoute) => void;
+}
+
+/** Pick black or white for an icon so it reads on any garment colour. */
+function inkFor(hex: string): string {
+  const m = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
+  if (!m) return '#101010';
+  const n = parseInt(m[1], 16);
+  const lum = (0.299 * ((n >> 16) & 255) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255;
+  return lum > 0.6 ? '#101010' : '#FFFFFF';
+}
+
+function iconFor(category: string): React.ComponentType<{ className?: string }> {
+  switch (category) {
+    case 'Bottoms':
+      return Layers;
+    case 'Dresses':
+      return Sparkles;
+    case 'Footwear':
+      return Footprints;
+    case 'Outerwear':
+      return Wind;
+    case 'Accessories':
+      return Glasses;
+    default:
+      return Shirt;
+  }
 }
 
 export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
@@ -307,14 +338,21 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
           {filteredWardrobe.map((item) => {
             const photo = item.photoId ? wardrobePhotos[item.photoId] : undefined;
+            const Icon = iconFor(item.category);
             return (
-              <button
+              <motion.button
                 key={item.id}
                 type="button"
                 onClick={() => setSelectedItem(item)}
-                className="text-left rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 overflow-hidden hover:border-[#171717]/40 transition-colors flex flex-col"
+                whileHover={{ y: -8, rotate: -0.6 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: 'spring', stiffness: 320, damping: 22 }}
+                className="text-left rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 overflow-hidden flex flex-col"
               >
-                <div className="aspect-square w-full bg-[#FFFFFF] flex items-center justify-center overflow-hidden">
+                <div
+                  className="relative aspect-square w-full flex items-center justify-center overflow-hidden"
+                  style={{ backgroundColor: photo ? '#FFFFFF' : item.colorHex }}
+                >
                   {photo ? (
                     <img
                       src={photo}
@@ -323,12 +361,19 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                       loading="lazy"
                     />
                   ) : (
-                    <span
-                      className="w-12 h-12 rounded-3xl border border-[#171717]/15 flex items-center justify-center"
-                      style={{ backgroundColor: item.colorHex }}
-                    >
-                      <Shirt className="w-6 h-6 text-[#FFFFFF]" />
-                    </span>
+                    <>
+                      <span
+                        aria-hidden="true"
+                        className="absolute -right-8 -bottom-8 w-40 h-40 rounded-full"
+                        style={{ backgroundColor: inkFor(item.colorHex), opacity: 0.08 }}
+                      />
+                      <span className="relative" style={{ color: inkFor(item.colorHex) }}>
+                        <Icon className="w-20 h-20 sm:w-24 sm:h-24" />
+                      </span>
+                      <span className="absolute left-3 bottom-3 rounded-full bg-[#FFFFFF]/90 px-3 py-1 text-xs font-semibold text-[#101010]">
+                        {item.colorName}
+                      </span>
+                    </>
                   )}
                 </div>
 
@@ -344,7 +389,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                     <span>{item.volumeLiters}L</span>
                   </div>
                 </div>
-              </button>
+              </motion.button>
             );
           })}
         </div>
