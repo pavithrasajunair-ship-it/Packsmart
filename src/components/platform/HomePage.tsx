@@ -88,15 +88,15 @@ const ScrollMarquee: React.FC<{ words: string[]; reverse?: boolean }> = ({ words
 
   const line = [...words, ...words, ...words];
   return (
-    <div ref={wrapRef} aria-hidden="true" className="relative overflow-hidden py-8 sm:py-12 select-none">
+    <div ref={wrapRef} aria-hidden="true" className="relative overflow-hidden py-6 sm:py-8 select-none">
       <div
         ref={rowRef}
-        className="flex w-max items-center gap-8 sm:gap-14 text-[clamp(3.5rem,11vw,9rem)] leading-none font-extrabold tracking-[-0.05em] text-[#101010] will-change-transform"
+        className="flex w-max items-center gap-6 sm:gap-10 text-[clamp(1.75rem,4.6vw,3.75rem)] leading-none font-bold tracking-[-0.04em] text-[#101010] will-change-transform"
       >
         {line.map((w, i) => (
           <React.Fragment key={`${w}-${i}`}>
             <span>{w}</span>
-            <span className="w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-[#FFFFFF] shrink-0" />
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#101010]/40 shrink-0" />
           </React.Fragment>
         ))}
       </div>
