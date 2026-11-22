@@ -29,6 +29,7 @@ import {
 } from '../../utils/packingEngine';
 import { uid } from '../../utils/storage';
 import type { PlatformRoute } from './HomePage';
+import { PageHero, PhotoFan } from './PageHero';
 
 import kyotoCoverImg from '../../assets/images/editorial_destination_kyoto_1795242652961.jpg';
 import amalfiCoverImg from '../../assets/images/editorial_destination_amalfi_1795242652302.jpg';
@@ -273,6 +274,18 @@ export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
   return (
     <div className="ps-work relative min-h-[calc(100vh-4rem)] py-10 sm:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <PageHero
+          surface="#B8D9F2"
+          tagline="Where to next? Pick a place, read the sky, pack for it."
+          stats={[
+            { label: 'Itineraries', value: lists.length },
+            { label: 'Upcoming', value: lists.filter((l) => !l.completed).length },
+            { label: 'Items listed', value: lists.reduce((n, l) => n + l.items.length, 0) },
+          ]}
+        >
+          <PhotoFan images={[kyotoCoverImg, horizonCoverImg, amalfiCoverImg]} />
+        </PageHero>
+
         {/* ==================== HEADER ==================== */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div className="space-y-1">

@@ -28,6 +28,7 @@ import {
   estimateItemVolumeLiters,
 } from '../../utils/packingEngine';
 import { compressImageFileToJpegDataUrl, uid } from '../../utils/storage';
+import { PageHero, SwatchCloud } from './PageHero';
 
 interface AIOutfitStudioPlatformProps {
   lists: PackingList[];
@@ -450,6 +451,18 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
   return (
     <div className="ps-work relative min-h-[calc(100vh-4rem)] py-10 sm:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <PageHero
+          surface="#B8D9F2"
+          tagline="Dress every day of the trip from clothes you already own."
+          stats={[
+            { label: 'Pieces owned', value: wardrobe.length },
+            { label: 'Looks saved', value: savedOutfits.length },
+            { label: 'Trips', value: lists.length },
+          ]}
+        >
+          <SwatchCloud colours={wardrobe.map((w) => w.colorHex)} />
+        </PageHero>
+
         {/* ==================== HEADER ==================== */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div className="space-y-1">

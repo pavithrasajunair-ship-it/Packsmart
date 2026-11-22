@@ -23,6 +23,7 @@ import {
 } from '../../utils/packingEngine';
 import { uid } from '../../utils/storage';
 import { OpenSuitcase3D, type SuitcaseCameraView } from '../spatial/OpenSuitcase3D';
+import { PageHero, ProgressVisual } from './PageHero';
 
 interface SmartPackingViewProps {
   lists: PackingList[];
@@ -324,6 +325,18 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
   return (
     <div className="ps-work relative min-h-[calc(100vh-4rem)] py-10 sm:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <PageHero
+          surface="#FFC5A8"
+          tagline="Every litre and every gram, counted before you zip."
+          stats={[
+            { label: 'Items packed', value: packedCount },
+            { label: 'Litres used', value: analysis.totalVolumeLiters, decimals: 1 },
+            { label: 'Weight in kg', value: analysis.totalWeightKg, decimals: 1 },
+          ]}
+        >
+          <ProgressVisual pct={packedPct} />
+        </PageHero>
+
         {/* ==================== HEADER ==================== */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2">
           <div className="space-y-1">

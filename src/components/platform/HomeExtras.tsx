@@ -214,7 +214,7 @@ function buildCapsule(days: number, climate: Climate, laundry: boolean): Capsule
   ];
 }
 
-const Counter: React.FC<{ value: number; decimals?: number; className?: string }> = ({
+export const Counter: React.FC<{ value: number; decimals?: number; className?: string }> = ({
   value,
   decimals = 0,
   className,

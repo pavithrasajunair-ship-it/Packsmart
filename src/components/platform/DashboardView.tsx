@@ -33,6 +33,7 @@ import {
 } from '../../utils/packingEngine';
 import { uid } from '../../utils/storage';
 import type { PlatformRoute } from './HomePage';
+import { PageHero, SuitcaseVisual } from './PageHero';
 
 interface DashboardViewProps {
   user: UserAccount;
@@ -173,6 +174,22 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   return (
     <div className="ps-work relative min-h-[calc(100vh-4rem)] py-10 sm:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <PageHero
+          surface="#D9C9F2"
+          tagline={
+            activeTrip && daysLeft !== null && daysLeft >= 0
+              ? `${activeTrip.destination || activeTrip.title} is ${daysLeft} days away.`
+              : 'Your next trip starts here.'
+          }
+          stats={[
+            { label: 'Packed', value: packedPct, suffix: '%' },
+            { label: 'Items ready', value: packedCount },
+            { label: 'Looks saved', value: savedOutfits.length },
+          ]}
+        >
+          <SuitcaseVisual finish="noir" />
+        </PageHero>
+
         {/* ==================== PAGE HEADER ==================== */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2">
           <div className="space-y-1">

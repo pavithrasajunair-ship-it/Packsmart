@@ -17,6 +17,7 @@ import type { WardrobeCategory, WardrobeItem } from '../../types';
 import { WARDROBE_CATEGORIES } from '../../types';
 import { compressImageFileToJpegDataUrl, uid } from '../../utils/storage';
 import type { PlatformRoute } from './HomePage';
+import { PageHero, SwatchCloud } from './PageHero';
 
 interface DigitalWardrobeViewProps {
   wardrobe: WardrobeItem[];
@@ -179,6 +180,18 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
   return (
     <div className="ps-work relative min-h-[calc(100vh-4rem)] py-10 sm:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <PageHero
+          surface="#D9C9F2"
+          tagline="Your whole closet, tagged, filtered and ready to pack."
+          stats={[
+            { label: 'Pieces', value: wardrobe.length },
+            { label: 'Categories', value: new Set(wardrobe.map((w) => w.category)).size },
+            { label: 'Photo scans', value: wardrobe.filter((w) => w.photoId).length },
+          ]}
+        >
+          <SwatchCloud colours={wardrobe.map((w) => w.colorHex)} />
+        </PageHero>
+
         {/* ==================== HEADER ==================== */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div className="space-y-1">
