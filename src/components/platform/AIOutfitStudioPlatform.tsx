@@ -448,13 +448,13 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
   }, [swappingSlot, wardrobe, wardrobeMap]);
 
   return (
-    <div className="bg-[#FFFFFF] min-h-[calc(100vh-4rem)] py-8 sm:py-10">
+    <div className="ps-work relative min-h-[calc(100vh-4rem)] py-10 sm:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* ==================== HEADER ==================== */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div className="space-y-1">
-            <p className="text-xs font-medium text-[#171717]/60">AI Outfit Studio</p>
-            <h1 className="font-serif text-3xl sm:text-4xl font-medium text-[#171717]">
+            <p className="inline-flex h-7 items-center rounded-full bg-[#FFFFFF]/85 px-3.5 text-xs font-semibold text-[#101010]">AI Outfit Studio</p>
+            <h1 className="text-4xl sm:text-6xl font-bold leading-[1.02] tracking-[-0.045em] text-[#101010]">
               Owned-Wardrobe Styling
             </h1>
             <p className="text-sm text-[#171717]/70 max-w-2xl">
@@ -504,7 +504,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
         )}
 
         {/* ==================== STYLING BRIEF & CONTROLS ==================== */}
-        <div className="rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-5">
+        <div className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <h2 className="font-serif text-2xl font-medium text-[#171717]">
@@ -598,7 +598,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
           </div>
 
           <div className="pt-2 border-t border-[#171717]/10 flex flex-wrap items-center justify-between gap-3">
-            <p className="text-xs text-[#171717]/60">
+            <p className="text-xs text-[#101010]/75">
               {aiConfigured
                 ? 'Powered by Gemini Vision & Owned-Wardrobe Capsule Engine'
                 : 'Configure GEMINI_API_KEY in Secrets to enable live AI vision & matching'}
@@ -607,7 +607,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
               type="button"
               onClick={handleGenerateOutfits}
               disabled={matching || wardrobe.length < 2}
-              className="h-11 px-6 rounded-lg bg-[#171717] text-[#FFFFFF] text-sm font-medium inline-flex items-center gap-2 hover:bg-[#171717]/88 transition-colors disabled:opacity-50"
+              className="h-11 px-6 rounded-full bg-[#171717] text-[#FFFFFF] text-sm font-medium inline-flex items-center gap-2 hover:bg-[#171717]/88 transition-colors disabled:opacity-50"
             >
               {matching ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -629,7 +629,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
         {session && activeOutfit && (
           <div className="space-y-6">
             {/* Capsule Metrics & Sync Bar */}
-            <div className="rounded-xl bg-[#D9C9F2]/45 border border-[#171717]/10 p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+            <div className="rounded-3xl bg-[#D9C9F2]/45 border border-[#171717]/10 p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-5">
               <div className="space-y-1 max-w-2xl">
                 <p className="text-xs font-medium text-[#171717]/65">Capsule Efficiency Summary</p>
                 <p className="text-sm font-medium text-[#171717] leading-relaxed">
@@ -644,7 +644,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
                 <button
                   type="button"
                   onClick={handleSyncCapsuleToSuitcase}
-                  className="h-10 px-5 rounded-lg bg-[#171717] text-[#FFFFFF] text-xs font-medium inline-flex items-center gap-2 hover:bg-[#171717]/88 transition-colors shrink-0 self-start lg:self-auto"
+                  className="h-10 px-5 rounded-full bg-[#171717] text-[#FFFFFF] text-xs font-medium inline-flex items-center gap-2 hover:bg-[#171717]/88 transition-colors shrink-0 self-start lg:self-auto"
                 >
                   <Luggage className="w-4 h-4" />
                   <span>Sync Capsule to {activeTrip.title}</span>
@@ -677,10 +677,10 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
             </div>
 
             {/* Active Outfit Composition Card */}
-            <div className="rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-6">
+            <div className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div className="space-y-1">
-                  <p className="text-xs font-medium text-[#171717]/60">
+                  <p className="text-xs font-medium text-[#101010]/75">
                     Day {activeOutfit.dayIndex}
                     {activeOutfit.date ? ` · ${activeOutfit.date}` : ''} · {activeOutfit.occasion}
                   </p>
@@ -715,7 +715,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
                   return (
                     <div
                       key={itemId}
-                      className={`rounded-xl border overflow-hidden flex flex-col justify-between bg-[#FFFFFF] ${
+                      className={`rounded-3xl border overflow-hidden flex flex-col justify-between bg-[#FFFFFF] ${
                         isSwappingThis ? 'border-[#171717] ring-1 ring-[#171717]' : 'border-[#171717]/10'
                       }`}
                     >
@@ -740,7 +740,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
                           <p className="text-xs font-semibold text-[#171717] truncate">
                             {piece.name}
                           </p>
-                          <p className="text-[11px] text-[#171717]/60 truncate">
+                          <p className="text-[11px] text-[#101010]/75 truncate">
                             {piece.category} · {piece.colorName}
                           </p>
                         </div>
@@ -766,7 +766,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
 
               {/* Inline Swap Selector Panel */}
               {swappingSlot && swappingSlot.outfitId === activeOutfit.id && (
-                <div className="rounded-xl bg-[#FFFFFF] border border-[#171717]/15 p-4 space-y-3">
+                <div className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/15 p-4 space-y-3">
                   <p className="text-xs font-semibold text-[#171717]">
                     Choose a replacement from your wardrobe:
                   </p>
@@ -787,7 +787,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
                         <p className="text-xs font-semibold text-[#171717] truncate">
                           {cand.name}
                         </p>
-                        <p className="text-[11px] text-[#171717]/60 truncate">
+                        <p className="text-[11px] text-[#101010]/75 truncate">
                           {cand.category} · {cand.colorName}
                         </p>
                       </button>
@@ -815,9 +815,9 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
 
             {/* Missing Wardrobe Pieces Recommendations */}
             {session.missingPieces.length > 0 && (
-              <div className="rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-4">
+              <div className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-4">
                 <div>
-                  <p className="text-xs font-medium text-[#171717]/60">Wardrobe Gap Analysis</p>
+                  <p className="text-xs font-medium text-[#101010]/75">Wardrobe Gap Analysis</p>
                   <h3 className="font-serif text-2xl font-medium text-[#171717]">
                     High-Impact Pieces to Expand Your Capsule
                   </h3>
@@ -826,7 +826,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
                   {session.missingPieces.map((piece) => (
                     <div
                       key={piece.name}
-                      className="rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-4 flex flex-col justify-between gap-3"
+                      className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-4 flex flex-col justify-between gap-3"
                     >
                       <div className="space-y-1">
                         <div className="flex items-center justify-between gap-2">
@@ -868,10 +868,10 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
         )}
 
         {/* ==================== SAVED FAVORITE OUTFITS ==================== */}
-        <div className="rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-4">
+        <div className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs font-medium text-[#171717]/60">Saved Looks</p>
+              <p className="text-xs font-medium text-[#101010]/75">Saved Looks</p>
               <h2 className="font-serif text-2xl font-medium text-[#171717]">
                 Favorite Combinations ({savedOutfits.length})
               </h2>
@@ -879,7 +879,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
           </div>
 
           {savedOutfits.length === 0 ? (
-            <p className="text-sm text-[#171717]/60 py-4">
+            <p className="text-sm text-[#101010]/75 py-4">
               Generate daily looks above and save your favorites for quick packing reuse.
             </p>
           ) : (
@@ -887,7 +887,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
               {savedOutfits.slice(0, 6).map((look) => (
                 <div
                   key={look.id}
-                  className="rounded-xl bg-[#FFFFFF]/65 border border-[#171717]/10 p-4 flex flex-col justify-between gap-3"
+                  className="rounded-3xl bg-[#FFFFFF]/65 border border-[#171717]/10 p-4 flex flex-col justify-between gap-3"
                 >
                   <div className="space-y-1.5">
                     <div className="flex items-start justify-between gap-2">
@@ -913,7 +913,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
                         const w = wardrobeMap.get(id);
                         return w ? (
                           <li key={id} className="flex items-center gap-1.5 truncate">
-                            <Check className="w-3 h-3 text-[#171717]/60 shrink-0" />
+                            <Check className="w-3 h-3 text-[#101010]/75 shrink-0" />
                             <span className="truncate">{w.name}</span>
                           </li>
                         ) : null;

@@ -271,13 +271,13 @@ export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
   };
 
   return (
-    <div className="bg-[#FFFFFF] min-h-[calc(100vh-4rem)] py-8 sm:py-10">
+    <div className="ps-work relative min-h-[calc(100vh-4rem)] py-10 sm:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* ==================== HEADER ==================== */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div className="space-y-1">
-            <p className="text-xs font-medium text-[#171717]/60">Trip Planner</p>
-            <h1 className="font-serif text-3xl sm:text-4xl font-medium text-[#171717]">
+            <p className="inline-flex h-7 items-center rounded-full bg-[#FFFFFF]/85 px-3.5 text-xs font-semibold text-[#101010]">Trip Planner</p>
+            <h1 className="text-4xl sm:text-6xl font-bold leading-[1.02] tracking-[-0.045em] text-[#101010]">
               Itineraries &amp; Preparation
             </h1>
           </div>
@@ -285,7 +285,7 @@ export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
           <button
             type="button"
             onClick={() => setShowComposer((v) => !v)}
-            className="h-10 px-5 rounded-lg bg-[#171717] text-[#FFFFFF] text-sm font-medium inline-flex items-center justify-center gap-1.5 hover:bg-[#171717]/88 transition-colors self-start sm:self-auto whitespace-nowrap"
+            className="h-10 px-5 rounded-full bg-[#171717] text-[#FFFFFF] text-sm font-medium inline-flex items-center justify-center gap-1.5 hover:bg-[#171717]/88 transition-colors self-start sm:self-auto whitespace-nowrap"
           >
             {showComposer ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
             <span>{showComposer ? 'Close Composer' : 'New Trip'}</span>
@@ -296,7 +296,7 @@ export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
         {showComposer && (
           <form
             onSubmit={handleCreateTrip}
-            className="rounded-xl bg-[#FFFFFF] border border-[#171717]/15 p-6 space-y-5"
+            className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/15 p-6 space-y-5"
           >
             <div className="space-y-1">
               <h2 className="font-serif text-2xl font-medium text-[#171717]">
@@ -418,7 +418,7 @@ export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
               <button
                 type="submit"
                 disabled={creating || !destination.trim()}
-                className="h-10 px-6 rounded-lg bg-[#171717] text-[#FFFFFF] text-sm font-medium inline-flex items-center gap-2 hover:bg-[#171717]/88 disabled:opacity-50"
+                className="h-10 px-6 rounded-full bg-[#171717] text-[#FFFFFF] text-sm font-medium inline-flex items-center gap-2 hover:bg-[#171717]/88 disabled:opacity-50"
               >
                 {creating && <Loader2 className="w-4 h-4 animate-spin" />}
                 <span>Create Trip &amp; Smart Checklist</span>
@@ -444,7 +444,7 @@ export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
                 key={trip.id}
                 type="button"
                 onClick={() => onSelectTrip(trip.id)}
-                className={`text-left rounded-xl bg-[#101010]/10 overflow-hidden border transition-colors flex flex-col ${
+                className={`text-left rounded-3xl bg-[#101010]/10 overflow-hidden border transition-colors flex flex-col ${
                   isSelected
                     ? 'border-[#171717] ring-1 ring-[#171717]'
                     : 'border-[#171717]/10 hover:border-[#171717]/35'
@@ -460,7 +460,7 @@ export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
                 </div>
                 <div className="p-5 flex-1 flex flex-col justify-between gap-4">
                   <div className="space-y-1">
-                    <div className="flex items-center justify-between gap-2 text-xs text-[#171717]/60">
+                    <div className="flex items-center justify-between gap-2 text-xs text-[#101010]/75">
                       <span>{trip.tripType}</span>
                       <span className="tabular-nums">
                         {until >= 0 ? `In ${until} days` : `${days} days`}
@@ -495,7 +495,7 @@ export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
         {activeTrip && (
           <div className="space-y-6">
             {/* Weather & Quick Route Bar */}
-            <div className="rounded-xl bg-[#B8D9F2]/28 border border-[#171717]/10 p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+            <div className="rounded-3xl bg-[#B8D9F2]/28 border border-[#171717]/10 p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-5">
               <div className="space-y-1">
                 <p className="text-xs font-medium text-[#171717]/65">Active Itinerary</p>
                 <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[#171717]">
@@ -542,7 +542,7 @@ export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
                 <button
                   type="button"
                   onClick={() => onNavigate('smart-packing')}
-                  className="h-10 px-4 rounded-lg bg-[#171717] text-[#FFFFFF] text-xs font-medium inline-flex items-center gap-1.5 hover:bg-[#171717]/88 transition-colors"
+                  className="h-10 px-4 rounded-full bg-[#171717] text-[#FFFFFF] text-xs font-medium inline-flex items-center gap-1.5 hover:bg-[#171717]/88 transition-colors"
                 >
                   <span>Smart Packing</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -560,10 +560,10 @@ export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
               {/* Preparation Timeline */}
-              <div className="lg:col-span-6 rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-4">
+              <div className="lg:col-span-6 rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs font-medium text-[#171717]/60">Countdown Schedule</p>
+                    <p className="text-xs font-medium text-[#101010]/75">Countdown Schedule</p>
                     <h3 className="font-serif text-2xl font-medium text-[#171717]">
                       Preparation Timeline
                     </h3>
@@ -603,11 +603,11 @@ export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
                             {task.title}
                           </p>
                           {task.notes && (
-                            <p className="text-xs text-[#171717]/55 mt-0.5">{task.notes}</p>
+                            <p className="text-xs text-[#101010]/75 mt-0.5">{task.notes}</p>
                           )}
                         </div>
                       </div>
-                      <span className="text-xs text-[#171717]/55 tabular-nums shrink-0">
+                      <span className="text-xs text-[#101010]/75 tabular-nums shrink-0">
                         {task.dueDate}
                       </span>
                     </button>
@@ -616,10 +616,10 @@ export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
               </div>
 
               {/* Before You Leave Mode */}
-              <div className="lg:col-span-6 rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-4">
+              <div className="lg:col-span-6 rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs font-medium text-[#171717]/60">Departure Safety</p>
+                    <p className="text-xs font-medium text-[#101010]/75">Departure Safety</p>
                     <h3 className="font-serif text-2xl font-medium text-[#171717]">
                       Before You Leave
                     </h3>

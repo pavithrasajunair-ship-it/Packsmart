@@ -28,6 +28,23 @@ import { prefersReducedMotion } from '../editorial/MotionPrimitives';
 
 gsap.registerPlugin(ScrollTrigger);
 
+/** Each workspace page has its own pastel ground; the shell fades between them. */
+const ROUTE_BG: Record<string, string> = {
+  home: '#FFFFFF',
+  dashboard: '#B8D9F2',
+  'trip-planner': '#FFC5A8',
+  'smart-packing': '#B8D9F2',
+  'ai-outfit-studio': '#D9C9F2',
+  'digital-wardrobe': '#FFC5A8',
+};
+const ROUTE_SHAPES: Record<string, [string, string]> = {
+  dashboard: ['#D9C9F2', '#FFFFFF'],
+  'trip-planner': ['#D9C9F2', '#FFFFFF'],
+  'smart-packing': ['#FFC5A8', '#FFFFFF'],
+  'ai-outfit-studio': ['#B8D9F2', '#FFC5A8'],
+  'digital-wardrobe': ['#B8D9F2', '#FFFFFF'],
+};
+
 /** Colours the page transition sweeps through, in the order they cover the screen. */
 const CURTAIN_COLOURS = ['#B8D9F2', '#D9C9F2', '#FFC5A8'];
 /** The route swaps while the curtain fully covers the screen. */
@@ -320,7 +337,31 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
       </header>
 
       {/* ==================== ACTIVE PLATFORM VIEW ==================== */}
-      <main ref={mainRef} className="flex-1">
+      {route !== 'home' && (
+        <div aria-hidden="true" className="fixed inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            key={`${route}-a`}
+            className="absolute -top-32 -right-24 w-[460px] h-[460px] rounded-full"
+            style={{ backgroundColor: (ROUTE_SHAPES[route] || ROUTE_SHAPES.dashboard)[0], opacity: 0.7 }}
+            animate={{ y: [0, 28, 0], x: [0, -20, 0] }}
+            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          <motion.div
+            key={`${route}-b`}
+            className="absolute top-[38%] -left-32 w-[340px] h-[340px] rounded-full"
+            style={{ backgroundColor: (ROUTE_SHAPES[route] || ROUTE_SHAPES.dashboard)[1], opacity: 0.55 }}
+            animate={{ y: [0, -30, 0], x: [0, 24, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        </div>
+      )}
+      <motion.main
+        ref={mainRef}
+        className="flex-1"
+        initial={false}
+        animate={{ backgroundColor: ROUTE_BG[route] || '#FFFFFF' }}
+        transition={{ duration: 0.8, ease: 'easeInOut' }}
+      >
         {route === 'home' && (
           <HomePage
             lists={lists}
@@ -411,7 +452,7 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
             onNavigate={navigateTo}
           />
         )}
-      </main>
+      </motion.main>
     </div>
   );
 };

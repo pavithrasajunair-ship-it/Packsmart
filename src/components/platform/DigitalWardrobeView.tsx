@@ -146,13 +146,13 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
   };
 
   return (
-    <div className="bg-[#FFFFFF] min-h-[calc(100vh-4rem)] py-8 sm:py-10">
+    <div className="ps-work relative min-h-[calc(100vh-4rem)] py-10 sm:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         {/* ==================== HEADER ==================== */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div className="space-y-1">
-            <p className="text-xs font-medium text-[#171717]/60">Digital Wardrobe</p>
-            <h1 className="font-serif text-3xl sm:text-4xl font-medium text-[#171717]">
+            <p className="inline-flex h-7 items-center rounded-full bg-[#FFFFFF]/85 px-3.5 text-xs font-semibold text-[#101010]">Digital Wardrobe</p>
+            <h1 className="text-4xl sm:text-6xl font-bold leading-[1.02] tracking-[-0.045em] text-[#101010]">
               Owned Clothing Archive
             </h1>
             <p className="text-sm text-[#171717]/70">
@@ -173,7 +173,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={uploadingCount > 0}
-              className="h-10 px-4 rounded-lg bg-[#171717] text-[#FFFFFF] text-sm font-medium inline-flex items-center gap-2 hover:bg-[#171717]/88 transition-colors disabled:opacity-50"
+              className="h-10 px-4 rounded-full bg-[#171717] text-[#FFFFFF] text-sm font-medium inline-flex items-center gap-2 hover:bg-[#171717]/88 transition-colors disabled:opacity-50"
             >
               {uploadingCount > 0 ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -211,7 +211,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
         {showManualForm && (
           <form
             onSubmit={handleAddManual}
-            className="rounded-xl bg-[#FFFFFF] border border-[#171717]/15 p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end"
+            className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/15 p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end"
           >
             <label className="space-y-1 text-xs font-medium text-[#171717]/75 lg:col-span-2">
               <span>Garment Name *</span>
@@ -260,7 +260,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
               />
               <button
                 type="submit"
-                className="flex-1 h-10 rounded-lg bg-[#171717] text-[#FFFFFF] text-xs font-medium hover:bg-[#171717]/88"
+                className="flex-1 h-10 rounded-full bg-[#171717] text-[#FFFFFF] text-xs font-medium hover:bg-[#171717]/88"
               >
                 Save Piece
               </button>
@@ -269,7 +269,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
         )}
 
         {/* ==================== FILTER BAR ==================== */}
-        <div className="rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
           <div className="flex flex-wrap gap-1.5">
             {(['All', ...WARDROBE_CATEGORIES] as Array<'All' | WardrobeCategory>).map((cat) => {
               const active = categoryFilter === cat;
@@ -312,7 +312,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                 key={item.id}
                 type="button"
                 onClick={() => setSelectedItem(item)}
-                className="text-left rounded-xl bg-[#FFFFFF] border border-[#171717]/10 overflow-hidden hover:border-[#171717]/40 transition-colors flex flex-col"
+                className="text-left rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 overflow-hidden hover:border-[#171717]/40 transition-colors flex flex-col"
               >
                 <div className="aspect-square w-full bg-[#FFFFFF] flex items-center justify-center overflow-hidden">
                   {photo ? (
@@ -324,7 +324,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                     />
                   ) : (
                     <span
-                      className="w-12 h-12 rounded-xl border border-[#171717]/15 flex items-center justify-center"
+                      className="w-12 h-12 rounded-3xl border border-[#171717]/15 flex items-center justify-center"
                       style={{ backgroundColor: item.colorHex }}
                     >
                       <Shirt className="w-6 h-6 text-[#FFFFFF]" />
@@ -335,11 +335,11 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                 <div className="p-4 flex-1 flex flex-col justify-between gap-2">
                   <div className="space-y-0.5">
                     <p className="text-sm font-semibold text-[#171717] truncate">{item.name}</p>
-                    <p className="text-xs text-[#171717]/60 truncate">
+                    <p className="text-xs text-[#101010]/75 truncate">
                       {item.category} · {item.colorName}
                     </p>
                   </div>
-                  <div className="pt-2 border-t border-[#171717]/8 flex items-center justify-between text-[11px] text-[#171717]/60 tabular-nums">
+                  <div className="pt-2 border-t border-[#171717]/8 flex items-center justify-between text-[11px] text-[#101010]/75 tabular-nums">
                     <span>{item.warmth}</span>
                     <span>{item.volumeLiters}L</span>
                   </div>
@@ -364,7 +364,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
             >
               <div className="flex items-center justify-between px-6 py-4 border-b border-[#171717]/10">
                 <div>
-                  <p className="text-xs font-medium text-[#171717]/60">{selectedItem.category}</p>
+                  <p className="text-xs font-medium text-[#101010]/75">{selectedItem.category}</p>
                   <h3 className="font-serif text-2xl font-medium text-[#171717]">
                     {selectedItem.name}
                   </h3>
@@ -381,7 +381,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
 
               <div className="p-6 space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-center">
-                  <div className="aspect-square rounded-xl bg-[#FFFFFF] border border-[#171717]/10 overflow-hidden flex items-center justify-center">
+                  <div className="aspect-square rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 overflow-hidden flex items-center justify-center">
                     {selectedItem.photoId && wardrobePhotos[selectedItem.photoId] ? (
                       <img
                         src={wardrobePhotos[selectedItem.photoId]}
@@ -390,7 +390,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                       />
                     ) : (
                       <span
-                        className="w-16 h-16 rounded-xl border border-[#171717]/15 flex items-center justify-center"
+                        className="w-16 h-16 rounded-3xl border border-[#171717]/15 flex items-center justify-center"
                         style={{ backgroundColor: selectedItem.colorHex }}
                       >
                         <Shirt className="w-8 h-8 text-[#FFFFFF]" />
@@ -400,27 +400,27 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
 
                   <div className="space-y-3 text-xs">
                     <div>
-                      <p className="text-[#171717]/55">Color &amp; Pattern</p>
+                      <p className="text-[#101010]/75">Color &amp; Pattern</p>
                       <p className="text-sm font-medium text-[#171717] mt-0.5">
                         {selectedItem.colorName}
                         {selectedItem.pattern ? ` · ${selectedItem.pattern}` : ''}
                       </p>
                     </div>
                     <div>
-                      <p className="text-[#171717]/55">Climate Suitability</p>
+                      <p className="text-[#101010]/75">Climate Suitability</p>
                       <p className="text-sm font-medium text-[#171717] mt-0.5">
                         {selectedItem.warmth}
                       </p>
                     </div>
                     <div>
-                      <p className="text-[#171717]/55">Suitcase Footprint</p>
+                      <p className="text-[#101010]/75">Suitcase Footprint</p>
                       <p className="text-sm font-medium text-[#171717] mt-0.5 tabular-nums">
                         {selectedItem.volumeLiters}L · {selectedItem.weightGrams}g
                       </p>
                     </div>
                     {selectedItem.notes && (
                       <div>
-                        <p className="text-[#171717]/55">Styling Note</p>
+                        <p className="text-[#101010]/75">Styling Note</p>
                         <p className="text-xs text-[#171717]/80 mt-0.5 leading-relaxed">
                           {selectedItem.notes}
                         </p>
@@ -448,7 +448,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                       setSelectedItem(null);
                       onNavigate('ai-outfit-studio');
                     }}
-                    className="h-10 px-5 rounded-lg bg-[#171717] text-[#FFFFFF] text-xs font-medium inline-flex items-center gap-1.5 hover:bg-[#171717]/88 transition-colors"
+                    className="h-10 px-5 rounded-full bg-[#171717] text-[#FFFFFF] text-xs font-medium inline-flex items-center gap-1.5 hover:bg-[#171717]/88 transition-colors"
                   >
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>Style in AI Outfit Studio</span>

@@ -311,7 +311,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
   if (!activeTrip || !analysis) {
     return (
       <div className="bg-[#FFFFFF] min-h-[calc(100vh-4rem)] py-12">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-10 space-y-3">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-10 space-y-3">
           <h1 className="font-serif text-3xl font-medium text-[#171717]">Smart Packing</h1>
           <p className="text-sm text-[#171717]/70">
             Create your first trip in the Trip Planner to start organizing luggage and checklists.
@@ -322,13 +322,13 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
   }
 
   return (
-    <div className="bg-[#FFFFFF] min-h-[calc(100vh-4rem)] py-8 sm:py-10">
+    <div className="ps-work relative min-h-[calc(100vh-4rem)] py-10 sm:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         {/* ==================== HEADER ==================== */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2">
           <div className="space-y-1">
-            <p className="text-xs font-medium text-[#171717]/60">Smart Packing</p>
-            <h1 className="font-serif text-3xl sm:text-4xl font-medium text-[#171717]">
+            <p className="inline-flex h-7 items-center rounded-full bg-[#FFFFFF]/85 px-3.5 text-xs font-semibold text-[#101010]">Smart Packing</p>
+            <h1 className="text-4xl sm:text-6xl font-bold leading-[1.02] tracking-[-0.045em] text-[#101010]">
               Suitcase &amp; Checklist
             </h1>
           </div>
@@ -370,9 +370,9 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
 
         {/* ==================== SUITCASE METRICS ROW ==================== */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-5 space-y-3">
+          <div className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-5 space-y-3">
             <div className="flex items-center justify-between">
-              <p className="text-xs font-medium text-[#171717]/60">Packing Completion</p>
+              <p className="text-xs font-medium text-[#101010]/75">Packing Completion</p>
               <span className="text-xs font-semibold text-[#171717] tabular-nums">
                 {packedCount}/{totalCount}
               </span>
@@ -388,16 +388,16 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
             </div>
           </div>
 
-          <div className="rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-5 space-y-3">
+          <div className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-5 space-y-3">
             <div className="flex items-center justify-between">
-              <p className="text-xs font-medium text-[#171717]/60">Suitcase Volume</p>
+              <p className="text-xs font-medium text-[#101010]/75">Suitcase Volume</p>
               <span className="text-xs font-semibold text-[#171717] tabular-nums">
                 {analysis.volumePercent}%
               </span>
             </div>
             <p className="font-serif text-3xl font-medium text-[#171717] tabular-nums">
               {analysis.totalVolumeLiters}L{' '}
-              <span className="text-base font-sans text-[#171717]/55">
+              <span className="text-base font-sans text-[#101010]/75">
                 / {analysis.capacityLiters}L
               </span>
             </p>
@@ -411,16 +411,16 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
             </div>
           </div>
 
-          <div className="rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-5 space-y-3">
+          <div className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-5 space-y-3">
             <div className="flex items-center justify-between">
-              <p className="text-xs font-medium text-[#171717]/60">Estimated Weight</p>
+              <p className="text-xs font-medium text-[#101010]/75">Estimated Weight</p>
               <span className="text-xs font-semibold text-[#171717] tabular-nums">
                 {analysis.isWeightOverloaded ? 'Over limit' : 'Within limit'}
               </span>
             </div>
             <p className="font-serif text-3xl font-medium text-[#171717] tabular-nums">
               {analysis.totalWeightKg} kg{' '}
-              <span className="text-base font-sans text-[#171717]/55">
+              <span className="text-base font-sans text-[#101010]/75">
                 / {analysis.allowanceKg} kg
               </span>
             </p>
@@ -441,7 +441,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
         </div>
 
         {/* ==================== OPEN SUITCASE, LIVE IN 3D ==================== */}
-        <div className="rounded-2xl bg-[#B8D9F2] border border-[#171717]/10 overflow-hidden">
+        <div className="rounded-3xl bg-[#D9C9F2] border border-[#101010]/10 overflow-hidden">
           <div className="flex flex-wrap items-center justify-between gap-3 px-5 pt-5">
             <div>
               <h2 className="font-serif text-2xl text-[#171717]">Your suitcase, open</h2>
@@ -487,13 +487,13 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           {/* LEFT 7 COLS: CHECKLIST & QUICK ADD */}
           <div className="lg:col-span-7 space-y-5">
-            <div className="rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-5">
+            <div className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-5">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
                   <h2 className="font-serif text-2xl font-medium text-[#171717]">
                     Packing Checklist
                   </h2>
-                  <p className="text-xs text-[#171717]/60 mt-0.5">
+                  <p className="text-xs text-[#101010]/75 mt-0.5">
                     Tap any item to mark packed. Filter by category or add custom essentials.
                   </p>
                 </div>
@@ -541,7 +541,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
                 />
                 <button
                   type="submit"
-                  className="sm:col-span-2 h-10 rounded-lg bg-[#171717] text-[#FFFFFF] text-xs font-medium inline-flex items-center justify-center gap-1 hover:bg-[#171717]/88 transition-colors"
+                  className="sm:col-span-2 h-10 rounded-full bg-[#171717] text-[#FFFFFF] text-xs font-medium inline-flex items-center justify-center gap-1 hover:bg-[#171717]/88 transition-colors"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Add</span>
@@ -572,7 +572,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
               {/* Items List */}
               <div className="divide-y divide-[#171717]/8">
                 {filteredItems.length === 0 ? (
-                  <p className="py-8 text-center text-sm text-[#171717]/60">
+                  <p className="py-8 text-center text-sm text-[#101010]/75">
                     No items in this category yet.
                   </p>
                 ) : (
@@ -605,7 +605,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
                           >
                             {item.name}
                           </p>
-                          <p className="text-xs text-[#171717]/55 tabular-nums">
+                          <p className="text-xs text-[#101010]/75 tabular-nums">
                             {item.category} · Qty {item.quantity} · {item.volumeLiters}L
                           </p>
                         </div>
@@ -630,7 +630,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
           <div className="lg:col-span-5 space-y-5">
             {/* Missing Essentials Alert */}
             {missingCoreEssentials.length > 0 && (
-              <div className="rounded-xl bg-[#FFC5A8]/35 border border-[#171717]/12 p-5 space-y-3">
+              <div className="rounded-3xl bg-[#FFC5A8]/35 border border-[#171717]/12 p-5 space-y-3">
                 <div className="flex items-center gap-2">
                   <AlertCircle className="w-4 h-4 text-[#171717]" />
                   <h3 className="text-sm font-semibold text-[#171717]">
@@ -670,15 +670,15 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
             )}
 
             {/* Suitcase Compartment Breakdown */}
-            <div className="rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-5 space-y-4">
+            <div className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-5 space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-medium text-[#171717]/60">Space Optimizer</p>
+                  <p className="text-xs font-medium text-[#101010]/75">Space Optimizer</p>
                   <h3 className="font-serif text-xl font-medium text-[#171717]">
                     Compartment Allocation
                   </h3>
                 </div>
-                <Luggage className="w-4 h-4 text-[#171717]/60" />
+                <Luggage className="w-4 h-4 text-[#101010]/75" />
               </div>
 
               <div className="space-y-3">
@@ -710,7 +710,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
 
               {analysis.spaceSavingAlternatives.length > 0 && (
                 <div className="pt-3 border-t border-[#171717]/10 space-y-2">
-                  <p className="text-xs font-medium text-[#171717]/60">Space-Saving Tips</p>
+                  <p className="text-xs font-medium text-[#101010]/75">Space-Saving Tips</p>
                   {analysis.spaceSavingAlternatives.slice(0, 2).map((tip) => (
                     <div
                       key={tip.title}
@@ -718,7 +718,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
                     >
                       <p className="font-semibold text-[#171717]">
                         {tip.title}{' '}
-                        <span className="font-normal text-[#171717]/60">
+                        <span className="font-normal text-[#101010]/75">
                           ({tip.savingsEstimate})
                         </span>
                       </p>
@@ -730,7 +730,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
             </div>
 
             {/* Packing Assistant */}
-            <div className="rounded-xl bg-[#B8D9F2]/25 border border-[#171717]/10 p-5 space-y-4">
+            <div className="rounded-3xl bg-[#B8D9F2]/25 border border-[#171717]/10 p-5 space-y-4">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#171717]" />
                 <h3 className="font-serif text-xl font-medium text-[#171717]">
@@ -808,7 +808,7 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
                   type="submit"
                   disabled={assistantBusy || !assistantInput.trim()}
                   aria-label="Send question"
-                  className="h-10 w-10 rounded-lg bg-[#171717] text-[#FFFFFF] flex items-center justify-center hover:bg-[#171717]/88 transition-colors disabled:opacity-50 shrink-0"
+                  className="h-10 w-10 rounded-full bg-[#171717] text-[#FFFFFF] flex items-center justify-center hover:bg-[#171717]/88 transition-colors disabled:opacity-50 shrink-0"
                 >
                   {assistantBusy ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
