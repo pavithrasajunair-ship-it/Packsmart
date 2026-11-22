@@ -464,7 +464,7 @@ export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
                 }`}
               >
                 <div className="w-full aspect-[16/9] bg-[#101010]/10 overflow-hidden">
-                  <img
+                  <img decoding="async"
                     src={coverSrc}
                     alt={trip.title}
                     className="w-full h-full object-cover block"

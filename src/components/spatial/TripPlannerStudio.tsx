@@ -291,7 +291,7 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
             </div>
 
             <div className="lg:col-span-6 relative min-h-[260px] lg:min-h-[340px]">
-              <img
+              <img loading="lazy" decoding="async"
                 src={horizonImg}
                 alt="Minimalist limestone coastal horizon at sunset"
                 referrerPolicy="no-referrer"
@@ -472,7 +472,7 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
                   }`}
                 >
                   <div className="aspect-[16/9] relative overflow-hidden bg-[#B8D9F2]/40">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={trip.coverImage || fallbackPhoto}
                       alt={trip.title}
                       referrerPolicy="no-referrer"

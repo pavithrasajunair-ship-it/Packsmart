@@ -30,7 +30,7 @@ export const SafeImage: React.FC<SafeImageProps> = ({
   }
 
   return (
-    <img
+    <img loading="lazy" decoding="async"
       src={src}
       alt={alt}
       referrerPolicy="no-referrer"

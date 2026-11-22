@@ -540,7 +540,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                       key={job.id}
                       className="flex items-center gap-3 p-2 border border-[#101010]/12 bg-[#FFFFFF]"
                     >
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={job.previewUrl}
                         alt={job.fileName}
                         className="w-10 h-10 object-cover border border-[#101010]/15 shrink-0"
@@ -712,7 +712,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
               /* Luxury Pre-Generation Stage with Live Owned Wardrobe Strip */
               <div className="bg-[#FFFFFF] border border-[#101010]/15 overflow-hidden grid grid-cols-1 md:grid-cols-12">
                 <div className="md:col-span-5 relative min-h-[320px] bg-[#101010]">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={fashionStudioImg}
                     alt="Luxury travel capsule atelier"
                     referrerPolicy="no-referrer"
@@ -747,7 +747,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                           className="border border-[#101010]/15 bg-[#B8D9F2]/25 p-2 flex flex-col justify-between min-h-[88px] relative group"
                         >
                           {photo ? (
-                            <img
+                            <img loading="lazy" decoding="async"
                               src={photo}
                               alt={item.name}
                               className="w-full h-14 object-cover mb-1.5"
@@ -914,7 +914,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                             >
                               <div className="aspect-[4/3] relative bg-[#B8D9F2]/30 overflow-hidden">
                                 {photo ? (
-                                  <img
+                                  <img loading="lazy" decoding="async"
                                     src={photo}
                                     alt={piece.name}
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -993,7 +993,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                                       className="shrink-0 w-36 bg-[#FFFFFF] border border-[#101010]/20 hover:border-[#101010] p-2 text-left space-y-1.5"
                                     >
                                       {cPhoto ? (
-                                        <img
+                                        <img loading="lazy" decoding="async"
                                           src={cPhoto}
                                           alt={cand.name}
                                           className="w-full h-16 object-cover"

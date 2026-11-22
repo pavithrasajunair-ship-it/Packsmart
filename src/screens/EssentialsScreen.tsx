@@ -991,7 +991,7 @@ export const EssentialsScreen: React.FC<EssentialsScreenProps> = ({
               previewDoc.fileMimeType === 'application/pdf' ? (
                 <iframe src={previewDataUrl} title={previewDoc.title} className="w-full h-64 rounded-2xl border" />
               ) : (
-                <img src={previewDataUrl} alt={previewDoc.title} className="w-full max-h-72 object-contain rounded-2xl border" />
+                <img loading="lazy" decoding="async" src={previewDataUrl} alt={previewDoc.title} className="w-full max-h-72 object-contain rounded-2xl border" />
               )
             )}
           </div>

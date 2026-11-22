@@ -68,6 +68,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
 
   const [categoryFilter, setCategoryFilter] = useState<'All' | WardrobeCategory>('All');
   const [warmthFilter, setWarmthFilter] = useState<string>('All');
+  const [query, setQuery] = useState('');
   const [selectedItem, setSelectedItem] = useState<WardrobeItem | null>(null);
   const [showManualForm, setShowManualForm] = useState(false);
 
@@ -86,9 +87,15 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
     return wardrobe.filter((item) => {
       const catOk = categoryFilter === 'All' || item.category === categoryFilter;
       const warmthOk = warmthFilter === 'All' || item.warmth === warmthFilter;
-      return catOk && warmthOk;
+      const q = query.trim().toLowerCase();
+      const textOk =
+        q === '' ||
+        item.name.toLowerCase().includes(q) ||
+        item.colorName.toLowerCase().includes(q) ||
+        item.category.toLowerCase().includes(q);
+      return catOk && warmthOk && textOk;
     });
-  }, [wardrobe, categoryFilter, warmthFilter]);
+  }, [wardrobe, categoryFilter, warmthFilter, query]);
 
   const handleUploadPhotos = async (files: FileList | null) => {
     if (!files || files.length === 0) return;
@@ -334,6 +341,15 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
             })}
           </div>
 
+          <input
+            type="search"
+            aria-label="Search wardrobe by name, colour or category"
+            placeholder="Search name or colour"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="h-9 w-full sm:w-56 px-4 rounded-full bg-[#FFFFFF] border border-[#171717]/15 text-xs font-medium text-[#171717] placeholder:text-[#101010]/50"
+          />
+
           <select
             aria-label="Filter by season warmth"
             value={warmthFilter}
@@ -348,6 +364,32 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
         </div>
 
         {/* ==================== UNIFORM SHOWROOM GRID (ZERO OVERLAID TEXT) ==================== */}
+        {filteredWardrobe.length === 0 && (
+          <div role="status" className="rounded-3xl bg-[#FFFFFF]/80 p-10 text-center space-y-3">
+            <p className="text-xl font-bold tracking-[-0.03em]">
+              {wardrobe.length === 0 ? 'Your wardrobe is empty' : 'No pieces match these filters'}
+            </p>
+            <p className="text-sm text-[#101010]/75">
+              {wardrobe.length === 0
+                ? 'Upload photos of clothes you own or add a piece by hand to start building outfits.'
+                : 'Try a different category, climate or search word.'}
+            </p>
+            {wardrobe.length > 0 && (
+              <button
+                type="button"
+                onClick={() => {
+                  setCategoryFilter('All');
+                  setWarmthFilter('All');
+                  setQuery('');
+                }}
+                className="h-10 px-5 rounded-full bg-[#101010] text-[#FFFFFF] text-sm font-semibold"
+              >
+                Clear filters
+              </button>
+            )}
+          </div>
+        )}
+
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
           {filteredWardrobe.map((item) => {
             const photo = item.photoId ? wardrobePhotos[item.photoId] : undefined;
@@ -367,7 +409,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                   style={{ backgroundColor: photo ? '#FFFFFF' : item.colorHex }}
                 >
                   {photo ? (
-                    <img
+                    <img decoding="async"
                       src={photo}
                       alt={item.name}
                       className="w-full h-full object-cover block"
@@ -441,7 +483,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-center">
                   <div className="aspect-square rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 overflow-hidden flex items-center justify-center">
                     {selectedItem.photoId && wardrobePhotos[selectedItem.photoId] ? (
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={wardrobePhotos[selectedItem.photoId]}
                         alt={selectedItem.name}
                         className="w-full h-full object-cover"

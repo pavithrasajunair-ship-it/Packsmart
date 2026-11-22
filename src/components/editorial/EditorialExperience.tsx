@@ -596,7 +596,7 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                 ref={wardrobeParallaxRef}
                 className="relative aspect-[3/4] max-h-[480px] w-full overflow-hidden border border-[#101010]/15 bg-[#FFFFFF]"
               >
-                <img
+                <img decoding="async"
                   src={fashionCapsuleImg}
                   alt="Minimalist travel capsule wardrobe styled on a powder blue plinth"
                   loading="lazy"
@@ -847,7 +847,7 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                 </TiltCard>
 
                 <div className="flex-1 min-h-[200px] overflow-hidden border border-[#101010]/15 bg-[#D9C9F2]">
-                  <img
+                  <img decoding="async"
                     src={packingFlatlayImg}
                     alt="Matte black carry-on neatly packed on lavender surface"
                     loading="lazy"

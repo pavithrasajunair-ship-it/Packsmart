@@ -206,7 +206,7 @@ export const HorizontalGallerySection: React.FC<HorizontalGallerySectionProps> =
                 >
                   {/* Large Editorial Photography Frame with Hover Zoom */}
                   <div className="relative aspect-[16/10] overflow-hidden bg-[#101010]/10">
-                    <img
+                    <img decoding="async"
                       src={bp.image}
                       alt={bp.title}
                       loading="lazy"

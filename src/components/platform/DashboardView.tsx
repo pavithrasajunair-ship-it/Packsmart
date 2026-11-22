@@ -678,7 +678,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 >
                   <div className="aspect-square w-full bg-[#FFFFFF] flex items-center justify-center overflow-hidden">
                     {photo ? (
-                      <img
+                      <img decoding="async"
                         src={photo}
                         alt={item.name}
                         className="w-full h-full object-cover"

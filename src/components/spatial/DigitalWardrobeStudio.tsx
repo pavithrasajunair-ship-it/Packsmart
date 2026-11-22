@@ -199,7 +199,7 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
 
           <div className="lg:col-span-5">
             <div className="aspect-[4/3] overflow-hidden border border-white/15 bg-white/5 relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src={showroomImg}
                 alt="Curated monochrome and pastel wardrobe showroom"
                 referrerPolicy="no-referrer"
@@ -289,7 +289,7 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
                   >
                     <div className="aspect-[4/5] relative overflow-hidden bg-white/5">
                       {photo ? (
-                        <img
+                        <img decoding="async"
                           src={photo}
                           alt={item.name}
                           loading="lazy"
@@ -368,7 +368,7 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
             >
               <div className="sm:col-span-5 min-h-[240px] bg-[#D9C9F2] relative flex items-center justify-center">
                 {inspectItem.photoId && wardrobePhotos[inspectItem.photoId] ? (
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={wardrobePhotos[inspectItem.photoId]}
                     alt={inspectItem.name}
                     className="w-full h-full object-cover"

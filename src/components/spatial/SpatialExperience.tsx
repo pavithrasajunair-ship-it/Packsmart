@@ -561,7 +561,7 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                             className="shrink-0 overflow-hidden border border-current/15 bg-[#B8D9F2]/30"
                           >
-                            <img
+                            <img loading="lazy" decoding="async"
                               src={dest.image}
                               alt={dest.label}
                               referrerPolicy="no-referrer"
@@ -718,7 +718,7 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                     >
                       <div className="grid grid-cols-12">
                         <div className="col-span-5 relative min-h-[168px]">
-                          <img
+                          <img loading="lazy" decoding="async"
                             src={mobileDest.image}
                             alt={mobileDest.label}
                             referrerPolicy="no-referrer"

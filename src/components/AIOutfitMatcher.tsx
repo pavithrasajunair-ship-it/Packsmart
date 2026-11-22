@@ -114,7 +114,7 @@ const CollageTile: React.FC<CollageTileProps> = ({ item, photoUrl, tall = false,
       }`}
     >
       {photoUrl ? (
-        <img
+        <img decoding="async"
           src={photoUrl}
           alt={item.name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -921,7 +921,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                       : 'bg-[#D9C9F2]/40 border-[#101010]/30'
                   }`}
                 >
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={job.previewUrl}
                     alt={job.fileName}
                     className="w-16 h-20 object-cover border border-[#101010]/15 shrink-0 bg-[#FFFFFF]"
@@ -1079,7 +1079,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                   >
                     <div className="relative aspect-[4/5] bg-[#B8D9F2]/30 overflow-hidden">
                       {photoUrl && (
-                        <img
+                        <img decoding="async"
                           src={photoUrl}
                           alt={item.name}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -1479,7 +1479,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                             >
                               <div className="flex items-center gap-2.5 min-w-0">
                                 {thumb ? (
-                                  <img
+                                  <img loading="lazy" decoding="async"
                                     src={thumb}
                                     alt={piece.name}
                                     className="w-9 h-9 object-cover border border-[#101010]/15 shrink-0"

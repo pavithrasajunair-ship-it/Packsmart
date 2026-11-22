@@ -464,7 +464,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                           >
                             <div className="flex items-center gap-2.5 min-w-0">
                               {photoUrl ? (
-                                <img
+                                <img loading="lazy" decoding="async"
                                   src={photoUrl}
                                   alt={piece.name}
                                   className="w-8 h-8 rounded-lg object-cover border border-black/10 shrink-0"
@@ -650,7 +650,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     {photoUrl ? (
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={photoUrl}
                         alt={item.name}
                         className="w-14 h-16 rounded-2xl object-cover border border-black/10 shrink-0"
@@ -752,7 +752,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                       {pieces.slice(0, 4).map((p) => {
                         const photoUrl = p.photoId ? wardrobePhotos[p.photoId] : undefined;
                         return photoUrl ? (
-                          <img
+                          <img loading="lazy" decoding="async"
                             key={p.id}
                             src={photoUrl}
                             alt={p.name}

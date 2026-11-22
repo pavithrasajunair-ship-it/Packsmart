@@ -734,7 +734,7 @@ export const AIOutfitStudioPlatform: React.FC<AIOutfitStudioPlatformProps> = ({
                     >
                       <div className="aspect-square w-full bg-[#FFFFFF] flex items-center justify-center overflow-hidden">
                         {photo ? (
-                          <img
+                          <img loading="lazy" decoding="async"
                             src={photo}
                             alt={piece.name}
                             className="w-full h-full object-cover block"
