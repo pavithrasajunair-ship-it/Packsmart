@@ -1,6 +1,11 @@
 import React, { useMemo, useRef, useState } from 'react';
+import { motion } from 'motion/react';
 import {
+  Footprints,
+  Glasses,
+  Layers,
   Loader2,
+  Wind,
   Plus,
   Shirt,
   Sparkles,
@@ -12,6 +17,7 @@ import type { WardrobeCategory, WardrobeItem } from '../../types';
 import { WARDROBE_CATEGORIES } from '../../types';
 import { compressImageFileToJpegDataUrl, uid } from '../../utils/storage';
 import type { PlatformRoute } from './HomePage';
+import { PageHero, SwatchCloud } from './PageHero';
 
 interface DigitalWardrobeViewProps {
   wardrobe: WardrobeItem[];
@@ -21,6 +27,32 @@ interface DigitalWardrobeViewProps {
   onSaveWardrobePhoto: (photoId: string, dataUrl: string) => Promise<void>;
   onDeleteWardrobeItem: (itemId: string) => void;
   onNavigate: (route: PlatformRoute) => void;
+}
+
+/** Pick black or white for an icon so it reads on any garment colour. */
+function inkFor(hex: string): string {
+  const m = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
+  if (!m) return '#0A0A0A';
+  const n = parseInt(m[1], 16);
+  const lum = (0.299 * ((n >> 16) & 255) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255;
+  return lum > 0.6 ? '#0A0A0A' : '#FBFAF8';
+}
+
+function iconFor(category: string): React.ComponentType<{ className?: string }> {
+  switch (category) {
+    case 'Bottoms':
+      return Layers;
+    case 'Dresses':
+      return Sparkles;
+    case 'Footwear':
+      return Footprints;
+    case 'Outerwear':
+      return Wind;
+    case 'Accessories':
+      return Glasses;
+    default:
+      return Shirt;
+  }
 }
 
 export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
@@ -36,13 +68,14 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
 
   const [categoryFilter, setCategoryFilter] = useState<'All' | WardrobeCategory>('All');
   const [warmthFilter, setWarmthFilter] = useState<string>('All');
+  const [query, setQuery] = useState('');
   const [selectedItem, setSelectedItem] = useState<WardrobeItem | null>(null);
   const [showManualForm, setShowManualForm] = useState(false);
 
   const [manualName, setManualName] = useState('');
   const [manualCategory, setManualCategory] = useState<WardrobeCategory>('Tops');
   const [manualColor, setManualColor] = useState('Warm Ivory');
-  const [manualHex, setManualHex] = useState('#D9C9F2');
+  const [manualHex, setManualHex] = useState('#D5DCD9');
   const [manualWarmth, setManualWarmth] =
     useState<WardrobeItem['warmth']>('All-Season');
 
@@ -54,9 +87,15 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
     return wardrobe.filter((item) => {
       const catOk = categoryFilter === 'All' || item.category === categoryFilter;
       const warmthOk = warmthFilter === 'All' || item.warmth === warmthFilter;
-      return catOk && warmthOk;
+      const q = query.trim().toLowerCase();
+      const textOk =
+        q === '' ||
+        item.name.toLowerCase().includes(q) ||
+        item.colorName.toLowerCase().includes(q) ||
+        item.category.toLowerCase().includes(q);
+      return catOk && warmthOk && textOk;
     });
-  }, [wardrobe, categoryFilter, warmthFilter]);
+  }, [wardrobe, categoryFilter, warmthFilter, query]);
 
   const handleUploadPhotos = async (files: FileList | null) => {
     if (!files || files.length === 0) return;
@@ -96,7 +135,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
           name: det.name || 'Detected Garment',
           category: det.category as WardrobeCategory,
           colorName: det.colorName || 'Neutral',
-          colorHex: det.colorHex || '#171717',
+          colorHex: det.colorHex || '#0A0A0A',
           secondaryColors: det.secondaryColors || [],
           pattern: det.pattern || 'Solid',
           style: det.style || 'Minimalist',
@@ -146,16 +185,28 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
   };
 
   return (
-    <div className="bg-[#FFFFFF] min-h-[calc(100vh-4rem)] py-8 sm:py-10">
+    <div className="ps-work relative min-h-[calc(100vh-4rem)] py-10 sm:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <PageHero
+          surface="#0B3B40"
+          tagline="Your whole closet, tagged, filtered and ready to pack."
+          stats={[
+            { label: 'Pieces', value: wardrobe.length },
+            { label: 'Categories', value: new Set(wardrobe.map((w) => w.category)).size },
+            { label: 'Photo scans', value: wardrobe.filter((w) => w.photoId).length },
+          ]}
+        >
+          <SwatchCloud colours={wardrobe.map((w) => w.colorHex)} />
+        </PageHero>
+
         {/* ==================== HEADER ==================== */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div className="space-y-1">
-            <p className="text-xs font-medium text-[#171717]/60">Digital Wardrobe</p>
-            <h1 className="font-serif text-3xl sm:text-4xl font-medium text-[#171717]">
+            <p className="inline-flex h-7 items-center rounded-full bg-[#FBFAF8]/85 px-3.5 text-xs font-semibold text-[#0A0A0A]">Digital Wardrobe</p>
+            <h1 className="text-4xl sm:text-6xl font-bold leading-[1.02] tracking-[-0.045em] text-[#0A0A0A]">
               Owned Clothing Archive
             </h1>
-            <p className="text-sm text-[#171717]/70">
+            <p className="text-sm text-[#0A0A0A]/70">
               {wardrobe.length} garments cataloged · {wardrobe.filter((w) => w.photoId).length} with uploaded photos
             </p>
           </div>
@@ -173,7 +224,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={uploadingCount > 0}
-              className="h-10 px-4 rounded-lg bg-[#171717] text-[#FFFFFF] text-sm font-medium inline-flex items-center gap-2 hover:bg-[#171717]/88 transition-colors disabled:opacity-50"
+              className="h-10 px-4 rounded-full bg-[#0B3B40] text-[#FBFAF8] text-sm font-medium inline-flex items-center gap-2 hover:bg-[#0A0A0A]/88 transition-colors disabled:opacity-50"
             >
               {uploadingCount > 0 ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -188,7 +239,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
             <button
               type="button"
               onClick={() => setShowManualForm((v) => !v)}
-              className="h-10 px-4 rounded-lg bg-[#FFFFFF] border border-[#171717]/20 text-sm font-medium text-[#171717] inline-flex items-center gap-1.5 hover:border-[#171717] transition-colors"
+              className="h-10 px-4 rounded-lg bg-[#FBFAF8] border border-[#0A0A0A]/20 text-sm font-medium text-[#0A0A0A] inline-flex items-center gap-1.5 hover:border-[#0A0A0A] transition-colors"
             >
               <Plus className="w-4 h-4" />
               <span>Add Manually</span>
@@ -197,12 +248,12 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
         </div>
 
         {notice && (
-          <div className="rounded-lg bg-[#B8D9F2]/40 border border-[#171717]/12 px-4 py-3 text-sm font-medium text-[#171717]">
+          <div className="rounded-lg bg-[#BCD2CF]/40 border border-[#0A0A0A]/12 px-4 py-3 text-sm font-medium text-[#0A0A0A]">
             {notice}
           </div>
         )}
         {error && (
-          <div className="rounded-lg bg-[#FFC5A8]/50 border border-[#171717]/15 px-4 py-3 text-sm font-medium text-[#171717]">
+          <div className="rounded-lg bg-[#E6DFD2]/50 border border-[#0A0A0A]/15 px-4 py-3 text-sm font-medium text-[#0A0A0A]">
             {error}
           </div>
         )}
@@ -211,9 +262,9 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
         {showManualForm && (
           <form
             onSubmit={handleAddManual}
-            className="rounded-xl bg-[#FFFFFF] border border-[#171717]/15 p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end"
+            className="rounded-3xl bg-[#FBFAF8] border border-[#0A0A0A]/15 p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end"
           >
-            <label className="space-y-1 text-xs font-medium text-[#171717]/75 lg:col-span-2">
+            <label className="space-y-1 text-xs font-medium text-[#0A0A0A]/75 lg:col-span-2">
               <span>Garment Name *</span>
               <input
                 type="text"
@@ -221,15 +272,15 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                 value={manualName}
                 onChange={(e) => setManualName(e.target.value)}
                 placeholder="e.g., Ivory Linen Shirt"
-                className="w-full h-10 px-3 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-sm text-[#171717]"
+                className="w-full h-10 px-3 rounded-lg bg-[#FBFAF8] border border-[#0A0A0A]/15 text-sm text-[#0A0A0A]"
               />
             </label>
-            <label className="space-y-1 text-xs font-medium text-[#171717]/75">
+            <label className="space-y-1 text-xs font-medium text-[#0A0A0A]/75">
               <span>Category</span>
               <select
                 value={manualCategory}
                 onChange={(e) => setManualCategory(e.target.value as WardrobeCategory)}
-                className="w-full h-10 px-3 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-sm text-[#171717]"
+                className="w-full h-10 px-3 rounded-lg bg-[#FBFAF8] border border-[#0A0A0A]/15 text-sm text-[#0A0A0A]"
               >
                 {WARDROBE_CATEGORIES.map((c) => (
                   <option key={c} value={c}>
@@ -238,12 +289,12 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                 ))}
               </select>
             </label>
-            <label className="space-y-1 text-xs font-medium text-[#171717]/75">
+            <label className="space-y-1 text-xs font-medium text-[#0A0A0A]/75">
               <span>Warmth</span>
               <select
                 value={manualWarmth}
                 onChange={(e) => setManualWarmth(e.target.value as WardrobeItem['warmth'])}
-                className="w-full h-10 px-3 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-sm text-[#171717]"
+                className="w-full h-10 px-3 rounded-lg bg-[#FBFAF8] border border-[#0A0A0A]/15 text-sm text-[#0A0A0A]"
               >
                 <option value="Warm Weather">Warm Weather</option>
                 <option value="All-Season">All-Season</option>
@@ -256,11 +307,11 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                 aria-label="Color swatch"
                 value={manualHex}
                 onChange={(e) => setManualHex(e.target.value)}
-                className="h-10 w-10 rounded-lg border border-[#171717]/15 bg-[#FFFFFF] p-1 shrink-0"
+                className="h-10 w-10 rounded-lg border border-[#0A0A0A]/15 bg-[#FBFAF8] p-1 shrink-0"
               />
               <button
                 type="submit"
-                className="flex-1 h-10 rounded-lg bg-[#171717] text-[#FFFFFF] text-xs font-medium hover:bg-[#171717]/88"
+                className="flex-1 h-10 rounded-full bg-[#0B3B40] text-[#FBFAF8] text-xs font-medium hover:bg-[#0A0A0A]/88"
               >
                 Save Piece
               </button>
@@ -269,7 +320,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
         )}
 
         {/* ==================== FILTER BAR ==================== */}
-        <div className="rounded-xl bg-[#FFFFFF] border border-[#171717]/10 p-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div className="rounded-3xl bg-[#FBFAF8] border border-[#0A0A0A]/10 p-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
           <div className="flex flex-wrap gap-1.5">
             {(['All', ...WARDROBE_CATEGORIES] as Array<'All' | WardrobeCategory>).map((cat) => {
               const active = categoryFilter === cat;
@@ -280,8 +331,8 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                   onClick={() => setCategoryFilter(cat)}
                   className={`h-8 px-3 rounded-md text-xs font-medium transition-colors ${
                     active
-                      ? 'bg-[#171717] text-[#FFFFFF]'
-                      : 'bg-[#FFFFFF] text-[#171717]/70 hover:text-[#171717]'
+                      ? 'bg-[#0B3B40] text-[#FBFAF8]'
+                      : 'bg-[#FBFAF8] text-[#0A0A0A]/70 hover:text-[#0A0A0A]'
                   }`}
                 >
                   {cat}
@@ -290,11 +341,20 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
             })}
           </div>
 
+          <input
+            type="search"
+            aria-label="Search wardrobe by name, colour or category"
+            placeholder="Search name or colour"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="h-9 w-full sm:w-56 px-4 rounded-full bg-[#FBFAF8] border border-[#0A0A0A]/15 text-xs font-medium text-[#0A0A0A] placeholder:text-[#0A0A0A]/50"
+          />
+
           <select
             aria-label="Filter by season warmth"
             value={warmthFilter}
             onChange={(e) => setWarmthFilter(e.target.value)}
-            className="h-9 px-3 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-xs font-medium text-[#171717]"
+            className="h-9 px-3 rounded-lg bg-[#FBFAF8] border border-[#0A0A0A]/15 text-xs font-medium text-[#0A0A0A]"
           >
             <option value="All">All Climates</option>
             <option value="Warm Weather">Warm Weather</option>
@@ -304,47 +364,87 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
         </div>
 
         {/* ==================== UNIFORM SHOWROOM GRID (ZERO OVERLAID TEXT) ==================== */}
+        {filteredWardrobe.length === 0 && (
+          <div role="status" className="rounded-3xl bg-[#FBFAF8]/80 p-10 text-center space-y-3">
+            <p className="text-xl font-bold tracking-[-0.03em]">
+              {wardrobe.length === 0 ? 'Your wardrobe is empty' : 'No pieces match these filters'}
+            </p>
+            <p className="text-sm text-[#0A0A0A]/75">
+              {wardrobe.length === 0
+                ? 'Upload photos of clothes you own or add a piece by hand to start building outfits.'
+                : 'Try a different category, climate or search word.'}
+            </p>
+            {wardrobe.length > 0 && (
+              <button
+                type="button"
+                onClick={() => {
+                  setCategoryFilter('All');
+                  setWarmthFilter('All');
+                  setQuery('');
+                }}
+                className="h-10 px-5 rounded-full bg-[#0B3B40] text-[#FBFAF8] text-sm font-semibold"
+              >
+                Clear filters
+              </button>
+            )}
+          </div>
+        )}
+
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
           {filteredWardrobe.map((item) => {
             const photo = item.photoId ? wardrobePhotos[item.photoId] : undefined;
+            const Icon = iconFor(item.category);
             return (
-              <button
+              <motion.button
                 key={item.id}
                 type="button"
                 onClick={() => setSelectedItem(item)}
-                className="text-left rounded-xl bg-[#FFFFFF] border border-[#171717]/10 overflow-hidden hover:border-[#171717]/40 transition-colors flex flex-col"
+                whileHover={{ y: -8, rotate: -0.6 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: 'spring', stiffness: 320, damping: 22 }}
+                className="text-left rounded-3xl bg-[#FBFAF8] border border-[#0A0A0A]/10 overflow-hidden flex flex-col"
               >
-                <div className="aspect-square w-full bg-[#FFFFFF] flex items-center justify-center overflow-hidden">
+                <div
+                  className="relative aspect-square w-full flex items-center justify-center overflow-hidden"
+                  style={{ backgroundColor: photo ? '#FBFAF8' : item.colorHex }}
+                >
                   {photo ? (
-                    <img
+                    <img decoding="async"
                       src={photo}
                       alt={item.name}
                       className="w-full h-full object-cover block"
                       loading="lazy"
                     />
                   ) : (
-                    <span
-                      className="w-12 h-12 rounded-xl border border-[#171717]/15 flex items-center justify-center"
-                      style={{ backgroundColor: item.colorHex }}
-                    >
-                      <Shirt className="w-6 h-6 text-[#FFFFFF]" />
-                    </span>
+                    <>
+                      <span
+                        aria-hidden="true"
+                        className="absolute -right-8 -bottom-8 w-40 h-40 rounded-full"
+                        style={{ backgroundColor: inkFor(item.colorHex), opacity: 0.08 }}
+                      />
+                      <span className="relative" style={{ color: inkFor(item.colorHex) }}>
+                        <Icon className="w-20 h-20 sm:w-24 sm:h-24" />
+                      </span>
+                      <span className="absolute left-3 bottom-3 rounded-full bg-[#FBFAF8]/90 px-3 py-1 text-xs font-semibold text-[#0A0A0A]">
+                        {item.colorName}
+                      </span>
+                    </>
                   )}
                 </div>
 
                 <div className="p-4 flex-1 flex flex-col justify-between gap-2">
                   <div className="space-y-0.5">
-                    <p className="text-sm font-semibold text-[#171717] truncate">{item.name}</p>
-                    <p className="text-xs text-[#171717]/60 truncate">
+                    <p className="text-sm font-semibold text-[#0A0A0A] truncate">{item.name}</p>
+                    <p className="text-xs text-[#0A0A0A]/75 truncate">
                       {item.category} · {item.colorName}
                     </p>
                   </div>
-                  <div className="pt-2 border-t border-[#171717]/8 flex items-center justify-between text-[11px] text-[#171717]/60 tabular-nums">
+                  <div className="pt-2 border-t border-[#0A0A0A]/8 flex items-center justify-between text-[11px] text-[#0A0A0A]/75 tabular-nums">
                     <span>{item.warmth}</span>
                     <span>{item.volumeLiters}L</span>
                   </div>
                 </div>
-              </button>
+              </motion.button>
             );
           })}
         </div>
@@ -355,17 +455,17 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
             role="dialog"
             aria-modal="true"
             aria-label={selectedItem.name}
-            className="fixed inset-0 z-50 bg-[#171717]/45 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-[#0A0A0A]/45 flex items-center justify-center p-4"
             onClick={() => setSelectedItem(null)}
           >
             <div
-              className="w-full max-w-lg rounded-2xl bg-[#FFFFFF] border border-[#171717]/15 overflow-hidden"
+              className="w-full max-w-lg rounded-2xl bg-[#FBFAF8] border border-[#0A0A0A]/15 overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between px-6 py-4 border-b border-[#171717]/10">
+              <div className="flex items-center justify-between px-6 py-4 border-b border-[#0A0A0A]/10">
                 <div>
-                  <p className="text-xs font-medium text-[#171717]/60">{selectedItem.category}</p>
-                  <h3 className="font-serif text-2xl font-medium text-[#171717]">
+                  <p className="text-xs font-medium text-[#0A0A0A]/75">{selectedItem.category}</p>
+                  <h3 className="font-serif text-2xl font-medium text-[#0A0A0A]">
                     {selectedItem.name}
                   </h3>
                 </div>
@@ -373,7 +473,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                   type="button"
                   onClick={() => setSelectedItem(null)}
                   aria-label="Close modal"
-                  className="w-9 h-9 rounded-lg bg-[#FFFFFF] flex items-center justify-center text-[#171717] hover:bg-[#171717] hover:text-[#FFFFFF] transition-colors"
+                  className="w-9 h-9 rounded-lg bg-[#FBFAF8] flex items-center justify-center text-[#0A0A0A] hover:bg-[#0B3B40] hover:text-[#FBFAF8] transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -381,47 +481,47 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
 
               <div className="p-6 space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-center">
-                  <div className="aspect-square rounded-xl bg-[#FFFFFF] border border-[#171717]/10 overflow-hidden flex items-center justify-center">
+                  <div className="aspect-square rounded-3xl bg-[#FBFAF8] border border-[#0A0A0A]/10 overflow-hidden flex items-center justify-center">
                     {selectedItem.photoId && wardrobePhotos[selectedItem.photoId] ? (
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={wardrobePhotos[selectedItem.photoId]}
                         alt={selectedItem.name}
                         className="w-full h-full object-cover"
                       />
                     ) : (
                       <span
-                        className="w-16 h-16 rounded-xl border border-[#171717]/15 flex items-center justify-center"
+                        className="w-16 h-16 rounded-3xl border border-[#0A0A0A]/15 flex items-center justify-center"
                         style={{ backgroundColor: selectedItem.colorHex }}
                       >
-                        <Shirt className="w-8 h-8 text-[#FFFFFF]" />
+                        <Shirt className="w-8 h-8 text-[#FBFAF8]" />
                       </span>
                     )}
                   </div>
 
                   <div className="space-y-3 text-xs">
                     <div>
-                      <p className="text-[#171717]/55">Color &amp; Pattern</p>
-                      <p className="text-sm font-medium text-[#171717] mt-0.5">
+                      <p className="text-[#0A0A0A]/75">Color &amp; Pattern</p>
+                      <p className="text-sm font-medium text-[#0A0A0A] mt-0.5">
                         {selectedItem.colorName}
                         {selectedItem.pattern ? ` · ${selectedItem.pattern}` : ''}
                       </p>
                     </div>
                     <div>
-                      <p className="text-[#171717]/55">Climate Suitability</p>
-                      <p className="text-sm font-medium text-[#171717] mt-0.5">
+                      <p className="text-[#0A0A0A]/75">Climate Suitability</p>
+                      <p className="text-sm font-medium text-[#0A0A0A] mt-0.5">
                         {selectedItem.warmth}
                       </p>
                     </div>
                     <div>
-                      <p className="text-[#171717]/55">Suitcase Footprint</p>
-                      <p className="text-sm font-medium text-[#171717] mt-0.5 tabular-nums">
+                      <p className="text-[#0A0A0A]/75">Suitcase Footprint</p>
+                      <p className="text-sm font-medium text-[#0A0A0A] mt-0.5 tabular-nums">
                         {selectedItem.volumeLiters}L · {selectedItem.weightGrams}g
                       </p>
                     </div>
                     {selectedItem.notes && (
                       <div>
-                        <p className="text-[#171717]/55">Styling Note</p>
-                        <p className="text-xs text-[#171717]/80 mt-0.5 leading-relaxed">
+                        <p className="text-[#0A0A0A]/75">Styling Note</p>
+                        <p className="text-xs text-[#0A0A0A]/80 mt-0.5 leading-relaxed">
                           {selectedItem.notes}
                         </p>
                       </div>
@@ -429,14 +529,14 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#171717]/10 flex flex-wrap items-center justify-between gap-3">
+                <div className="pt-4 border-t border-[#0A0A0A]/10 flex flex-wrap items-center justify-between gap-3">
                   <button
                     type="button"
                     onClick={() => {
                       onDeleteWardrobeItem(selectedItem.id);
                       setSelectedItem(null);
                     }}
-                    className="h-10 px-4 rounded-lg bg-[#FFC5A8]/45 text-xs font-medium text-[#171717] inline-flex items-center gap-1.5 hover:bg-[#FFC5A8] transition-colors"
+                    className="h-10 px-4 rounded-lg bg-[#E6DFD2]/45 text-xs font-medium text-[#0A0A0A] inline-flex items-center gap-1.5 hover:bg-[#E6DFD2] transition-colors"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                     <span>Remove Item</span>
@@ -448,7 +548,7 @@ export const DigitalWardrobeView: React.FC<DigitalWardrobeViewProps> = ({
                       setSelectedItem(null);
                       onNavigate('ai-outfit-studio');
                     }}
-                    className="h-10 px-5 rounded-lg bg-[#171717] text-[#FFFFFF] text-xs font-medium inline-flex items-center gap-1.5 hover:bg-[#171717]/88 transition-colors"
+                    className="h-10 px-5 rounded-full bg-[#0B3B40] text-[#FBFAF8] text-xs font-medium inline-flex items-center gap-1.5 hover:bg-[#0A0A0A]/88 transition-colors"
                   >
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>Style in AI Outfit Studio</span>

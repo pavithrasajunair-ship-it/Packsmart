@@ -109,12 +109,12 @@ interface CollageTileProps {
 const CollageTile: React.FC<CollageTileProps> = ({ item, photoUrl, tall = false, extraCount = 0 }) => {
   return (
     <div
-      className={`relative overflow-hidden border border-[#101010]/15 bg-[#B8D9F2]/35 group ${
+      className={`relative overflow-hidden border border-[#0A0A0A]/15 bg-[#BCD2CF]/35 group ${
         tall ? 'h-full min-h-[224px]' : 'h-[108px]'
       }`}
     >
       {photoUrl ? (
-        <img
+        <img decoding="async"
           src={photoUrl}
           alt={item.name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -123,31 +123,31 @@ const CollageTile: React.FC<CollageTileProps> = ({ item, photoUrl, tall = false,
       ) : (
         <div
           className="w-full h-full flex flex-col items-center justify-center p-3 text-center"
-          style={{ backgroundColor: '#D9C9F2' }}
+          style={{ backgroundColor: '#D5DCD9' }}
         >
           <span
-            className="w-9 h-9 border border-[#101010]/20 flex items-center justify-center mb-2"
+            className="w-9 h-9 border border-[#0A0A0A]/20 flex items-center justify-center mb-2"
             style={{ backgroundColor: item.colorHex }}
           >
-            <Shirt className="w-4 h-4 text-[#FFFFFF]" />
+            <Shirt className="w-4 h-4 text-[#FBFAF8]" />
           </span>
-          <p className="text-[11px] font-bold text-[#101010] line-clamp-2 leading-tight">
+          <p className="text-[11px] font-bold text-[#0A0A0A] line-clamp-2 leading-tight">
             {item.name}
           </p>
         </div>
       )}
 
-      <div className="absolute inset-x-0 bottom-0 px-2.5 py-2 bg-gradient-to-t from-[#101010]/90 via-[#101010]/50 to-transparent flex items-end justify-between gap-1">
+      <div className="absolute inset-x-0 bottom-0 px-2.5 py-2 bg-gradient-to-t from-[#0A0A0A]/90 via-[#0A0A0A]/50 to-transparent flex items-end justify-between gap-1">
         <div className="min-w-0">
-          <p className="text-[10px] font-semibold text-[#FFFFFF] truncate leading-tight">
+          <p className="text-[10px] font-semibold text-[#FBFAF8] truncate leading-tight">
             {item.category}
           </p>
-          <p className="text-[9px] text-[#FFFFFF]/80 truncate leading-tight">
+          <p className="text-[9px] text-[#FBFAF8]/80 truncate leading-tight">
             {item.colorName}
           </p>
         </div>
         {extraCount > 0 && (
-          <span className="font-mono text-[10px] font-bold text-[#FFC5A8] shrink-0">
+          <span className="font-mono text-[10px] font-bold text-[#E6DFD2] shrink-0">
             +{extraCount}
           </span>
         )}
@@ -780,11 +780,11 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
   ).length;
 
   return (
-    <div className="space-y-6 text-[#101010]">
+    <div className="space-y-6 text-[#0A0A0A]">
       {!aiConfigured && (
         <div
           role="alert"
-          className="p-4 bg-[#FFC5A8] border border-[#101010] text-xs text-[#101010] flex items-start gap-2.5"
+          className="p-4 bg-[#E6DFD2] border border-[#0A0A0A] text-xs text-[#0A0A0A] flex items-start gap-2.5"
         >
           <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
           <p>
@@ -798,24 +798,24 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
         <motion.div
           initial={{ opacity: 0, y: -6 }}
           animate={{ opacity: 1, y: 0 }}
-          className="p-4 bg-[#101010] text-[#FFFFFF] text-xs font-semibold flex items-center gap-2.5"
+          className="p-4 bg-[#0B3B40] text-[#FBFAF8] text-xs font-semibold flex items-center gap-2.5"
         >
-          <Check className="w-4 h-4 text-[#FFC5A8] shrink-0" />
+          <Check className="w-4 h-4 text-[#E6DFD2] shrink-0" />
           <span>{actionToast}</span>
         </motion.div>
       )}
 
       {/* ==================== STEP 1: MULTI-PHOTO CLOTHING UPLOAD STUDIO ==================== */}
-      <section className="bg-[#FFFFFF] border border-[#101010]/15 p-5 sm:p-7 space-y-5">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#101010]/10 pb-4">
+      <section className="bg-[#FBFAF8] border border-[#0A0A0A]/15 p-5 sm:p-7 space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#0A0A0A]/10 pb-4">
           <div>
-            <p className="font-mono text-[11px] tracking-[0.14em] text-[#101010]/60">
+            <p className="font-mono text-[11px] tracking-[0.14em] text-[#0A0A0A]/60">
               STEP 01 · DIGITIZE YOUR CLOSET
             </p>
-            <h3 className="font-editorial text-2xl sm:text-3xl font-medium text-[#101010] mt-1">
+            <h3 className="font-editorial text-2xl sm:text-3xl font-medium text-[#0A0A0A] mt-1">
               Upload Your Clothing Photos
             </h3>
-            <p className="text-xs text-[#101010]/70 mt-1">
+            <p className="text-xs text-[#0A0A0A]/70 mt-1">
               Upload tops, bottoms, dresses, shoes, jackets, or accessories. AI Vision detects category, color, pattern, fabric, and warmth.
             </p>
           </div>
@@ -824,9 +824,9 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
             type="button"
             onClick={() => fileInputRef.current?.click()}
             data-cursor="UPLOAD"
-            className="min-h-[44px] px-5 bg-[#101010] text-[#FFFFFF] text-xs font-bold flex items-center justify-center gap-2 whitespace-nowrap shrink-0 hover:bg-[#101010]/85 transition-colors"
+            className="min-h-[44px] px-5 bg-[#0B3B40] text-[#FBFAF8] text-xs font-bold flex items-center justify-center gap-2 whitespace-nowrap shrink-0 hover:bg-[#0A0A0A]/85 transition-colors"
           >
-            <Camera className="w-4 h-4 text-[#FFC5A8]" />
+            <Camera className="w-4 h-4 text-[#E6DFD2]" />
             <span>Upload Photos</span>
           </button>
         </div>
@@ -871,23 +871,23 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
           }}
           className={`border border-dashed p-7 text-center transition-colors cursor-pointer ${
             dragActive
-              ? 'border-[#101010] bg-[#FFC5A8]/45'
-              : 'border-[#101010]/35 bg-[#B8D9F2]/25 hover:bg-[#B8D9F2]/40'
+              ? 'border-[#0A0A0A] bg-[#E6DFD2]/45'
+              : 'border-[#0A0A0A]/35 bg-[#BCD2CF]/25 hover:bg-[#BCD2CF]/40'
           }`}
         >
-          <div className="w-12 h-12 bg-[#101010] text-[#FFFFFF] flex items-center justify-center mx-auto mb-3">
+          <div className="w-12 h-12 bg-[#0B3B40] text-[#FBFAF8] flex items-center justify-center mx-auto mb-3">
             {activeScansCount > 0 ? (
-              <Loader2 className="w-5 h-5 animate-spin text-[#FFC5A8]" />
+              <Loader2 className="w-5 h-5 animate-spin text-[#E6DFD2]" />
             ) : (
-              <ImagePlus className="w-5 h-5 text-[#B8D9F2]" />
+              <ImagePlus className="w-5 h-5 text-[#BCD2CF]" />
             )}
           </div>
-          <p className="text-sm font-bold text-[#101010]">
+          <p className="text-sm font-bold text-[#0A0A0A]">
             {activeScansCount > 0
               ? `Scanning ${activeScansCount} garment photo${activeScansCount === 1 ? '' : 's'} with AI Vision...`
               : 'Drop multiple garment photos here or click to browse'}
           </p>
-          <p className="text-xs text-[#101010]/65 mt-1">
+          <p className="text-xs text-[#0A0A0A]/65 mt-1">
             JPG, PNG, or WebP · Stored privately on your device · Real Gemini Vision recognition
           </p>
         </motion.div>
@@ -896,13 +896,13 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
         {scanJobs.length > 0 && (
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <p className="font-mono text-xs text-[#101010]/70">
+              <p className="font-mono text-xs text-[#0A0A0A]/70">
                 Vision Scan Queue ({scanJobs.length})
               </p>
               <button
                 type="button"
                 onClick={() => setScanJobs([])}
-                className="text-xs font-semibold text-[#101010]/65 hover:text-[#101010] min-h-[34px] px-2"
+                className="text-xs font-semibold text-[#0A0A0A]/65 hover:text-[#0A0A0A] min-h-[34px] px-2"
               >
                 Clear log
               </button>
@@ -915,21 +915,21 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                   animate={{ opacity: 1, y: 0 }}
                   className={`border p-3.5 flex items-start gap-3 ${
                     job.status === 'error'
-                      ? 'bg-[#FFC5A8]/45 border-[#101010]'
+                      ? 'bg-[#E6DFD2]/45 border-[#0A0A0A]'
                       : job.status === 'done'
-                      ? 'bg-[#B8D9F2]/25 border-[#101010]/20'
-                      : 'bg-[#D9C9F2]/40 border-[#101010]/30'
+                      ? 'bg-[#BCD2CF]/25 border-[#0A0A0A]/20'
+                      : 'bg-[#D5DCD9]/40 border-[#0A0A0A]/30'
                   }`}
                 >
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={job.previewUrl}
                     alt={job.fileName}
-                    className="w-16 h-20 object-cover border border-[#101010]/15 shrink-0 bg-[#FFFFFF]"
+                    className="w-16 h-20 object-cover border border-[#0A0A0A]/15 shrink-0 bg-[#FBFAF8]"
                   />
                   <div className="flex-1 min-w-0">
                     {job.status === 'compressing' || job.status === 'analyzing' ? (
                       <div className="space-y-1.5 pt-1">
-                        <p className="text-xs font-bold text-[#101010] flex items-center gap-1.5">
+                        <p className="text-xs font-bold text-[#0A0A0A] flex items-center gap-1.5">
                           <Loader2 className="w-3.5 h-3.5 animate-spin shrink-0" />
                           <span>
                             {job.status === 'compressing'
@@ -937,12 +937,12 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                               : 'AI Vision identifying garment...'}
                           </span>
                         </p>
-                        <p className="text-[11px] text-[#101010]/65 truncate">{job.fileName}</p>
+                        <p className="text-[11px] text-[#0A0A0A]/65 truncate">{job.fileName}</p>
                       </div>
                     ) : job.status === 'done' && job.detectedItem ? (
                       <div className="space-y-1">
                         <div className="flex items-center justify-between gap-2">
-                          <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#101010] flex items-center gap-1">
+                          <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#0A0A0A] flex items-center gap-1">
                             <Check className="w-3.5 h-3.5 shrink-0" />
                             <span>Added to Wardrobe</span>
                           </p>
@@ -952,17 +952,17 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                               setScanJobs((prev) => prev.filter((j) => j.id !== job.id))
                             }
                             aria-label="Dismiss scan card"
-                            className="text-[#101010]/60 hover:text-[#101010] p-1"
+                            className="text-[#0A0A0A]/60 hover:text-[#0A0A0A] p-1"
                           >
                             <X className="w-3.5 h-3.5" />
                           </button>
                         </div>
-                        <p className="text-sm font-bold text-[#101010] truncate">
+                        <p className="text-sm font-bold text-[#0A0A0A] truncate">
                           {job.detectedItem.name}
                         </p>
-                        <p className="text-[11px] text-[#101010]/75 flex items-center gap-1.5 flex-wrap">
+                        <p className="text-[11px] text-[#0A0A0A]/75 flex items-center gap-1.5 flex-wrap">
                           <span
-                            className="inline-block w-2.5 h-2.5 border border-[#101010]/30 shrink-0"
+                            className="inline-block w-2.5 h-2.5 border border-[#0A0A0A]/30 shrink-0"
                             style={{ backgroundColor: job.detectedItem.colorHex }}
                           />
                           <span>
@@ -973,7 +973,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                       </div>
                     ) : (
                       <div className="space-y-1.5">
-                        <p className="text-xs font-bold text-[#101010] flex items-center gap-1">
+                        <p className="text-xs font-bold text-[#0A0A0A] flex items-center gap-1">
                           <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                           <span>
                             {job.errorCode === 'NOT_CLOTHING'
@@ -981,12 +981,12 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                               : 'Scan unsuccessful'}
                           </span>
                         </p>
-                        <p className="text-[11px] text-[#101010]/80 leading-snug">{job.error}</p>
+                        <p className="text-[11px] text-[#0A0A0A]/80 leading-snug">{job.error}</p>
                         <div className="flex items-center gap-2 pt-0.5">
                           <button
                             type="button"
                             onClick={() => void processSingleUpload(job.id, job.file)}
-                            className="min-h-[32px] px-3 bg-[#101010] text-[#FFFFFF] text-[11px] font-semibold flex items-center gap-1"
+                            className="min-h-[32px] px-3 bg-[#0B3B40] text-[#FBFAF8] text-[11px] font-semibold flex items-center gap-1"
                           >
                             <RefreshCw className="w-3 h-3" />
                             <span>Retry</span>
@@ -996,7 +996,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                             onClick={() =>
                               setScanJobs((prev) => prev.filter((j) => j.id !== job.id))
                             }
-                            className="min-h-[32px] px-2 text-[11px] font-semibold text-[#101010]/70"
+                            className="min-h-[32px] px-2 text-[11px] font-semibold text-[#0A0A0A]/70"
                           >
                             Dismiss
                           </button>
@@ -1011,11 +1011,11 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
         )}
 
         {/* Wardrobe Source Selector & Uploaded Photo Grid */}
-        <div className="pt-4 border-t border-[#101010]/10 space-y-4">
+        <div className="pt-4 border-t border-[#0A0A0A]/10 space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <p className="text-xs font-bold text-[#101010]">Wardrobe Source for AI Matching</p>
-              <p className="text-[11px] text-[#101010]/65">
+              <p className="text-xs font-bold text-[#0A0A0A]">Wardrobe Source for AI Matching</p>
+              <p className="text-[11px] text-[#0A0A0A]/65">
                 {photoWardrobeItems.length > 0
                   ? Object.entries(photoCategoryCounts)
                       .map(([cat, count]) => `${count} ${cat}`)
@@ -1024,14 +1024,14 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-1 p-1 bg-[#101010]/10 shrink-0">
+            <div className="grid grid-cols-2 gap-1 p-1 bg-[#0A0A0A]/10 shrink-0">
               <button
                 type="button"
                 onClick={() => setWardrobeScope('photos')}
                 className={`min-h-[36px] px-3 text-xs font-semibold transition-colors whitespace-nowrap ${
                   wardrobeScope === 'photos'
-                    ? 'bg-[#101010] text-[#FFFFFF]'
-                    : 'text-[#101010]/75 hover:text-[#101010]'
+                    ? 'bg-[#0B3B40] text-[#FBFAF8]'
+                    : 'text-[#0A0A0A]/75 hover:text-[#0A0A0A]'
                 }`}
               >
                 My Photos ({photoWardrobeItems.length})
@@ -1041,8 +1041,8 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                 onClick={() => setWardrobeScope('all')}
                 className={`min-h-[36px] px-3 text-xs font-semibold transition-colors whitespace-nowrap ${
                   wardrobeScope === 'all'
-                    ? 'bg-[#101010] text-[#FFFFFF]'
-                    : 'text-[#101010]/75 hover:text-[#101010]'
+                    ? 'bg-[#0B3B40] text-[#FBFAF8]'
+                    : 'text-[#0A0A0A]/75 hover:text-[#0A0A0A]'
                 }`}
               >
                 Full Closet ({wardrobe.length})
@@ -1051,10 +1051,10 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
           </div>
 
           {photoWardrobeItems.length === 0 ? (
-            <div className="bg-[#D9C9F2]/35 border border-[#101010]/15 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="bg-[#D5DCD9]/35 border border-[#0A0A0A]/15 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div className="space-y-1">
-                <p className="text-sm font-bold text-[#101010]">No uploaded garment photos yet</p>
-                <p className="text-xs text-[#101010]/75">
+                <p className="text-sm font-bold text-[#0A0A0A]">No uploaded garment photos yet</p>
+                <p className="text-xs text-[#0A0A0A]/75">
                   Upload 2+ photos of your clothes so AI Vision can scan them—or use{' '}
                   <strong>Full Closet ({wardrobe.length})</strong> right away.
                 </p>
@@ -1062,9 +1062,9 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="min-h-[42px] px-4 bg-[#101010] text-[#FFFFFF] text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap shrink-0 self-start sm:self-center"
+                className="min-h-[42px] px-4 bg-[#0B3B40] text-[#FBFAF8] text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap shrink-0 self-start sm:self-center"
               >
-                <Upload className="w-3.5 h-3.5 text-[#FFC5A8]" />
+                <Upload className="w-3.5 h-3.5 text-[#E6DFD2]" />
                 <span>Add First Photos</span>
               </button>
             </div>
@@ -1075,11 +1075,11 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                 return (
                   <div
                     key={item.id}
-                    className="group bg-[#FFFFFF] border border-[#101010]/15 flex flex-col overflow-hidden"
+                    className="group bg-[#FBFAF8] border border-[#0A0A0A]/15 flex flex-col overflow-hidden"
                   >
-                    <div className="relative aspect-[4/5] bg-[#B8D9F2]/30 overflow-hidden">
+                    <div className="relative aspect-[4/5] bg-[#BCD2CF]/30 overflow-hidden">
                       {photoUrl && (
-                        <img
+                        <img decoding="async"
                           src={photoUrl}
                           alt={item.name}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -1090,13 +1090,13 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                         type="button"
                         onClick={() => onDeleteWardrobeItem(item.id)}
                         aria-label={`Remove ${item.name}`}
-                        className="absolute top-2 right-2 w-8 h-8 bg-[#101010]/80 text-[#FFFFFF] flex items-center justify-center hover:bg-[#101010]"
+                        className="absolute top-2 right-2 w-8 h-8 bg-[#0A0A0A]/80 text-[#FBFAF8] flex items-center justify-center hover:bg-[#0B3B40]"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
-                      <div className="absolute bottom-0 inset-x-0 px-2.5 py-1.5 bg-[#101010]/80 text-[10px] font-mono text-[#FFFFFF] flex items-center gap-1.5">
+                      <div className="absolute bottom-0 inset-x-0 px-2.5 py-1.5 bg-[#0A0A0A]/80 text-[10px] font-mono text-[#FBFAF8] flex items-center gap-1.5">
                         <span
-                          className="w-2.5 h-2.5 border border-[#FFFFFF]/50 shrink-0"
+                          className="w-2.5 h-2.5 border border-[#FBFAF8]/50 shrink-0"
                           style={{ backgroundColor: item.colorHex }}
                         />
                         <span className="truncate">
@@ -1105,8 +1105,8 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                       </div>
                     </div>
                     <div className="p-3 space-y-0.5">
-                      <p className="text-xs font-bold text-[#101010] truncate">{item.name}</p>
-                      <p className="text-[10px] text-[#101010]/65 truncate">
+                      <p className="text-xs font-bold text-[#0A0A0A] truncate">{item.name}</p>
+                      <p className="text-[10px] text-[#0A0A0A]/65 truncate">
                         {item.colorName}
                         {item.pattern ? ` · ${item.pattern}` : ''}
                         {item.style ? ` · ${item.style}` : ''}
@@ -1121,12 +1121,12 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
       </section>
 
       {/* ==================== STEP 2: TRIP, WEATHER & OCCASION CURATOR ==================== */}
-      <section className="bg-[#FFFFFF] border border-[#101010]/15 p-5 sm:p-7 space-y-5">
-        <div className="border-b border-[#101010]/10 pb-4">
-          <p className="font-mono text-[11px] tracking-[0.14em] text-[#101010]/60">
+      <section className="bg-[#FBFAF8] border border-[#0A0A0A]/15 p-5 sm:p-7 space-y-5">
+        <div className="border-b border-[#0A0A0A]/10 pb-4">
+          <p className="font-mono text-[11px] tracking-[0.14em] text-[#0A0A0A]/60">
             STEP 02 · TRIP BRIEF &amp; CLIMATE
           </p>
-          <h3 className="font-editorial text-2xl sm:text-3xl font-medium text-[#101010] mt-1">
+          <h3 className="font-editorial text-2xl sm:text-3xl font-medium text-[#0A0A0A] mt-1">
             Set Destination, Weather &amp; Occasions
           </h3>
         </div>
@@ -1135,7 +1135,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
           <div className="lg:col-span-4">
             <label
               htmlFor="matcher-trip-link"
-              className="block font-mono text-[11px] text-[#101010]/65 mb-1.5"
+              className="block font-mono text-[11px] text-[#0A0A0A]/65 mb-1.5"
             >
               Link PackSmart Trip
             </label>
@@ -1143,7 +1143,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
               id="matcher-trip-link"
               value={linkedTripId}
               onChange={(e) => setLinkedTripId(e.target.value)}
-              className="w-full min-h-[44px] px-3 bg-[#FFFFFF] border border-[#101010]/25 text-sm font-semibold text-[#101010]"
+              className="w-full min-h-[44px] px-3 bg-[#FBFAF8] border border-[#0A0A0A]/25 text-sm font-semibold text-[#0A0A0A]"
             >
               <option value="custom">Custom Trip Brief</option>
               {trips.map((t) => (
@@ -1157,19 +1157,19 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
           <div className="lg:col-span-4">
             <label
               htmlFor="matcher-dest"
-              className="block font-mono text-[11px] text-[#101010]/65 mb-1.5"
+              className="block font-mono text-[11px] text-[#0A0A0A]/65 mb-1.5"
             >
               Destination
             </label>
             <div className="relative">
-              <MapPin className="w-4 h-4 text-[#101010]/50 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <MapPin className="w-4 h-4 text-[#0A0A0A]/50 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 id="matcher-dest"
                 type="text"
                 value={destination}
                 onChange={(e) => setDestination(e.target.value)}
                 placeholder="e.g., Kyoto, Paris, Amalfi"
-                className="w-full min-h-[44px] pl-9 pr-3 bg-[#FFFFFF] border border-[#101010]/25 text-sm text-[#101010]"
+                className="w-full min-h-[44px] pl-9 pr-3 bg-[#FBFAF8] border border-[#0A0A0A]/25 text-sm text-[#0A0A0A]"
               />
             </div>
           </div>
@@ -1177,7 +1177,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
           <div className="lg:col-span-2">
             <label
               htmlFor="matcher-start"
-              className="block font-mono text-[11px] text-[#101010]/65 mb-1.5"
+              className="block font-mono text-[11px] text-[#0A0A0A]/65 mb-1.5"
             >
               Start Date
             </label>
@@ -1190,14 +1190,14 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                 setStartDate(nextStart);
                 if (endDate < nextStart) setEndDate(addDaysISO(nextStart, 2));
               }}
-              className="w-full min-h-[44px] px-2.5 bg-[#FFFFFF] border border-[#101010]/25 text-xs font-mono text-[#101010]"
+              className="w-full min-h-[44px] px-2.5 bg-[#FBFAF8] border border-[#0A0A0A]/25 text-xs font-mono text-[#0A0A0A]"
             />
           </div>
 
           <div className="lg:col-span-2">
             <label
               htmlFor="matcher-end"
-              className="block font-mono text-[11px] text-[#101010]/65 mb-1.5"
+              className="block font-mono text-[11px] text-[#0A0A0A]/65 mb-1.5"
             >
               End Date ({durationDays}d)
             </label>
@@ -1207,7 +1207,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
               min={startDate}
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
-              className="w-full min-h-[44px] px-2.5 bg-[#FFFFFF] border border-[#101010]/25 text-xs font-mono text-[#101010]"
+              className="w-full min-h-[44px] px-2.5 bg-[#FBFAF8] border border-[#0A0A0A]/25 text-xs font-mono text-[#0A0A0A]"
             />
           </div>
         </div>
@@ -1217,7 +1217,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
           <div className="sm:col-span-8">
             <label
               htmlFor="matcher-weather"
-              className="block font-mono text-[11px] text-[#101010]/65 mb-1.5"
+              className="block font-mono text-[11px] text-[#0A0A0A]/65 mb-1.5"
             >
               Weather Conditions
             </label>
@@ -1230,7 +1230,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                   setWeatherFeedback('');
                 }
               }}
-              className="w-full min-h-[44px] px-3 bg-[#FFFFFF] border border-[#101010]/25 text-sm text-[#101010]"
+              className="w-full min-h-[44px] px-3 bg-[#FBFAF8] border border-[#0A0A0A]/25 text-sm text-[#0A0A0A]"
             >
               {!WEATHER_PRESETS.includes(weatherSummary) && (
                 <option value="__custom">Live Forecast: {weatherSummary}</option>
@@ -1246,7 +1246,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
             type="button"
             onClick={() => void handleFetchLiveWeather()}
             disabled={weatherLoading || !destination.trim() || !isOnline}
-            className="sm:col-span-4 min-h-[44px] px-4 bg-[#B8D9F2] text-[#101010] border border-[#101010]/25 text-xs font-bold flex items-center justify-center gap-1.5 disabled:opacity-50 hover:bg-[#B8D9F2]/80 transition-colors"
+            className="sm:col-span-4 min-h-[44px] px-4 bg-[#BCD2CF] text-[#0A0A0A] border border-[#0A0A0A]/25 text-xs font-bold flex items-center justify-center gap-1.5 disabled:opacity-50 hover:bg-[#BCD2CF]/80 transition-colors"
           >
             {weatherLoading ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -1258,12 +1258,12 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
         </div>
 
         {weatherFeedback && (
-          <p className="font-mono text-[11px] text-[#101010]/75">{weatherFeedback}</p>
+          <p className="font-mono text-[11px] text-[#0A0A0A]/75">{weatherFeedback}</p>
         )}
 
         {/* Occasions */}
         <div>
-          <p className="font-mono text-[11px] text-[#101010]/65 mb-2">
+          <p className="font-mono text-[11px] text-[#0A0A0A]/65 mb-2">
             Occasions ({selectedOccasions.length} selected)
           </p>
           <div className="flex flex-wrap gap-2">
@@ -1276,8 +1276,8 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                   onClick={() => handleToggleOccasion(occ)}
                   className={`min-h-[38px] px-3.5 text-xs font-semibold border transition-colors ${
                     active
-                      ? 'bg-[#101010] border-[#101010] text-[#FFFFFF]'
-                      : 'bg-[#FFFFFF] border-[#101010]/25 text-[#101010]/80 hover:border-[#101010]'
+                      ? 'bg-[#0B3B40] border-[#0A0A0A] text-[#FBFAF8]'
+                      : 'bg-[#FBFAF8] border-[#0A0A0A]/25 text-[#0A0A0A]/80 hover:border-[#0A0A0A]'
                   }`}
                 >
                   {occ}
@@ -1290,17 +1290,17 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
         {matchError && (
           <div
             role="alert"
-            className="p-4 bg-[#FFC5A8] border border-[#101010] text-xs text-[#101010] flex items-start gap-2"
+            className="p-4 bg-[#E6DFD2] border border-[#0A0A0A] text-xs text-[#0A0A0A] flex items-start gap-2"
           >
             <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
             <span>{matchError}</span>
           </div>
         )}
 
-        <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-[#101010]/10">
-          <p className="text-xs text-[#101010]/75">
+        <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-[#0A0A0A]/10">
+          <p className="text-xs text-[#0A0A0A]/75">
             Matching strictly from{' '}
-            <strong className="text-[#101010]">
+            <strong className="text-[#0A0A0A]">
               {activeSourceItems.length}{' '}
               {wardrobeScope === 'photos' ? 'uploaded photo piece' : 'owned closet piece'}
               {activeSourceItems.length === 1 ? '' : 's'}
@@ -1313,16 +1313,16 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
             onClick={() => void handleGenerateMatches()}
             disabled={isMatching || activeSourceItems.length < 2 || !isOnline}
             data-cursor="STYLE"
-            className="min-h-[48px] px-6 bg-[#101010] text-[#FFFFFF] text-sm font-bold flex items-center justify-center gap-2 disabled:opacity-45 hover:bg-[#101010]/85 transition-colors whitespace-nowrap shrink-0"
+            className="min-h-[48px] px-6 bg-[#0B3B40] text-[#FBFAF8] text-sm font-bold flex items-center justify-center gap-2 disabled:opacity-45 hover:bg-[#0A0A0A]/85 transition-colors whitespace-nowrap shrink-0"
           >
             {isMatching ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin text-[#FFC5A8]" />
+                <Loader2 className="w-4 h-4 animate-spin text-[#E6DFD2]" />
                 <span>Curating Lookbook...</span>
               </>
             ) : (
               <>
-                <Wand2 className="w-4 h-4 text-[#FFC5A8]" />
+                <Wand2 className="w-4 h-4 text-[#E6DFD2]" />
                 <span>Generate AI Outfits</span>
               </>
             )}
@@ -1332,12 +1332,12 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
 
       {/* ==================== EDITORIAL LOADING STATE ==================== */}
       {isMatching && (
-        <section className="bg-[#101010] text-[#FFFFFF] p-10 text-center space-y-3">
-          <Loader2 className="w-6 h-6 animate-spin text-[#FFC5A8] mx-auto" />
+        <section className="bg-[#0B3B40] text-[#FBFAF8] p-10 text-center space-y-3">
+          <Loader2 className="w-6 h-6 animate-spin text-[#E6DFD2] mx-auto" />
           <h3 className="font-editorial text-2xl font-medium">
             Styling {durationDays} distinct looks from your wardrobe...
           </h3>
-          <p className="text-xs text-[#FFFFFF]/70 max-w-md mx-auto">
+          <p className="text-xs text-[#FBFAF8]/70 max-w-md mx-auto">
             Balancing color harmony, {weatherSummary.toLowerCase()}, zero repeated combinations, and capsule reuse.
           </p>
         </section>
@@ -1346,10 +1346,10 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
       {/* ==================== STEP 3: EDITORIAL LOOKBOOK RESULTS ==================== */}
       {session && !isMatching && (
         <div className="space-y-6">
-          <section className="bg-[#101010] text-[#FFFFFF] p-6 sm:p-7 space-y-4">
+          <section className="bg-[#0B3B40] text-[#FBFAF8] p-6 sm:p-7 space-y-4">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
               <div className="space-y-2">
-                <p className="font-mono text-xs text-[#FFC5A8] flex items-center gap-1.5 flex-wrap">
+                <p className="font-mono text-xs text-[#E6DFD2] flex items-center gap-1.5 flex-wrap">
                   <Layers className="w-3.5 h-3.5" />
                   <span>
                     {session.destination} · {session.stats.totalOutfits} Unique Outfits ·{' '}
@@ -1361,7 +1361,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                   Your Curated Daily Lookbook
                 </h3>
                 {session.capsuleSummary && (
-                  <p className="text-xs sm:text-sm text-[#FFFFFF]/75 leading-relaxed max-w-3xl">
+                  <p className="text-xs sm:text-sm text-[#FBFAF8]/75 leading-relaxed max-w-3xl">
                     {session.capsuleSummary}
                   </p>
                 )}
@@ -1373,7 +1373,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                     <button
                       type="button"
                       onClick={handleApplyToTripPlanner}
-                      className="min-h-[42px] px-4 bg-[#FFC5A8] text-[#101010] text-xs font-bold flex items-center gap-1.5 whitespace-nowrap hover:bg-[#FFFFFF] transition-colors"
+                      className="min-h-[42px] px-4 bg-[#E6DFD2] text-[#0A0A0A] text-xs font-bold flex items-center gap-1.5 whitespace-nowrap hover:bg-[#FBFAF8] transition-colors"
                     >
                       <BookmarkCheck className="w-3.5 h-3.5" />
                       <span>Apply to {linkedTrip.title}</span>
@@ -1381,7 +1381,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                     <button
                       type="button"
                       onClick={handleSyncCapsuleToSuitcase}
-                      className="min-h-[42px] px-4 bg-[#B8D9F2] text-[#101010] text-xs font-bold flex items-center gap-1.5 whitespace-nowrap hover:bg-[#FFFFFF] transition-colors"
+                      className="min-h-[42px] px-4 bg-[#BCD2CF] text-[#0A0A0A] text-xs font-bold flex items-center gap-1.5 whitespace-nowrap hover:bg-[#FBFAF8] transition-colors"
                     >
                       <Sparkles className="w-3.5 h-3.5" />
                       <span>Pack Capsule</span>
@@ -1391,7 +1391,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                 <button
                   type="button"
                   onClick={() => void handleGenerateMatches()}
-                  className="min-h-[42px] px-4 border border-[#FFFFFF]/30 text-[#FFFFFF] text-xs font-semibold flex items-center gap-1.5 hover:bg-[#FFFFFF]/10"
+                  className="min-h-[42px] px-4 border border-[#FBFAF8]/30 text-[#FBFAF8] text-xs font-semibold flex items-center gap-1.5 hover:bg-[#FBFAF8]/10"
                 >
                   <RefreshCw className="w-3.5 h-3.5" />
                   <span>Remix</span>
@@ -1413,22 +1413,22 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                   key={outfit.id}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-[#FFFFFF] border border-[#101010]/15 p-5 sm:p-6 flex flex-col justify-between gap-4"
+                  className="bg-[#FBFAF8] border border-[#0A0A0A]/15 p-5 sm:p-6 flex flex-col justify-between gap-4"
                 >
                   <div className="space-y-4">
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
-                        <p className="font-mono text-[11px] text-[#101010]/65 flex items-center gap-1.5">
+                        <p className="font-mono text-[11px] text-[#0A0A0A]/65 flex items-center gap-1.5">
                           <Calendar className="w-3.5 h-3.5 shrink-0" />
                           <span>
                             Day {outfit.dayIndex}
                             {outfit.date ? ` · ${formatShortDate(outfit.date)}` : ''} · {outfit.occasion}
                           </span>
                         </p>
-                        <h4 className="font-editorial text-2xl font-medium text-[#101010] mt-1 leading-tight">
+                        <h4 className="font-editorial text-2xl font-medium text-[#0A0A0A] mt-1 leading-tight">
                           {outfit.title}
                         </h4>
-                        <p className="text-[11px] text-[#101010]/60 mt-0.5">
+                        <p className="text-[11px] text-[#0A0A0A]/60 mt-0.5">
                           Weather fit: {outfit.weatherFit}
                         </p>
                       </div>
@@ -1440,8 +1440,8 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                         aria-label={isFavorited ? 'Remove from favourite outfits' : 'Save to favourite outfits'}
                         className={`min-h-[42px] px-3.5 border text-xs font-bold flex items-center gap-1.5 shrink-0 transition-colors ${
                           isFavorited
-                            ? 'bg-[#FFC5A8] border-[#101010] text-[#101010]'
-                            : 'bg-[#FFFFFF] border-[#101010]/25 text-[#101010] hover:border-[#101010]'
+                            ? 'bg-[#E6DFD2] border-[#0A0A0A] text-[#0A0A0A]'
+                            : 'bg-[#FBFAF8] border-[#0A0A0A]/25 text-[#0A0A0A] hover:border-[#0A0A0A]'
                         }`}
                       >
                         <Heart className={`w-4 h-4 ${isFavorited ? 'fill-current' : ''}`} />
@@ -1451,13 +1451,13 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
 
                     <OutfitCollage pieces={pieces} wardrobePhotos={wardrobePhotos} />
 
-                    <div className="p-4 bg-[#B8D9F2]/30 border border-[#101010]/10 space-y-1.5">
-                      <p className="text-xs text-[#101010] leading-relaxed">
+                    <div className="p-4 bg-[#BCD2CF]/30 border border-[#0A0A0A]/10 space-y-1.5">
+                      <p className="text-xs text-[#0A0A0A] leading-relaxed">
                         <strong>Why it works: </strong>
                         {outfit.whyItWorks}
                       </p>
                       {outfit.stylingTip && (
-                        <p className="text-[11px] text-[#101010]/75 leading-relaxed">
+                        <p className="text-[11px] text-[#0A0A0A]/75 leading-relaxed">
                           <strong>Stylist note: </strong>
                           {outfit.stylingTip}
                         </p>
@@ -1465,10 +1465,10 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                     </div>
 
                     <div className="space-y-1.5">
-                      <p className="font-mono text-[10px] uppercase tracking-wider text-[#101010]/55">
+                      <p className="font-mono text-[10px] uppercase tracking-wider text-[#0A0A0A]/55">
                         Owned Pieces Used ({pieces.length})
                       </p>
-                      <div className="divide-y divide-[#101010]/10">
+                      <div className="divide-y divide-[#0A0A0A]/10">
                         {pieces.map((piece) => {
                           const uses = pieceReuseCounts.get(piece.id) || 1;
                           const thumb = piece.photoId ? wardrobePhotos[piece.photoId] : undefined;
@@ -1479,31 +1479,31 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                             >
                               <div className="flex items-center gap-2.5 min-w-0">
                                 {thumb ? (
-                                  <img
+                                  <img loading="lazy" decoding="async"
                                     src={thumb}
                                     alt={piece.name}
-                                    className="w-9 h-9 object-cover border border-[#101010]/15 shrink-0"
+                                    className="w-9 h-9 object-cover border border-[#0A0A0A]/15 shrink-0"
                                   />
                                 ) : (
                                   <span
-                                    className="w-9 h-9 border border-[#101010]/20 flex items-center justify-center shrink-0"
+                                    className="w-9 h-9 border border-[#0A0A0A]/20 flex items-center justify-center shrink-0"
                                     style={{ backgroundColor: piece.colorHex }}
                                   >
-                                    <Shirt className="w-4 h-4 text-[#FFFFFF]" />
+                                    <Shirt className="w-4 h-4 text-[#FBFAF8]" />
                                   </span>
                                 )}
                                 <div className="min-w-0">
-                                  <p className="text-xs font-bold text-[#101010] truncate">
+                                  <p className="text-xs font-bold text-[#0A0A0A] truncate">
                                     {piece.name}
                                   </p>
-                                  <p className="text-[11px] text-[#101010]/65 truncate">
+                                  <p className="text-[11px] text-[#0A0A0A]/65 truncate">
                                     {piece.category} · {piece.colorName}
                                     {piece.pattern ? ` · ${piece.pattern}` : ''}
                                   </p>
                                 </div>
                               </div>
 
-                              <span className="font-mono text-[11px] font-semibold text-[#101010] shrink-0 tabular-nums">
+                              <span className="font-mono text-[11px] font-semibold text-[#0A0A0A] shrink-0 tabular-nums">
                                 {uses > 1 ? `Reused ${uses}×` : `${piece.volumeLiters}L`}
                               </span>
                             </div>
@@ -1518,15 +1518,15 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
           </div>
 
           {session.missingPieces.length > 0 && (
-            <section className="bg-[#FFFFFF] border border-[#101010]/15 p-5 sm:p-7 space-y-4">
+            <section className="bg-[#FBFAF8] border border-[#0A0A0A]/15 p-5 sm:p-7 space-y-4">
               <div>
-                <p className="font-mono text-[11px] tracking-[0.14em] text-[#101010]/60">
+                <p className="font-mono text-[11px] tracking-[0.14em] text-[#0A0A0A]/60">
                   CAPSULE UPGRADE RADAR
                 </p>
-                <h3 className="font-editorial text-2xl sm:text-3xl font-medium text-[#101010] mt-1">
+                <h3 className="font-editorial text-2xl sm:text-3xl font-medium text-[#0A0A0A] mt-1">
                   Missing Pieces That Expand Your Lookbook
                 </h3>
-                <p className="text-xs text-[#101010]/70 mt-1">
+                <p className="text-xs text-[#0A0A0A]/70 mt-1">
                   Every outfit above uses strictly what you own. Adding any single piece below creates multiple extra combinations.
                 </p>
               </div>
@@ -1537,23 +1537,23 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                   return (
                     <div
                       key={piece.name}
-                      className="bg-[#FFC5A8]/30 border border-[#101010]/15 p-4 flex flex-col justify-between gap-3"
+                      className="bg-[#E6DFD2]/30 border border-[#0A0A0A]/15 p-4 flex flex-col justify-between gap-3"
                     >
                       <div className="space-y-1.5">
                         <div className="flex items-start justify-between gap-2">
                           <div className="min-w-0">
-                            <p className="font-mono text-[11px] text-[#101010]/65">
+                            <p className="font-mono text-[11px] text-[#0A0A0A]/65">
                               {piece.category} · {piece.colorSuggestion}
                             </p>
-                            <h4 className="font-display text-sm font-bold text-[#101010] mt-0.5">
+                            <h4 className="font-display text-sm font-bold text-[#0A0A0A] mt-0.5">
                               {piece.name}
                             </h4>
                           </div>
-                          <span className="font-mono text-xs font-bold text-[#101010] shrink-0 tabular-nums">
+                          <span className="font-mono text-xs font-bold text-[#0A0A0A] shrink-0 tabular-nums">
                             +{piece.unlockedCombosCount} looks
                           </span>
                         </div>
-                        <p className="text-xs text-[#101010]/75 leading-relaxed">
+                        <p className="text-xs text-[#0A0A0A]/75 leading-relaxed">
                           {piece.impactSummary}
                         </p>
                       </div>
@@ -1565,8 +1565,8 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                           disabled={alreadyAdded}
                           className={`min-h-[40px] px-4 text-xs font-bold flex items-center justify-center gap-1.5 self-start transition-colors ${
                             alreadyAdded
-                              ? 'bg-[#B8D9F2] text-[#101010]'
-                              : 'bg-[#101010] text-[#FFFFFF] hover:bg-[#101010]/85'
+                              ? 'bg-[#BCD2CF] text-[#0A0A0A]'
+                              : 'bg-[#0B3B40] text-[#FBFAF8] hover:bg-[#0A0A0A]/85'
                           }`}
                         >
                           {alreadyAdded ? (
@@ -1576,7 +1576,7 @@ export const AIOutfitMatcher: React.FC<AIOutfitMatcherProps> = ({
                             </>
                           ) : (
                             <>
-                              <ShoppingBag className="w-3.5 h-3.5 text-[#FFC5A8]" />
+                              <ShoppingBag className="w-3.5 h-3.5 text-[#E6DFD2]" />
                               <span>Add to {linkedTrip.title} Shopping</span>
                             </>
                           )}

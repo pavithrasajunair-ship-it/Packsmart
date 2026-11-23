@@ -19,12 +19,9 @@ import {
 } from 'lucide-react';
 import type { OutfitCombination, PackingList, WardrobeItem } from '../../types';
 import { analyzeSuitcaseSpace, daysUntilDate } from '../../utils/packingEngine';
-import {
-  SUITCASE_FINISHES,
-  Suitcase3DCanvas,
-  type SuitcaseFinish,
-} from '../editorial/Suitcase3DCanvas';
+import { PackingCanvas } from './PackingCanvas';
 import { LineRevealText, MagneticButton, prefersReducedMotion } from '../editorial/MotionPrimitives';
+import { CapsuleCalculator, DepartureBoard } from './HomeExtras';
 import { PackingStorySection } from '../editorial/PackingStorySection';
 import {
   HorizontalGallerySection,
@@ -49,8 +46,6 @@ interface HomePageProps {
   onOpenVault: () => void;
 }
 
-const FINISH_ORDER: SuitcaseFinish[] = ['noir', 'powder', 'lavender', 'peach'];
-
 interface DeckModule {
   route: PlatformRoute;
   icon: React.ComponentType<{ className?: string }>;
@@ -58,9 +53,51 @@ interface DeckModule {
   description: string;
   stat: string;
   cta: string;
+  features: string[];
   surface: string;
   ink: string;
 }
+
+/** A big line of words that slides sideways as the page scrolls past it. */
+const ScrollMarquee: React.FC<{ words: string[]; reverse?: boolean }> = ({ words, reverse }) => {
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const rowRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    const row = rowRef.current;
+    if (!wrap || !row || prefersReducedMotion()) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        row,
+        { xPercent: reverse ? -34 : 0 },
+        {
+          xPercent: reverse ? 0 : -34,
+          ease: 'none',
+          scrollTrigger: { trigger: wrap, start: 'top bottom', end: 'bottom top', scrub: 0.6 },
+        }
+      );
+    }, wrap);
+    return () => ctx.revert();
+  }, [reverse]);
+
+  const line = [...words, ...words, ...words];
+  return (
+    <div ref={wrapRef} aria-hidden="true" className="relative overflow-hidden py-4 sm:py-5 select-none">
+      <div
+        ref={rowRef}
+        className="flex w-max items-center gap-5 sm:gap-8 text-[clamp(1rem,2vw,1.6rem)] leading-none font-semibold tracking-[-0.02em] text-[#0A0A0A] will-change-transform"
+      >
+        {line.map((w, i) => (
+          <React.Fragment key={`${w}-${i}`}>
+            <span>{w}</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0A0A0A]/40 shrink-0" />
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export const HomePage: React.FC<HomePageProps> = ({
   lists,
@@ -94,7 +131,6 @@ export const HomePage: React.FC<HomePageProps> = ({
   const suitcaseScroll = useRef(0);
   const quickX = useRef<((v: number) => void) | null>(null);
   const quickY = useRef<((v: number) => void) | null>(null);
-  const [finish, setFinish] = useState<SuitcaseFinish>('noir');
 
   // Layout effect: the hero's pin must exist before the pinned sections below it measure themselves.
   useLayoutEffect(() => {
@@ -117,7 +153,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           start: 'top top',
           end: '+=120%',
           pin: true,
-          scrub: 0.8,
+          scrub: 1.2,
           anticipatePin: 1,
           refreshPriority: 10,
           onUpdate: (self) => {
@@ -125,8 +161,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           },
         },
       });
-      tl.to(hero, { backgroundColor: '#D9C9F2' }, 0)
-        .to(headRef.current, { yPercent: -22, opacity: 0, ease: 'power2.in' }, 0.05)
+      tl.to(headRef.current, { yPercent: -22, opacity: 0, ease: 'power2.in' }, 0.05)
         .to(caseWrapRef.current, { xPercent: -46, scale: 1.18, ease: 'power2.inOut' }, 0)
         .fromTo(captionRef.current, { opacity: 0, y: 24 }, { opacity: 1, y: 0, ease: 'power2.out' }, 0.55);
       return () => {
@@ -185,8 +220,9 @@ export const HomePage: React.FC<HomePageProps> = ({
           ? `${packedCount} of ${totalCount} packed, ${metrics.totalVolumeLiters}L used`
           : '40L carry-on optimizer',
       cta: 'Open Smart Packing',
-      surface: '#101010',
-      ink: '#FFFFFF',
+      features: ['Suitcase volume tracking','Weight and allowance checks','Checklist by category'],
+      surface: '#0B3B40',
+      ink: '#FBFAF8',
     },
     {
       route: 'ai-outfit-studio',
@@ -196,8 +232,9 @@ export const HomePage: React.FC<HomePageProps> = ({
         'Upload clothes you own and get weather-ready looks that never repeat across the trip.',
       stat: `${wardrobe.length} pieces owned, ${savedOutfits.length} looks saved`,
       cta: 'Open AI Outfit Studio',
-      surface: '#D9C9F2',
-      ink: '#101010',
+      features: ['Weather-ready looks','No repeated outfits','Built from clothes you own'],
+      surface: '#FBFAF8',
+      ink: '#0A0A0A',
     },
     {
       route: 'trip-planner',
@@ -209,8 +246,9 @@ export const HomePage: React.FC<HomePageProps> = ({
         ? activeTrip.destination || activeTrip.title
         : `${lists.length} itineraries`,
       cta: 'Open Trip Planner',
-      surface: '#FFC5A8',
-      ink: '#101010',
+      features: ['Live destination forecast','Departure countdown','Saved itineraries'],
+      surface: '#0A0A0A',
+      ink: '#FBFAF8',
     },
     {
       route: 'digital-wardrobe',
@@ -220,8 +258,9 @@ export const HomePage: React.FC<HomePageProps> = ({
         'Catalogue your tops, bottoms, dresses, shoes and outerwear with AI tagging from a photo.',
       stat: `${wardrobe.filter((w) => w.photoId).length} items scanned from photos`,
       cta: 'Browse Wardrobe',
-      surface: '#FFFFFF',
-      ink: '#101010',
+      features: ['AI tagging from a photo','Tops to outerwear','Search and filters'],
+      surface: '#CFDCDA',
+      ink: '#0A0A0A',
     },
   ];
 
@@ -298,6 +337,72 @@ export const HomePage: React.FC<HomePageProps> = ({
     return () => ctx.revert();
   }, [packedPct]);
 
+  /* ------------------------------------------------------------------ */
+  /* Whole-page choreography: the sky shifts colour, the deck pins and    */
+  /* advances with scroll, the summary columns drift at different speeds. */
+  /* ------------------------------------------------------------------ */
+  const rootRef = useRef<HTMLDivElement | null>(null);
+  const skyRef = useRef<HTMLDivElement | null>(null);
+  const deckRef = useRef<HTMLElement | null>(null);
+
+  useLayoutEffect(() => {
+    const root = rootRef.current;
+    const sky = skyRef.current;
+    if (!root || !sky || prefersReducedMotion()) return;
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: { trigger: root, start: 'top top', end: 'bottom bottom', scrub: 0.8 },
+      });
+      tl.to(sky, { backgroundColor: '#E2E8E5', duration: 1 })
+        .to(sky, { backgroundColor: '#ECE9E3', duration: 1 })
+        .to(sky, { backgroundColor: '#DCE5E2', duration: 1 })
+        .to(sky, { backgroundColor: '#ECE9E3', duration: 1 });
+    }, root);
+    return () => ctx.revert();
+  }, []);
+
+  useLayoutEffect(() => {
+    const deck = deckRef.current;
+    if (!deck || prefersReducedMotion()) return;
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 1024px)', () => {
+      const st = ScrollTrigger.create({
+        trigger: deck,
+        start: 'top top',
+        end: '+=320%',
+        pin: true,
+        anticipatePin: 1,
+        refreshPriority: 4.5,
+        onUpdate: (self) => {
+          setActive(Math.min(count - 1, Math.floor(self.progress * count)));
+        },
+      });
+      return () => st.kill();
+    });
+    return () => mm.revert();
+  }, [count]);
+
+  useEffect(() => {
+    const section = summaryRef.current;
+    if (!section || prefersReducedMotion()) return;
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray<HTMLElement>('[data-speed]').forEach((el) => {
+        const speed = Number(el.dataset.speed || 0);
+        gsap.fromTo(
+          el,
+          { y: -speed * 60 },
+          {
+            y: speed * 60,
+            ease: 'none',
+            scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: true },
+          }
+        );
+      });
+    }, section);
+    return () => ctx.revert();
+  }, []);
+
   const handleBlueprint = (bp: EditorialBlueprint) => {
     if (bp.kind === 'wardrobe_jump') onNavigate('ai-outfit-studio');
     else if (bp.kind === 'suitcase_jump') onNavigate('smart-packing');
@@ -306,30 +411,43 @@ export const HomePage: React.FC<HomePageProps> = ({
   };
 
   return (
-    <div className="bg-[#FFFFFF] text-[#101010]">
+    <div ref={rootRef} className="relative text-[#0A0A0A]">
+      {/* One continuous sky behind every scene: dawn powder, dusk lavender, sunset peach. */}
+      <div
+        ref={skyRef}
+        aria-hidden="true"
+        className="fixed inset-0 z-0 pointer-events-none bg-[#BCD2CF]"
+        style={{ backgroundImage: 'radial-gradient(70% 55% at 75% 15%, rgba(255,255,255,0.65), rgba(255,255,255,0) 70%)' }}
+      />
+      <div className="relative z-10">
       {/* ==================== SCENE 1: HERO, PINNED ON DESKTOP ==================== */}
       <section
         ref={heroRef}
         onPointerMove={handleHeroMove}
         aria-label="PackSmart introduction"
-        className="relative bg-[#B8D9F2] min-h-[100svh] overflow-hidden flex items-center"
+        className="relative min-h-[100svh] overflow-hidden flex items-center bg-[#0B3B40] text-[#FBFAF8]"
       >
-        <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10 pt-24 pb-24 lg:pt-20 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{ backgroundImage: 'radial-gradient(55% 60% at 72% 48%, rgba(251,250,248,0.10), rgba(251,250,248,0) 70%)' }}
+        />
+        <div className="relative w-full max-w-[1320px] mx-auto px-6 sm:px-10 pt-24 pb-20 lg:pt-20 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
           <div ref={headRef} className="lg:col-span-6 relative z-10 space-y-8">
             <LineRevealText
               as="h1"
               trigger="mount"
-              className="font-serif text-[clamp(2.9rem,8.2vw,7.4rem)] leading-[0.95] tracking-[-0.03em] text-[#101010]"
-              lines={['Pack less stress.', 'Travel with', <em key="c" className="italic font-normal">confidence.</em>]}
+              className="text-[clamp(2.7rem,6.6vw,6rem)] leading-[0.98] tracking-[-0.045em] text-[#FBFAF8]"
+              lines={['Pack less stress.', 'Travel with', 'confidence.']}
             />
-            <p className="max-w-md text-base sm:text-lg leading-relaxed text-[#101010]/75">
+            <p className="max-w-md text-base sm:text-lg leading-relaxed text-[#FBFAF8]/75">
               Plan the trip, read the forecast, fit the suitcase and style every day from clothes you already own.
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <MagneticButton
                 onClick={() => onNavigate('dashboard')}
                 cursorLabel="Go"
-                className="h-12 px-7 rounded-full bg-[#101010] text-[#FFFFFF] text-sm font-medium inline-flex items-center gap-2 whitespace-nowrap"
+                className="h-12 px-7 rounded-full bg-[#FBFAF8] text-[#0A0A0A] text-sm font-semibold inline-flex items-center gap-2 whitespace-nowrap"
               >
                 <span>Open dashboard</span>
                 <ArrowRight className="w-4 h-4" />
@@ -337,7 +455,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <button
                 type="button"
                 onClick={() => onNavigate('ai-outfit-studio')}
-                className="h-12 px-7 rounded-full border border-[#101010]/30 text-sm font-medium text-[#101010] hover:bg-[#FFFFFF]/60 transition-colors whitespace-nowrap"
+                className="h-12 px-7 rounded-full border border-[#FBFAF8]/35 text-sm font-medium text-[#FBFAF8] hover:bg-[#FBFAF8]/10 transition-colors whitespace-nowrap"
               >
                 Try AI Outfit Studio
               </button>
@@ -346,64 +464,40 @@ export const HomePage: React.FC<HomePageProps> = ({
 
           <div className="lg:col-span-6 relative">
             <div ref={caseWrapRef} className="will-change-transform">
-              <div ref={parallaxRef} className="h-[46vh] sm:h-[54vh] lg:h-[74vh]">
-                <Suitcase3DCanvas finish={finish} scrollProgressRef={suitcaseScroll} />
+              <div ref={parallaxRef} className="h-[46vh] sm:h-[54vh] lg:h-[72vh]">
+                <PackingCanvas scrollProgressRef={suitcaseScroll} />
               </div>
             </div>
+            <p
+              ref={captionRef}
+              className="absolute left-0 right-0 bottom-0 text-center text-sm text-[#FBFAF8]/75 lg:opacity-0"
+            >
+              Open it up and everything has its place.
+            </p>
           </div>
         </div>
 
-        {/* Finish picker: changes the real 3D material live */}
-        <div className="absolute left-0 right-0 bottom-8 z-20 flex flex-col items-center gap-3 px-6">
-          <p
-            ref={captionRef}
-            aria-live="polite"
-            className="text-sm text-[#101010]/80 lg:opacity-0"
-          >
-            {SUITCASE_FINISHES[finish].label}, 40L cabin carry-on
-          </p>
-          <div role="radiogroup" aria-label="Suitcase finish" className="flex items-center gap-3">
-            {FINISH_ORDER.map((f) => {
-              const spec = SUITCASE_FINISHES[f];
-              const selected = f === finish;
-              return (
-                <button
-                  key={f}
-                  type="button"
-                  role="radio"
-                  aria-checked={selected}
-                  aria-label={spec.label}
-                  title={spec.label}
-                  onClick={() => setFinish(f)}
-                  className={`w-9 h-9 rounded-full border transition-transform duration-200 ${
-                    selected
-                      ? 'scale-110 border-[#101010] ring-2 ring-[#101010] ring-offset-2 ring-offset-transparent'
-                      : 'border-[#101010]/30 hover:scale-105'
-                  }`}
-                  style={{ backgroundColor: spec.shellHex }}
-                />
-              );
-            })}
-          </div>
-          <span aria-hidden="true" className="hidden lg:block w-px h-8 bg-[#101010]/20 overflow-hidden">
-            <span className="block w-full h-full bg-[#101010] ps-scroll-cue" />
-          </span>
-        </div>
+        <span aria-hidden="true" className="hidden lg:block absolute left-1/2 bottom-6 w-px h-10 bg-[#FBFAF8]/20 overflow-hidden">
+          <span className="block w-full h-full bg-[#FBFAF8] ps-scroll-cue" />
+        </span>
       </section>
+
+      <ScrollMarquee words={['Plan', 'Pack', 'Style', 'Go']} />
 
       {/* ==================== SCENE 2: PACKING STORY, PINNED ==================== */}
       <PackingStorySection onOpenSuitcaseOptimizer={() => onNavigate('smart-packing')} />
 
       {/* ==================== SCENE 3: SPATIAL DECK ==================== */}
       <section
+        ref={deckRef}
         aria-label="Browse the four PackSmart tools"
-        className="relative bg-[#B8D9F2] text-[#101010] min-h-screen flex items-center overflow-hidden"
+        className="relative text-[#0A0A0A] min-h-screen flex items-center overflow-hidden"
       >
         <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10 py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-6 items-center">
           <div className="lg:col-span-5 space-y-7 relative z-10">
             <LineRevealText
               as="h2"
-              className="font-serif text-[clamp(2.4rem,5.4vw,4.6rem)] leading-[1] tracking-[-0.025em]"
+              className="font-serif text-[clamp(2.4rem,5.4vw,4.4rem)] leading-[1.02] tracking-[-0.04em]"
               lines={['Four tools.', 'One calm trip.']}
             />
             <div className="min-h-[188px]" aria-live="polite">
@@ -417,14 +511,14 @@ export const HomePage: React.FC<HomePageProps> = ({
                   className="space-y-4"
                 >
                   <h3 className="font-serif text-3xl">{current.title}</h3>
-                  <p className="max-w-md text-base leading-relaxed text-[#101010]/75">
+                  <p className="max-w-md text-base leading-relaxed text-[#0A0A0A]/75">
                     {current.description}
                   </p>
                   <p className="text-sm font-medium tabular-nums">{current.stat}</p>
                   <button
                     type="button"
                     onClick={() => onNavigate(current.route)}
-                    className="h-11 px-6 rounded-full bg-[#101010] text-[#FFFFFF] text-sm font-medium inline-flex items-center gap-2 hover:bg-[#101010]/85 transition-colors"
+                    className="h-11 px-6 rounded-full bg-[#0B3B40] text-[#FBFAF8] text-sm font-medium inline-flex items-center gap-2 hover:bg-[#0A0A0A]/85 transition-colors"
                   >
                     <span>{current.cta}</span>
                     <ArrowRight className="w-4 h-4" />
@@ -432,12 +526,13 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </motion.div>
               </AnimatePresence>
             </div>
+            <p className="hidden lg:block text-sm text-[#0A0A0A]/70">Scroll to move through the tools, or drag the cards.</p>
             <div className="flex items-center gap-3">
               <button
                 type="button"
                 onClick={() => go(-1)}
                 aria-label="Previous tool"
-                className="w-11 h-11 rounded-full border border-[#101010]/30 flex items-center justify-center hover:bg-[#FFFFFF]/60 transition-colors"
+                className="w-11 h-11 rounded-full border border-[#0A0A0A]/30 flex items-center justify-center hover:bg-[#FBFAF8]/60 transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
               </button>
@@ -445,7 +540,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 type="button"
                 onClick={() => go(1)}
                 aria-label="Next tool"
-                className="w-11 h-11 rounded-full border border-[#101010]/30 flex items-center justify-center hover:bg-[#FFFFFF]/60 transition-colors"
+                className="w-11 h-11 rounded-full border border-[#0A0A0A]/30 flex items-center justify-center hover:bg-[#FBFAF8]/60 transition-colors"
               >
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -458,7 +553,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     aria-current={i === active}
                     onClick={() => setActive(i)}
                     className={`h-2 rounded-full transition-all duration-300 ${
-                      i === active ? 'w-8 bg-[#101010]' : 'w-2 bg-[#101010]/30'
+                      i === active ? 'w-8 bg-[#0B3B40]' : 'w-2 bg-[#0A0A0A]/30'
                     }`}
                   />
                 ))}
@@ -520,9 +615,17 @@ export const HomePage: React.FC<HomePageProps> = ({
                       color: m.ink,
                       gridArea: '1 / 1',
                     }}
-                    className="ps-card w-[min(72vw,330px)] h-[360px] sm:h-[430px] rounded-[28px] p-7 flex flex-col justify-between border border-[#101010]/15 outline-none focus-visible:ring-2 focus-visible:ring-[#101010]"
+                    className="ps-card w-[min(72vw,330px)] h-[360px] sm:h-[430px] rounded-[28px] p-7 flex flex-col justify-between gap-6 border border-[#0A0A0A]/15 outline-none focus-visible:ring-2 focus-visible:ring-[#0A0A0A]"
                   >
                     <Icon className="w-7 h-7" />
+                    <ul className="space-y-2.5 text-sm font-medium">
+                      {m.features.map((f) => (
+                        <li key={f} className="flex items-center gap-2.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-current shrink-0" aria-hidden="true" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
                     <div className="space-y-3">
                       <h3 className="font-serif text-[2.1rem] leading-[1.02]">{m.title}</h3>
                       <p className="text-sm tabular-nums" style={{ opacity: 0.75 }}>
@@ -540,20 +643,26 @@ export const HomePage: React.FC<HomePageProps> = ({
       {/* ==================== SCENE 4: HORIZONTAL JOURNEYS, PINNED ==================== */}
       <HorizontalGallerySection onSelectBlueprint={handleBlueprint} />
 
-      {/* ==================== SCENE 5: LIVE JOURNEY ==================== */}
-      <section ref={summaryRef} className="bg-[#FFFFFF] py-24 sm:py-28">
+      <ScrollMarquee words={['Forecast', 'Fit', 'Outfits', 'Documents']} reverse />
+
+      {/* ==================== SCENE 5: DEPARTURE BOARD AND CAPSULE CALCULATOR ==================== */}
+      <DepartureBoard lists={lists} onNavigate={onNavigate} />
+      <CapsuleCalculator onOpenSmartPacking={() => onNavigate('smart-packing')} />
+
+      {/* ==================== SCENE 6: LIVE JOURNEY ==================== */}
+      <section ref={summaryRef} className="relative py-24 sm:py-32 overflow-hidden">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-7">
+          <div data-speed="0.5" className="lg:col-span-7 space-y-7">
             <LineRevealText
               as="h2"
-              className="font-serif text-[clamp(2.4rem,5.4vw,4.8rem)] leading-[1] tracking-[-0.025em]"
+              className="font-serif text-[clamp(2.4rem,5.4vw,4.4rem)] leading-[1.02] tracking-[-0.04em]"
               lines={
                 activeTrip
                   ? [activeTrip.title]
                   : ['Ready for your', 'next journey']
               }
             />
-            <p className="max-w-xl text-base leading-relaxed text-[#101010]/75">
+            <p className="max-w-xl text-base leading-relaxed text-[#0A0A0A]/75">
               {activeTrip
                 ? `${activeTrip.destination || activeTrip.tripType}, ${activeTrip.startDate} to ${activeTrip.endDate}. Check the live weather, finish the timeline or zip the suitcase.`
                 : 'Create your first itinerary to generate a packing list, a live forecast and wardrobe combinations.'}
@@ -562,31 +671,31 @@ export const HomePage: React.FC<HomePageProps> = ({
               <MagneticButton
                 onClick={() => onNavigate('dashboard')}
                 cursorLabel="Go"
-                className="h-12 px-7 rounded-full bg-[#101010] text-[#FFFFFF] text-sm font-medium whitespace-nowrap"
+                className="h-12 px-7 rounded-full bg-[#0B3B40] text-[#FBFAF8] text-sm font-medium whitespace-nowrap"
               >
                 Go to dashboard
               </MagneticButton>
               <button
                 type="button"
                 onClick={() => onNavigate('trip-planner')}
-                className="h-12 px-7 rounded-full border border-[#101010]/30 text-sm font-medium hover:bg-[#D9C9F2]/50 transition-colors whitespace-nowrap"
+                className="h-12 px-7 rounded-full border border-[#0A0A0A]/30 text-sm font-medium hover:bg-[#D5DCD9]/50 transition-colors whitespace-nowrap"
               >
                 Plan a new trip
               </button>
             </div>
           </div>
 
-          <div className="lg:col-span-5 flex flex-col items-center gap-6">
+          <div data-speed="-0.5" className="lg:col-span-5 flex flex-col items-center gap-6">
             <div className="relative w-[220px] h-[220px] sm:w-[260px] sm:h-[260px]">
               <svg viewBox="0 0 200 200" className="w-full h-full -rotate-90" role="img" aria-label={`Packing readiness ${packedPct} percent`}>
-                <circle cx="100" cy="100" r="88" fill="none" stroke="#D9C9F2" strokeWidth="10" />
+                <circle cx="100" cy="100" r="88" fill="none" stroke="#0B3B40" strokeOpacity="0.14" strokeWidth="10" />
                 <circle
                   ref={ringRef}
                   cx="100"
                   cy="100"
                   r="88"
                   fill="none"
-                  stroke="#101010"
+                  stroke="#0B3B40"
                   strokeWidth="10"
                   strokeLinecap="round"
                 />
@@ -596,24 +705,24 @@ export const HomePage: React.FC<HomePageProps> = ({
                   <span ref={ringTextRef} />
                   <span className="text-3xl">%</span>
                 </span>
-                <span className="text-sm text-[#101010]/65">packed</span>
+                <span className="text-sm text-[#0A0A0A]/65">packed</span>
               </div>
             </div>
             <dl className="grid grid-cols-3 gap-6 text-center tabular-nums">
               <div>
-                <dt className="text-xs text-[#101010]/60">Departure</dt>
+                <dt className="text-xs text-[#0A0A0A]/60">Departure</dt>
                 <dd className="text-sm font-semibold mt-0.5">
                   {daysLeft !== null && daysLeft >= 0 ? `${daysLeft} days` : 'Ready'}
                 </dd>
               </div>
               <div>
-                <dt className="text-xs text-[#101010]/60">Suitcase</dt>
+                <dt className="text-xs text-[#0A0A0A]/60">Suitcase</dt>
                 <dd className="text-sm font-semibold mt-0.5">
                   {metrics ? `${metrics.totalVolumeLiters}L / ${metrics.capacityLiters}L` : '40L'}
                 </dd>
               </div>
               <div>
-                <dt className="text-xs text-[#101010]/60">Forecast</dt>
+                <dt className="text-xs text-[#0A0A0A]/60">Forecast</dt>
                 <dd className="text-sm font-semibold mt-0.5 inline-flex items-center gap-1">
                   <CloudSun className="w-3.5 h-3.5" />
                   <span>{activeTrip?.weather ? `${activeTrip.weather.summary.avgHigh}°C` : 'Live API'}</span>
@@ -625,11 +734,11 @@ export const HomePage: React.FC<HomePageProps> = ({
       </section>
 
       {/* ==================== FOOTER ==================== */}
-      <footer className="bg-[#101010] text-[#FFFFFF]">
+      <footer className="relative bg-[#0A0A0A] text-[#FBFAF8]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 py-12 flex flex-col sm:flex-row sm:items-end justify-between gap-8">
           <div className="space-y-1">
             <p className="font-serif text-4xl">PackSmart</p>
-            <p className="text-sm text-[#FFFFFF]/60">Pack less stress. Travel with confidence.</p>
+            <p className="text-sm text-[#FBFAF8]/70">Pack less stress. Travel with confidence.</p>
           </div>
           <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
             {(
@@ -645,7 +754,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 key={route}
                 type="button"
                 onClick={() => onNavigate(route)}
-                className="text-[#FFFFFF]/75 hover:text-[#FFC5A8] transition-colors"
+                className="text-[#FBFAF8]/75 hover:text-[#FBFAF8] underline-offset-4 hover:underline transition-colors"
               >
                 {label}
               </button>
@@ -653,13 +762,14 @@ export const HomePage: React.FC<HomePageProps> = ({
             <button
               type="button"
               onClick={onOpenVault}
-              className="text-[#FFFFFF]/75 hover:text-[#FFC5A8] transition-colors"
+              className="text-[#FBFAF8]/75 hover:text-[#FBFAF8] underline-offset-4 hover:underline transition-colors"
             >
               Document Vault
             </button>
           </nav>
         </div>
       </footer>
+      </div>
     </div>
   );
 };

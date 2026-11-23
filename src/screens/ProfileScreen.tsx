@@ -167,24 +167,24 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
   return (
     <div className="space-y-6 pb-10 max-w-4xl mx-auto">
       {/* Account Header */}
-      <div className="bg-[#101010] text-white rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="bg-[#0B3B40] text-white rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-4 min-w-0">
-          <div className="w-14 h-14 rounded-2xl bg-[#101010] text-white font-display text-xl font-extrabold flex items-center justify-center shrink-0">
+          <div className="w-14 h-14 rounded-2xl bg-[#0B3B40] text-white font-display text-xl font-extrabold flex items-center justify-center shrink-0">
             {user.initials}
           </div>
           <div className="min-w-0">
             <h1 className="font-display text-xl font-extrabold truncate">{user.name}</h1>
-            <p className="text-xs text-[#D9C9F2] truncate">{user.email}</p>
+            <p className="text-xs text-[#D5DCD9] truncate">{user.email}</p>
             <p className="text-[11px] text-white/75 mt-1 flex flex-wrap items-center gap-1.5">
-              <HardDrive className="w-3.5 h-3.5 text-[#101010]" />
+              <HardDrive className="w-3.5 h-3.5 text-[#0A0A0A]" />
               <span>Private On-Device Storage</span>
               <span aria-hidden="true">·</span>
               {isOnline ? (
-                <span className="inline-flex items-center gap-1 text-[#101010]">
+                <span className="inline-flex items-center gap-1 text-[#0A0A0A]">
                   <Wifi className="w-3 h-3" /> Online (Live Weather{aiConfigured ? ' & AI' : ''})
                 </span>
               ) : (
-                <span className="inline-flex items-center gap-1 text-[#101010]">
+                <span className="inline-flex items-center gap-1 text-[#0A0A0A]">
                   <WifiOff className="w-3 h-3" /> Offline Mode Active
                 </span>
               )}
@@ -207,16 +207,16 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
         <button
           type="button"
           onClick={onOpenHistory}
-          className="p-4 rounded-3xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] flex items-center gap-3.5 text-left hover:border-[#101010]/50 transition-colors"
+          className="p-4 rounded-3xl bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] flex items-center gap-3.5 text-left hover:border-[#0A0A0A]/50 transition-colors"
         >
-          <div className="w-11 h-11 rounded-2xl bg-[#B8D9F266] dark:bg-[#101010] text-[#101010] dark:text-[#FFFFFF] flex items-center justify-center shrink-0">
+          <div className="w-11 h-11 rounded-2xl bg-[#BCD2CF66] dark:bg-[#0B3B40] text-[#0A0A0A] dark:text-[#FBFAF8] flex items-center justify-center shrink-0">
             <Brain className="w-5 h-5" />
           </div>
           <div>
-            <p className="font-display font-bold text-sm text-[#101010] dark:text-white">
+            <p className="font-display font-bold text-sm text-[#0A0A0A] dark:text-white">
               Post-Trip Memory & Insights
             </p>
-            <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8]">
+            <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]">
               View learned forgotten items, unused gear & archived trips
             </p>
           </div>
@@ -225,16 +225,16 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
         <button
           type="button"
           onClick={onOpenAI}
-          className="p-4 rounded-3xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] flex items-center gap-3.5 text-left hover:border-[#101010]/50 transition-colors"
+          className="p-4 rounded-3xl bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] flex items-center gap-3.5 text-left hover:border-[#0A0A0A]/50 transition-colors"
         >
-          <div className="w-11 h-11 rounded-2xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#D9C9F2] flex items-center justify-center shrink-0">
+          <div className="w-11 h-11 rounded-2xl bg-[#D5DCD966] dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-[#D5DCD9] flex items-center justify-center shrink-0">
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
-            <p className="font-display font-bold text-sm text-[#101010] dark:text-white">
+            <p className="font-display font-bold text-sm text-[#0A0A0A] dark:text-white">
               PackSmart AI Advisor
             </p>
-            <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8]">
+            <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]">
               Ask trip questions & pull non-duplicate recommendations
             </p>
           </div>
@@ -243,8 +243,8 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
 
       {/* Preferences & Reminders */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <section className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 border border-[#1010101f] dark:border-[#FFFFFF24] space-y-4">
-          <h2 className="font-display text-base font-bold text-[#101010] dark:text-white">
+        <section className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-5 border border-[#0A0A0A1f] dark:border-[#FBFAF824] space-y-4">
+          <h2 className="font-display text-base font-bold text-[#0A0A0A] dark:text-white">
             Account & App Preferences
           </h2>
 
@@ -254,25 +254,25 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
               value={editingName}
               onChange={(e) => setEditingName(e.target.value)}
               aria-label="Display Name"
-              className="flex-1 min-h-[44px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+              className="flex-1 min-h-[44px] px-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
             />
             <button
               type="submit"
-              className="min-h-[44px] px-4 rounded-xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white text-xs font-semibold whitespace-nowrap"
+              className="min-h-[44px] px-4 rounded-xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white text-xs font-semibold whitespace-nowrap"
             >
               Save
             </button>
           </form>
           {savedProfileMsg && (
-            <p className="text-xs font-medium text-[#101010] dark:text-[#FFFFFF]">{savedProfileMsg}</p>
+            <p className="text-xs font-medium text-[#0A0A0A] dark:text-[#FBFAF8]">{savedProfileMsg}</p>
           )}
 
-          <div className="grid grid-cols-2 gap-3 pt-2 border-t border-[#1010101f] dark:border-[#FFFFFF24]">
+          <div className="grid grid-cols-2 gap-3 pt-2 border-t border-[#0A0A0A1f] dark:border-[#FBFAF824]">
             <div>
-              <label className="block text-xs font-semibold text-[#101010b2] dark:text-[#FFFFFFa8] mb-1.5">
+              <label className="block text-xs font-semibold text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mb-1.5">
                 Weight Unit
               </label>
-              <div className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-[#FFFFFF] dark:bg-[#101010]">
+              <div className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40]">
                 {(['kg', 'lb'] as const).map((unit) => (
                   <button
                     key={unit}
@@ -280,8 +280,8 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
                     onClick={() => onUpdatePreferences({ ...preferences, weightUnit: unit })}
                     className={`min-h-[36px] rounded-lg text-xs font-bold uppercase ${
                       preferences.weightUnit === unit
-                        ? 'bg-white dark:bg-[#FFFFFF0f] text-[#101010] dark:text-white shadow-xs'
-                        : 'text-[#101010b2]'
+                        ? 'bg-white dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-white shadow-xs'
+                        : 'text-[#0A0A0Ab2]'
                     }`}
                   >
                     {unit}
@@ -291,10 +291,10 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#101010b2] dark:text-[#FFFFFFa8] mb-1.5">
+              <label className="block text-xs font-semibold text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mb-1.5">
                 Currency
               </label>
-              <div className="grid grid-cols-4 gap-1 p-1 rounded-xl bg-[#FFFFFF] dark:bg-[#101010]">
+              <div className="grid grid-cols-4 gap-1 p-1 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40]">
                 {(['₹', '$', '€', '£'] as const).map((cur) => (
                   <button
                     key={cur}
@@ -302,8 +302,8 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
                     onClick={() => onUpdatePreferences({ ...preferences, currency: cur })}
                     className={`min-h-[36px] rounded-lg text-xs font-bold ${
                       preferences.currency === cur
-                        ? 'bg-white dark:bg-[#FFFFFF0f] text-[#101010] dark:text-white shadow-xs'
-                        : 'text-[#101010b2]'
+                        ? 'bg-white dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-white shadow-xs'
+                        : 'text-[#0A0A0Ab2]'
                     }`}
                   >
                     {cur}
@@ -313,56 +313,56 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
             </div>
           </div>
 
-          <div className="space-y-2.5 pt-2 border-t border-[#1010101f] dark:border-[#FFFFFF24]">
-            <label className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-[#FFFFFF] dark:bg-[#101010] cursor-pointer min-h-[48px]">
-              <span className="flex items-center gap-2.5 text-xs font-semibold text-[#101010] dark:text-white">
-                {preferences.darkMode ? <Moon className="w-4 h-4 text-[#D9C9F2]" /> : <Sun className="w-4 h-4 text-[#101010]" />}
+          <div className="space-y-2.5 pt-2 border-t border-[#0A0A0A1f] dark:border-[#FBFAF824]">
+            <label className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-[#FBFAF8] dark:bg-[#0B3B40] cursor-pointer min-h-[48px]">
+              <span className="flex items-center gap-2.5 text-xs font-semibold text-[#0A0A0A] dark:text-white">
+                {preferences.darkMode ? <Moon className="w-4 h-4 text-[#D5DCD9]" /> : <Sun className="w-4 h-4 text-[#0A0A0A]" />}
                 <span>Dark Appearance</span>
               </span>
               <input
                 type="checkbox"
                 checked={preferences.darkMode}
                 onChange={(e) => onUpdatePreferences({ ...preferences, darkMode: e.target.checked })}
-                className="w-5 h-5 accent-[#10101073]"
+                className="w-5 h-5 accent-[#0A0A0A73]"
               />
             </label>
 
-            <label className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-[#FFFFFF] dark:bg-[#101010] cursor-pointer min-h-[48px]">
-              <span className="flex items-center gap-2.5 text-xs font-semibold text-[#101010] dark:text-white">
-                <Bell className="w-4 h-4 text-[#101010] dark:text-[#FFFFFF]" />
+            <label className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-[#FBFAF8] dark:bg-[#0B3B40] cursor-pointer min-h-[48px]">
+              <span className="flex items-center gap-2.5 text-xs font-semibold text-[#0A0A0A] dark:text-white">
+                <Bell className="w-4 h-4 text-[#0A0A0A] dark:text-[#FBFAF8]" />
                 <span>Departure & Document Reminders</span>
               </span>
               <input
                 type="checkbox"
                 checked={preferences.notificationsEnabled}
                 onChange={(e) => handleToggleNotifications(e.target.checked)}
-                className="w-5 h-5 accent-[#10101073]"
+                className="w-5 h-5 accent-[#0A0A0A73]"
               />
             </label>
             {notifStatusMsg && (
-              <p className="text-[11px] text-[#101010] dark:text-[#D9C9F2] px-1">{notifStatusMsg}</p>
+              <p className="text-[11px] text-[#0A0A0A] dark:text-[#D5DCD9] px-1">{notifStatusMsg}</p>
             )}
 
-            <label className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-[#FFFFFF] dark:bg-[#101010] cursor-pointer min-h-[48px]">
-              <span className="flex items-center gap-2.5 text-xs font-semibold text-[#101010] dark:text-white">
-                <Vibrate className="w-4 h-4 text-[#101010] dark:text-[#D9C9F2]" />
+            <label className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-[#FBFAF8] dark:bg-[#0B3B40] cursor-pointer min-h-[48px]">
+              <span className="flex items-center gap-2.5 text-xs font-semibold text-[#0A0A0A] dark:text-white">
+                <Vibrate className="w-4 h-4 text-[#0A0A0A] dark:text-[#D5DCD9]" />
                 <span>Tactile Haptic Feedback</span>
               </span>
               <input
                 type="checkbox"
                 checked={preferences.hapticsEnabled}
                 onChange={(e) => onUpdatePreferences({ ...preferences, hapticsEnabled: e.target.checked })}
-                className="w-5 h-5 accent-[#10101073]"
+                className="w-5 h-5 accent-[#0A0A0A73]"
               />
             </label>
           </div>
         </section>
 
         {/* Reminders Manager */}
-        <section className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 border border-[#1010101f] dark:border-[#FFFFFF24] space-y-4">
+        <section className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-5 border border-[#0A0A0A1f] dark:border-[#FBFAF824] space-y-4">
           <div className="flex items-center gap-2">
-            <Bell className="w-4 h-4 text-[#101010]" />
-            <h2 className="font-display text-base font-bold text-[#101010] dark:text-white">
+            <Bell className="w-4 h-4 text-[#0A0A0A]" />
+            <h2 className="font-display text-base font-bold text-[#0A0A0A] dark:text-white">
               Custom Travel Reminders
             </h2>
           </div>
@@ -373,19 +373,19 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
               value={remTitle}
               onChange={(e) => setRemTitle(e.target.value)}
               placeholder="e.g., Download boarding passes & offline city map"
-              className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs text-[#101010] dark:text-white"
+              className="w-full min-h-[42px] px-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs text-[#0A0A0A] dark:text-white"
             />
             <div className="grid grid-cols-3 gap-2">
               <input
                 type="date"
                 value={remDate}
                 onChange={(e) => setRemDate(e.target.value)}
-                className="min-h-[40px] px-2.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs font-mono text-[#101010] dark:text-white"
+                className="min-h-[40px] px-2.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs font-mono text-[#0A0A0A] dark:text-white"
               />
               <select
                 value={remCategory}
                 onChange={(e) => setRemCategory(e.target.value as ReminderItem['category'])}
-                className="min-h-[40px] px-2.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs text-[#101010] dark:text-white"
+                className="min-h-[40px] px-2.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs text-[#0A0A0A] dark:text-white"
               >
                 <option value="Departure">Departure</option>
                 <option value="Document">Document</option>
@@ -394,7 +394,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
               </select>
               <button
                 type="submit"
-                className="min-h-[40px] rounded-xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white text-xs font-semibold flex items-center justify-center gap-1"
+                className="min-h-[40px] rounded-xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white text-xs font-semibold flex items-center justify-center gap-1"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add</span>
@@ -402,7 +402,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
             </div>
           </form>
 
-          <div className="divide-y divide-[#1010101f] dark:divide-[#FFFFFF24] max-h-60 overflow-y-auto">
+          <div className="divide-y divide-[#0A0A0A1f] dark:divide-[#FBFAF824] max-h-60 overflow-y-auto">
             {reminders.map((rem) => (
               <div key={rem.id} className="py-2.5 flex items-center justify-between gap-2">
                 <button
@@ -417,8 +417,8 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
                   <span
                     className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${
                       rem.completed
-                        ? 'bg-[#101010] border-[#10101073] text-white'
-                        : 'border-[#10101040] dark:border-[#FFFFFF24]'
+                        ? 'bg-[#0B3B40] border-[#0A0A0A73] text-white'
+                        : 'border-[#0A0A0A40] dark:border-[#FBFAF824]'
                     }`}
                   >
                     {rem.completed && <Check className="w-3 h-3 stroke-[3]" />}
@@ -426,12 +426,12 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
                   <div className="min-w-0">
                     <p
                       className={`text-xs font-semibold truncate ${
-                        rem.completed ? 'line-through text-[#10101085]' : 'text-[#101010] dark:text-white'
+                        rem.completed ? 'line-through text-[#0A0A0A85]' : 'text-[#0A0A0A] dark:text-white'
                       }`}
                     >
                       {rem.title}
                     </p>
-                    <p className="text-[11px] text-[#101010b2] dark:text-[#FFFFFFa8]">
+                    <p className="text-[11px] text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]">
                       {rem.category} · {rem.dueDate}
                     </p>
                   </div>
@@ -440,7 +440,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
                   type="button"
                   onClick={() => onUpdateReminders(reminders.filter((r) => r.id !== rem.id))}
                   aria-label="Delete reminder"
-                  className="min-h-[36px] min-w-[36px] flex items-center justify-center text-[#10101085] hover:text-[#101010]"
+                  className="min-h-[36px] min-w-[36px] flex items-center justify-center text-[#0A0A0A85] hover:text-[#0A0A0A]"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -451,21 +451,21 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
       </div>
 
       {/* Data Backup, Sample Data Controls & Walkthrough */}
-      <section className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 border border-[#1010101f] dark:border-[#FFFFFF24] space-y-3.5">
-        <h2 className="font-display text-base font-bold text-[#101010] dark:text-white">
+      <section className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-5 border border-[#0A0A0A1f] dark:border-[#FBFAF824] space-y-3.5">
+        <h2 className="font-display text-base font-bold text-[#0A0A0A] dark:text-white">
           Offline Data Backup & App Controls
         </h2>
         <div className="flex flex-wrap gap-2.5">
           <button
             type="button"
             onClick={handleExportJSON}
-            className="min-h-[44px] px-4 rounded-xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#D9C9F2] text-xs font-semibold flex items-center gap-2"
+            className="min-h-[44px] px-4 rounded-xl bg-[#D5DCD966] dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-[#D5DCD9] text-xs font-semibold flex items-center gap-2"
           >
             <Download className="w-4 h-4" />
             <span>Export JSON Backup</span>
           </button>
 
-          <label className="min-h-[44px] px-4 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-[#101010] dark:text-white text-xs font-semibold flex items-center gap-2 cursor-pointer">
+          <label className="min-h-[44px] px-4 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-[#0A0A0A] dark:text-white text-xs font-semibold flex items-center gap-2 cursor-pointer">
             <Upload className="w-4 h-4" />
             <span>Import Backup</span>
             <input type="file" accept="application/json" onChange={handleImportJSON} className="sr-only" />
@@ -475,7 +475,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
             <button
               type="button"
               onClick={() => setClearSampleConfirm(true)}
-              className="min-h-[44px] px-4 rounded-xl bg-[#FFC5A866] dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#FFC5A8] text-xs font-semibold flex items-center gap-2"
+              className="min-h-[44px] px-4 rounded-xl bg-[#E6DFD266] dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-[#E6DFD2] text-xs font-semibold flex items-center gap-2"
             >
               <Trash2 className="w-4 h-4" />
               <span>Clear Sample Data</span>
@@ -485,14 +485,14 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
           <button
             type="button"
             onClick={onReplayOnboarding}
-            className="min-h-[44px] px-4 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-[#101010cc] dark:text-[#FFFFFFa8] text-xs font-semibold flex items-center gap-2"
+            className="min-h-[44px] px-4 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-[#0A0A0Acc] dark:text-[#FBFAF8a8] text-xs font-semibold flex items-center gap-2"
           >
             <RotateCcw className="w-4 h-4" />
             <span>Replay Walkthrough</span>
           </button>
         </div>
         {backupMessage && (
-          <p className="text-xs font-medium text-[#101010] dark:text-[#FFFFFF]">{backupMessage}</p>
+          <p className="text-xs font-medium text-[#0A0A0A] dark:text-[#FBFAF8]">{backupMessage}</p>
         )}
       </section>
 

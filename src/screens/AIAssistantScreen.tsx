@@ -185,22 +185,22 @@ export const AIAssistantScreen: React.FC<AIAssistantScreenProps> = ({
   return (
     <div className="flex flex-col h-[calc(100vh-120px)] max-w-3xl mx-auto">
       {/* Header */}
-      <div className="flex items-center justify-between gap-3 pb-3 border-b border-[#1010101f] dark:border-[#FFFFFF24]">
+      <div className="flex items-center justify-between gap-3 pb-3 border-b border-[#0A0A0A1f] dark:border-[#FBFAF824]">
         <div className="flex items-center gap-2 min-w-0">
           <button
             type="button"
             onClick={onBack}
             aria-label="Back"
-            className="min-h-[44px] min-w-[44px] -ml-2 flex items-center justify-center rounded-2xl text-[#101010] dark:text-white hover:bg-[#FFFFFF] dark:hover:bg-[#FFFFFF0f]"
+            className="min-h-[44px] min-w-[44px] -ml-2 flex items-center justify-center rounded-2xl text-[#0A0A0A] dark:text-white hover:bg-[#FBFAF8] dark:hover:bg-[#FBFAF80f]"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
           <div className="min-w-0">
-            <h1 className="font-display text-lg sm:text-xl font-extrabold text-[#101010] dark:text-white flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#101010]" />
+            <h1 className="font-display text-lg sm:text-xl font-extrabold text-[#0A0A0A] dark:text-white flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#0A0A0A]" />
               <span>PackSmart AI</span>
             </h1>
-            <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] truncate">
+            <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] truncate">
               {isOnline && aiConfigured
                 ? 'Live AI Assistant · Connected via server'
                 : 'Offline Smart Rules Advisor · No cloud key active'}
@@ -213,7 +213,7 @@ export const AIAssistantScreen: React.FC<AIAssistantScreenProps> = ({
             type="button"
             onClick={() => onSaveMessages([])}
             aria-label="Clear chat"
-            className="min-h-[40px] px-3 rounded-xl text-xs font-semibold text-[#10101099] hover:text-[#101010] flex items-center gap-1"
+            className="min-h-[40px] px-3 rounded-xl text-xs font-semibold text-[#0A0A0A99] hover:text-[#0A0A0A] flex items-center gap-1"
           >
             <Trash2 className="w-3.5 h-3.5" />
             <span>Clear</span>
@@ -223,14 +223,14 @@ export const AIAssistantScreen: React.FC<AIAssistantScreenProps> = ({
 
       {/* Active List Context Selector */}
       <div className="py-3 flex flex-wrap items-center justify-between gap-2">
-        <label htmlFor="ai-list-ctx" className="text-xs font-semibold text-[#101010b2] dark:text-[#FFFFFFa8]">
+        <label htmlFor="ai-list-ctx" className="text-xs font-semibold text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]">
           Tailor suggestions & add items to:
         </label>
         <select
           id="ai-list-ctx"
           value={selectedListId}
           onChange={(e) => setSelectedListId(e.target.value)}
-          className="min-h-[40px] px-3 rounded-xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs font-semibold text-[#101010] dark:text-white max-w-[260px]"
+          className="min-h-[40px] px-3 rounded-xl bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs font-semibold text-[#0A0A0A] dark:text-white max-w-[260px]"
         >
           {lists.length === 0 && <option value="">No packing lists yet</option>}
           {lists.map((l) => (
@@ -242,8 +242,8 @@ export const AIAssistantScreen: React.FC<AIAssistantScreenProps> = ({
       </div>
 
       {(!isOnline || !aiConfigured || statusNotice) && (
-        <div className="mb-3 p-3 rounded-2xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] border border-[#D9C9F2] dark:border-[#FFFFFF24] text-xs text-[#101010cc] dark:text-[#FFFFFF] flex items-start gap-2">
-          <WifiOff className="w-4 h-4 text-[#101010] dark:text-[#D9C9F2] shrink-0 mt-0.5" />
+        <div className="mb-3 p-3 rounded-2xl bg-[#D5DCD966] dark:bg-[#FBFAF80f] border border-[#D5DCD9] dark:border-[#FBFAF824] text-xs text-[#0A0A0Acc] dark:text-[#FBFAF8] flex items-start gap-2">
+          <WifiOff className="w-4 h-4 text-[#0A0A0A] dark:text-[#D5DCD9] shrink-0 mt-0.5" />
           <span>
             {statusNotice ||
               (!isOnline
@@ -257,17 +257,17 @@ export const AIAssistantScreen: React.FC<AIAssistantScreenProps> = ({
       <div className="flex-1 overflow-y-auto space-y-4 pr-1 pb-4">
         {messages.length === 0 ? (
           <div className="py-4 space-y-5">
-            <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 border border-[#1010101f] dark:border-[#FFFFFF24]">
-              <h2 className="font-display text-base font-bold text-[#101010] dark:text-white">
+            <div className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-5 border border-[#0A0A0A1f] dark:border-[#FBFAF824]">
+              <h2 className="font-display text-base font-bold text-[#0A0A0A] dark:text-white">
                 Ask anything about what to pack
               </h2>
-              <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] mt-1 leading-relaxed">
+              <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-1 leading-relaxed">
                 PackSmart checks your attached list to prevent duplicate suggestions, explains why each item matters, and lets you add recommendations in one tap.
               </p>
             </div>
 
             <div className="space-y-2">
-              <p className="text-xs font-semibold text-[#101010b2] dark:text-[#FFFFFFa8]">
+              <p className="text-xs font-semibold text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]">
                 Try asking:
               </p>
               <div className="flex flex-col gap-2">
@@ -276,7 +276,7 @@ export const AIAssistantScreen: React.FC<AIAssistantScreenProps> = ({
                     key={prompt}
                     type="button"
                     onClick={() => sendQuestion(prompt)}
-                    className="min-h-[46px] px-4 py-3 rounded-2xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] hover:border-[#10101073] text-left text-sm font-medium text-[#101010] dark:text-[#FFFFFF] transition-colors"
+                    className="min-h-[46px] px-4 py-3 rounded-2xl bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] hover:border-[#0A0A0A73] text-left text-sm font-medium text-[#0A0A0A] dark:text-[#FBFAF8] transition-colors"
                   >
                     {prompt}
                   </button>
@@ -293,12 +293,12 @@ export const AIAssistantScreen: React.FC<AIAssistantScreenProps> = ({
               <div
                 className={`max-w-[92%] sm:max-w-[85%] rounded-3xl px-4 py-3.5 text-sm leading-relaxed ${
                   msg.role === 'user'
-                    ? 'bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white rounded-br-lg'
-                    : 'bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] text-[#101010] dark:text-[#FFFFFF] rounded-bl-lg'
+                    ? 'bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white rounded-br-lg'
+                    : 'bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-[#0A0A0A] dark:text-[#FBFAF8] rounded-bl-lg'
                 }`}
               >
                 {msg.role === 'assistant' && (
-                  <p className="text-[11px] font-semibold text-[#101010] dark:text-[#D9C9F2] mb-1">
+                  <p className="text-[11px] font-semibold text-[#0A0A0A] dark:text-[#D5DCD9] mb-1">
                     {msg.source === 'gemini' ? 'PackSmart AI · Gemini' : 'PackSmart · Offline Smart Rules Advisor'}
                   </p>
                 )}
@@ -306,8 +306,8 @@ export const AIAssistantScreen: React.FC<AIAssistantScreenProps> = ({
 
                 {/* Suggested Items with 1-tap Add */}
                 {msg.suggestedItems && msg.suggestedItems.length > 0 && (
-                  <div className="mt-3.5 pt-3 border-t border-[#1010101f] dark:border-[#FFFFFF24] space-y-2.5">
-                    <p className="text-xs font-bold text-[#101010] dark:text-white">
+                  <div className="mt-3.5 pt-3 border-t border-[#0A0A0A1f] dark:border-[#FBFAF824] space-y-2.5">
+                    <p className="text-xs font-bold text-[#0A0A0A] dark:text-white">
                       Recommended Items
                     </p>
                     {msg.suggestedItems.map((sug) => {
@@ -319,14 +319,14 @@ export const AIAssistantScreen: React.FC<AIAssistantScreenProps> = ({
                       return (
                         <div
                           key={sug.name}
-                          className="p-3 rounded-2xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] flex items-start justify-between gap-3"
+                          className="p-3 rounded-2xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] flex items-start justify-between gap-3"
                         >
                           <div className="min-w-0">
-                            <p className="text-xs font-bold text-[#101010] dark:text-white">
+                            <p className="text-xs font-bold text-[#0A0A0A] dark:text-white">
                               {sug.name}{' '}
-                              <span className="font-mono font-normal text-[#101010b2]">×{sug.quantity}</span>
+                              <span className="font-mono font-normal text-[#0A0A0Ab2]">×{sug.quantity}</span>
                             </p>
-                            <p className="text-[11px] text-[#101010b2] dark:text-[#FFFFFFa8] mt-0.5">
+                            <p className="text-[11px] text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-0.5">
                               {sug.category} · {sug.reason}
                             </p>
                           </div>
@@ -337,8 +337,8 @@ export const AIAssistantScreen: React.FC<AIAssistantScreenProps> = ({
                               onClick={() => handleAddSuggestion(sug)}
                               className={`min-h-[36px] px-3 rounded-xl text-xs font-semibold flex items-center gap-1 whitespace-nowrap shrink-0 transition-colors ${
                                 alreadyInList
-                                  ? 'bg-[#B8D9F266] dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#FFFFFF]'
-                                  : 'bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white'
+                                  ? 'bg-[#BCD2CF66] dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-[#FBFAF8]'
+                                  : 'bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white'
                               }`}
                             >
                               {alreadyInList ? (
@@ -362,12 +362,12 @@ export const AIAssistantScreen: React.FC<AIAssistantScreenProps> = ({
 
                 {/* Commonly Forgotten Alerts */}
                 {msg.forgottenAlerts && msg.forgottenAlerts.length > 0 && (
-                  <div className="mt-3 pt-3 border-t border-[#1010101f] dark:border-[#FFFFFF24] space-y-1.5">
-                    <p className="text-xs font-bold text-[#101010] dark:text-[#FFC5A8] flex items-center gap-1.5">
+                  <div className="mt-3 pt-3 border-t border-[#0A0A0A1f] dark:border-[#FBFAF824] space-y-1.5">
+                    <p className="text-xs font-bold text-[#0A0A0A] dark:text-[#E6DFD2] flex items-center gap-1.5">
                       <AlertCircle className="w-3.5 h-3.5" />
                       <span>Easy to forget</span>
                     </p>
-                    <ul className="space-y-1 text-xs text-[#101010cc] dark:text-[#FFFFFFa8]">
+                    <ul className="space-y-1 text-xs text-[#0A0A0Acc] dark:text-[#FBFAF8a8]">
                       {msg.forgottenAlerts.map((alert) => (
                         <li key={alert}>• {alert}</li>
                       ))}
@@ -380,7 +380,7 @@ export const AIAssistantScreen: React.FC<AIAssistantScreenProps> = ({
         )}
 
         {loading && (
-          <div className="flex items-center gap-2 text-xs text-[#101010] dark:text-[#D9C9F2] px-2">
+          <div className="flex items-center gap-2 text-xs text-[#0A0A0A] dark:text-[#D5DCD9] px-2">
             <Loader2 className="w-4 h-4 animate-spin" />
             <span>Analyzing trip context & avoiding duplicates...</span>
           </div>
@@ -394,7 +394,7 @@ export const AIAssistantScreen: React.FC<AIAssistantScreenProps> = ({
           e.preventDefault();
           sendQuestion(input);
         }}
-        className="pt-2.5 border-t border-[#1010101f] dark:border-[#FFFFFF24] flex items-center gap-2"
+        className="pt-2.5 border-t border-[#0A0A0A1f] dark:border-[#FBFAF824] flex items-center gap-2"
       >
         <input
           type="text"
@@ -402,13 +402,13 @@ export const AIAssistantScreen: React.FC<AIAssistantScreenProps> = ({
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask PackSmart AI about weather, hostel, or essentials..."
           aria-label="Ask PackSmart AI"
-          className="flex-1 min-h-[48px] px-4 rounded-2xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#10101073]"
+          className="flex-1 min-h-[48px] px-4 rounded-2xl bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0A0A0A73]"
         />
         <button
           type="submit"
           disabled={loading || !input.trim()}
           aria-label="Send question"
-          className="min-h-[48px] min-w-[48px] rounded-2xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white flex items-center justify-center disabled:opacity-40 transition-opacity shrink-0"
+          className="min-h-[48px] min-w-[48px] rounded-2xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white flex items-center justify-center disabled:opacity-40 transition-opacity shrink-0"
         >
           <Send className="w-4 h-4" />
         </button>

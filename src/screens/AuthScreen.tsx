@@ -92,30 +92,30 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ existingAccounts, onAuth
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center bg-[#FFFFFF] dark:bg-[#101010] px-5 py-8">
+    <div className="min-h-screen flex flex-col justify-center bg-[#FBFAF8] dark:bg-[#0B3B40] px-5 py-8">
       <div className="w-full max-w-md mx-auto">
         <div className="flex flex-col items-center text-center mb-7">
           <BrandLogo size={56} className="mb-4 shadow-md rounded-2xl" />
-          <h1 className="font-display text-2xl font-extrabold text-[#101010] dark:text-white tracking-tight">
+          <h1 className="font-display text-2xl font-extrabold text-[#0A0A0A] dark:text-white tracking-tight">
             {mode === 'signup' ? 'Create your PackSmart profile' : 'Welcome back to PackSmart'}
           </h1>
-          <p className="text-sm text-[#101010b2] dark:text-[#FFFFFFa8] mt-1">
+          <p className="text-sm text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-1">
             Pack less stress. Travel with confidence.
           </p>
         </div>
 
         {/* Transparent Local Device Storage notice */}
-        <div className="mb-5 p-3.5 rounded-2xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] border border-[#D9C9F2] dark:border-[#FFFFFF24] flex items-start gap-3">
-          <HardDrive className="w-4 h-4 text-[#101010] dark:text-[#D9C9F2] shrink-0 mt-0.5" />
-          <div className="text-xs leading-relaxed text-[#101010cc] dark:text-[#FFFFFF]">
-            <span className="font-semibold text-[#101010] dark:text-white">Local Offline-First Mode:</span>{' '}
+        <div className="mb-5 p-3.5 rounded-2xl bg-[#D5DCD966] dark:bg-[#FBFAF80f] border border-[#D5DCD9] dark:border-[#FBFAF824] flex items-start gap-3">
+          <HardDrive className="w-4 h-4 text-[#0A0A0A] dark:text-[#D5DCD9] shrink-0 mt-0.5" />
+          <div className="text-xs leading-relaxed text-[#0A0A0Acc] dark:text-[#FBFAF8]">
+            <span className="font-semibold text-[#0A0A0A] dark:text-white">Local Offline-First Mode:</span>{' '}
             Your lists, settings, and PIN-locked documents save persistently on this device. Live weather and PackSmart AI connect through the app server when online.
           </div>
         </div>
 
-        <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-6 border border-[#1010101f] dark:border-[#FFFFFF24] shadow-sm">
+        <div className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-6 border border-[#0A0A0A1f] dark:border-[#FBFAF824] shadow-sm">
           {/* Segmented Mode Switch */}
-          <div className="grid grid-cols-2 gap-1 p-1 bg-[#FFFFFF] dark:bg-[#101010] rounded-xl mb-5">
+          <div className="grid grid-cols-2 gap-1 p-1 bg-[#FBFAF8] dark:bg-[#0B3B40] rounded-xl mb-5">
             <button
               type="button"
               onClick={() => {
@@ -124,8 +124,8 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ existingAccounts, onAuth
               }}
               className={`min-h-[44px] text-sm font-semibold rounded-lg transition-all ${
                 mode === 'signup'
-                  ? 'bg-white dark:bg-[#FFFFFF0f] text-[#101010] dark:text-white shadow-xs'
-                  : 'text-[#101010b2] dark:text-[#FFFFFFa8]'
+                  ? 'bg-white dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-white shadow-xs'
+                  : 'text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]'
               }`}
             >
               Sign Up
@@ -138,8 +138,8 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ existingAccounts, onAuth
               }}
               className={`min-h-[44px] text-sm font-semibold rounded-lg transition-all ${
                 mode === 'login'
-                  ? 'bg-white dark:bg-[#FFFFFF0f] text-[#101010] dark:text-white shadow-xs'
-                  : 'text-[#101010b2] dark:text-[#FFFFFFa8]'
+                  ? 'bg-white dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-white shadow-xs'
+                  : 'text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]'
               }`}
             >
               Log In
@@ -149,29 +149,29 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ existingAccounts, onAuth
           <form onSubmit={handleSubmit} className="space-y-4">
             {mode === 'signup' && (
               <div>
-                <label htmlFor="auth-name" className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
+                <label htmlFor="auth-name" className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1.5">
                   Full Name
                 </label>
                 <div className="relative">
-                  <User className="w-4 h-4 text-[#10101099] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <User className="w-4 h-4 text-[#0A0A0A99] absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     id="auth-name"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="e.g., Pavithra Nair"
-                    className="w-full min-h-[46px] pl-10 pr-4 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white placeholder:text-[#10101085] focus:outline-none focus:ring-2 focus:ring-[#10101073]"
+                    className="w-full min-h-[46px] pl-10 pr-4 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white placeholder:text-[#0A0A0A85] focus:outline-none focus:ring-2 focus:ring-[#0A0A0A73]"
                   />
                 </div>
               </div>
             )}
 
             <div>
-              <label htmlFor="auth-email" className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
+              <label htmlFor="auth-email" className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1.5">
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-[#10101099] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <Mail className="w-4 h-4 text-[#0A0A0A99] absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   id="auth-email"
                   type="email"
@@ -179,17 +179,17 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ existingAccounts, onAuth
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   autoComplete="email"
-                  className="w-full min-h-[46px] pl-10 pr-4 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white placeholder:text-[#10101085] focus:outline-none focus:ring-2 focus:ring-[#10101073]"
+                  className="w-full min-h-[46px] pl-10 pr-4 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white placeholder:text-[#0A0A0A85] focus:outline-none focus:ring-2 focus:ring-[#0A0A0A73]"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="auth-password" className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
+              <label htmlFor="auth-password" className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1.5">
                 Password
               </label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-[#10101099] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <Lock className="w-4 h-4 text-[#0A0A0A99] absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   id="auth-password"
                   type="password"
@@ -197,13 +197,13 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ existingAccounts, onAuth
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="At least 6 characters"
                   autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
-                  className="w-full min-h-[46px] pl-10 pr-4 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white placeholder:text-[#10101085] focus:outline-none focus:ring-2 focus:ring-[#10101073]"
+                  className="w-full min-h-[46px] pl-10 pr-4 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white placeholder:text-[#0A0A0A85] focus:outline-none focus:ring-2 focus:ring-[#0A0A0A73]"
                 />
               </div>
             </div>
 
             {error && (
-              <p role="alert" className="text-xs font-medium text-[#101010] dark:text-[#FFC5A8] bg-[#FFC5A866] dark:bg-[#FFFFFF0f] px-3.5 py-2.5 rounded-xl">
+              <p role="alert" className="text-xs font-medium text-[#0A0A0A] dark:text-[#E6DFD2] bg-[#E6DFD266] dark:bg-[#FBFAF80f] px-3.5 py-2.5 rounded-xl">
                 {error}
               </p>
             )}
@@ -211,7 +211,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ existingAccounts, onAuth
             <button
               type="submit"
               disabled={submitting}
-              className="w-full min-h-[48px] rounded-2xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-md active:scale-[0.98] transition-transform disabled:opacity-60"
+              className="w-full min-h-[48px] rounded-2xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-md active:scale-[0.98] transition-transform disabled:opacity-60"
             >
               <span>{mode === 'signup' ? 'Create Account & Start Packing' : 'Sign In'}</span>
               <ArrowRight className="w-4 h-4" />
@@ -219,15 +219,15 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ existingAccounts, onAuth
           </form>
 
           <div className="relative my-5 flex items-center justify-center">
-            <div className="border-t border-[#1010101f] dark:border-[#FFFFFF24] w-full" />
-            <span className="px-3 text-xs text-[#10101099] bg-white dark:bg-[#FFFFFF0f] whitespace-nowrap">or</span>
-            <div className="border-t border-[#1010101f] dark:border-[#FFFFFF24] w-full" />
+            <div className="border-t border-[#0A0A0A1f] dark:border-[#FBFAF824] w-full" />
+            <span className="px-3 text-xs text-[#0A0A0A99] bg-white dark:bg-[#FBFAF80f] whitespace-nowrap">or</span>
+            <div className="border-t border-[#0A0A0A1f] dark:border-[#FBFAF824] w-full" />
           </div>
 
           <button
             type="button"
             onClick={handleQuickDemo}
-            className="w-full min-h-[46px] rounded-2xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#D9C9F2] font-semibold text-sm hover:bg-[#D9C9F266] dark:hover:bg-[#FFFFFF0f] transition-colors"
+            className="w-full min-h-[46px] rounded-2xl bg-[#D5DCD966] dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-[#D5DCD9] font-semibold text-sm hover:bg-[#D5DCD966] dark:hover:bg-[#FBFAF80f] transition-colors"
           >
             Continue Instantly in Local Demo Mode
           </button>

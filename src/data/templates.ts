@@ -260,9 +260,9 @@ export function createStarterLists(userName: string): PackingList[] {
         },
       ],
       groupMembers: [
-        { id: 'm-owner', name: userName, role: 'Owner', initials: ownerInitials, color: '#6E5DE7' },
-        { id: 'm-arjun', name: 'Arjun Nair', role: 'Editor', initials: 'AN', color: '#0F968C' },
-        { id: 'm-meera', name: 'Meera Menon', role: 'Editor', initials: 'MM', color: '#F59E0B' },
+        { id: 'm-owner', name: userName, role: 'Owner', initials: ownerInitials, color: '#0B3B40' },
+        { id: 'm-arjun', name: 'Arjun Nair', role: 'Editor', initials: 'AN', color: '#3A6E72' },
+        { id: 'm-meera', name: 'Meera Menon', role: 'Editor', initials: 'MM', color: '#0A0A0A' },
       ],
       groupActivity: [
         { id: 'act-1', memberName: 'Arjun Nair', action: 'packed Polarized sunglasses', timestamp: new Date(Date.now() - 3600000 * 3).toISOString() },
@@ -349,7 +349,7 @@ export function createStarterLists(userName: string): PackingList[] {
         },
       ],
       groupMembers: [
-        { id: 'm-owner', name: userName, role: 'Owner', initials: ownerInitials, color: '#6E5DE7' },
+        { id: 'm-owner', name: userName, role: 'Owner', initials: ownerInitials, color: '#0B3B40' },
       ],
       groupActivity: [],
       groupSuggestions: [],
@@ -403,7 +403,7 @@ export function createStarterLists(userName: string): PackingList[] {
       timelineTasks: generateSmartTimeline(offsetDate(-22), 'Madikeri, India', 'Adventure', 'Car').map((t) => ({ ...t, completed: true })),
       dayOutfits: [],
       groupMembers: [
-        { id: 'm-owner', name: userName, role: 'Owner', initials: ownerInitials, color: '#6E5DE7' },
+        { id: 'm-owner', name: userName, role: 'Owner', initials: ownerInitials, color: '#0B3B40' },
       ],
       groupActivity: [],
       groupSuggestions: [],

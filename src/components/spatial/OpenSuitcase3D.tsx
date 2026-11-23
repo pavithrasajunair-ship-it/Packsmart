@@ -644,14 +644,14 @@ export const OpenSuitcase3D: React.FC<OpenSuitcase3DProps> = ({
   if (webglFailed) {
     const packedCount = items.filter((i) => i.packed).length;
     return (
-      <div className={`w-full h-full flex flex-col items-center justify-center bg-[#B8D9F2]/40 p-6 ${className}`}>
-        <div className="w-full max-w-md border-2 border-[#101010] bg-[#FFFFFF] p-5 grid grid-cols-2 gap-4">
-          <div className="bg-[#D9C9F2] p-4 min-h-[160px] flex flex-col justify-between">
-            <span className="font-mono text-[11px] text-[#101010]/70">LEFT SHELL · APPAREL</span>
+      <div className={`w-full h-full flex flex-col items-center justify-center bg-[#BCD2CF]/40 p-6 ${className}`}>
+        <div className="w-full max-w-md border-2 border-[#0A0A0A] bg-[#FBFAF8] p-5 grid grid-cols-2 gap-4">
+          <div className="bg-[#D5DCD9] p-4 min-h-[160px] flex flex-col justify-between">
+            <span className="font-mono text-[11px] text-[#0A0A0A]/70">LEFT SHELL · APPAREL</span>
             <p className="font-editorial text-2xl">{packedCount} packed</p>
           </div>
-          <div className="bg-[#B8D9F2] p-4 min-h-[160px] flex flex-col justify-between">
-            <span className="font-mono text-[11px] text-[#101010]/70">RIGHT SHELL · GEAR</span>
+          <div className="bg-[#BCD2CF] p-4 min-h-[160px] flex flex-col justify-between">
+            <span className="font-mono text-[11px] text-[#0A0A0A]/70">RIGHT SHELL · GEAR</span>
             <p className="font-editorial text-2xl">{items.length - packedCount} remaining</p>
           </div>
         </div>

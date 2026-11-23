@@ -81,7 +81,7 @@ interface DestinationMeta {
   label: string;
   headline: string;
   description: string;
-  ambientBg: '#B8D9F2' | '#D9C9F2' | '#FFC5A8' | '#101010';
+  ambientBg: '#BCD2CF' | '#D5DCD9' | '#E6DFD2' | '#0A0A0A';
   darkAmbient: boolean;
   image: string;
   actionLabel: string;
@@ -147,7 +147,7 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
         description: activeTrip && activeMetrics
           ? `${packedCount}/${totalCount} packed · ${activeMetrics.totalVolumeLiters}L of ${activeMetrics.capacityLiters}L used`
           : 'Watch garments animate into your 40L cabin case as you pack.',
-        ambientBg: '#B8D9F2',
+        ambientBg: '#BCD2CF',
         darkAmbient: false,
         image: packingAtelierImg,
         actionLabel: 'Open 3D Suitcase',
@@ -159,7 +159,7 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
         label: 'AI OUTFIT STUDIO',
         headline: 'Owned-Wardrobe Vision Stylist',
         description: `${wardrobe.length} owned pieces ready · Zero-repeat looks with live click-to-swap`,
-        ambientBg: '#D9C9F2',
+        ambientBg: '#D5DCD9',
         darkAmbient: false,
         image: fashionStudioImg,
         actionLabel: 'Enter Outfit Studio',
@@ -173,7 +173,7 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
         description: activeTrip
           ? `${activeTrip.destination || activeTrip.title} · ${nextCountdown !== null && nextCountdown >= 0 ? `In ${nextCountdown} days` : 'Ready to depart'}`
           : 'Live meteorological forecasts, timelines & before-you-leave calm.',
-        ambientBg: '#FFC5A8',
+        ambientBg: '#E6DFD2',
         darkAmbient: false,
         image: tripHorizonImg,
         actionLabel: 'Open Trip Planner',
@@ -185,7 +185,7 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
         label: 'MY DIGITAL WARDROBE',
         headline: 'Floating Private Closet Archive',
         description: `${wardrobe.length} cataloged pieces · ${savedOutfits.length} saved looks`,
-        ambientBg: '#101010',
+        ambientBg: '#0A0A0A',
         darkAmbient: true,
         image: wardrobeGalleryImg,
         actionLabel: 'Browse Wardrobe',
@@ -255,10 +255,10 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
   // Dynamic Spatial Hub Ambient Background (Strict 5-Color Palette)
   const spatialAmbientBg =
     stage === 'hero'
-      ? '#B8D9F2'
+      ? '#BCD2CF'
       : activeHoverMeta
       ? activeHoverMeta.ambientBg
-      : '#D9C9F2';
+      : '#D5DCD9';
 
   const isSpatialDark = stage === 'hub' && Boolean(activeHoverMeta?.darkAmbient);
   const isInsideRoom = stage !== 'hero' && stage !== 'hub';
@@ -266,7 +266,7 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
   const mobileDest = destinations[mobileHubIndex] || destinations[0];
 
   return (
-    <div className="min-h-screen w-full relative selection:bg-[#101010] selection:text-[#FFFFFF]">
+    <div className="min-h-screen w-full relative selection:bg-[#0B3B40] selection:text-[#FBFAF8]">
       <EditorialCursor />
 
       {/* ==================== PERSISTENT MINIMAL 3-ZONE SPATIAL HEADER ==================== */}
@@ -274,11 +274,11 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
         className={`fixed top-0 left-0 right-0 z-40 h-16 transition-colors duration-500 border-b ${
           isInsideRoom
             ? stage === 'digital-wardrobe'
-              ? 'bg-[#101010]/95 text-[#FFFFFF] border-white/15'
-              : 'bg-[#FFFFFF]/95 text-[#101010] border-[#101010]/12'
+              ? 'bg-[#0A0A0A]/95 text-[#FBFAF8] border-white/15'
+              : 'bg-[#FBFAF8]/95 text-[#0A0A0A] border-[#0A0A0A]/12'
             : isSpatialDark
-            ? 'bg-[#101010]/85 text-[#FFFFFF] border-white/15'
-            : 'bg-transparent text-[#101010] border-[#101010]/10'
+            ? 'bg-[#0A0A0A]/85 text-[#FBFAF8] border-white/15'
+            : 'bg-transparent text-[#0A0A0A] border-[#0A0A0A]/10'
         }`}
       >
         <div className="max-w-[1440px] mx-auto h-full px-5 sm:px-8 flex items-center justify-between gap-6">
@@ -333,8 +333,8 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                 }}
                 className={`min-h-[40px] px-4 text-xs font-bold inline-flex items-center gap-1.5 transition-colors whitespace-nowrap shrink-0 ${
                   stage === 'digital-wardrobe'
-                    ? 'bg-[#FFFFFF] text-[#101010] hover:bg-[#FFC5A8]'
-                    : 'bg-[#101010] text-[#FFFFFF] hover:bg-[#101010]/85'
+                    ? 'bg-[#FBFAF8] text-[#0A0A0A] hover:bg-[#E6DFD2]'
+                    : 'bg-[#0B3B40] text-[#FBFAF8] hover:bg-[#0A0A0A]/85'
                 }`}
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
@@ -346,8 +346,8 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                 onClick={() => onEnterClassicWorkspace('essentials')}
                 className={`min-h-[40px] px-4 text-xs font-bold transition-colors whitespace-nowrap shrink-0 border ${
                   isSpatialDark
-                    ? 'border-white/30 text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#101010]'
-                    : 'border-[#101010] text-[#101010] hover:bg-[#101010] hover:text-[#FFFFFF]'
+                    ? 'border-white/30 text-[#FBFAF8] hover:bg-[#FBFAF8] hover:text-[#0A0A0A]'
+                    : 'border-[#0A0A0A] text-[#0A0A0A] hover:bg-[#0B3B40] hover:text-[#FBFAF8]'
                 }`}
               >
                 Vault &amp; Tools
@@ -362,20 +362,20 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
         <section
           style={{ backgroundColor: spatialAmbientBg }}
           className={`relative w-full min-h-screen lg:h-screen lg:overflow-hidden transition-colors duration-700 ${
-            isSpatialDark ? 'text-[#FFFFFF]' : 'text-[#101010]'
+            isSpatialDark ? 'text-[#FBFAF8]' : 'text-[#0A0A0A]'
           }`}
         >
           {/* Subtle Editorial Architectural Hairlines */}
           <div
             aria-hidden="true"
             className={`pointer-events-none hidden lg:block absolute inset-y-0 left-1/2 w-px transition-colors duration-500 ${
-              isSpatialDark ? 'bg-white/10' : 'bg-[#101010]/8'
+              isSpatialDark ? 'bg-white/10' : 'bg-[#0A0A0A]/8'
             }`}
           />
           <div
             aria-hidden="true"
             className={`pointer-events-none hidden lg:block absolute inset-x-0 top-1/2 h-px transition-colors duration-500 ${
-              isSpatialDark ? 'bg-white/10' : 'bg-[#101010]/8'
+              isSpatialDark ? 'bg-white/10' : 'bg-[#0A0A0A]/8'
             }`}
           />
 
@@ -415,16 +415,16 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                 {/* Top Asymmetric Atelier Index */}
                 <div className="flex items-start justify-between">
                   <div className="pointer-events-auto space-y-1">
-                    <p className="font-mono text-[11px] tracking-[0.22em] text-[#101010]/65">
+                    <p className="font-mono text-[11px] tracking-[0.22em] text-[#0A0A0A]/65">
                       ATELIER EDITION · SPATIAL TRAVEL FASHION
                     </p>
-                    <p className="font-editorial text-3xl sm:text-4xl tracking-[0.14em] text-[#101010]">
+                    <p className="font-editorial text-3xl sm:text-4xl tracking-[0.14em] text-[#0A0A0A]">
                       PACKSMART
                     </p>
                   </div>
 
                   {/* Subtle Shell Finish Switcher (Top-Right on Desktop, Zero Suitcase Occlusion) */}
-                  <div className="hidden sm:flex pointer-events-auto items-center gap-1.5 bg-[#FFFFFF]/90 border border-[#101010]/15 px-2.5 py-1.5">
+                  <div className="hidden sm:flex pointer-events-auto items-center gap-1.5 bg-[#FBFAF8]/90 border border-[#0A0A0A]/15 px-2.5 py-1.5">
                     {(Object.keys(SPATIAL_FINISHES) as SpatialSuitcaseFinish[]).map((key) => {
                       const spec = SPATIAL_FINISHES[key];
                       const active = finish === key;
@@ -437,8 +437,8 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                           aria-label={`Set suitcase finish to ${spec.label}`}
                           className={`w-6 h-6 border transition-transform ${
                             active
-                              ? 'border-[#101010] scale-110 ring-1 ring-[#101010]'
-                              : 'border-[#101010]/25 hover:scale-105'
+                              ? 'border-[#0A0A0A] scale-110 ring-1 ring-[#0A0A0A]'
+                              : 'border-[#0A0A0A]/25 hover:scale-105'
                           }`}
                           style={{ backgroundColor: spec.shellHex }}
                         />
@@ -464,10 +464,10 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                           Reimagined.
                         </span>,
                       ]}
-                      className="font-display text-5xl sm:text-6xl lg:text-[4.85rem] font-extrabold leading-[0.94] tracking-[-0.03em] text-[#101010]"
+                      className="font-display text-5xl sm:text-6xl lg:text-[4.85rem] font-extrabold leading-[0.94] tracking-[-0.03em] text-[#0A0A0A]"
                     />
 
-                    <p className="text-sm sm:text-base text-[#101010]/75 max-w-md leading-relaxed">
+                    <p className="text-sm sm:text-base text-[#0A0A0A]/75 max-w-md leading-relaxed">
                       Everything you need to travel smarter, dress better and pack lighter.
                     </p>
 
@@ -476,10 +476,10 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                         type="button"
                         cursorLabel="ENTER"
                         onClick={() => setStage('hub')}
-                        className="min-h-[54px] px-8 bg-[#101010] text-[#FFFFFF] text-xs font-bold tracking-[0.14em] inline-flex items-center gap-3 hover:bg-[#101010]/85 transition-colors whitespace-nowrap"
+                        className="min-h-[54px] px-8 bg-[#0B3B40] text-[#FBFAF8] text-xs font-bold tracking-[0.14em] inline-flex items-center gap-3 hover:bg-[#0A0A0A]/85 transition-colors whitespace-nowrap"
                       >
                         <span>EXPLORE YOUR EXPERIENCE</span>
-                        <ArrowUpRight className="w-4 h-4 text-[#FFC5A8]" />
+                        <ArrowUpRight className="w-4 h-4 text-[#E6DFD2]" />
                       </MagneticButton>
                     </div>
                   </div>
@@ -489,7 +489,7 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                     <button
                       type="button"
                       onClick={() => setStage('hub')}
-                      className="pointer-events-auto inline-flex items-center gap-2.5 font-mono text-[11px] tracking-[0.16em] text-[#101010]/70 hover:text-[#101010] transition-colors min-h-[40px]"
+                      className="pointer-events-auto inline-flex items-center gap-2.5 font-mono text-[11px] tracking-[0.16em] text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors min-h-[40px]"
                     >
                       <span>SCROLL OR ENTER SPATIAL HUB</span>
                       <ArrowDown className="w-3.5 h-3.5" />
@@ -513,7 +513,7 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                 <div className="hidden lg:flex flex-col items-center absolute top-20 left-1/2 -translate-x-1/2 text-center pointer-events-none">
                   <p
                     className={`font-mono text-[10px] tracking-[0.22em] transition-colors ${
-                      isSpatialDark ? 'text-[#FFC5A8]' : 'text-[#101010]/60'
+                      isSpatialDark ? 'text-[#E6DFD2]' : 'text-[#0A0A0A]/60'
                     }`}
                   >
                     SPATIAL BROWSING · SELECT A DESTINATION
@@ -545,10 +545,10 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                         className={`pointer-events-auto absolute ${dest.positionClass} w-[330px] xl:w-[360px] text-left border transition-colors duration-300 overflow-hidden group ${
                           isHovered
-                            ? 'bg-[#101010] text-[#FFFFFF] border-[#101010] shadow-2xl z-30'
+                            ? 'bg-[#0B3B40] text-[#FBFAF8] border-[#0A0A0A] shadow-2xl z-30'
                             : isSpatialDark
-                            ? 'bg-white/10 text-[#FFFFFF] border-white/20'
-                            : 'bg-[#FFFFFF]/95 text-[#101010] border-[#101010]/15 hover:border-[#101010]'
+                            ? 'bg-white/10 text-[#FBFAF8] border-white/20'
+                            : 'bg-[#FBFAF8]/95 text-[#0A0A0A] border-[#0A0A0A]/15 hover:border-[#0A0A0A]'
                         }`}
                       >
                         <div className="p-5 flex items-center gap-4">
@@ -559,9 +559,9 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                               height: isHovered ? 96 : 68,
                             }}
                             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                            className="shrink-0 overflow-hidden border border-current/15 bg-[#B8D9F2]/30"
+                            className="shrink-0 overflow-hidden border border-current/15 bg-[#BCD2CF]/30"
                           >
-                            <img
+                            <img loading="lazy" decoding="async"
                               src={dest.image}
                               alt={dest.label}
                               referrerPolicy="no-referrer"
@@ -574,10 +574,10 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                               <span
                                 className={`font-mono text-[10px] tracking-[0.14em] ${
                                   isHovered
-                                    ? 'text-[#FFC5A8]'
+                                    ? 'text-[#E6DFD2]'
                                     : isSpatialDark
-                                    ? 'text-[#D9C9F2]'
-                                    : 'text-[#101010]/55'
+                                    ? 'text-[#D5DCD9]'
+                                    : 'text-[#0A0A0A]/55'
                                 }`}
                               >
                                 {dest.index}. DESTINATION
@@ -590,10 +590,10 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                             <p
                               className={`font-editorial italic text-lg leading-tight ${
                                 isHovered
-                                  ? 'text-[#B8D9F2]'
+                                  ? 'text-[#BCD2CF]'
                                   : isSpatialDark
                                   ? 'text-white/80'
-                                  : 'text-[#101010]/75'
+                                  : 'text-[#0A0A0A]/75'
                               }`}
                             >
                               {dest.headline}
@@ -615,7 +615,7 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                             <p className="text-[11px] text-white/75 leading-snug">
                               {dest.description}
                             </p>
-                            <span className="font-mono text-[10px] font-bold text-[#FFC5A8] whitespace-nowrap shrink-0">
+                            <span className="font-mono text-[10px] font-bold text-[#E6DFD2] whitespace-nowrap shrink-0">
                               ENTER →
                             </span>
                           </div>
@@ -635,13 +635,13 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                     }}
                     className={`min-h-[38px] px-4 font-mono text-[10px] tracking-[0.14em] border transition-colors ${
                       isSpatialDark
-                        ? 'border-white/25 text-white/80 hover:bg-white hover:text-[#101010]'
-                        : 'border-[#101010]/20 bg-[#FFFFFF]/85 text-[#101010] hover:bg-[#101010] hover:text-[#FFFFFF]'
+                        ? 'border-white/25 text-white/80 hover:bg-white hover:text-[#0A0A0A]'
+                        : 'border-[#0A0A0A]/20 bg-[#FBFAF8]/85 text-[#0A0A0A] hover:bg-[#0B3B40] hover:text-[#FBFAF8]'
                     }`}
                   >
                     ↑ HERO VIEW
                   </button>
-                  <div className="flex items-center gap-1.5 bg-[#FFFFFF]/90 border border-[#101010]/15 px-2.5 py-1.5">
+                  <div className="flex items-center gap-1.5 bg-[#FBFAF8]/90 border border-[#0A0A0A]/15 px-2.5 py-1.5">
                     {(Object.keys(SPATIAL_FINISHES) as SpatialSuitcaseFinish[]).map((key) => {
                       const spec = SPATIAL_FINISHES[key];
                       const active = finish === key;
@@ -653,7 +653,7 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                           title={spec.label}
                           aria-label={`Suitcase finish ${spec.label}`}
                           className={`w-5 h-5 border ${
-                            active ? 'border-[#101010] ring-1 ring-[#101010]' : 'border-[#101010]/25'
+                            active ? 'border-[#0A0A0A] ring-1 ring-[#0A0A0A]' : 'border-[#0A0A0A]/25'
                           }`}
                           style={{ backgroundColor: spec.shellHex }}
                         />
@@ -714,11 +714,11 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -24 }}
                       transition={{ duration: 0.25 }}
-                      className="bg-[#FFFFFF] text-[#101010] border border-[#101010] overflow-hidden"
+                      className="bg-[#FBFAF8] text-[#0A0A0A] border border-[#0A0A0A] overflow-hidden"
                     >
                       <div className="grid grid-cols-12">
                         <div className="col-span-5 relative min-h-[168px]">
-                          <img
+                          <img loading="lazy" decoding="async"
                             src={mobileDest.image}
                             alt={mobileDest.label}
                             referrerPolicy="no-referrer"
@@ -727,7 +727,7 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                         </div>
                         <div className="col-span-7 p-4 flex flex-col justify-between gap-3">
                           <div className="space-y-1">
-                            <p className="font-mono text-[10px] text-[#101010]/60">
+                            <p className="font-mono text-[10px] text-[#0A0A0A]/60">
                               {mobileDest.index} / 04
                             </p>
                             <h2 className="font-display text-sm font-extrabold">
@@ -736,7 +736,7 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                             <p className="font-editorial italic text-xl leading-tight">
                               {mobileDest.headline}
                             </p>
-                            <p className="text-[11px] text-[#101010]/70 leading-snug pt-0.5">
+                            <p className="text-[11px] text-[#0A0A0A]/70 leading-snug pt-0.5">
                               {mobileDest.description}
                             </p>
                           </div>
@@ -744,10 +744,10 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                           <button
                             type="button"
                             onClick={() => enterDestination(mobileDest.id)}
-                            className="w-full min-h-[42px] bg-[#101010] text-[#FFFFFF] text-xs font-bold inline-flex items-center justify-center gap-1.5"
+                            className="w-full min-h-[42px] bg-[#0B3B40] text-[#FBFAF8] text-xs font-bold inline-flex items-center justify-center gap-1.5"
                           >
                             <span>{mobileDest.actionLabel}</span>
-                            <ArrowUpRight className="w-3.5 h-3.5 text-[#FFC5A8]" />
+                            <ArrowUpRight className="w-3.5 h-3.5 text-[#E6DFD2]" />
                           </button>
                         </div>
                       </div>
@@ -763,8 +763,8 @@ export const SpatialExperience: React.FC<SpatialExperienceProps> = ({
                         onClick={() => setMobileHubIndex(idx)}
                         className={`min-h-[38px] px-1 font-mono text-[10px] border transition-colors truncate ${
                           idx === mobileHubIndex
-                            ? 'bg-[#101010] border-[#101010] text-[#FFC5A8] font-bold'
-                            : 'bg-[#FFFFFF]/80 border-[#101010]/20 text-[#101010]'
+                            ? 'bg-[#0B3B40] border-[#0A0A0A] text-[#E6DFD2] font-bold'
+                            : 'bg-[#FBFAF8]/80 border-[#0A0A0A]/20 text-[#0A0A0A]'
                         }`}
                       >
                         {d.index}

@@ -253,7 +253,7 @@ export async function compressImageFileToJpegDataUrl(
   if (!ctx) {
     throw new Error('Image processing is unavailable in this browser.');
   }
-  ctx.fillStyle = '#FFFFFF';
+  ctx.fillStyle = '#FBFAF8';
   ctx.fillRect(0, 0, targetW, targetH);
   ctx.drawImage(img, 0, 0, targetW, targetH);
 
@@ -312,7 +312,7 @@ export function parseShareableListHash(hash: string): Partial<PackingList> | nul
     };
     if (!payload.t || !Array.isArray(payload.items)) return null;
 
-    const palette = ['#D9C9F2', '#B8D9F2', '#FFC5A8', '#FFC5A8', '#B8D9F2'];
+    const palette = ['#D5DCD9', '#BCD2CF', '#E6DFD2', '#E6DFD2', '#BCD2CF'];
     const members = (payload.members && payload.members.length > 0 ? payload.members : ['Trip Host']).map(
       (name, idx) => ({
         id: `m-shared-${idx}`,

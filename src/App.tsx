@@ -446,7 +446,7 @@ export default function App() {
       shareCode: Math.random().toString(36).slice(2, 8).toUpperCase(),
       allowMemberEdits: true,
       groupMembers: [
-        { id: 'm-owner', name: userName, role: 'Owner', initials: userInitials, color: '#D9C9F2' },
+        { id: 'm-owner', name: userName, role: 'Owner', initials: userInitials, color: '#D5DCD9' },
       ],
       groupActivity: [],
       groupSuggestions: [],
@@ -592,9 +592,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFFFF] text-[#171717] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FBFAF8] text-[#0A0A0A] flex flex-col font-sans">
       {/* Minimal Editorial Workspace Top Bar (Strict 3-Zone Contract) */}
-      <header className="sticky top-0 z-30 h-16 bg-[#FFFFFF]/95 backdrop-blur-sm border-b border-[#171717]/10">
+      <header className="sticky top-0 z-30 h-16 bg-[#FBFAF8]/95 backdrop-blur-sm border-b border-[#0A0A0A]/10">
         <div className="max-w-6xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-6">
           <button
             type="button"
@@ -605,27 +605,27 @@ export default function App() {
             className="flex items-center gap-2.5 min-h-[44px] whitespace-nowrap shrink-0"
           >
             <BrandLogo size={28} />
-            <span className="font-serif font-semibold text-xl tracking-tight text-[#171717]">
+            <span className="font-serif font-semibold text-xl tracking-tight text-[#0A0A0A]">
               PackSmart
             </span>
           </button>
 
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-[#171717]/65">
+          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-[#0A0A0A]/65">
             <button
               type="button"
               onClick={() => {
                 setSurfaceMode('editorial');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="hover:text-[#171717] transition-colors whitespace-nowrap"
+              className="hover:text-[#0A0A0A] transition-colors whitespace-nowrap"
             >
               Platform Home
             </button>
             <button
               type="button"
               onClick={() => navigateTab('trips')}
-              className={`hover:text-[#171717] transition-colors whitespace-nowrap ${
-                activeTab === 'trips' ? 'text-[#171717] underline underline-offset-4' : ''
+              className={`hover:text-[#0A0A0A] transition-colors whitespace-nowrap ${
+                activeTab === 'trips' ? 'text-[#0A0A0A] underline underline-offset-4' : ''
               }`}
             >
               My Trips
@@ -633,8 +633,8 @@ export default function App() {
             <button
               type="button"
               onClick={() => navigateTab('wardrobe')}
-              className={`hover:text-[#171717] transition-colors whitespace-nowrap ${
-                activeTab === 'wardrobe' ? 'text-[#171717] underline underline-offset-4' : ''
+              className={`hover:text-[#0A0A0A] transition-colors whitespace-nowrap ${
+                activeTab === 'wardrobe' ? 'text-[#0A0A0A] underline underline-offset-4' : ''
               }`}
             >
               AI Outfit Studio
@@ -642,8 +642,8 @@ export default function App() {
             <button
               type="button"
               onClick={() => navigateTab('essentials')}
-              className={`hover:text-[#171717] transition-colors whitespace-nowrap ${
-                activeTab === 'essentials' ? 'text-[#171717] underline underline-offset-4' : ''
+              className={`hover:text-[#0A0A0A] transition-colors whitespace-nowrap ${
+                activeTab === 'essentials' ? 'text-[#0A0A0A] underline underline-offset-4' : ''
               }`}
             >
               Document Vault
@@ -652,7 +652,7 @@ export default function App() {
 
           <div className="flex items-center gap-3 shrink-0">
             {!isOnline && (
-              <span className="text-xs font-medium text-[#171717] bg-[#FFC5A8] rounded-md px-2.5 py-1 flex items-center gap-1 whitespace-nowrap">
+              <span className="text-xs font-medium text-[#0A0A0A] bg-[#E6DFD2] rounded-md px-2.5 py-1 flex items-center gap-1 whitespace-nowrap">
                 <WifiOff className="w-3.5 h-3.5" />
                 <span>Offline</span>
               </span>
@@ -663,7 +663,7 @@ export default function App() {
                 setSurfaceMode('editorial');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="md:hidden h-9 px-3 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-xs font-medium text-[#171717] whitespace-nowrap"
+              className="md:hidden h-9 px-3 rounded-lg bg-[#FBFAF8] border border-[#0A0A0A]/15 text-xs font-medium text-[#0A0A0A] whitespace-nowrap"
             >
               Platform
             </button>
@@ -671,7 +671,7 @@ export default function App() {
               type="button"
               onClick={() => navigateTab('profile')}
               aria-label="Open Profile"
-              className="w-9 h-9 rounded-lg bg-[#171717] text-[#FFFFFF] text-xs font-semibold flex items-center justify-center shrink-0"
+              className="w-9 h-9 rounded-lg bg-[#0B3B40] text-[#FBFAF8] text-xs font-semibold flex items-center justify-center shrink-0"
             >
               {state.user.initials}
             </button>
@@ -682,7 +682,7 @@ export default function App() {
       {/* Main Responsive Content Canvas */}
       <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 pt-5 pb-24">
         {sharedImportNotice && (
-          <div className="mb-4 p-3.5 rounded-2xl bg-[#B8D9F266] dark:bg-[#101010] text-[#101010] dark:text-[#FFFFFF] text-xs font-semibold">
+          <div className="mb-4 p-3.5 rounded-2xl bg-[#BCD2CF66] dark:bg-[#0B3B40] text-[#0A0A0A] dark:text-[#FBFAF8] text-xs font-semibold">
             {sharedImportNotice}
           </div>
         )}
@@ -883,7 +883,7 @@ export default function App() {
       {/* Fixed 5-Tab Workspace Navigation Bar */}
       <nav
         aria-label="Primary workspace navigation"
-        className="fixed bottom-0 left-0 right-0 z-40 bg-[#FFFFFF]/95 backdrop-blur-sm border-t border-[#171717]/10 pb-safe"
+        className="fixed bottom-0 left-0 right-0 z-40 bg-[#FBFAF8]/95 backdrop-blur-sm border-t border-[#0A0A0A]/10 pb-safe"
       >
         <div className="max-w-xl mx-auto grid grid-cols-5 items-center h-16 px-1">
           {[
@@ -905,8 +905,8 @@ export default function App() {
                 aria-current={isActive ? 'page' : undefined}
                 className={`flex flex-col items-center justify-center min-h-[48px] transition-colors ${
                   isActive
-                    ? 'text-[#171717]'
-                    : 'text-[#171717]/50 hover:text-[#171717]'
+                    ? 'text-[#0A0A0A]'
+                    : 'text-[#0A0A0A]/50 hover:text-[#0A0A0A]'
                 }`}
               >
                 <Icon className={`w-5 h-5 ${isActive ? 'stroke-[2.2]' : 'stroke-[1.7]'}`} />

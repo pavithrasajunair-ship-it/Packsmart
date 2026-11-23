@@ -49,14 +49,14 @@ interface WardrobeScreenProps {
 }
 
 const SWATCH_PRESETS = [
-  { name: 'Midnight Navy', hex: '#101010' },
-  { name: 'Soft Lavender', hex: '#D9C9F2' },
-  { name: 'Muted Teal', hex: '#B8D9F2' },
-  { name: 'Warm White', hex: '#FFFFFF' },
-  { name: 'Warm Sand', hex: '#FFC5A8' },
-  { name: 'Charcoal', hex: '#101010' },
-  { name: 'Terracotta', hex: '#FFC5A8' },
-  { name: 'Olive', hex: '#101010' },
+  { name: 'Midnight Navy', hex: '#0A0A0A' },
+  { name: 'Soft Lavender', hex: '#D5DCD9' },
+  { name: 'Muted Teal', hex: '#BCD2CF' },
+  { name: 'Warm White', hex: '#FBFAF8' },
+  { name: 'Warm Sand', hex: '#E6DFD2' },
+  { name: 'Charcoal', hex: '#0A0A0A' },
+  { name: 'Terracotta', hex: '#E6DFD2' },
+  { name: 'Olive', hex: '#0A0A0A' },
 ];
 
 export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
@@ -286,10 +286,10 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h1 className="font-display text-2xl font-extrabold text-[#101010] dark:text-white tracking-tight">
+          <h1 className="font-display text-2xl font-extrabold text-[#0A0A0A] dark:text-white tracking-tight">
             Wardrobe & Outfit Planner
           </h1>
-          <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] mt-0.5 tabular-nums">
+          <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-0.5 tabular-nums">
             {wardrobe.length} digital wardrobe items · {savedOutfits.filter((o) => o.isFavorite).length} favourite looks
           </p>
         </div>
@@ -299,7 +299,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
             setFormErr('');
             setAddOpen(true);
           }}
-          className="min-h-[44px] px-4 rounded-2xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap shrink-0"
+          className="min-h-[44px] px-4 rounded-2xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap shrink-0"
         >
           <Plus className="w-4 h-4" />
           <span>Add Piece</span>
@@ -307,7 +307,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
       </div>
 
       {/* Sub-navigation tabs */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 p-1 bg-[#FFFFFF] dark:bg-[#FFFFFF0f] rounded-2xl max-w-2xl">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 p-1 bg-[#FBFAF8] dark:bg-[#FBFAF80f] rounded-2xl max-w-2xl">
         {[
           { id: 'matcher', label: 'AI Outfit Matcher' },
           { id: 'planner', label: 'Trip Outfits' },
@@ -320,8 +320,8 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
             onClick={() => setSection(t.id as typeof section)}
             className={`min-h-[42px] px-2 rounded-xl text-xs font-semibold transition-all whitespace-nowrap ${
               section === t.id
-                ? 'bg-white dark:bg-[#FFFFFF0f] text-[#101010] dark:text-white shadow-xs'
-                : 'text-[#101010b2] dark:text-[#FFFFFFa8]'
+                ? 'bg-white dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-white shadow-xs'
+                : 'text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]'
             }`}
           >
             {t.label}
@@ -331,19 +331,19 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
 
       {/* Capsule Banner (shown on Trip Outfits / Closet / Saved tabs) */}
       {section !== 'matcher' && (
-        <div className="rounded-3xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] overflow-hidden grid grid-cols-1 md:grid-cols-12 items-center">
+        <div className="rounded-3xl bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] overflow-hidden grid grid-cols-1 md:grid-cols-12 items-center">
           <div className="md:col-span-7 p-5 space-y-2.5">
-            <p className="text-xs font-semibold text-[#101010] dark:text-[#FFFFFF] flex items-center gap-1.5">
+            <p className="text-xs font-semibold text-[#0A0A0A] dark:text-[#FBFAF8] flex items-center gap-1.5">
               <Layers className="w-4 h-4" />
               <span>Capsule Reuse Optimizer</span>
             </p>
-            <h2 className="font-display text-lg font-bold text-[#101010] dark:text-white">
+            <h2 className="font-display text-lg font-bold text-[#0A0A0A] dark:text-white">
               Pack fewer clothes. Mix smarter outfits.
             </h2>
-            <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] leading-relaxed">
-              Reusing <span className="font-mono font-bold text-[#101010] dark:text-white">{reuseSummary.reusedItems}</span> core pieces across {currentDayPlans.length} trip days saves an estimated{' '}
-              <span className="font-mono font-bold text-[#101010] dark:text-[#FFFFFF]">{reuseSummary.litersSaved}L</span> and{' '}
-              <span className="font-mono font-bold text-[#101010] dark:text-[#FFFFFF]">{reuseSummary.kgSaved} kg</span> in your suitcase.
+            <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] leading-relaxed">
+              Reusing <span className="font-mono font-bold text-[#0A0A0A] dark:text-white">{reuseSummary.reusedItems}</span> core pieces across {currentDayPlans.length} trip days saves an estimated{' '}
+              <span className="font-mono font-bold text-[#0A0A0A] dark:text-[#FBFAF8]">{reuseSummary.litersSaved}L</span> and{' '}
+              <span className="font-mono font-bold text-[#0A0A0A] dark:text-[#FBFAF8]">{reuseSummary.kgSaved} kg</span> in your suitcase.
             </p>
           </div>
           <div className="md:col-span-5 h-36 md:h-full">
@@ -378,7 +378,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
       )}
 
       {syncMessage && (
-        <div className="p-3.5 rounded-2xl bg-[#B8D9F266] dark:bg-[#101010] text-[#101010] dark:text-[#FFFFFF] text-xs font-semibold flex items-center gap-2">
+        <div className="p-3.5 rounded-2xl bg-[#BCD2CF66] dark:bg-[#0B3B40] text-[#0A0A0A] dark:text-[#FBFAF8] text-xs font-semibold flex items-center gap-2">
           <Check className="w-4 h-4 shrink-0" />
           <span>{syncMessage}</span>
         </div>
@@ -388,16 +388,16 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
       {section === 'planner' && (
         <div className="space-y-5">
           {/* Trip selector & Auto-Capsule CTA */}
-          <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-4 sm:p-5 border border-[#1010101f] dark:border-[#FFFFFF24] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-4 sm:p-5 border border-[#0A0A0A1f] dark:border-[#FBFAF824] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="flex-1 min-w-0">
-              <label htmlFor="outfit-trip-sel" className="block text-[11px] font-semibold text-[#101010b2] dark:text-[#FFFFFFa8] mb-1">
+              <label htmlFor="outfit-trip-sel" className="block text-[11px] font-semibold text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mb-1">
                 Planning Outfits For
               </label>
               <select
                 id="outfit-trip-sel"
                 value={selectedTripId}
                 onChange={(e) => setSelectedTripId(e.target.value)}
-                className="w-full min-h-[42px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm font-semibold text-[#101010] dark:text-white"
+                className="w-full min-h-[42px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm font-semibold text-[#0A0A0A] dark:text-white"
               >
                 {trips.map((t) => (
                   <option key={t.id} value={t.id}>
@@ -411,7 +411,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
               <button
                 type="button"
                 onClick={handleApplySmartCapsule}
-                className="min-h-[42px] px-4 rounded-xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#D9C9F2] text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap"
+                className="min-h-[42px] px-4 rounded-xl bg-[#D5DCD966] dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-[#D5DCD9] text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
                 <span>Smart Capsule Plan</span>
@@ -419,7 +419,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
               <button
                 type="button"
                 onClick={handleSyncToSuitcase}
-                className="min-h-[42px] px-4 rounded-xl bg-[#101010] text-white text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap"
+                className="min-h-[42px] px-4 rounded-xl bg-[#0B3B40] text-white text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap"
               >
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Sync to Suitcase</span>
@@ -437,19 +437,19 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
               return (
                 <div
                   key={`${day.dayIndex}-${day.date}`}
-                  className="rounded-3xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] p-4 flex flex-col justify-between gap-3.5"
+                  className="rounded-3xl bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] p-4 flex flex-col justify-between gap-3.5"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2">
-                      <p className="text-xs font-bold text-[#101010] dark:text-[#D9C9F2] flex items-center gap-1.5">
+                      <p className="text-xs font-bold text-[#0A0A0A] dark:text-[#D5DCD9] flex items-center gap-1.5">
                         <Calendar className="w-3.5 h-3.5" />
                         <span>{day.label} · {day.date}</span>
                       </p>
-                      <span className="text-[11px] text-[#101010b2] dark:text-[#FFFFFFa8] truncate">
+                      <span className="text-[11px] text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] truncate">
                         {day.activity || 'Leisure'}
                       </span>
                     </div>
-                    <h3 className="font-display text-base font-bold text-[#101010] dark:text-white mt-1">
+                    <h3 className="font-display text-base font-bold text-[#0A0A0A] dark:text-white mt-1">
                       {day.outfitName}
                     </h3>
 
@@ -460,11 +460,11 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                         return (
                           <div
                             key={piece.id}
-                            className="flex items-center justify-between gap-2.5 p-2 rounded-xl bg-[#FFFFFF] dark:bg-[#101010]"
+                            className="flex items-center justify-between gap-2.5 p-2 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40]"
                           >
                             <div className="flex items-center gap-2.5 min-w-0">
                               {photoUrl ? (
-                                <img
+                                <img loading="lazy" decoding="async"
                                   src={photoUrl}
                                   alt={piece.name}
                                   className="w-8 h-8 rounded-lg object-cover border border-black/10 shrink-0"
@@ -477,15 +477,15 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                                 />
                               )}
                               <div className="min-w-0">
-                                <p className="text-xs font-semibold text-[#101010] dark:text-white truncate">
+                                <p className="text-xs font-semibold text-[#0A0A0A] dark:text-white truncate">
                                   {piece.name}
                                 </p>
-                                <p className="text-[10px] text-[#101010b2] dark:text-[#FFFFFFa8]">
+                                <p className="text-[10px] text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]">
                                   {piece.category} · {piece.warmth}
                                 </p>
                               </div>
                             </div>
-                            <span className="font-mono text-[10px] text-[#10101099] shrink-0">
+                            <span className="font-mono text-[10px] text-[#0A0A0A99] shrink-0">
                               {piece.volumeLiters}L
                             </span>
                           </div>
@@ -493,7 +493,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                       })}
                     </div>
                     {day.whyItWorks && (
-                      <p className="mt-2.5 text-[11px] text-[#101010b2] dark:text-[#FFFFFFa8] leading-relaxed">
+                      <p className="mt-2.5 text-[11px] text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] leading-relaxed">
                         {day.whyItWorks}
                       </p>
                     )}
@@ -501,7 +501,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
 
                   {/* Swap with a saved favourite outfit */}
                   {savedOutfits.length > 0 && (
-                    <div className="pt-2.5 border-t border-[#1010101f] dark:border-[#FFFFFF24]">
+                    <div className="pt-2.5 border-t border-[#0A0A0A1f] dark:border-[#FBFAF824]">
                       <select
                         aria-label={`Assign saved outfit to ${day.label}`}
                         defaultValue=""
@@ -510,7 +510,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                           if (found) handleAssignComboToDay(day.dayIndex, found);
                           e.target.value = '';
                         }}
-                        className="w-full min-h-[38px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs font-medium text-[#101010cc] dark:text-[#FFFFFFa8]"
+                        className="w-full min-h-[38px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs font-medium text-[#0A0A0Acc] dark:text-[#FBFAF8a8]"
                       >
                         <option value="">Swap with a saved outfit...</option>
                         {savedOutfits.map((o) => (
@@ -525,18 +525,18 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
           </div>
 
           {/* Interactive Visual Outfit Combination Builder */}
-          <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 border border-[#1010101f] dark:border-[#FFFFFF24] space-y-4">
+          <div className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-5 border border-[#0A0A0A1f] dark:border-[#FBFAF824] space-y-4">
             <div>
-              <h2 className="font-display text-base font-bold text-[#101010] dark:text-white">
+              <h2 className="font-display text-base font-bold text-[#0A0A0A] dark:text-white">
                 Visual Outfit Combination Studio
               </h2>
-              <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] mt-0.5">
+              <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-0.5">
                 Tap pieces from your digital wardrobe to compose a reusable look and save it as a favourite.
               </p>
             </div>
 
             {/* Live Selected Look Preview */}
-            <div className="p-4 rounded-2xl bg-[#101010] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="p-4 rounded-2xl bg-[#0B3B40] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex flex-wrap items-center gap-2.5">
                 {builderSelectedIds.length === 0 ? (
                   <p className="text-xs text-white/70">Select clothing pieces below to build a combination.</p>
@@ -559,7 +559,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                   })
                 )}
               </div>
-              <div className="text-right font-mono text-xs text-[#101010] shrink-0 tabular-nums">
+              <div className="text-right font-mono text-xs text-[#0A0A0A] shrink-0 tabular-nums">
                 {builderSelectedIds
                   .reduce((s, id) => s + (wardrobe.find((w) => w.id === id)?.volumeLiters || 0), 0)
                   .toFixed(1)}
@@ -578,8 +578,8 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                     onClick={() => handleToggleBuilderItem(item)}
                     className={`min-h-[44px] px-3 py-2 rounded-xl border text-xs font-semibold flex items-center gap-2 whitespace-nowrap shrink-0 transition-all ${
                       picked
-                        ? 'bg-[#101010] border-[#10101073] text-white'
-                        : 'bg-[#FFFFFF] dark:bg-[#101010] border-[#1010101f] dark:border-[#FFFFFF24] text-[#101010] dark:text-[#FFFFFF]'
+                        ? 'bg-[#0B3B40] border-[#0A0A0A73] text-white'
+                        : 'bg-[#FBFAF8] dark:bg-[#0B3B40] border-[#0A0A0A1f] dark:border-[#FBFAF824] text-[#0A0A0A] dark:text-[#FBFAF8]'
                     }`}
                   >
                     <span
@@ -592,25 +592,25 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
               })}
             </div>
 
-            <form onSubmit={handleSaveBuiltOutfit} className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 pt-2 border-t border-[#1010101f] dark:border-[#FFFFFF24]">
+            <form onSubmit={handleSaveBuiltOutfit} className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 pt-2 border-t border-[#0A0A0A1f] dark:border-[#FBFAF824]">
               <input
                 type="text"
                 value={comboName}
                 onChange={(e) => setComboName(e.target.value)}
                 placeholder="Outfit name (e.g., Sunset Cafe Linen Look)"
-                className="sm:col-span-5 min-h-[44px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+                className="sm:col-span-5 min-h-[44px] px-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
               />
               <input
                 type="text"
                 value={comboOccasion}
                 onChange={(e) => setComboOccasion(e.target.value)}
                 placeholder="Occasion (e.g., Dinner, Flight)"
-                className="sm:col-span-4 min-h-[44px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+                className="sm:col-span-4 min-h-[44px] px-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
               />
               <button
                 type="submit"
                 disabled={builderSelectedIds.length === 0}
-                className="sm:col-span-3 min-h-[44px] rounded-xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white text-xs font-semibold flex items-center justify-center gap-1.5 disabled:opacity-50"
+                className="sm:col-span-3 min-h-[44px] rounded-xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white text-xs font-semibold flex items-center justify-center gap-1.5 disabled:opacity-50"
               >
                 <Heart className="w-4 h-4" />
                 <span>Save Favourite</span>
@@ -631,8 +631,8 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                 onClick={() => setCatFilter(cat)}
                 className={`min-h-[40px] px-3.5 rounded-xl text-xs font-semibold whitespace-nowrap shrink-0 transition-colors ${
                   catFilter === cat
-                    ? 'bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white'
-                    : 'bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] text-[#101010cc] dark:text-[#FFFFFFa8]'
+                    ? 'bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white'
+                    : 'bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-[#0A0A0Acc] dark:text-[#FBFAF8a8]'
                 }`}
               >
                 {cat}
@@ -646,11 +646,11 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
               return (
                 <div
                   key={item.id}
-                  className="rounded-3xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] p-4 flex items-center justify-between gap-3"
+                  className="rounded-3xl bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] p-4 flex items-center justify-between gap-3"
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     {photoUrl ? (
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={photoUrl}
                         alt={item.name}
                         className="w-14 h-16 rounded-2xl object-cover border border-black/10 shrink-0"
@@ -664,17 +664,17 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                       </div>
                     )}
                     <div className="min-w-0">
-                      <p className="text-sm font-bold text-[#101010] dark:text-white truncate">{item.name}</p>
-                      <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] truncate">
+                      <p className="text-sm font-bold text-[#0A0A0A] dark:text-white truncate">{item.name}</p>
+                      <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] truncate">
                         {item.category} · {item.colorName}
                         {item.pattern ? ` · ${item.pattern}` : ''}
                       </p>
-                      <p className="text-[11px] text-[#101010b2] dark:text-[#FFFFFFa8] truncate">
+                      <p className="text-[11px] text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] truncate">
                         {item.warmth}
                         {item.style ? ` · ${item.style}` : ''}
                         {item.aiDetected ? ' · AI Vision' : ''}
                       </p>
-                      <p className="font-mono text-[11px] text-[#10101099] mt-0.5 tabular-nums">
+                      <p className="font-mono text-[11px] text-[#0A0A0A99] mt-0.5 tabular-nums">
                         {item.weightGrams}g · {item.volumeLiters}L · Reusable {item.reusableDays}d
                       </p>
                     </div>
@@ -683,7 +683,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                     type="button"
                     onClick={() => setDeleteConfirmId(item.id)}
                     aria-label={`Remove ${item.name}`}
-                    className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded-xl text-[#10101085] hover:text-[#101010] shrink-0"
+                    className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded-xl text-[#0A0A0A85] hover:text-[#0A0A0A] shrink-0"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -698,11 +698,11 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
       {section === 'favorites' && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {savedOutfits.length === 0 ? (
-            <div className="md:col-span-2 rounded-3xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] p-8 text-center">
-              <p className="font-display font-bold text-base text-[#101010] dark:text-white">
+            <div className="md:col-span-2 rounded-3xl bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] p-8 text-center">
+              <p className="font-display font-bold text-base text-[#0A0A0A] dark:text-white">
                 No saved outfit combinations yet
               </p>
-              <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] mt-1">
+              <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-1">
                 Compose a look in the Trip Outfits studio to save your go-to combinations.
               </p>
             </div>
@@ -715,14 +715,14 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
               return (
                 <div
                   key={outfit.id}
-                  className="rounded-3xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] p-5 space-y-3"
+                  className="rounded-3xl bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] p-5 space-y-3"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <p className="text-xs font-semibold text-[#101010] dark:text-[#FFFFFF]">
+                      <p className="text-xs font-semibold text-[#0A0A0A] dark:text-[#FBFAF8]">
                         {outfit.occasion} · {outfit.weatherFit}
                       </p>
-                      <h3 className="font-display text-base font-bold text-[#101010] dark:text-white mt-0.5">
+                      <h3 className="font-display text-base font-bold text-[#0A0A0A] dark:text-white mt-0.5">
                         {outfit.name}
                       </h3>
                     </div>
@@ -731,7 +731,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                         type="button"
                         onClick={() => onToggleFavoriteOutfit(outfit.id)}
                         aria-label="Toggle favourite"
-                        className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded-xl text-[#101010]"
+                        className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded-xl text-[#0A0A0A]"
                       >
                         <Heart className={`w-4 h-4 ${outfit.isFavorite ? 'fill-current' : ''}`} />
                       </button>
@@ -739,7 +739,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                         type="button"
                         onClick={() => onDeleteOutfit(outfit.id)}
                         aria-label="Delete saved outfit"
-                        className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded-xl text-[#10101085] hover:text-[#101010]"
+                        className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded-xl text-[#0A0A0A85] hover:text-[#0A0A0A]"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -752,7 +752,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                       {pieces.slice(0, 4).map((p) => {
                         const photoUrl = p.photoId ? wardrobePhotos[p.photoId] : undefined;
                         return photoUrl ? (
-                          <img
+                          <img loading="lazy" decoding="async"
                             key={p.id}
                             src={photoUrl}
                             alt={p.name}
@@ -772,20 +772,20 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                   )}
 
                   {outfit.whyItWorks && (
-                    <p className="text-xs text-[#101010cc] dark:text-[#FFFFFFa8] leading-relaxed">
+                    <p className="text-xs text-[#0A0A0Acc] dark:text-[#FBFAF8a8] leading-relaxed">
                       {outfit.whyItWorks}
                     </p>
                   )}
 
                   <div className="space-y-1.5">
                     {pieces.map((p) => (
-                      <div key={p.id} className="flex items-center gap-2.5 text-xs text-[#101010] dark:text-[#FFFFFF]">
+                      <div key={p.id} className="flex items-center gap-2.5 text-xs text-[#0A0A0A] dark:text-[#FBFAF8]">
                         <span
                           className="w-3.5 h-3.5 rounded-full border border-black/15 shrink-0"
                           style={{ backgroundColor: p.colorHex }}
                         />
                         <span className="font-medium">{p.name}</span>
-                        <span className="text-[#10101099]">· {p.category}</span>
+                        <span className="text-[#0A0A0A99]">· {p.category}</span>
                       </div>
                     ))}
                   </div>
@@ -805,7 +805,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
       >
         <form onSubmit={handleAddWardrobe} className="space-y-4">
           <div>
-            <label htmlFor="w-name" className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1">
+            <label htmlFor="w-name" className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1">
               Clothing Item Name
             </label>
             <input
@@ -814,20 +814,20 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
               placeholder="e.g., Navy linen overshirt"
-              className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+              className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label htmlFor="w-cat" className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1">
+              <label htmlFor="w-cat" className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1">
                 Category
               </label>
               <select
                 id="w-cat"
                 value={newCat}
                 onChange={(e) => setNewCat(e.target.value as WardrobeCategory)}
-                className="w-full min-h-[44px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+                className="w-full min-h-[44px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
               >
                 {WARDROBE_CATEGORIES.map((c) => (
                   <option key={c} value={c}>{c}</option>
@@ -835,14 +835,14 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
               </select>
             </div>
             <div>
-              <label htmlFor="w-warm" className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1">
+              <label htmlFor="w-warm" className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1">
                 Weather Fit
               </label>
               <select
                 id="w-warm"
                 value={newWarmth}
                 onChange={(e) => setNewWarmth(e.target.value as WardrobeItem['warmth'])}
-                className="w-full min-h-[44px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+                className="w-full min-h-[44px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
               >
                 <option value="Warm Weather">Warm Weather</option>
                 <option value="All-Season">All-Season</option>
@@ -852,7 +852,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
+            <label className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1.5">
               Color Tone ({newColor.name})
             </label>
             <div className="flex flex-wrap gap-2">
@@ -863,7 +863,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                   onClick={() => setNewColor(s)}
                   aria-label={s.name}
                   className={`w-9 h-9 rounded-full border-2 transition-transform ${
-                    newColor.name === s.name ? 'border-[#10101073] scale-110' : 'border-black/15'
+                    newColor.name === s.name ? 'border-[#0A0A0A73] scale-110' : 'border-black/15'
                   }`}
                   style={{ backgroundColor: s.hex }}
                 />
@@ -873,7 +873,7 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label htmlFor="w-weight" className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1">
+              <label htmlFor="w-weight" className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1">
                 Weight (grams)
               </label>
               <input
@@ -882,11 +882,11 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                 min={30}
                 value={newWeight}
                 onChange={(e) => setNewWeight(Number(e.target.value) || 180)}
-                className="w-full min-h-[42px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] font-mono text-sm text-[#101010] dark:text-white"
+                className="w-full min-h-[42px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] font-mono text-sm text-[#0A0A0A] dark:text-white"
               />
             </div>
             <div>
-              <label htmlFor="w-vol" className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1">
+              <label htmlFor="w-vol" className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1">
                 Packed Volume (L)
               </label>
               <input
@@ -896,16 +896,16 @@ export const WardrobeScreen: React.FC<WardrobeScreenProps> = ({
                 min={0.2}
                 value={newVol}
                 onChange={(e) => setNewVol(Number(e.target.value) || 0.9)}
-                className="w-full min-h-[42px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] font-mono text-sm text-[#101010] dark:text-white"
+                className="w-full min-h-[42px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] font-mono text-sm text-[#0A0A0A] dark:text-white"
               />
             </div>
           </div>
 
-          {formErr && <p role="alert" className="text-xs font-medium text-[#101010]">{formErr}</p>}
+          {formErr && <p role="alert" className="text-xs font-medium text-[#0A0A0A]">{formErr}</p>}
 
           <button
             type="submit"
-            className="w-full min-h-[48px] rounded-2xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white font-semibold text-sm"
+            className="w-full min-h-[48px] rounded-2xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white font-semibold text-sm"
           >
             Add to Wardrobe
           </button>

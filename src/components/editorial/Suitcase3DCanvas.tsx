@@ -11,33 +11,33 @@ export const SUITCASE_FINISHES: Record<
 > = {
   noir: {
     label: 'Obsidian Matte',
-    shellHex: '#101010',
-    frameHex: '#FFFFFF',
-    tagHex: '#FFC5A8',
+    shellHex: '#0A0A0A',
+    frameHex: '#FBFAF8',
+    tagHex: '#E6DFD2',
     rough: 0.34,
     metal: 0.45,
   },
   powder: {
     label: 'Powder Blue',
-    shellHex: '#B8D9F2',
-    frameHex: '#101010',
-    tagHex: '#101010',
+    shellHex: '#BCD2CF',
+    frameHex: '#0A0A0A',
+    tagHex: '#0A0A0A',
     rough: 0.28,
     metal: 0.22,
   },
   lavender: {
     label: 'Soft Lavender',
-    shellHex: '#D9C9F2',
-    frameHex: '#101010',
-    tagHex: '#101010',
+    shellHex: '#D5DCD9',
+    frameHex: '#0A0A0A',
+    tagHex: '#0A0A0A',
     rough: 0.28,
     metal: 0.22,
   },
   peach: {
     label: 'Sunset Peach',
-    shellHex: '#FFC5A8',
-    frameHex: '#101010',
-    tagHex: '#101010',
+    shellHex: '#E6DFD2',
+    frameHex: '#0A0A0A',
+    tagHex: '#0A0A0A',
     rough: 0.3,
     metal: 0.2,
   },
@@ -161,7 +161,7 @@ export const Suitcase3DCanvas: React.FC<Suitcase3DCanvasProps> = ({
       const oldMap = tagMatRef.current.map;
       const nextMap = createLuggageTagTexture(
         spec.tagHex,
-        spec.tagHex === '#101010' ? '#FFFFFF' : '#101010'
+        spec.tagHex === '#0A0A0A' ? '#FBFAF8' : '#0A0A0A'
       );
       if (rendererRef.current) {
         nextMap.anisotropy = rendererRef.current.capabilities.getMaxAnisotropy();
@@ -277,27 +277,27 @@ export const Suitcase3DCanvas: React.FC<Suitcase3DCanvasProps> = ({
     frameMatRef.current = frameMaterial;
 
     const brushedSteelMaterial = new THREE.MeshStandardMaterial({
-      color: '#FFFFFF',
+      color: '#FBFAF8',
       roughness: 0.18,
       metalness: 0.94,
       envMapIntensity: 1.35,
     });
 
     const rubberMaterial = new THREE.MeshStandardMaterial({
-      color: '#101010',
+      color: '#0A0A0A',
       roughness: 0.84,
       metalness: 0.05,
     });
 
     const gripMaterial = new THREE.MeshStandardMaterial({
-      color: '#101010',
+      color: '#0A0A0A',
       roughness: 0.68,
       metalness: 0.1,
     });
 
     const tagTexture = createLuggageTagTexture(
       initSpec.tagHex,
-      initSpec.tagHex === '#101010' ? '#FFFFFF' : '#101010'
+      initSpec.tagHex === '#0A0A0A' ? '#FBFAF8' : '#0A0A0A'
     );
     tagTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
     const tagMaterial = new THREE.MeshStandardMaterial({
@@ -675,9 +675,9 @@ export const Suitcase3DCanvas: React.FC<Suitcase3DCanvasProps> = ({
           role="img"
           aria-label={`PackSmart ${spec.label} carry-on suitcase`}
         >
-          <rect x="98" y="24" width="12" height="72" rx="4" fill="#101010" />
-          <rect x="170" y="24" width="12" height="72" rx="4" fill="#101010" />
-          <rect x="88" y="18" width="104" height="18" rx="9" fill="#101010" />
+          <rect x="98" y="24" width="12" height="72" rx="4" fill="#0A0A0A" />
+          <rect x="170" y="24" width="12" height="72" rx="4" fill="#0A0A0A" />
+          <rect x="88" y="18" width="104" height="18" rx="9" fill="#0A0A0A" />
           <rect
             x="48"
             y="84"
@@ -685,7 +685,7 @@ export const Suitcase3DCanvas: React.FC<Suitcase3DCanvasProps> = ({
             height="248"
             rx="24"
             fill={spec.shellHex}
-            stroke="#101010"
+            stroke="#0A0A0A"
             strokeWidth="4"
           />
           {[78, 102, 126, 150, 174, 198].map((rx) => (
@@ -695,14 +695,14 @@ export const Suitcase3DCanvas: React.FC<Suitcase3DCanvasProps> = ({
               y1="108"
               x2={rx}
               y2="308"
-              stroke={spec.shellHex === '#101010' ? 'rgba(255,255,255,0.16)' : 'rgba(16,16,16,0.16)'}
+              stroke={spec.shellHex === '#0A0A0A' ? 'rgba(255,255,255,0.16)' : 'rgba(16,16,16,0.16)'}
               strokeWidth="3"
               strokeLinecap="round"
             />
           ))}
           <rect x="108" y="128" width="64" height="16" rx="2" fill={spec.frameHex} />
-          <circle cx="82" cy="346" r="14" fill="#101010" />
-          <circle cx="198" cy="346" r="14" fill="#101010" />
+          <circle cx="82" cy="346" r="14" fill="#0A0A0A" />
+          <circle cx="198" cy="346" r="14" fill="#0A0A0A" />
         </svg>
       </div>
     );

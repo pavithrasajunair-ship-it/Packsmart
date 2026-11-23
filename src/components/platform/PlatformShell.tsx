@@ -24,14 +24,24 @@ import { TripPlannerView } from './TripPlannerView';
 import { SmartPackingView } from './SmartPackingView';
 import { AIOutfitStudioPlatform } from './AIOutfitStudioPlatform';
 import { DigitalWardrobeView } from './DigitalWardrobeView';
-import { EditorialCursor, prefersReducedMotion } from '../editorial/MotionPrimitives';
+import { prefersReducedMotion } from '../editorial/MotionPrimitives';
 
 gsap.registerPlugin(ScrollTrigger);
 
+/** Each workspace page has its own pastel ground; the shell fades between them. */
+const ROUTE_BG: Record<string, string> = {
+  home: '#FBFAF8',
+  dashboard: '#F3F1EC',
+  'trip-planner': '#F3F1EC',
+  'smart-packing': '#F3F1EC',
+  'ai-outfit-studio': '#F3F1EC',
+  'digital-wardrobe': '#F3F1EC',
+};
+
 /** Colours the page transition sweeps through, in the order they cover the screen. */
-const CURTAIN_COLOURS = ['#B8D9F2', '#D9C9F2', '#FFC5A8'];
+const CURTAIN_COLOURS = ['#0B3B40', '#0A0A0A', '#FBFAF8'];
 /** The route swaps while the curtain fully covers the screen. */
-const CURTAIN_SWAP_MS = 640;
+const CURTAIN_SWAP_MS = 760;
 
 interface PlatformShellProps {
   user: UserAccount;
@@ -143,7 +153,10 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
   // Workspace views: their top-level blocks rise into place as they enter the viewport.
   useEffect(() => {
     const el = mainRef.current;
-    if (!el || route === 'home' || prefersReducedMotion()) return;
+    if (!el || prefersReducedMotion()) return;
+    // The new page fades up from the curtain instead of cutting in.
+    gsap.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.9, delay: 0.15, ease: 'power2.out', clearProps: 'opacity' });
+    if (route === 'home') return;
     const blocks = Array.from(el.querySelectorAll<HTMLElement>(':scope > div > div > *'));
     if (blocks.length === 0) return;
     const ctx = gsap.context(() => {
@@ -171,12 +184,11 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
   }, [route]);
 
   return (
-    <div className="min-h-screen bg-[#FFFFFF] text-[#171717] flex flex-col font-sans">
-      <EditorialCursor />
+    <div className="min-h-screen bg-[#FBFAF8] text-[#0A0A0A] flex flex-col font-sans">
       <motion.div
         aria-hidden="true"
         style={{ scaleX: progressX }}
-        className="fixed top-0 left-0 right-0 h-[3px] origin-left bg-[#101010] z-[60]"
+        className="fixed top-0 left-0 right-0 h-[3px] origin-left bg-[#0B3B40] z-[60]"
       />
       {curtain > 0 && (
         <div key={curtain} aria-hidden="true" className="fixed inset-0 z-[90] pointer-events-none">
@@ -187,13 +199,13 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
               style={{ backgroundColor: colour }}
               initial={{ y: '100%' }}
               animate={{ y: ['100%', '0%', '0%', '-100%'] }}
-              transition={{ duration: 1.05, times: [0, 0.45, 0.55, 1], ease: 'easeInOut', delay: i * 0.07 }}
+              transition={{ duration: 1.25, times: [0, 0.42, 0.58, 1], ease: [0.76, 0, 0.24, 1], delay: i * 0.08 }}
             />
           ))}
         </div>
       )}
       {/* ==================== STICKY 3-ZONE TOP NAVIGATION ==================== */}
-      <header className="sticky top-0 z-40 h-16 bg-[#FFFFFF]/95 backdrop-blur-sm border-b border-[#171717]/10">
+      <header className="sticky top-0 z-40 h-16 bg-[#FBFAF8]/95 backdrop-blur-sm border-b border-[#0A0A0A]/10">
         <div className="max-w-6xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-6">
           {/* Zone 1: Brand Wordmark */}
           <button
@@ -202,7 +214,7 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
             className="flex items-center gap-2.5 whitespace-nowrap shrink-0 hover:opacity-80 transition-opacity"
           >
             <BrandLogo size={28} />
-            <span className="font-serif text-xl font-semibold tracking-tight text-[#171717]">
+            <span className="font-serif text-xl font-semibold tracking-tight text-[#0A0A0A]">
               PackSmart
             </span>
           </button>
@@ -222,15 +234,15 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
                   aria-current={active ? 'page' : undefined}
                   className={`relative text-sm whitespace-nowrap transition-colors duration-150 py-1 ${
                     active
-                      ? 'text-[#171717] font-medium'
-                      : 'text-[#171717]/65 hover:text-[#171717]'
+                      ? 'text-[#0A0A0A] font-medium'
+                      : 'text-[#0A0A0A]/65 hover:text-[#0A0A0A]'
                   }`}
                 >
                   {item.label}
                   {active && (
                     <motion.span
                       layoutId="nav-underline"
-                      className="absolute left-0 right-0 -bottom-0.5 h-[2px] rounded-full bg-[#101010]"
+                      className="absolute left-0 right-0 -bottom-0.5 h-[2px] rounded-full bg-[#0B3B40]"
                       transition={{ type: 'spring', stiffness: 420, damping: 34 }}
                     />
                   )}
@@ -242,7 +254,7 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
           {/* Zone 3: Right Utility CTA + Mobile Toggle */}
           <div className="flex items-center gap-2.5 shrink-0">
             {!isOnline && (
-              <span className="h-8 px-2.5 rounded-md bg-[#FFC5A8] text-[#171717] text-xs font-medium inline-flex items-center gap-1 whitespace-nowrap">
+              <span className="h-8 px-2.5 rounded-md bg-[#E6DFD2] text-[#0A0A0A] text-xs font-medium inline-flex items-center gap-1 whitespace-nowrap">
                 <WifiOff className="w-3.5 h-3.5" />
                 <span>Offline</span>
               </span>
@@ -251,7 +263,7 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
             <button
               type="button"
               onClick={() => onEnterClassicWorkspace('essentials')}
-              className="hidden sm:inline-flex h-9 px-3.5 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-xs font-medium text-[#171717] items-center gap-1.5 hover:border-[#171717] transition-colors whitespace-nowrap"
+              className="hidden sm:inline-flex h-9 px-3.5 rounded-lg bg-[#FBFAF8] border border-[#0A0A0A]/15 text-xs font-medium text-[#0A0A0A] items-center gap-1.5 hover:border-[#0A0A0A] transition-colors whitespace-nowrap"
             >
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>Vault &amp; Tools</span>
@@ -262,7 +274,7 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
               onClick={() => setMobileMenuOpen((v) => !v)}
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileMenuOpen}
-              className="lg:hidden w-10 h-10 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 flex items-center justify-center text-[#171717]"
+              className="lg:hidden w-10 h-10 rounded-lg bg-[#FBFAF8] border border-[#0A0A0A]/15 flex items-center justify-center text-[#0A0A0A]"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -271,14 +283,14 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
 
         {/* Clean Responsive Mobile / Tablet Navigation Panel */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-[#FFFFFF] border-b border-[#171717]/12 px-4 sm:px-6 py-4 space-y-1.5 shadow-sm">
+          <div className="lg:hidden bg-[#FBFAF8] border-b border-[#0A0A0A]/12 px-4 sm:px-6 py-4 space-y-1.5 shadow-sm">
             <button
               type="button"
               onClick={() => navigateTo('home')}
               className={`w-full text-left px-3.5 py-2.5 rounded-lg text-sm font-medium ${
                 route === 'home'
-                  ? 'bg-[#171717] text-[#FFFFFF]'
-                  : 'text-[#171717] hover:bg-[#FFFFFF]'
+                  ? 'bg-[#0B3B40] text-[#FBFAF8]'
+                  : 'text-[#0A0A0A] hover:bg-[#FBFAF8]'
               }`}
             >
               Overview
@@ -292,22 +304,22 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
                   onClick={() => navigateTo(item.route)}
                   className={`w-full text-left px-3.5 py-2.5 rounded-lg text-sm font-medium ${
                     active
-                      ? 'bg-[#171717] text-[#FFFFFF]'
-                      : 'text-[#171717] hover:bg-[#FFFFFF]'
+                      ? 'bg-[#0B3B40] text-[#FBFAF8]'
+                      : 'text-[#0A0A0A] hover:bg-[#FBFAF8]'
                   }`}
                 >
                   {item.label}
                 </button>
               );
             })}
-            <div className="pt-2 mt-2 border-t border-[#171717]/10">
+            <div className="pt-2 mt-2 border-t border-[#0A0A0A]/10">
               <button
                 type="button"
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onEnterClassicWorkspace('essentials');
                 }}
-                className="w-full text-left px-3.5 py-2.5 rounded-lg text-sm font-medium bg-[#FFFFFF] text-[#171717] inline-flex items-center gap-2"
+                className="w-full text-left px-3.5 py-2.5 rounded-lg text-sm font-medium bg-[#FBFAF8] text-[#0A0A0A] inline-flex items-center gap-2"
               >
                 <ShieldCheck className="w-4 h-4" />
                 <span>Document Vault &amp; Classic Tools</span>
@@ -318,7 +330,13 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
       </header>
 
       {/* ==================== ACTIVE PLATFORM VIEW ==================== */}
-      <main ref={mainRef} className="flex-1">
+      <motion.main
+        ref={mainRef}
+        className="flex-1"
+        initial={false}
+        animate={{ backgroundColor: ROUTE_BG[route] || '#FBFAF8' }}
+        transition={{ duration: 0.8, ease: 'easeInOut' }}
+      >
         {route === 'home' && (
           <HomePage
             lists={lists}
@@ -409,7 +427,7 @@ export const PlatformShell: React.FC<PlatformShellProps> = ({
             onNavigate={navigateTo}
           />
         )}
-      </main>
+      </motion.main>
     </div>
   );
 };
