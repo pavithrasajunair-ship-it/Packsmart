@@ -68,7 +68,7 @@ export const PageHero: React.FC<{
   );
 };
 
-/** The exploded 3D suitcase, separating slowly with the page scroll. */
+/** The 3D suitcase, opening as the page scrolls with the page scroll. */
 export const PackingVisual: React.FC = () => {
   const progress = useRef(0);
   useEffect(() => {

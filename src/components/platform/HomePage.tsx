@@ -472,7 +472,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               ref={captionRef}
               className="absolute left-0 right-0 bottom-0 text-center text-sm text-[#FBFAF8]/75 lg:opacity-0"
             >
-              Shell, layers, essentials. Everything has its place.
+              Open it up and everything has its place.
             </p>
           </div>
         </div>
