@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import type { OutfitCombination, PackingList, WardrobeItem } from '../../types';
 import { analyzeSuitcaseSpace, daysUntilDate } from '../../utils/packingEngine';
-import { GlobeCanvas } from './GlobeCanvas';
+import { PackingCanvas } from './PackingCanvas';
 import { LineRevealText, MagneticButton, prefersReducedMotion } from '../editorial/MotionPrimitives';
 import { CapsuleCalculator, DepartureBoard } from './HomeExtras';
 import { PackingStorySection } from '../editorial/PackingStorySection';
@@ -430,7 +430,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         <div
           aria-hidden="true"
           className="absolute inset-0"
-          style={{ backgroundImage: 'radial-gradient(60% 60% at 72% 45%, rgba(251,250,248,0.10), rgba(251,250,248,0) 70%)' }}
+          style={{ backgroundImage: 'radial-gradient(55% 60% at 72% 48%, rgba(251,250,248,0.10), rgba(251,250,248,0) 70%)' }}
         />
         <div className="relative w-full max-w-[1320px] mx-auto px-6 sm:px-10 pt-24 pb-20 lg:pt-20 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
           <div ref={headRef} className="lg:col-span-6 relative z-10 space-y-8">
@@ -465,14 +465,14 @@ export const HomePage: React.FC<HomePageProps> = ({
           <div className="lg:col-span-6 relative">
             <div ref={caseWrapRef} className="will-change-transform">
               <div ref={parallaxRef} className="h-[46vh] sm:h-[54vh] lg:h-[72vh]">
-                <GlobeCanvas scrollProgressRef={suitcaseScroll} />
+                <PackingCanvas scrollProgressRef={suitcaseScroll} />
               </div>
             </div>
             <p
               ref={captionRef}
               className="absolute left-0 right-0 bottom-0 text-center text-sm text-[#FBFAF8]/75 lg:opacity-0"
             >
-              {lists.length > 0 ? `${lists.length} ${lists.length === 1 ? 'trip' : 'trips'} planned` : 'Six cities, one packing list'}
+              Shell, layers, essentials. Everything has its place.
             </p>
           </div>
         </div>

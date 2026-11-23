@@ -33,7 +33,7 @@ import {
 } from '../../utils/packingEngine';
 import { uid } from '../../utils/storage';
 import type { PlatformRoute } from './HomePage';
-import { PageHero, GlobeVisual } from './PageHero';
+import { PageHero, PackingVisual } from './PageHero';
 
 interface DashboardViewProps {
   user: UserAccount;
@@ -187,7 +187,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             { label: 'Looks saved', value: savedOutfits.length },
           ]}
         >
-          <GlobeVisual />
+          <PackingVisual />
         </PageHero>
 
         {/* ==================== PAGE HEADER ==================== */}

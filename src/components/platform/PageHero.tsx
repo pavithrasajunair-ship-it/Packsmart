@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import { Counter } from './HomeExtras';
-import { GlobeCanvas } from './GlobeCanvas';
+import { PackingCanvas } from './PackingCanvas';
 
 export interface HeroStat {
   label: string;
@@ -68,8 +68,8 @@ export const PageHero: React.FC<{
   );
 };
 
-/** The 3D globe, turning slowly with the page scroll. */
-export const GlobeVisual: React.FC = () => {
+/** The exploded 3D suitcase, separating slowly with the page scroll. */
+export const PackingVisual: React.FC = () => {
   const progress = useRef(0);
   useEffect(() => {
     const onScroll = () => {
@@ -79,7 +79,7 @@ export const GlobeVisual: React.FC = () => {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-  return <GlobeCanvas scrollProgressRef={progress} />;
+  return <PackingCanvas scrollProgressRef={progress} />;
 };
 
 /** Three destination photos fanned out; hover opens the fan. */

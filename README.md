@@ -8,7 +8,7 @@ A travel-packing workspace that plans the trip, reads the forecast, fits the sui
 
 | Page | What you can do |
 |---|---|
-| Home | Pinned 3D globe hero, packing story, 3D tool deck, journeys gallery, departure board of your trips, capsule calculator |
+| Home | Pinned exploded-suitcase 3D hero, packing story, 3D tool deck, journeys gallery, departure board of your trips, capsule calculator |
 | Dashboard | Active trip countdown, packed progress, live weather, documents |
 | Trip Planner | Create itineraries, pull a live destination forecast, track the countdown |
 | Smart Packing | Checklist by category, suitcase volume and weight, AI packing chat |
