@@ -1,8 +1,12 @@
 # PackSmart
 
+![PackSmart overview](docs/banner.png)
+
 A travel-packing workspace that plans the trip, reads the forecast, fits the suitcase and styles every day from clothes you already own.
 
 **Stack:** React 19, Vite, Tailwind CSS 4, GSAP (ScrollTrigger), Motion (Framer Motion), Three.js, Express, Google Gemini.
+
+![What PackSmart does](docs/features.png)
 
 ## What it does
 
@@ -46,6 +50,10 @@ Without a key the app still works; AI features show a "configure GEMINI_API_KEY"
 
 `GET /api/health`, `GET /api/weather`, `POST /api/ai/chat`, `POST /api/ai/enhance-list`, `POST /api/ai/analyze-clothing`, `POST /api/ai/match-outfits`.
 
+## How it fits together
+
+![Architecture](docs/architecture.png)
+
 ## Project layout
 
 ```
@@ -58,3 +66,7 @@ src/screens              Classic workspace screens
 src/data                 Templates and sample data
 src/utils                Packing engine, storage
 ```
+
+---
+
+The images in `docs/` are overview graphics, not screenshots. Replace them with real screenshots of the running app whenever you like (keep the same file names).
