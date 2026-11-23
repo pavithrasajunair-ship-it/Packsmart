@@ -257,8 +257,8 @@ export const EditorialCursor: React.FC = () => {
       <div
         className={`rounded-full flex items-center justify-center transition-all duration-200 border ${
           label
-            ? 'w-14 h-14 bg-[#101010] border-[#FFC5A8] text-[#FFFFFF]'
-            : 'w-3 h-3 bg-[#101010]/70 border-[#FFFFFF]/80'
+            ? 'w-14 h-14 bg-[#0B3B40] border-[#E6DFD2] text-[#FBFAF8]'
+            : 'w-3 h-3 bg-[#0A0A0A]/70 border-[#FBFAF8]/80'
         }`}
       >
         {label && (

@@ -211,7 +211,7 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
       shareCode: Math.random().toString(36).slice(2, 8).toUpperCase(),
       allowMemberEdits: true,
       groupMembers: [
-        { id: 'm-owner', name: user.name, role: 'Owner', initials: user.initials, color: '#101010' },
+        { id: 'm-owner', name: user.name, role: 'Owner', initials: user.initials, color: '#0A0A0A' },
       ],
       groupActivity: [],
       groupSuggestions: [],
@@ -251,18 +251,18 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#FFC5A8] text-[#101010] pt-20 pb-14">
+    <div className="min-h-screen bg-[#E6DFD2] text-[#0A0A0A] pt-20 pb-14">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 space-y-8">
         {/* CINEMATIC PANORAMIC HORIZON BANNER */}
-        <div className="relative overflow-hidden border border-[#101010]/20 bg-[#101010] text-[#FFFFFF]">
+        <div className="relative overflow-hidden border border-[#0A0A0A]/20 bg-[#0B3B40] text-[#FBFAF8]">
           <div className="grid grid-cols-1 lg:grid-cols-12">
             <div className="lg:col-span-6 p-7 sm:p-10 flex flex-col justify-between gap-8 relative z-10">
               <div className="space-y-3">
-                <p className="font-mono text-[11px] tracking-[0.16em] text-[#FFC5A8]">
+                <p className="font-mono text-[11px] tracking-[0.16em] text-[#E6DFD2]">
                   03. SPATIAL TRIP PLANNER · ITINERARY ATELIER
                 </p>
-                <h1 className="font-editorial text-4xl sm:text-5xl lg:text-6xl leading-[0.98] font-normal text-[#FFFFFF]">
-                  Chart the horizon. <span className="italic text-[#B8D9F2]">Arrive unhurried.</span>
+                <h1 className="font-editorial text-4xl sm:text-5xl lg:text-6xl leading-[0.98] font-normal text-[#FBFAF8]">
+                  Chart the horizon. <span className="italic text-[#BCD2CF]">Arrive unhurried.</span>
                 </h1>
                 <p className="text-xs sm:text-sm text-white/75 max-w-md leading-relaxed">
                   Every journey automatically generates live meteorological forecasts, tailored 40L suitcase manifests, and a calm departure timeline connected to your AI Outfit Studio.
@@ -273,7 +273,7 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
                 <button
                   type="button"
                   onClick={() => setComposerOpen((v) => !v)}
-                  className="min-h-[48px] px-6 bg-[#FFC5A8] text-[#101010] text-xs font-bold inline-flex items-center gap-2 hover:bg-[#FFFFFF] transition-colors"
+                  className="min-h-[48px] px-6 bg-[#E6DFD2] text-[#0A0A0A] text-xs font-bold inline-flex items-center gap-2 hover:bg-[#FBFAF8] transition-colors"
                 >
                   {composerOpen ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   <span>{composerOpen ? 'Close Composer' : 'Design New Journey'}</span>
@@ -282,7 +282,7 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
                   <button
                     type="button"
                     onClick={() => onOpenSmartPacking(activeTrip.id)}
-                    className="min-h-[48px] px-5 border border-white/25 text-[#FFFFFF] text-xs font-bold hover:bg-white hover:text-[#101010] transition-colors"
+                    className="min-h-[48px] px-5 border border-white/25 text-[#FBFAF8] text-xs font-bold hover:bg-white hover:text-[#0A0A0A] transition-colors"
                   >
                     Open 3D Suitcase
                   </button>
@@ -310,54 +310,54 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
               onSubmit={handleCreateJourney}
-              className="bg-[#FFFFFF] border border-[#101010] p-6 sm:p-8 space-y-6"
+              className="bg-[#FBFAF8] border border-[#0A0A0A] p-6 sm:p-8 space-y-6"
             >
-              <div className="flex items-center justify-between border-b border-[#101010]/10 pb-4">
+              <div className="flex items-center justify-between border-b border-[#0A0A0A]/10 pb-4">
                 <div>
-                  <p className="font-mono text-[10px] text-[#101010]/60">NEW JOURNEY SPECIFICATION</p>
+                  <p className="font-mono text-[10px] text-[#0A0A0A]/60">NEW JOURNEY SPECIFICATION</p>
                   <h2 className="font-editorial text-3xl">Compose Destination &amp; Timeline</h2>
                 </div>
-                <Compass className="w-5 h-5 text-[#101010]" />
+                <Compass className="w-5 h-5 text-[#0A0A0A]" />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
                 <div className="md:col-span-4 space-y-1.5">
-                  <label className="font-mono text-[10px] text-[#101010]/65">DESTINATION</label>
+                  <label className="font-mono text-[10px] text-[#0A0A0A]/65">DESTINATION</label>
                   <input
                     type="text"
                     required
                     value={destination}
                     onChange={(e) => setDestination(e.target.value)}
                     placeholder="e.g., Kyoto, Milan, Paris, Reykjavik"
-                    className="w-full min-h-[46px] px-3.5 border border-[#101010]/25 text-sm font-semibold"
+                    className="w-full min-h-[46px] px-3.5 border border-[#0A0A0A]/25 text-sm font-semibold"
                   />
                 </div>
 
                 <div className="md:col-span-2 space-y-1.5">
-                  <label className="font-mono text-[10px] text-[#101010]/65">DEPARTURE</label>
+                  <label className="font-mono text-[10px] text-[#0A0A0A]/65">DEPARTURE</label>
                   <input
                     type="date"
                     required
                     value={departureDate}
                     onChange={(e) => setDepartureDate(e.target.value)}
-                    className="w-full min-h-[46px] px-3 border border-[#101010]/25 text-xs font-mono"
+                    className="w-full min-h-[46px] px-3 border border-[#0A0A0A]/25 text-xs font-mono"
                   />
                 </div>
 
                 <div className="md:col-span-2 space-y-1.5">
-                  <label className="font-mono text-[10px] text-[#101010]/65">RETURN</label>
+                  <label className="font-mono text-[10px] text-[#0A0A0A]/65">RETURN</label>
                   <input
                     type="date"
                     required
                     value={returnDate}
                     min={departureDate}
                     onChange={(e) => setReturnDate(e.target.value)}
-                    className="w-full min-h-[46px] px-3 border border-[#101010]/25 text-xs font-mono"
+                    className="w-full min-h-[46px] px-3 border border-[#0A0A0A]/25 text-xs font-mono"
                   />
                 </div>
 
                 <div className="md:col-span-2 space-y-1.5">
-                  <label className="font-mono text-[10px] text-[#101010]/65">TRAVEL PURPOSE</label>
+                  <label className="font-mono text-[10px] text-[#0A0A0A]/65">TRAVEL PURPOSE</label>
                   <select
                     value={purposeLabel}
                     onChange={(e) => {
@@ -365,7 +365,7 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
                       setPurposeLabel(e.target.value);
                       if (found) setTripType(found.tripType);
                     }}
-                    className="w-full min-h-[46px] px-3 border border-[#101010]/25 text-xs font-semibold bg-[#FFFFFF]"
+                    className="w-full min-h-[46px] px-3 border border-[#0A0A0A]/25 text-xs font-semibold bg-[#FBFAF8]"
                   >
                     {TRIP_PURPOSES.map((p) => (
                       <option key={p.label} value={p.label}>
@@ -376,11 +376,11 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
                 </div>
 
                 <div className="md:col-span-2 space-y-1.5">
-                  <label className="font-mono text-[10px] text-[#101010]/65">WEATHER PREFERENCE</label>
+                  <label className="font-mono text-[10px] text-[#0A0A0A]/65">WEATHER PREFERENCE</label>
                   <select
                     value={weatherPref}
                     onChange={(e) => setWeatherPref(e.target.value as WeatherPreference)}
-                    className="w-full min-h-[46px] px-3 border border-[#101010]/25 text-xs font-semibold bg-[#FFFFFF]"
+                    className="w-full min-h-[46px] px-3 border border-[#0A0A0A]/25 text-xs font-semibold bg-[#FBFAF8]"
                   >
                     {WEATHER_PREFERENCES.map((wp) => (
                       <option key={wp} value={wp}>
@@ -392,7 +392,7 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
               </div>
 
               <div className="space-y-2">
-                <p className="font-mono text-[10px] text-[#101010]/65">PLANNED ACTIVITIES</p>
+                <p className="font-mono text-[10px] text-[#0A0A0A]/65">PLANNED ACTIVITIES</p>
                 <div className="flex flex-wrap gap-2">
                   {ACTIVITY_OPTIONS.map((act) => {
                     const active = activities.includes(act);
@@ -407,8 +407,8 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
                         }
                         className={`min-h-[36px] px-3.5 text-xs font-semibold border transition-colors ${
                           active
-                            ? 'bg-[#101010] border-[#101010] text-[#FFFFFF]'
-                            : 'bg-[#FFFFFF] border-[#101010]/20 text-[#101010]/75 hover:border-[#101010]'
+                            ? 'bg-[#0B3B40] border-[#0A0A0A] text-[#FBFAF8]'
+                            : 'bg-[#FBFAF8] border-[#0A0A0A]/20 text-[#0A0A0A]/75 hover:border-[#0A0A0A]'
                         }`}
                       >
                         {act}
@@ -422,24 +422,24 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
                 <button
                   type="button"
                   onClick={() => setComposerOpen(false)}
-                  className="min-h-[46px] px-5 border border-[#101010]/25 text-xs font-bold"
+                  className="min-h-[46px] px-5 border border-[#0A0A0A]/25 text-xs font-bold"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={creatingBusy}
-                  className="min-h-[46px] px-7 bg-[#101010] text-[#FFFFFF] text-xs font-bold inline-flex items-center gap-2 hover:bg-[#101010]/85 disabled:opacity-50"
+                  className="min-h-[46px] px-7 bg-[#0B3B40] text-[#FBFAF8] text-xs font-bold inline-flex items-center gap-2 hover:bg-[#0A0A0A]/85 disabled:opacity-50"
                 >
                   {creatingBusy ? (
                     <>
-                      <Loader2 className="w-4 h-4 animate-spin text-[#FFC5A8]" />
+                      <Loader2 className="w-4 h-4 animate-spin text-[#E6DFD2]" />
                       <span>Forecasting &amp; Building Journey...</span>
                     </>
                   ) : (
                     <>
                       <span>Create Journey &amp; Packing List</span>
-                      <ArrowRight className="w-4 h-4 text-[#FFC5A8]" />
+                      <ArrowRight className="w-4 h-4 text-[#E6DFD2]" />
                     </>
                   )}
                 </button>
@@ -467,11 +467,11 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
                   onClick={() => setSelectedTripId(trip.id)}
                   className={`w-full text-left border overflow-hidden transition-colors flex flex-col ${
                     isSelected
-                      ? 'bg-[#101010] text-[#FFFFFF] border-[#101010]'
-                      : 'bg-[#FFFFFF] text-[#101010] border-[#101010]/15 hover:border-[#101010]'
+                      ? 'bg-[#0B3B40] text-[#FBFAF8] border-[#0A0A0A]'
+                      : 'bg-[#FBFAF8] text-[#0A0A0A] border-[#0A0A0A]/15 hover:border-[#0A0A0A]'
                   }`}
                 >
-                  <div className="aspect-[16/9] relative overflow-hidden bg-[#B8D9F2]/40">
+                  <div className="aspect-[16/9] relative overflow-hidden bg-[#BCD2CF]/40">
                     <img loading="lazy" decoding="async"
                       src={trip.coverImage || fallbackPhoto}
                       alt={trip.title}
@@ -481,7 +481,7 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
                       }}
                       className="w-full h-full object-cover"
                     />
-                    <span className="absolute top-3 left-3 px-2.5 py-1 bg-[#101010] text-[#FFC5A8] font-mono text-[10px]">
+                    <span className="absolute top-3 left-3 px-2.5 py-1 bg-[#0B3B40] text-[#E6DFD2] font-mono text-[10px]">
                       {until > 0 ? `IN ${until} DAYS` : until === 0 ? 'TODAY' : `${days} DAYS`}
                     </span>
                   </div>
@@ -490,7 +490,7 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
                     <div>
                       <p
                         className={`font-mono text-[10px] flex items-center gap-1 ${
-                          isSelected ? 'text-[#B8D9F2]' : 'text-[#101010]/60'
+                          isSelected ? 'text-[#BCD2CF]' : 'text-[#0A0A0A]/60'
                         }`}
                       >
                         <MapPin className="w-3 h-3" />
@@ -506,7 +506,7 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
                       </div>
                       <div className="h-1.5 w-full bg-current/15 overflow-hidden">
                         <div
-                          className={`h-full ${isSelected ? 'bg-[#FFC5A8]' : 'bg-[#101010]'}`}
+                          className={`h-full ${isSelected ? 'bg-[#E6DFD2]' : 'bg-[#0B3B40]'}`}
                           style={{ width: `${packedPct}%` }}
                         />
                       </div>
@@ -522,12 +522,12 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
         {activeTrip && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             {/* Left Panel: Live Weather & Integrated Studio Portals */}
-            <div className="lg:col-span-5 bg-[#FFFFFF] border border-[#101010]/15 p-6 space-y-6">
-              <div className="flex items-start justify-between gap-3 border-b border-[#101010]/10 pb-4">
+            <div className="lg:col-span-5 bg-[#FBFAF8] border border-[#0A0A0A]/15 p-6 space-y-6">
+              <div className="flex items-start justify-between gap-3 border-b border-[#0A0A0A]/10 pb-4">
                 <div>
-                  <p className="font-mono text-[10px] text-[#101010]/60">ACTIVE JOURNEY BRIEF</p>
+                  <p className="font-mono text-[10px] text-[#0A0A0A]/60">ACTIVE JOURNEY BRIEF</p>
                   <h2 className="font-editorial text-3xl mt-0.5">{activeTrip.title}</h2>
-                  <p className="font-mono text-[11px] text-[#101010]/65 mt-1 flex items-center gap-1.5">
+                  <p className="font-mono text-[11px] text-[#0A0A0A]/65 mt-1 flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5" />
                     <span>
                       {activeTrip.startDate} → {activeTrip.endDate} ({calculateTripDays(activeTrip.startDate, activeTrip.endDate)} days)
@@ -539,7 +539,7 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
                     type="button"
                     onClick={() => fetchWeatherForTrip(activeTrip)}
                     disabled={weatherBusyId === activeTrip.id || !isOnline}
-                    className="min-h-[38px] px-3 bg-[#B8D9F2] text-[#101010] text-[11px] font-bold inline-flex items-center gap-1.5 hover:bg-[#101010] hover:text-[#FFFFFF] transition-colors disabled:opacity-50"
+                    className="min-h-[38px] px-3 bg-[#BCD2CF] text-[#0A0A0A] text-[11px] font-bold inline-flex items-center gap-1.5 hover:bg-[#0B3B40] hover:text-[#FBFAF8] transition-colors disabled:opacity-50"
                   >
                     {weatherBusyId === activeTrip.id ? (
                       <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -553,28 +553,28 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
 
               {/* Weather Box */}
               {activeTrip.weather ? (
-                <div className="p-4 bg-[#B8D9F2]/45 border border-[#101010]/12 space-y-3">
+                <div className="p-4 bg-[#BCD2CF]/45 border border-[#0A0A0A]/12 space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       {activeTrip.weather.summary.maxRainChance >= 45 ? (
-                        <CloudRain className="w-5 h-5 text-[#101010]" />
+                        <CloudRain className="w-5 h-5 text-[#0A0A0A]" />
                       ) : (
-                        <Sun className="w-5 h-5 text-[#101010]" />
+                        <Sun className="w-5 h-5 text-[#0A0A0A]" />
                       )}
                       <span className="font-mono text-lg font-bold tabular-nums">
                         {activeTrip.weather.summary.avgLow}°–{activeTrip.weather.summary.avgHigh}°C
                       </span>
                     </div>
-                    <span className="font-mono text-[11px] text-[#101010]/70">
+                    <span className="font-mono text-[11px] text-[#0A0A0A]/70">
                       {activeTrip.weather.summary.primaryCondition} · {activeTrip.weather.summary.maxRainChance}% rain
                     </span>
                   </div>
-                  <p className="text-xs text-[#101010]/75 leading-relaxed">
+                  <p className="text-xs text-[#0A0A0A]/75 leading-relaxed">
                     {activeTrip.weather.note}
                   </p>
                 </div>
               ) : (
-                <div className="p-4 bg-[#D9C9F2]/40 border border-[#101010]/12 text-xs text-[#101010]/75">
+                <div className="p-4 bg-[#D5DCD9]/40 border border-[#0A0A0A]/12 text-xs text-[#0A0A0A]/75">
                   Weather preference: <span className="font-bold">{activeTrip.weatherPreference}</span>. Tap Forecast above to pull live Open-Meteo data.
                 </div>
               )}
@@ -582,13 +582,13 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
               {/* Before You Leave Mini Checklist */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <p className="font-mono text-[10px] text-[#101010]/65">BEFORE YOU LEAVE SAFETY CHECK</p>
+                  <p className="font-mono text-[10px] text-[#0A0A0A]/65">BEFORE YOU LEAVE SAFETY CHECK</p>
                   <span className="font-mono text-[11px] font-bold tabular-nums">
                     {activeTrip.beforeLeaveTasks.filter((t) => t.completed).length}/
                     {activeTrip.beforeLeaveTasks.length}
                   </span>
                 </div>
-                <div className="divide-y divide-[#101010]/10 max-h-[210px] overflow-y-auto">
+                <div className="divide-y divide-[#0A0A0A]/10 max-h-[210px] overflow-y-auto">
                   {activeTrip.beforeLeaveTasks.slice(0, 6).map((task) => (
                     <button
                       key={task.id}
@@ -599,15 +599,15 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
                       <span
                         className={`w-4 h-4 border flex items-center justify-center shrink-0 ${
                           task.completed
-                            ? 'bg-[#101010] border-[#101010] text-[#FFC5A8]'
-                            : 'border-[#101010]/35'
+                            ? 'bg-[#0B3B40] border-[#0A0A0A] text-[#E6DFD2]'
+                            : 'border-[#0A0A0A]/35'
                         }`}
                       >
                         {task.completed && <Check className="w-3 h-3" />}
                       </span>
                       <span
                         className={`text-xs font-medium ${
-                          task.completed ? 'line-through text-[#101010]/45' : 'text-[#101010]'
+                          task.completed ? 'line-through text-[#0A0A0A]/45' : 'text-[#0A0A0A]'
                         }`}
                       >
                         {task.title}
@@ -622,14 +622,14 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
                 <button
                   type="button"
                   onClick={() => onOpenSmartPacking(activeTrip.id)}
-                  className="min-h-[46px] bg-[#101010] text-[#FFFFFF] text-xs font-bold hover:bg-[#101010]/85 transition-colors"
+                  className="min-h-[46px] bg-[#0B3B40] text-[#FBFAF8] text-xs font-bold hover:bg-[#0A0A0A]/85 transition-colors"
                 >
                   Pack 3D Suitcase →
                 </button>
                 <button
                   type="button"
                   onClick={onOpenOutfitStudio}
-                  className="min-h-[46px] bg-[#D9C9F2] text-[#101010] text-xs font-bold hover:bg-[#101010] hover:text-[#FFFFFF] transition-colors"
+                  className="min-h-[46px] bg-[#D5DCD9] text-[#0A0A0A] text-xs font-bold hover:bg-[#0B3B40] hover:text-[#FBFAF8] transition-colors"
                 >
                   Style Trip Outfits →
                 </button>
@@ -637,10 +637,10 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
             </div>
 
             {/* Right Panel: Interactive Visual Departure Timeline */}
-            <div className="lg:col-span-7 bg-[#FFFFFF] border border-[#101010]/15 p-6 sm:p-7 space-y-5">
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#101010]/10 pb-4">
+            <div className="lg:col-span-7 bg-[#FBFAF8] border border-[#0A0A0A]/15 p-6 sm:p-7 space-y-5">
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#0A0A0A]/10 pb-4">
                 <div>
-                  <p className="font-mono text-[10px] text-[#101010]/60">INTERACTIVE PREPARATION TIMELINE</p>
+                  <p className="font-mono text-[10px] text-[#0A0A0A]/60">INTERACTIVE PREPARATION TIMELINE</p>
                   <h2 className="font-editorial text-3xl mt-0.5">Countdown Milestones</h2>
                 </div>
                 <span className="font-mono text-xs font-bold tabular-nums">
@@ -656,16 +656,16 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
                     onClick={() => toggleTimelineTask(task.id)}
                     className={`w-full text-left p-4 border transition-colors flex items-start justify-between gap-4 ${
                       task.completed
-                        ? 'bg-[#B8D9F2]/25 border-[#101010]/10'
-                        : 'bg-[#FFFFFF] border-[#101010]/18 hover:border-[#101010]'
+                        ? 'bg-[#BCD2CF]/25 border-[#0A0A0A]/10'
+                        : 'bg-[#FBFAF8] border-[#0A0A0A]/18 hover:border-[#0A0A0A]'
                     }`}
                   >
                     <div className="flex items-start gap-3.5">
                       <span
                         className={`mt-0.5 w-5 h-5 border flex items-center justify-center shrink-0 ${
                           task.completed
-                            ? 'bg-[#101010] border-[#101010] text-[#FFC5A8]'
-                            : 'border-[#101010]/35'
+                            ? 'bg-[#0B3B40] border-[#0A0A0A] text-[#E6DFD2]'
+                            : 'border-[#0A0A0A]/35'
                         }`}
                       >
                         {task.completed && <Check className="w-3.5 h-3.5" />}
@@ -673,20 +673,20 @@ export const TripPlannerStudio: React.FC<TripPlannerStudioProps> = ({
                       <div className="space-y-0.5">
                         <p
                           className={`text-sm font-bold ${
-                            task.completed ? 'line-through text-[#101010]/45' : 'text-[#101010]'
+                            task.completed ? 'line-through text-[#0A0A0A]/45' : 'text-[#0A0A0A]'
                           }`}
                         >
                           {task.title}
                         </p>
                         {task.notes && (
-                          <p className="text-xs text-[#101010]/65 leading-snug">{task.notes}</p>
+                          <p className="text-xs text-[#0A0A0A]/65 leading-snug">{task.notes}</p>
                         )}
                       </div>
                     </div>
 
                     <div className="text-right shrink-0 font-mono">
-                      <p className="text-[10px] font-bold text-[#101010]/70">{task.stage}</p>
-                      <p className="text-[10px] text-[#101010]/50 tabular-nums">{task.dueDate}</p>
+                      <p className="text-[10px] font-bold text-[#0A0A0A]/70">{task.stage}</p>
+                      <p className="text-[10px] text-[#0A0A0A]/50 tabular-nums">{task.dueDate}</p>
                     </div>
                   </button>
                 ))}

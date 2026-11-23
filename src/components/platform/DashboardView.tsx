@@ -33,7 +33,7 @@ import {
 } from '../../utils/packingEngine';
 import { uid } from '../../utils/storage';
 import type { PlatformRoute } from './HomePage';
-import { PageHero, SuitcaseVisual } from './PageHero';
+import { PageHero, GlobeVisual } from './PageHero';
 
 interface DashboardViewProps {
   user: UserAccount;
@@ -175,7 +175,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
     <div className="ps-work relative min-h-[calc(100vh-4rem)] py-10 sm:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <PageHero
-          surface="#D9C9F2"
+          surface="#0B3B40"
           tagline={
             activeTrip && daysLeft !== null && daysLeft >= 0
               ? `${activeTrip.destination || activeTrip.title} is ${daysLeft} days away.`
@@ -187,14 +187,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             { label: 'Looks saved', value: savedOutfits.length },
           ]}
         >
-          <SuitcaseVisual finish="noir" />
+          <GlobeVisual />
         </PageHero>
 
         {/* ==================== PAGE HEADER ==================== */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2">
           <div className="space-y-1">
-            <p className="inline-flex h-7 items-center rounded-full bg-[#FFFFFF]/85 px-3.5 text-xs font-semibold text-[#101010]">Travel Workspace</p>
-            <h1 className="text-4xl sm:text-6xl font-bold leading-[1.02] tracking-[-0.045em] text-[#101010]">
+            <p className="inline-flex h-7 items-center rounded-full bg-[#FBFAF8]/85 px-3.5 text-xs font-semibold text-[#0A0A0A]">Travel Workspace</p>
+            <h1 className="text-4xl sm:text-6xl font-bold leading-[1.02] tracking-[-0.045em] text-[#0A0A0A]">
               Good to see you, {user.name}
             </h1>
           </div>
@@ -205,7 +205,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 aria-label="Select active trip"
                 value={activeTrip.id}
                 onChange={(e) => onSelectTrip(e.target.value)}
-                className="h-10 px-3.5 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-sm font-medium text-[#171717]"
+                className="h-10 px-3.5 rounded-lg bg-[#FBFAF8] border border-[#0A0A0A]/15 text-sm font-medium text-[#0A0A0A]"
               >
                 {lists.map((l) => (
                   <option key={l.id} value={l.id}>
@@ -217,7 +217,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             <button
               type="button"
               onClick={() => onNavigate('trip-planner')}
-              className="h-10 px-5 rounded-full bg-[#171717] text-[#FFFFFF] text-sm font-medium inline-flex items-center gap-1.5 hover:bg-[#171717]/88 transition-colors duration-150 whitespace-nowrap"
+              className="h-10 px-5 rounded-full bg-[#0B3B40] text-[#FBFAF8] text-sm font-medium inline-flex items-center gap-1.5 hover:bg-[#0A0A0A]/88 transition-colors duration-150 whitespace-nowrap"
             >
               <Plus className="w-4 h-4" />
               <span>New Trip</span>
@@ -227,44 +227,44 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
         {/* ==================== 4 CONSISTENT KPI SUMMARY CARDS ==================== */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-5 flex flex-col justify-between gap-2">
-            <p className="text-xs font-medium text-[#101010]/75">Upcoming Departure</p>
-            <p className="font-serif text-2xl sm:text-3xl font-medium text-[#171717] tabular-nums">
+          <div className="rounded-3xl bg-[#FBFAF8] border border-[#0A0A0A]/10 p-5 flex flex-col justify-between gap-2">
+            <p className="text-xs font-medium text-[#0A0A0A]/75">Upcoming Departure</p>
+            <p className="font-serif text-2xl sm:text-3xl font-medium text-[#0A0A0A] tabular-nums">
               {daysLeft !== null && daysLeft >= 0 ? `${daysLeft} days` : 'Ready'}
             </p>
-            <p className="text-xs text-[#101010]/75 truncate">
+            <p className="text-xs text-[#0A0A0A]/75 truncate">
               {activeTrip ? `${activeTrip.startDate} · ${tripDuration}d trip` : 'No active trip'}
             </p>
           </div>
 
-          <div className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-5 flex flex-col justify-between gap-2">
-            <p className="text-xs font-medium text-[#101010]/75">Packing Checklist</p>
-            <p className="font-serif text-2xl sm:text-3xl font-medium text-[#171717] tabular-nums">
+          <div className="rounded-3xl bg-[#FBFAF8] border border-[#0A0A0A]/10 p-5 flex flex-col justify-between gap-2">
+            <p className="text-xs font-medium text-[#0A0A0A]/75">Packing Checklist</p>
+            <p className="font-serif text-2xl sm:text-3xl font-medium text-[#0A0A0A] tabular-nums">
               {packedPct}%
             </p>
-            <p className="text-xs text-[#101010]/75 tabular-nums">
+            <p className="text-xs text-[#0A0A0A]/75 tabular-nums">
               {packedCount} of {totalCount} items packed
             </p>
           </div>
 
-          <div className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-5 flex flex-col justify-between gap-2">
-            <p className="text-xs font-medium text-[#101010]/75">Suitcase Space</p>
-            <p className="font-serif text-2xl sm:text-3xl font-medium text-[#171717] tabular-nums">
+          <div className="rounded-3xl bg-[#FBFAF8] border border-[#0A0A0A]/10 p-5 flex flex-col justify-between gap-2">
+            <p className="text-xs font-medium text-[#0A0A0A]/75">Suitcase Space</p>
+            <p className="font-serif text-2xl sm:text-3xl font-medium text-[#0A0A0A] tabular-nums">
               {metrics ? `${metrics.totalVolumeLiters}L` : '0L'}
             </p>
-            <p className="text-xs text-[#101010]/75 tabular-nums">
+            <p className="text-xs text-[#0A0A0A]/75 tabular-nums">
               {metrics
                 ? `${metrics.volumePercent}% of ${metrics.capacityLiters}L · ${metrics.totalWeightKg} kg`
                 : '40L carry-on target'}
             </p>
           </div>
 
-          <div className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-5 flex flex-col justify-between gap-2">
-            <p className="inline-flex h-7 items-center rounded-full bg-[#FFFFFF]/85 px-3.5 text-xs font-semibold text-[#101010]">Digital Wardrobe</p>
-            <p className="font-serif text-2xl sm:text-3xl font-medium text-[#171717] tabular-nums">
+          <div className="rounded-3xl bg-[#FBFAF8] border border-[#0A0A0A]/10 p-5 flex flex-col justify-between gap-2">
+            <p className="inline-flex h-7 items-center rounded-full bg-[#FBFAF8]/85 px-3.5 text-xs font-semibold text-[#0A0A0A]">Digital Wardrobe</p>
+            <p className="font-serif text-2xl sm:text-3xl font-medium text-[#0A0A0A] tabular-nums">
               {wardrobe.length} pieces
             </p>
-            <p className="text-xs text-[#101010]/75 tabular-nums">
+            <p className="text-xs text-[#0A0A0A]/75 tabular-nums">
               {savedOutfits.length} saved outfits · {documents.length} vault docs
             </p>
           </div>
@@ -273,17 +273,17 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         {/* ==================== ROW 1: UPCOMING TRIP OVERVIEW + WEATHER SUMMARY ==================== */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           {/* Upcoming Trip Overview (7 cols) */}
-          <div className="lg:col-span-7 rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-6 flex flex-col justify-between gap-6">
+          <div className="lg:col-span-7 rounded-3xl bg-[#FBFAF8] border border-[#0A0A0A]/10 p-6 flex flex-col justify-between gap-6">
             {activeTrip && metrics ? (
               <>
                 <div className="space-y-4">
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div className="space-y-1">
-                      <p className="text-xs font-medium text-[#101010]/75">Upcoming Trip Overview</p>
-                      <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[#171717]">
+                      <p className="text-xs font-medium text-[#0A0A0A]/75">Upcoming Trip Overview</p>
+                      <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[#0A0A0A]">
                         {activeTrip.title}
                       </h2>
-                      <p className="text-sm text-[#171717]/70 inline-flex flex-wrap items-center gap-x-2 gap-y-1">
+                      <p className="text-sm text-[#0A0A0A]/70 inline-flex flex-wrap items-center gap-x-2 gap-y-1">
                         <span className="inline-flex items-center gap-1">
                           <MapPin className="w-3.5 h-3.5" />
                           <span>{activeTrip.destination || activeTrip.tripType}</span>
@@ -297,7 +297,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                         </span>
                       </p>
                     </div>
-                    <span className="text-xs font-medium px-2.5 py-1 rounded-md bg-[#FFFFFF] border border-[#171717]/10 text-[#171717]">
+                    <span className="text-xs font-medium px-2.5 py-1 rounded-md bg-[#FBFAF8] border border-[#0A0A0A]/10 text-[#0A0A0A]">
                       {activeTrip.luggageType}
                     </span>
                   </div>
@@ -306,12 +306,12 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                     <div className="space-y-1.5">
                       <div className="flex items-center justify-between text-xs tabular-nums">
-                        <span className="text-[#171717]/65">Checklist Progress</span>
-                        <span className="font-semibold text-[#171717]">{packedPct}%</span>
+                        <span className="text-[#0A0A0A]/65">Checklist Progress</span>
+                        <span className="font-semibold text-[#0A0A0A]">{packedPct}%</span>
                       </div>
-                      <div className="h-2 rounded-full bg-[#101010]/10 overflow-hidden">
+                      <div className="h-2 rounded-full bg-[#0A0A0A]/10 overflow-hidden">
                         <div
-                          className="h-full bg-[#171717] rounded-full transition-all duration-300"
+                          className="h-full bg-[#0B3B40] rounded-full transition-all duration-300"
                           style={{ width: `${packedPct}%` }}
                         />
                       </div>
@@ -319,15 +319,15 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
                     <div className="space-y-1.5">
                       <div className="flex items-center justify-between text-xs tabular-nums">
-                        <span className="text-[#171717]/65">Suitcase Capacity</span>
-                        <span className="font-semibold text-[#171717]">
+                        <span className="text-[#0A0A0A]/65">Suitcase Capacity</span>
+                        <span className="font-semibold text-[#0A0A0A]">
                           {metrics.volumePercent}%
                         </span>
                       </div>
-                      <div className="h-2 rounded-full bg-[#101010]/10 overflow-hidden">
+                      <div className="h-2 rounded-full bg-[#0A0A0A]/10 overflow-hidden">
                         <div
                           className={`h-full rounded-full transition-all duration-300 ${
-                            metrics.isVolumeOverloaded ? 'bg-[#FFC5A8]' : 'bg-[#B8D9F2]'
+                            metrics.isVolumeOverloaded ? 'bg-[#E6DFD2]' : 'bg-[#BCD2CF]'
                           }`}
                           style={{ width: `${Math.min(100, metrics.volumePercent)}%` }}
                         />
@@ -336,11 +336,11 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#171717]/10 flex flex-wrap items-center gap-2.5">
+                <div className="pt-4 border-t border-[#0A0A0A]/10 flex flex-wrap items-center gap-2.5">
                   <button
                     type="button"
                     onClick={() => onNavigate('smart-packing')}
-                    className="h-10 px-4 rounded-full bg-[#171717] text-[#FFFFFF] text-xs font-medium inline-flex items-center gap-1.5 hover:bg-[#171717]/88 transition-colors duration-150"
+                    className="h-10 px-4 rounded-full bg-[#0B3B40] text-[#FBFAF8] text-xs font-medium inline-flex items-center gap-1.5 hover:bg-[#0A0A0A]/88 transition-colors duration-150"
                   >
                     <Luggage className="w-3.5 h-3.5" />
                     <span>Open Smart Packing</span>
@@ -348,7 +348,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   <button
                     type="button"
                     onClick={() => onNavigate('ai-outfit-studio')}
-                    className="h-10 px-4 rounded-lg bg-[#D9C9F2]/55 text-[#171717] text-xs font-medium inline-flex items-center gap-1.5 hover:bg-[#D9C9F2] transition-colors duration-150"
+                    className="h-10 px-4 rounded-lg bg-[#D5DCD9]/55 text-[#0A0A0A] text-xs font-medium inline-flex items-center gap-1.5 hover:bg-[#D5DCD9] transition-colors duration-150"
                   >
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>Match Outfits</span>
@@ -356,7 +356,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   <button
                     type="button"
                     onClick={() => onOpenClassicTripSubTab(activeTrip.id, 'before_leave')}
-                    className="h-10 px-4 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-[#171717] text-xs font-medium hover:border-[#171717] transition-colors duration-150"
+                    className="h-10 px-4 rounded-lg bg-[#FBFAF8] border border-[#0A0A0A]/15 text-[#0A0A0A] text-xs font-medium hover:border-[#0A0A0A] transition-colors duration-150"
                   >
                     Before You Leave ({activeTrip.beforeLeaveTasks.filter((t) => t.completed).length}/
                     {activeTrip.beforeLeaveTasks.length})
@@ -365,14 +365,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               </>
             ) : (
               <div className="py-8 text-center space-y-3">
-                <p className="font-serif text-2xl text-[#171717]">No upcoming trip yet</p>
-                <p className="text-sm text-[#171717]/65">
+                <p className="font-serif text-2xl text-[#0A0A0A]">No upcoming trip yet</p>
+                <p className="text-sm text-[#0A0A0A]/65">
                   Start a trip in the Trip Planner to see your live packing progress and weather.
                 </p>
                 <button
                   type="button"
                   onClick={() => onNavigate('trip-planner')}
-                  className="h-10 px-5 rounded-full bg-[#171717] text-[#FFFFFF] text-sm font-medium"
+                  className="h-10 px-5 rounded-full bg-[#0B3B40] text-[#FBFAF8] text-sm font-medium"
                 >
                   Create Your First Trip
                 </button>
@@ -381,12 +381,12 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </div>
 
           {/* Clean Weather Summary (5 cols — Supporting Powder Blue Surface) */}
-          <div className="lg:col-span-5 rounded-3xl bg-[#B8D9F2]/28 border border-[#171717]/10 p-6 flex flex-col justify-between gap-5">
+          <div className="lg:col-span-5 rounded-3xl bg-[#BCD2CF]/28 border border-[#0A0A0A]/10 p-6 flex flex-col justify-between gap-5">
             <div className="space-y-4">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <p className="text-xs font-medium text-[#171717]/65">Weather Summary</p>
-                  <h2 className="font-serif text-2xl font-medium text-[#171717] mt-0.5">
+                  <p className="text-xs font-medium text-[#0A0A0A]/65">Weather Summary</p>
+                  <h2 className="font-serif text-2xl font-medium text-[#0A0A0A] mt-0.5">
                     {activeTrip?.weather?.shortLocation || activeTrip?.destination || 'Destination Forecast'}
                   </h2>
                 </div>
@@ -395,7 +395,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                     type="button"
                     onClick={handleFetchWeather}
                     disabled={weatherBusy || !isOnline}
-                    className="h-9 px-3.5 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-xs font-medium text-[#171717] inline-flex items-center gap-1.5 hover:border-[#171717] transition-colors disabled:opacity-50"
+                    className="h-9 px-3.5 rounded-lg bg-[#FBFAF8] border border-[#0A0A0A]/15 text-xs font-medium text-[#0A0A0A] inline-flex items-center gap-1.5 hover:border-[#0A0A0A] transition-colors disabled:opacity-50"
                   >
                     {weatherBusy ? (
                       <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -408,30 +408,30 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               </div>
 
               {weatherError && (
-                <p className="text-xs font-medium text-[#171717] bg-[#FFC5A8]/60 rounded-lg p-3">
+                <p className="text-xs font-medium text-[#0A0A0A] bg-[#E6DFD2]/60 rounded-lg p-3">
                   {weatherError}
                 </p>
               )}
 
               {activeTrip?.weather ? (
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between bg-[#FFFFFF] rounded-lg border border-[#171717]/10 p-4">
+                  <div className="flex items-center justify-between bg-[#FBFAF8] rounded-lg border border-[#0A0A0A]/10 p-4">
                     <div className="flex items-center gap-3">
                       {activeTrip.weather.summary.maxRainChance >= 45 ? (
-                        <CloudRain className="w-6 h-6 text-[#171717]" />
+                        <CloudRain className="w-6 h-6 text-[#0A0A0A]" />
                       ) : (
-                        <Sun className="w-6 h-6 text-[#171717]" />
+                        <Sun className="w-6 h-6 text-[#0A0A0A]" />
                       )}
                       <div>
-                        <p className="text-xl font-semibold text-[#171717] tabular-nums">
+                        <p className="text-xl font-semibold text-[#0A0A0A] tabular-nums">
                           {activeTrip.weather.summary.avgLow}° – {activeTrip.weather.summary.avgHigh}°C
                         </p>
-                        <p className="text-xs text-[#171717]/65">
+                        <p className="text-xs text-[#0A0A0A]/65">
                           {activeTrip.weather.summary.primaryCondition}
                         </p>
                       </div>
                     </div>
-                    <div className="text-right text-xs text-[#171717]/70 tabular-nums">
+                    <div className="text-right text-xs text-[#0A0A0A]/70 tabular-nums">
                       <p>Rain {activeTrip.weather.summary.maxRainChance}%</p>
                       <p>Humidity {activeTrip.weather.summary.avgHumidity}%</p>
                     </div>
@@ -439,14 +439,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
                   {activeTrip.weather.recommendations.length > 0 && (
                     <div className="space-y-1.5">
-                      <p className="text-xs font-medium text-[#171717]/65">Weather Recommendations</p>
-                      <ul className="space-y-1.5 text-xs text-[#171717]/80">
+                      <p className="text-xs font-medium text-[#0A0A0A]/65">Weather Recommendations</p>
+                      <ul className="space-y-1.5 text-xs text-[#0A0A0A]/80">
                         {activeTrip.weather.recommendations.slice(0, 2).map((rec) => (
                           <li
                             key={rec.name}
-                            className="bg-[#FFFFFF]/80 rounded-lg px-3 py-2 border border-[#171717]/8"
+                            className="bg-[#FBFAF8]/80 rounded-lg px-3 py-2 border border-[#0A0A0A]/8"
                           >
-                            <span className="font-semibold text-[#171717]">{rec.name}</span> —{' '}
+                            <span className="font-semibold text-[#0A0A0A]">{rec.name}</span> —{' '}
                             {rec.reason}
                           </li>
                         ))}
@@ -455,18 +455,18 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   )}
                 </div>
               ) : (
-                <div className="bg-[#FFFFFF]/80 rounded-lg border border-[#171717]/10 p-4 space-y-2">
-                  <p className="text-sm font-medium text-[#171717]">
+                <div className="bg-[#FBFAF8]/80 rounded-lg border border-[#0A0A0A]/10 p-4 space-y-2">
+                  <p className="text-sm font-medium text-[#0A0A0A]">
                     {activeTrip?.weatherPreference || 'Auto (Live Weather)'}
                   </p>
-                  <p className="text-xs text-[#171717]/70 leading-relaxed">
+                  <p className="text-xs text-[#0A0A0A]/70 leading-relaxed">
                     Fetch live Open-Meteo meteorological data for your trip dates to tailor layers and rain gear.
                   </p>
                 </div>
               )}
             </div>
 
-            <p className="text-xs text-[#101010]/75">
+            <p className="text-xs text-[#0A0A0A]/75">
               {activeTrip?.weather
                 ? activeTrip.weather.note
                 : 'Powered by Open-Meteo live forecasts'}
@@ -477,19 +477,19 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         {/* ==================== ROW 2: PACKING CHECKLIST + PREPARATION TIMELINE ==================== */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           {/* Interactive Packing Checklist (6 cols) */}
-          <div className="lg:col-span-6 rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-6 flex flex-col justify-between gap-5">
+          <div className="lg:col-span-6 rounded-3xl bg-[#FBFAF8] border border-[#0A0A0A]/10 p-6 flex flex-col justify-between gap-5">
             <div className="space-y-4">
               <div className="flex items-center justify-between gap-3">
                 <div>
-                  <p className="text-xs font-medium text-[#101010]/75">Packing Checklist</p>
-                  <h2 className="font-serif text-2xl font-medium text-[#171717]">
+                  <p className="text-xs font-medium text-[#0A0A0A]/75">Packing Checklist</p>
+                  <h2 className="font-serif text-2xl font-medium text-[#0A0A0A]">
                     Essential Items
                   </h2>
                 </div>
                 <button
                   type="button"
                   onClick={() => onNavigate('smart-packing')}
-                  className="text-xs font-medium text-[#171717] inline-flex items-center gap-1 hover:opacity-70 transition-opacity"
+                  className="text-xs font-medium text-[#0A0A0A] inline-flex items-center gap-1 hover:opacity-70 transition-opacity"
                 >
                   <span>Full List</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -503,13 +503,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                     value={quickItem}
                     onChange={(e) => setQuickItem(e.target.value)}
                     placeholder="Add an item to pack..."
-                    className="flex-1 h-10 px-3 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-sm text-[#171717] placeholder:text-[#171717]/45"
+                    className="flex-1 h-10 px-3 rounded-lg bg-[#FBFAF8] border border-[#0A0A0A]/15 text-sm text-[#0A0A0A] placeholder:text-[#0A0A0A]/45"
                   />
                   <select
                     aria-label="Category"
                     value={quickCat}
                     onChange={(e) => setQuickCat(e.target.value)}
-                    className="h-10 px-2.5 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-xs font-medium text-[#171717]"
+                    className="h-10 px-2.5 rounded-lg bg-[#FBFAF8] border border-[#0A0A0A]/15 text-xs font-medium text-[#0A0A0A]"
                   >
                     <option value="Clothing">Clothing</option>
                     <option value="Electronics">Electronics</option>
@@ -518,28 +518,28 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   </select>
                   <button
                     type="submit"
-                    className="h-10 px-4 rounded-full bg-[#171717] text-[#FFFFFF] text-xs font-medium hover:bg-[#171717]/88 transition-colors shrink-0"
+                    className="h-10 px-4 rounded-full bg-[#0B3B40] text-[#FBFAF8] text-xs font-medium hover:bg-[#0A0A0A]/88 transition-colors shrink-0"
                   >
                     Add
                   </button>
                 </form>
               )}
 
-              <div className="divide-y divide-[#171717]/8 max-h-[300px] overflow-y-auto pr-1">
+              <div className="divide-y divide-[#0A0A0A]/8 max-h-[300px] overflow-y-auto pr-1">
                 {activeTrip && activeTrip.items.length > 0 ? (
                   activeTrip.items.slice(0, 8).map((item) => (
                     <button
                       key={item.id}
                       type="button"
                       onClick={() => handleToggleItem(item.id)}
-                      className="w-full py-2.5 flex items-center justify-between gap-3 text-left min-h-[44px] hover:bg-[#FFFFFF]/60 px-2 -mx-2 rounded-lg transition-colors duration-150"
+                      className="w-full py-2.5 flex items-center justify-between gap-3 text-left min-h-[44px] hover:bg-[#FBFAF8]/60 px-2 -mx-2 rounded-lg transition-colors duration-150"
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         <span
                           className={`w-4 h-4 rounded flex items-center justify-center border shrink-0 transition-colors ${
                             item.packed
-                              ? 'bg-[#171717] border-[#171717] text-[#FFFFFF]'
-                              : 'border-[#171717]/30 bg-[#FFFFFF]'
+                              ? 'bg-[#0B3B40] border-[#0A0A0A] text-[#FBFAF8]'
+                              : 'border-[#0A0A0A]/30 bg-[#FBFAF8]'
                           }`}
                         >
                           {item.packed && <Check className="w-3 h-3" />}
@@ -547,20 +547,20 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                         <span
                           className={`text-sm truncate ${
                             item.packed
-                              ? 'line-through text-[#171717]/45'
-                              : 'text-[#171717] font-medium'
+                              ? 'line-through text-[#0A0A0A]/45'
+                              : 'text-[#0A0A0A] font-medium'
                           }`}
                         >
                           {item.name}
                         </span>
                       </div>
-                      <span className="text-xs text-[#101010]/75 tabular-nums shrink-0">
+                      <span className="text-xs text-[#0A0A0A]/75 tabular-nums shrink-0">
                         {item.category} · ×{item.quantity}
                       </span>
                     </button>
                   ))
                 ) : (
-                  <p className="py-6 text-sm text-[#101010]/75 text-center">
+                  <p className="py-6 text-sm text-[#0A0A0A]/75 text-center">
                     No packing items yet. Add one above or create a trip.
                   </p>
                 )}
@@ -569,40 +569,40 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </div>
 
           {/* Preparation Timeline (6 cols) */}
-          <div className="lg:col-span-6 rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-6 flex flex-col justify-between gap-5">
+          <div className="lg:col-span-6 rounded-3xl bg-[#FBFAF8] border border-[#0A0A0A]/10 p-6 flex flex-col justify-between gap-5">
             <div className="space-y-4">
               <div className="flex items-center justify-between gap-3">
                 <div>
-                  <p className="text-xs font-medium text-[#101010]/75">Preparation Timeline</p>
-                  <h2 className="font-serif text-2xl font-medium text-[#171717]">
+                  <p className="text-xs font-medium text-[#0A0A0A]/75">Preparation Timeline</p>
+                  <h2 className="font-serif text-2xl font-medium text-[#0A0A0A]">
                     Departure Milestones
                   </h2>
                 </div>
                 <button
                   type="button"
                   onClick={() => onNavigate('trip-planner')}
-                  className="text-xs font-medium text-[#171717] inline-flex items-center gap-1 hover:opacity-70 transition-opacity"
+                  className="text-xs font-medium text-[#0A0A0A] inline-flex items-center gap-1 hover:opacity-70 transition-opacity"
                 >
                   <span>Full Planner</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
 
-              <div className="divide-y divide-[#171717]/8 max-h-[345px] overflow-y-auto pr-1">
+              <div className="divide-y divide-[#0A0A0A]/8 max-h-[345px] overflow-y-auto pr-1">
                 {activeTrip && activeTrip.timelineTasks.length > 0 ? (
                   activeTrip.timelineTasks.slice(0, 7).map((task) => (
                     <button
                       key={task.id}
                       type="button"
                       onClick={() => handleToggleTimeline(task.id)}
-                      className="w-full py-2.5 flex items-start justify-between gap-3 text-left min-h-[44px] hover:bg-[#FFFFFF]/60 px-2 -mx-2 rounded-lg transition-colors duration-150"
+                      className="w-full py-2.5 flex items-start justify-between gap-3 text-left min-h-[44px] hover:bg-[#FBFAF8]/60 px-2 -mx-2 rounded-lg transition-colors duration-150"
                     >
                       <div className="flex items-start gap-3 min-w-0">
                         <span
                           className={`mt-0.5 w-4 h-4 rounded flex items-center justify-center border shrink-0 transition-colors ${
                             task.completed
-                              ? 'bg-[#171717] border-[#171717] text-[#FFFFFF]'
-                              : 'border-[#171717]/30 bg-[#FFFFFF]'
+                              ? 'bg-[#0B3B40] border-[#0A0A0A] text-[#FBFAF8]'
+                              : 'border-[#0A0A0A]/30 bg-[#FBFAF8]'
                           }`}
                         >
                           {task.completed && <Check className="w-3 h-3" />}
@@ -611,26 +611,26 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                           <p
                             className={`text-sm leading-snug ${
                               task.completed
-                                ? 'line-through text-[#171717]/45'
-                                : 'text-[#171717] font-medium'
+                                ? 'line-through text-[#0A0A0A]/45'
+                                : 'text-[#0A0A0A] font-medium'
                             }`}
                           >
                             {task.title}
                           </p>
                           {task.notes && (
-                            <p className="text-xs text-[#101010]/75 truncate mt-0.5">
+                            <p className="text-xs text-[#0A0A0A]/75 truncate mt-0.5">
                               {task.notes}
                             </p>
                           )}
                         </div>
                       </div>
-                      <span className="text-xs text-[#101010]/75 tabular-nums shrink-0">
+                      <span className="text-xs text-[#0A0A0A]/75 tabular-nums shrink-0">
                         {task.dueDate}
                       </span>
                     </button>
                   ))
                 ) : (
-                  <p className="py-6 text-sm text-[#101010]/75 text-center">
+                  <p className="py-6 text-sm text-[#0A0A0A]/75 text-center">
                     Create a trip with dates to generate your preparation timeline.
                   </p>
                 )}
@@ -640,11 +640,11 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         </div>
 
         {/* ==================== ROW 3: DIGITAL WARDROBE OVERVIEW ==================== */}
-        <div className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-6 space-y-5">
+        <div className="rounded-3xl bg-[#FBFAF8] border border-[#0A0A0A]/10 p-6 space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <p className="text-xs font-medium text-[#101010]/75">Digital Wardrobe Overview</p>
-              <h2 className="font-serif text-2xl font-medium text-[#171717]">
+              <p className="text-xs font-medium text-[#0A0A0A]/75">Digital Wardrobe Overview</p>
+              <h2 className="font-serif text-2xl font-medium text-[#0A0A0A]">
                 Your Owned Capsule Pieces
               </h2>
             </div>
@@ -652,14 +652,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               <button
                 type="button"
                 onClick={() => onNavigate('digital-wardrobe')}
-                className="h-9 px-4 rounded-lg bg-[#FFFFFF] border border-[#171717]/15 text-xs font-medium text-[#171717] hover:border-[#171717] transition-colors"
+                className="h-9 px-4 rounded-lg bg-[#FBFAF8] border border-[#0A0A0A]/15 text-xs font-medium text-[#0A0A0A] hover:border-[#0A0A0A] transition-colors"
               >
                 Manage Wardrobe ({wardrobe.length})
               </button>
               <button
                 type="button"
                 onClick={() => onNavigate('ai-outfit-studio')}
-                className="h-9 px-4 rounded-full bg-[#171717] text-[#FFFFFF] text-xs font-medium hover:bg-[#171717]/88 transition-colors"
+                className="h-9 px-4 rounded-full bg-[#0B3B40] text-[#FBFAF8] text-xs font-medium hover:bg-[#0A0A0A]/88 transition-colors"
               >
                 Generate Outfits
               </button>
@@ -674,9 +674,9 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   key={item.id}
                   type="button"
                   onClick={() => onNavigate('digital-wardrobe')}
-                  className="text-left rounded-lg border border-[#171717]/10 bg-[#FFFFFF]/50 overflow-hidden hover:border-[#171717]/35 transition-colors flex flex-col"
+                  className="text-left rounded-lg border border-[#0A0A0A]/10 bg-[#FBFAF8]/50 overflow-hidden hover:border-[#0A0A0A]/35 transition-colors flex flex-col"
                 >
-                  <div className="aspect-square w-full bg-[#FFFFFF] flex items-center justify-center overflow-hidden">
+                  <div className="aspect-square w-full bg-[#FBFAF8] flex items-center justify-center overflow-hidden">
                     {photo ? (
                       <img decoding="async"
                         src={photo}
@@ -686,16 +686,16 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                       />
                     ) : (
                       <span
-                        className="w-10 h-10 rounded-lg border border-[#171717]/15 flex items-center justify-center"
+                        className="w-10 h-10 rounded-lg border border-[#0A0A0A]/15 flex items-center justify-center"
                         style={{ backgroundColor: item.colorHex }}
                       >
-                        <Shirt className="w-5 h-5 text-[#FFFFFF]" />
+                        <Shirt className="w-5 h-5 text-[#FBFAF8]" />
                       </span>
                     )}
                   </div>
-                  <div className="p-3 bg-[#FFFFFF] space-y-0.5">
-                    <p className="text-xs font-semibold text-[#171717] truncate">{item.name}</p>
-                    <p className="text-[11px] text-[#101010]/75 truncate">
+                  <div className="p-3 bg-[#FBFAF8] space-y-0.5">
+                    <p className="text-xs font-semibold text-[#0A0A0A] truncate">{item.name}</p>
+                    <p className="text-[11px] text-[#0A0A0A]/75 truncate">
                       {item.category} · {item.colorName}
                     </p>
                   </div>
@@ -710,20 +710,20 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           <button
             type="button"
             onClick={() => onOpenClassicTool('essentials')}
-            className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-5 text-left flex items-center justify-between gap-4 hover:border-[#171717]/35 transition-colors"
+            className="rounded-3xl bg-[#FBFAF8] border border-[#0A0A0A]/10 p-5 text-left flex items-center justify-between gap-4 hover:border-[#0A0A0A]/35 transition-colors"
           >
             <div className="flex items-center gap-3.5 min-w-0">
-              <div className="w-10 h-10 rounded-lg bg-[#FFC5A8]/45 flex items-center justify-center shrink-0">
-                <ShieldCheck className="w-4 h-4 text-[#171717]" />
+              <div className="w-10 h-10 rounded-lg bg-[#E6DFD2]/45 flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-4 h-4 text-[#0A0A0A]" />
               </div>
               <div className="min-w-0">
-                <p className="text-sm font-semibold text-[#171717] truncate">Document Vault &amp; Templates</p>
-                <p className="text-xs text-[#101010]/75 truncate">
+                <p className="text-sm font-semibold text-[#0A0A0A] truncate">Document Vault &amp; Templates</p>
+                <p className="text-xs text-[#0A0A0A]/75 truncate">
                   {documents.length} encrypted documents &amp; expiry alerts
                 </p>
               </div>
             </div>
-            <ArrowRight className="w-4 h-4 text-[#171717]/50 shrink-0" />
+            <ArrowRight className="w-4 h-4 text-[#0A0A0A]/50 shrink-0" />
           </button>
 
           <button
@@ -733,39 +733,39 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 ? onOpenClassicTripSubTab(activeTrip.id, 'group')
                 : onOpenClassicTool('trips')
             }
-            className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-5 text-left flex items-center justify-between gap-4 hover:border-[#171717]/35 transition-colors"
+            className="rounded-3xl bg-[#FBFAF8] border border-[#0A0A0A]/10 p-5 text-left flex items-center justify-between gap-4 hover:border-[#0A0A0A]/35 transition-colors"
           >
             <div className="flex items-center gap-3.5 min-w-0">
-              <div className="w-10 h-10 rounded-lg bg-[#D9C9F2]/55 flex items-center justify-center shrink-0">
-                <Users className="w-4 h-4 text-[#171717]" />
+              <div className="w-10 h-10 rounded-lg bg-[#D5DCD9]/55 flex items-center justify-center shrink-0">
+                <Users className="w-4 h-4 text-[#0A0A0A]" />
               </div>
               <div className="min-w-0">
-                <p className="text-sm font-semibold text-[#171717] truncate">Group Packing &amp; Sharing</p>
-                <p className="text-xs text-[#101010]/75 truncate">
+                <p className="text-sm font-semibold text-[#0A0A0A] truncate">Group Packing &amp; Sharing</p>
+                <p className="text-xs text-[#0A0A0A]/75 truncate">
                   Assign shared items and invite travel companions
                 </p>
               </div>
             </div>
-            <ArrowRight className="w-4 h-4 text-[#171717]/50 shrink-0" />
+            <ArrowRight className="w-4 h-4 text-[#0A0A0A]/50 shrink-0" />
           </button>
 
           <button
             type="button"
             onClick={() => onOpenClassicTool('profile')}
-            className="rounded-3xl bg-[#FFFFFF] border border-[#171717]/10 p-5 text-left flex items-center justify-between gap-4 hover:border-[#171717]/35 transition-colors"
+            className="rounded-3xl bg-[#FBFAF8] border border-[#0A0A0A]/10 p-5 text-left flex items-center justify-between gap-4 hover:border-[#0A0A0A]/35 transition-colors"
           >
             <div className="flex items-center gap-3.5 min-w-0">
-              <div className="w-10 h-10 rounded-lg bg-[#B8D9F2]/55 flex items-center justify-center shrink-0">
-                <Sparkles className="w-4 h-4 text-[#171717]" />
+              <div className="w-10 h-10 rounded-lg bg-[#BCD2CF]/55 flex items-center justify-center shrink-0">
+                <Sparkles className="w-4 h-4 text-[#0A0A0A]" />
               </div>
               <div className="min-w-0">
-                <p className="text-sm font-semibold text-[#171717] truncate">Post-Trip Memory &amp; Backup</p>
-                <p className="text-xs text-[#101010]/75 truncate">
+                <p className="text-sm font-semibold text-[#0A0A0A] truncate">Post-Trip Memory &amp; Backup</p>
+                <p className="text-xs text-[#0A0A0A]/75 truncate">
                   Preferences, JSON backup &amp; packing insights
                 </p>
               </div>
             </div>
-            <ArrowRight className="w-4 h-4 text-[#171717]/50 shrink-0" />
+            <ArrowRight className="w-4 h-4 text-[#0A0A0A]/50 shrink-0" />
           </button>
         </div>
       </div>

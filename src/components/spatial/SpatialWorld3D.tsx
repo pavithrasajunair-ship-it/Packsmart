@@ -18,27 +18,27 @@ export const SPATIAL_FINISHES: Record<
 > = {
   noir: {
     label: 'Obsidian',
-    shellHex: '#101010',
-    frameHex: '#B8D9F2',
-    tagHex: '#FFC5A8',
+    shellHex: '#0A0A0A',
+    frameHex: '#BCD2CF',
+    tagHex: '#E6DFD2',
   },
   powder: {
     label: 'Powder Blue',
-    shellHex: '#B8D9F2',
-    frameHex: '#101010',
-    tagHex: '#FFC5A8',
+    shellHex: '#BCD2CF',
+    frameHex: '#0A0A0A',
+    tagHex: '#E6DFD2',
   },
   lavender: {
     label: 'Lavender',
-    shellHex: '#D9C9F2',
-    frameHex: '#101010',
-    tagHex: '#FFC5A8',
+    shellHex: '#D5DCD9',
+    frameHex: '#0A0A0A',
+    tagHex: '#E6DFD2',
   },
   peach: {
     label: 'Sunset Peach',
-    shellHex: '#FFC5A8',
-    frameHex: '#101010',
-    tagHex: '#D9C9F2',
+    shellHex: '#E6DFD2',
+    frameHex: '#0A0A0A',
+    tagHex: '#D5DCD9',
   },
 };
 
@@ -341,7 +341,7 @@ function buildFloatingShoe(): THREE.Group {
 // Build Procedural Passport & Boarding Pass Folio (Trip Planner Object)
 function buildFloatingPassportFolio(maxAniso: number): { group: THREE.Group; tex: THREE.CanvasTexture } {
   const g = new THREE.Group();
-  const tex = createMonogramTexture('#101010', '#FFC5A8', 'PS', 'PASSPORT');
+  const tex = createMonogramTexture('#0A0A0A', '#E6DFD2', 'PS', 'PASSPORT');
   tex.anisotropy = maxAniso;
 
   const leatherMat = new THREE.MeshStandardMaterial({
@@ -553,7 +553,7 @@ export const SpatialWorld3D: React.FC<SpatialWorld3DProps> = ({
     tagMatRef.current = tagMat;
 
     const maxAniso = renderer.capabilities.getMaxAnisotropy();
-    const tagTex = createMonogramTexture('#FFC5A8', '#101010', 'PS', 'PACKSMART');
+    const tagTex = createMonogramTexture('#E6DFD2', '#0A0A0A', 'PS', 'PACKSMART');
     tagTex.anisotropy = maxAniso;
     const tagFaceMat = new THREE.MeshStandardMaterial({
       map: tagTex,
@@ -947,11 +947,11 @@ export const SpatialWorld3D: React.FC<SpatialWorld3DProps> = ({
       tagGroup.rotation.z = -0.1 + (reduced ? 0 : Math.sin(t * 1.6) * 0.06);
 
       // Subtle atmospheric light temperature shift on hover (strict 5-color palette)
-      if (hovered === 'smart-packing') _colorTarget.set('#B8D9F2');
-      else if (hovered === 'ai-outfit-studio') _colorTarget.set('#D9C9F2');
-      else if (hovered === 'trip-planner') _colorTarget.set('#FFC5A8');
-      else if (hovered === 'digital-wardrobe') _colorTarget.set('#D9C9F2');
-      else _colorTarget.set('#FFC5A8');
+      if (hovered === 'smart-packing') _colorTarget.set('#BCD2CF');
+      else if (hovered === 'ai-outfit-studio') _colorTarget.set('#D5DCD9');
+      else if (hovered === 'trip-planner') _colorTarget.set('#E6DFD2');
+      else if (hovered === 'digital-wardrobe') _colorTarget.set('#D5DCD9');
+      else _colorTarget.set('#E6DFD2');
       peachRim.color.lerp(_colorTarget, 1 - Math.exp(-4 * dt));
 
       // Animate Floating 3D Fashion Objects with Depth & Hover Focus
@@ -1048,14 +1048,14 @@ export const SpatialWorld3D: React.FC<SpatialWorld3DProps> = ({
       <div className={`w-full h-full flex items-center justify-center ${className}`}>
         <svg viewBox="0 0 360 440" className="w-[260px] h-auto" aria-label="PackSmart Luxury Carry-On">
           <rect x="148" y="28" width="64" height="82" rx="10" fill="none" stroke={spec.frameHex} strokeWidth="6" />
-          <rect x="134" y="20" width="92" height="16" rx="8" fill="#101010" />
+          <rect x="134" y="20" width="92" height="16" rx="8" fill="#0A0A0A" />
           <rect x="86" y="102" width="188" height="270" rx="28" fill={spec.shellHex} stroke={spec.frameHex} strokeWidth="6" />
           {[148, 184, 220, 256, 292, 328].map((y) => (
             <line key={y} x1="112" y1={y} x2="248" y2={y} stroke={spec.frameHex} strokeWidth="3.5" strokeLinecap="round" />
           ))}
           <rect x="224" y="114" width="28" height="46" rx="4" fill={spec.tagHex} />
-          <circle cx="122" cy="390" r="14" fill="#101010" />
-          <circle cx="238" cy="390" r="14" fill="#101010" />
+          <circle cx="122" cy="390" r="14" fill="#0A0A0A" />
+          <circle cx="238" cy="390" r="14" fill="#0A0A0A" />
         </svg>
       </div>
     );

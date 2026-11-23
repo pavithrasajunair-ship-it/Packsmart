@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import { Counter } from './HomeExtras';
-import { Suitcase3DCanvas, type SuitcaseFinish } from '../editorial/Suitcase3DCanvas';
+import { GlobeCanvas } from './GlobeCanvas';
 
 export interface HeroStat {
   label: string;
@@ -9,8 +9,6 @@ export interface HeroStat {
   decimals?: number;
   suffix?: string;
 }
-
-const TILE_COLOURS = ['#FFFFFF', '#FFFFFF', '#FFFFFF'];
 
 /**
  * A big colour-blocked banner at the top of each workspace page: a punchy line,
@@ -30,7 +28,7 @@ export const PageHero: React.FC<{
   return (
     <div
       className="relative rounded-[2rem] overflow-hidden p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
-      style={{ backgroundColor: surface }}
+      style={{ backgroundColor: surface, backgroundImage: 'radial-gradient(55% 80% at 85% 40%, rgba(251,250,248,0.09), rgba(251,250,248,0) 70%)' }}
       onPointerMove={(e) => {
         const r = e.currentTarget.getBoundingClientRect();
         mx.set((e.clientX - r.left) / r.width - 0.5);
@@ -42,17 +40,17 @@ export const PageHero: React.FC<{
       }}
     >
       <div className="lg:col-span-7 space-y-7 relative z-10">
-        <h2 className="text-3xl sm:text-5xl font-bold leading-[1.04] tracking-[-0.045em] text-[#101010] max-w-xl">
+        <h2 className="text-3xl sm:text-5xl font-bold leading-[1.04] tracking-[-0.045em] text-[#FBFAF8] max-w-xl">
           {tagline}
         </h2>
         <dl className="grid grid-cols-3 gap-3">
-          {stats.slice(0, 3).map((st, i) => (
-            <div key={st.label} className="rounded-2xl p-4" style={{ backgroundColor: TILE_COLOURS[i] }}>
-              <dd className="text-3xl sm:text-4xl font-bold tracking-[-0.04em] tabular-nums text-[#101010]">
+          {stats.slice(0, 3).map((st) => (
+            <div key={st.label} className="rounded-2xl p-4 border border-[#FBFAF8]/15 bg-[#FBFAF8]/[0.06]">
+              <dd className="text-3xl sm:text-4xl font-bold tracking-[-0.04em] tabular-nums text-[#FBFAF8]">
                 <Counter value={st.value} decimals={st.decimals} />
                 {st.suffix && <span className="text-base font-semibold">{st.suffix}</span>}
               </dd>
-              <dt className="text-xs sm:text-sm font-medium text-[#101010]/70 mt-0.5">{st.label}</dt>
+              <dt className="text-xs sm:text-sm font-medium text-[#FBFAF8]/70 mt-0.5">{st.label}</dt>
             </div>
           ))}
         </dl>
@@ -70,8 +68,8 @@ export const PageHero: React.FC<{
   );
 };
 
-/** The 3D suitcase, turning slowly with the page scroll. */
-export const SuitcaseVisual: React.FC<{ finish?: SuitcaseFinish }> = ({ finish = 'noir' }) => {
+/** The 3D globe, turning slowly with the page scroll. */
+export const GlobeVisual: React.FC = () => {
   const progress = useRef(0);
   useEffect(() => {
     const onScroll = () => {
@@ -81,7 +79,7 @@ export const SuitcaseVisual: React.FC<{ finish?: SuitcaseFinish }> = ({ finish =
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-  return <Suitcase3DCanvas finish={finish} scrollProgressRef={progress} />;
+  return <GlobeCanvas scrollProgressRef={progress} />;
 };
 
 /** Three destination photos fanned out; hover opens the fan. */
@@ -101,7 +99,7 @@ export const PhotoFan: React.FC<{ images: string[] }> = ({ images }) => {
             open: { rotate: spread[i], x: shift[i], y: i === 1 ? -18 : 10 },
           }}
           transition={{ type: 'spring', stiffness: 160, damping: 18 }}
-          className="absolute w-[46%] aspect-[3/4] object-cover rounded-2xl border-4 border-[#FFFFFF] shadow-[0_20px_40px_-20px_rgba(16,16,16,0.5)]"
+          className="absolute w-[46%] aspect-[3/4] object-cover rounded-2xl border-4 border-[#FBFAF8] shadow-[0_20px_40px_-20px_rgba(16,16,16,0.5)]"
           style={{ zIndex: i === 1 ? 3 : 2 }}
         />
       ))}
@@ -109,26 +107,22 @@ export const PhotoFan: React.FC<{ images: string[] }> = ({ images }) => {
   );
 };
 
-/** Floating colour dots: the real colours of the clothes in the wardrobe. */
+/** The real colours of the wardrobe, set as a quiet row of tall swatches. */
 export const SwatchCloud: React.FC<{ colours: string[] }> = ({ colours }) => {
-  const list = colours.length > 0 ? colours.slice(0, 16) : ['#B8D9F2', '#D9C9F2', '#FFC5A8', '#FFFFFF', '#101010'];
+  const list = colours.length > 0 ? colours.slice(0, 8) : ['#0B3B40', '#FBFAF8', '#0A0A0A'];
   return (
-    <div className="absolute inset-0">
-      {list.map((c, i) => {
-        const size = 44 + ((i * 29) % 56);
-        const left = ((i * 37) % 82) + 2;
-        const top = ((i * 53) % 74) + 2;
-        return (
-          <motion.span
-            key={`${c}-${i}`}
-            className="absolute rounded-full border-2 border-[#FFFFFF]/80 shadow-[0_14px_30px_-16px_rgba(16,16,16,0.5)]"
-            style={{ width: size, height: size, left: `${left}%`, top: `${top}%`, backgroundColor: c }}
-            animate={{ y: [0, i % 2 ? -16 : 16, 0] }}
-            transition={{ duration: 4 + (i % 5), repeat: Infinity, ease: 'easeInOut', delay: i * 0.15 }}
-            whileHover={{ scale: 1.25 }}
-          />
-        );
-      })}
+    <div className="absolute inset-0 flex items-end justify-center gap-2.5 pb-2">
+      {list.map((c, i) => (
+        <motion.span
+          key={`${c}-${i}`}
+          className="flex-1 max-w-[44px] rounded-full border border-[#FBFAF8]/30"
+          style={{ backgroundColor: c, transformOrigin: 'bottom' }}
+          initial={{ height: 0 }}
+          animate={{ height: `${46 + ((i * 37) % 48)}%` }}
+          transition={{ duration: 0.9, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
+          whileHover={{ y: -8 }}
+        />
+      ))}
     </div>
   );
 };
@@ -141,13 +135,13 @@ export const ProgressVisual: React.FC<{ pct: number }> = ({ pct }) => {
     <div className="absolute inset-0 flex items-center justify-center">
       <div className="relative w-[240px] h-[240px]">
         <svg viewBox="0 0 200 200" className="w-full h-full -rotate-90" role="img" aria-label={`${pct} percent packed`}>
-          <circle cx="100" cy="100" r={r} fill="none" stroke="#FFFFFF" strokeWidth="14" />
+          <circle cx="100" cy="100" r={r} fill="none" stroke="#FBFAF8" strokeOpacity="0.18" strokeWidth="14" />
           <motion.circle
             cx="100"
             cy="100"
             r={r}
             fill="none"
-            stroke="#101010"
+            stroke="#FBFAF8"
             strokeWidth="14"
             strokeLinecap="round"
             strokeDasharray={c}
@@ -157,11 +151,11 @@ export const ProgressVisual: React.FC<{ pct: number }> = ({ pct }) => {
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-6xl font-bold tracking-[-0.05em] tabular-nums">
+          <span className="text-6xl font-bold tracking-[-0.05em] tabular-nums text-[#FBFAF8]">
             <Counter value={pct} />
             <span className="text-3xl">%</span>
           </span>
-          <span className="text-sm font-medium text-[#101010]/70">packed</span>
+          <span className="text-sm font-medium text-[#FBFAF8]/70">packed</span>
         </div>
       </div>
     </div>

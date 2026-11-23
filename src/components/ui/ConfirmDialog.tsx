@@ -26,11 +26,11 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
       <div className="space-y-5">
         <div className="flex items-start gap-3">
           {destructive && (
-            <div className="w-10 h-10 rounded-2xl bg-[#FFC5A866] dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#FFC5A8] flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-2xl bg-[#E6DFD266] dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-[#E6DFD2] flex items-center justify-center shrink-0">
               <AlertTriangle className="w-5 h-5" />
             </div>
           )}
-          <p className="text-sm text-[#101010cc] dark:text-[#FFFFFFa8] leading-relaxed">
+          <p className="text-sm text-[#0A0A0Acc] dark:text-[#FBFAF8a8] leading-relaxed">
             {description}
           </p>
         </div>
@@ -39,7 +39,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
           <button
             type="button"
             onClick={onCancel}
-            className="min-h-[46px] rounded-2xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm font-semibold text-[#101010cc] dark:text-[#FFFFFFa8]"
+            className="min-h-[46px] rounded-2xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8]"
           >
             Cancel
           </button>
@@ -48,8 +48,8 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
             onClick={onConfirm}
             className={`min-h-[46px] rounded-2xl text-sm font-semibold text-white ${
               destructive
-                ? 'bg-[#FFC5A8] hover:bg-[#FFC5A8]'
-                : 'bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010]'
+                ? 'bg-[#E6DFD2] hover:bg-[#E6DFD2]'
+                : 'bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A]'
             }`}
           >
             {confirmLabel}

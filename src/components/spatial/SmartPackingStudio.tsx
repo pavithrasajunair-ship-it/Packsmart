@@ -309,14 +309,14 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
 
   if (!activeTrip || !metrics) {
     return (
-      <div className="min-h-screen bg-[#B8D9F2] text-[#101010] pt-24 px-6 flex items-center justify-center">
-        <div className="max-w-md w-full bg-[#FFFFFF] border border-[#101010]/15 p-10 text-center space-y-5">
-          <p className="font-mono text-xs tracking-[0.14em] text-[#101010]/60">SMART PACKING</p>
+      <div className="min-h-screen bg-[#BCD2CF] text-[#0A0A0A] pt-24 px-6 flex items-center justify-center">
+        <div className="max-w-md w-full bg-[#FBFAF8] border border-[#0A0A0A]/15 p-10 text-center space-y-5">
+          <p className="font-mono text-xs tracking-[0.14em] text-[#0A0A0A]/60">SMART PACKING</p>
           <h2 className="font-editorial text-4xl">Your 3D suitcase awaits a destination.</h2>
           <button
             type="button"
             onClick={onOpenTripPlanner}
-            className="min-h-[48px] px-7 bg-[#101010] text-[#FFFFFF] text-xs font-bold"
+            className="min-h-[48px] px-7 bg-[#0B3B40] text-[#FBFAF8] text-xs font-bold"
           >
             Plan Your First Trip
           </button>
@@ -326,14 +326,14 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
   }
 
   return (
-    <div className="min-h-screen bg-[#B8D9F2] text-[#101010] pt-20 pb-10">
+    <div className="min-h-screen bg-[#BCD2CF] text-[#0A0A0A] pt-20 pb-10">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         {/* LEFT / CENTER: INTERACTIVE 3D OPEN SUITCASE ATELIER */}
-        <div className="lg:col-span-7 flex flex-col bg-[#FFFFFF] border border-[#101010]/15 overflow-hidden">
+        <div className="lg:col-span-7 flex flex-col bg-[#FBFAF8] border border-[#0A0A0A]/15 overflow-hidden">
           {/* Top Quiet Studio Header */}
-          <div className="px-6 py-5 border-b border-[#101010]/10 flex flex-wrap items-center justify-between gap-4">
+          <div className="px-6 py-5 border-b border-[#0A0A0A]/10 flex flex-wrap items-center justify-between gap-4">
             <div>
-              <p className="font-mono text-[11px] tracking-[0.14em] text-[#101010]/60">
+              <p className="font-mono text-[11px] tracking-[0.14em] text-[#0A0A0A]/60">
                 01. INTERACTIVE 3D SUITCASE ATELIER
               </p>
               <div className="flex flex-wrap items-center gap-3 mt-1">
@@ -341,7 +341,7 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
                   aria-label="Select active trip"
                   value={activeTrip.id}
                   onChange={(e) => onSelectTrip(e.target.value)}
-                  className="font-editorial text-2xl sm:text-3xl font-medium bg-transparent text-[#101010] pr-2 cursor-pointer border-b border-[#101010]/20"
+                  className="font-editorial text-2xl sm:text-3xl font-medium bg-transparent text-[#0A0A0A] pr-2 cursor-pointer border-b border-[#0A0A0A]/20"
                 >
                   {lists.map((l) => (
                     <option key={l.id} value={l.id}>
@@ -354,30 +354,30 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
 
             <div className="flex items-center gap-6 tabular-nums">
               <div>
-                <p className="font-mono text-[10px] text-[#101010]/55">PACKED</p>
-                <p className="font-mono text-lg font-bold text-[#101010]">
-                  {progressPct}% <span className="text-xs font-normal text-[#101010]/60">({packedCount}/{totalCount})</span>
+                <p className="font-mono text-[10px] text-[#0A0A0A]/55">PACKED</p>
+                <p className="font-mono text-lg font-bold text-[#0A0A0A]">
+                  {progressPct}% <span className="text-xs font-normal text-[#0A0A0A]/60">({packedCount}/{totalCount})</span>
                 </p>
               </div>
-              <div className="h-7 w-px bg-[#101010]/12" />
+              <div className="h-7 w-px bg-[#0A0A0A]/12" />
               <div>
-                <p className="font-mono text-[10px] text-[#101010]/55">VOLUME</p>
-                <p className={`font-mono text-lg font-bold ${metrics.isVolumeOverloaded ? 'text-[#101010] underline decoration-[#FFC5A8] decoration-4' : 'text-[#101010]'}`}>
-                  {metrics.totalVolumeLiters}L <span className="text-xs font-normal text-[#101010]/60">/ {metrics.capacityLiters}L</span>
+                <p className="font-mono text-[10px] text-[#0A0A0A]/55">VOLUME</p>
+                <p className={`font-mono text-lg font-bold ${metrics.isVolumeOverloaded ? 'text-[#0A0A0A] underline decoration-[#E6DFD2] decoration-4' : 'text-[#0A0A0A]'}`}>
+                  {metrics.totalVolumeLiters}L <span className="text-xs font-normal text-[#0A0A0A]/60">/ {metrics.capacityLiters}L</span>
                 </p>
               </div>
-              <div className="hidden sm:block h-7 w-px bg-[#101010]/12" />
+              <div className="hidden sm:block h-7 w-px bg-[#0A0A0A]/12" />
               <div className="hidden sm:block">
-                <p className="font-mono text-[10px] text-[#101010]/55">WEIGHT</p>
-                <p className="font-mono text-lg font-bold text-[#101010]">
-                  {metrics.totalWeightKg} <span className="text-xs font-normal text-[#101010]/60">/ {metrics.allowanceKg} kg</span>
+                <p className="font-mono text-[10px] text-[#0A0A0A]/55">WEIGHT</p>
+                <p className="font-mono text-lg font-bold text-[#0A0A0A]">
+                  {metrics.totalWeightKg} <span className="text-xs font-normal text-[#0A0A0A]/60">/ {metrics.allowanceKg} kg</span>
                 </p>
               </div>
             </div>
           </div>
 
           {/* 3D OPEN SUITCASE VIEWPORT (Unobstructed Center) */}
-          <div className="relative flex-1 min-h-[380px] lg:min-h-[540px] bg-[#B8D9F2]/35">
+          <div className="relative flex-1 min-h-[380px] lg:min-h-[540px] bg-[#BCD2CF]/35">
             <OpenSuitcase3D
               items={activeTrip.items}
               highlightedItemId={highlightedId}
@@ -387,7 +387,7 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
             />
 
             {/* Minimal Bottom Camera Dock (Zero Side Occlusion) */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-[#101010] text-[#FFFFFF] px-2.5 py-1.5 border border-[#101010]">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-[#0B3B40] text-[#FBFAF8] px-2.5 py-1.5 border border-[#0A0A0A]">
               {(
                 [
                   { id: 'editorial', label: 'Studio 3/4' },
@@ -401,8 +401,8 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
                   onClick={() => setCameraView(preset.id)}
                   className={`min-h-[34px] px-3 font-mono text-[11px] transition-colors whitespace-nowrap ${
                     cameraView === preset.id
-                      ? 'bg-[#FFC5A8] text-[#101010] font-bold'
-                      : 'text-[#FFFFFF]/75 hover:text-[#FFFFFF]'
+                      ? 'bg-[#E6DFD2] text-[#0A0A0A] font-bold'
+                      : 'text-[#FBFAF8]/75 hover:text-[#FBFAF8]'
                   }`}
                 >
                   {preset.label}
@@ -410,28 +410,28 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
               ))}
             </div>
 
-            <p className="hidden sm:block absolute top-3.5 left-5 font-mono text-[10px] tracking-[0.08em] text-[#101010]/60 pointer-events-none">
+            <p className="hidden sm:block absolute top-3.5 left-5 font-mono text-[10px] tracking-[0.08em] text-[#0A0A0A]/60 pointer-events-none">
               DRAG TO ORBIT · CLICK ANY 3D OBJECT TO PACK / UNPACK
             </p>
           </div>
 
           {/* Animated Packing Capacity & Progress Bar */}
-          <div className="px-6 py-4 bg-[#101010] text-[#FFFFFF] flex flex-wrap items-center justify-between gap-4">
+          <div className="px-6 py-4 bg-[#0B3B40] text-[#FBFAF8] flex flex-wrap items-center justify-between gap-4">
             <div className="flex-1 min-w-[200px] space-y-1.5">
               <div className="flex items-center justify-between font-mono text-[11px] tabular-nums">
-                <span className="text-[#B8D9F2]">
+                <span className="text-[#BCD2CF]">
                   {metrics.isVolumeOverloaded
                     ? 'Overloaded — trim optional pieces or roll garments'
                     : `${activeTrip.luggageType} · ${metrics.volumePercent}% volume utilized`}
                 </span>
-                <span className="text-[#FFC5A8]">{progressPct}% packed</span>
+                <span className="text-[#E6DFD2]">{progressPct}% packed</span>
               </div>
               <div className="h-2 w-full bg-white/15 overflow-hidden">
                 <motion.div
                   initial={false}
                   animate={{ width: `${Math.min(100, progressPct)}%` }}
                   transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                  className="h-full bg-[#FFC5A8]"
+                  className="h-full bg-[#E6DFD2]"
                 />
               </div>
             </div>
@@ -440,14 +440,14 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
               <button
                 type="button"
                 onClick={onOpenOutfitStudio}
-                className="min-h-[38px] px-3.5 border border-white/25 text-xs font-semibold text-[#FFFFFF] hover:bg-white hover:text-[#101010] transition-colors whitespace-nowrap"
+                className="min-h-[38px] px-3.5 border border-white/25 text-xs font-semibold text-[#FBFAF8] hover:bg-white hover:text-[#0A0A0A] transition-colors whitespace-nowrap"
               >
                 Match Outfits
               </button>
               <button
                 type="button"
                 onClick={() => onOpenClassicDetail(activeTrip.id, 'before_leave')}
-                className="min-h-[38px] px-3.5 bg-[#D9C9F2] text-[#101010] text-xs font-bold hover:bg-[#FFFFFF] transition-colors inline-flex items-center gap-1 whitespace-nowrap"
+                className="min-h-[38px] px-3.5 bg-[#D5DCD9] text-[#0A0A0A] text-xs font-bold hover:bg-[#FBFAF8] transition-colors inline-flex items-center gap-1 whitespace-nowrap"
               >
                 <span>Before You Leave</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -457,16 +457,16 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
         </div>
 
         {/* RIGHT: INTERACTIVE ITEM CONSOLE & INTELLIGENT ASSISTANT */}
-        <div className="lg:col-span-5 flex flex-col bg-[#FFFFFF] border border-[#101010]/15 overflow-hidden">
+        <div className="lg:col-span-5 flex flex-col bg-[#FBFAF8] border border-[#0A0A0A]/15 overflow-hidden">
           {/* Segmented Mode Switcher */}
-          <div className="grid grid-cols-2 border-b border-[#101010]/12">
+          <div className="grid grid-cols-2 border-b border-[#0A0A0A]/12">
             <button
               type="button"
               onClick={() => setRightTab('items')}
               className={`min-h-[52px] text-xs font-bold tracking-tight transition-colors ${
                 rightTab === 'items'
-                  ? 'bg-[#101010] text-[#FFFFFF]'
-                  : 'bg-[#FFFFFF] text-[#101010]/70 hover:text-[#101010]'
+                  ? 'bg-[#0B3B40] text-[#FBFAF8]'
+                  : 'bg-[#FBFAF8] text-[#0A0A0A]/70 hover:text-[#0A0A0A]'
               }`}
             >
               Suitcase Manifest ({totalCount})
@@ -481,8 +481,8 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
               }}
               className={`min-h-[52px] text-xs font-bold tracking-tight transition-colors inline-flex items-center justify-center gap-1.5 ${
                 rightTab === 'assistant'
-                  ? 'bg-[#101010] text-[#FFC5A8]'
-                  : 'bg-[#FFFFFF] text-[#101010]/70 hover:text-[#101010]'
+                  ? 'bg-[#0B3B40] text-[#E6DFD2]'
+                  : 'bg-[#FBFAF8] text-[#0A0A0A]/70 hover:text-[#0A0A0A]'
               }`}
             >
               <Sparkles className="w-3.5 h-3.5" />
@@ -502,7 +502,7 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
               >
                 {/* Missing Essentials Callout */}
                 {missingEssentials.length > 0 && (
-                  <div className="bg-[#FFC5A8] text-[#101010] p-4 space-y-2.5">
+                  <div className="bg-[#E6DFD2] text-[#0A0A0A] p-4 space-y-2.5">
                     <div className="flex items-center justify-between gap-2">
                       <span className="font-mono text-[11px] font-bold flex items-center gap-1.5">
                         <AlertTriangle className="w-3.5 h-3.5" />
@@ -527,13 +527,13 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
                       value={newName}
                       onChange={(e) => setNewName(e.target.value)}
                       placeholder="Add clothing, shoes, tech, or essential..."
-                      className="flex-1 min-h-[44px] px-3.5 border border-[#101010]/25 bg-[#FFFFFF] text-sm text-[#101010]"
+                      className="flex-1 min-h-[44px] px-3.5 border border-[#0A0A0A]/25 bg-[#FBFAF8] text-sm text-[#0A0A0A]"
                     />
                     <button
                       type="submit"
-                      className="min-h-[44px] px-4 bg-[#101010] text-[#FFFFFF] text-xs font-bold inline-flex items-center gap-1.5 hover:bg-[#101010]/85 whitespace-nowrap"
+                      className="min-h-[44px] px-4 bg-[#0B3B40] text-[#FBFAF8] text-xs font-bold inline-flex items-center gap-1.5 hover:bg-[#0A0A0A]/85 whitespace-nowrap"
                     >
-                      <Plus className="w-3.5 h-3.5 text-[#FFC5A8]" />
+                      <Plus className="w-3.5 h-3.5 text-[#E6DFD2]" />
                       <span>Add</span>
                     </button>
                   </div>
@@ -542,7 +542,7 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
                       aria-label="New item category"
                       value={newCategory}
                       onChange={(e) => setNewCategory(e.target.value)}
-                      className="min-h-[36px] px-3 border border-[#101010]/20 bg-[#FFFFFF] text-xs font-semibold text-[#101010]"
+                      className="min-h-[36px] px-3 border border-[#0A0A0A]/20 bg-[#FBFAF8] text-xs font-semibold text-[#0A0A0A]"
                     >
                       {CATEGORIES.filter((c) => c !== 'All').map((cat) => (
                         <option key={cat} value={cat}>
@@ -550,12 +550,12 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
                         </option>
                       ))}
                     </select>
-                    <label className="inline-flex items-center gap-2 text-xs text-[#101010]/75 cursor-pointer">
+                    <label className="inline-flex items-center gap-2 text-xs text-[#0A0A0A]/75 cursor-pointer">
                       <input
                         type="checkbox"
                         checked={newEssential}
                         onChange={(e) => setNewEssential(e.target.checked)}
-                        className="accent-[#101010]"
+                        className="accent-[#0A0A0A]"
                       />
                       <span>Mark as essential</span>
                     </label>
@@ -563,7 +563,7 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
                 </form>
 
                 {/* Category Filter Bar */}
-                <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 border-b border-[#101010]/10">
+                <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 border-b border-[#0A0A0A]/10">
                   {CATEGORIES.map((cat) => {
                     const active = activeCategory === cat;
                     return (
@@ -573,8 +573,8 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
                         onClick={() => setActiveCategory(cat)}
                         className={`min-h-[34px] px-3 text-xs font-semibold transition-colors whitespace-nowrap shrink-0 ${
                           active
-                            ? 'bg-[#D9C9F2] text-[#101010] font-bold'
-                            : 'text-[#101010]/65 hover:text-[#101010]'
+                            ? 'bg-[#D5DCD9] text-[#0A0A0A] font-bold'
+                            : 'text-[#0A0A0A]/65 hover:text-[#0A0A0A]'
                         }`}
                       >
                         {cat}
@@ -584,9 +584,9 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
                 </div>
 
                 {/* Live Interactive Packing Rows */}
-                <div className="flex-1 max-h-[410px] overflow-y-auto divide-y divide-[#101010]/10 pr-1">
+                <div className="flex-1 max-h-[410px] overflow-y-auto divide-y divide-[#0A0A0A]/10 pr-1">
                   {filteredItems.length === 0 ? (
-                    <p className="py-10 text-center text-xs text-[#101010]/60">
+                    <p className="py-10 text-center text-xs text-[#0A0A0A]/60">
                       No items in this category yet. Add one above to animate it into the 3D suitcase.
                     </p>
                   ) : (
@@ -606,8 +606,8 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
                           <span
                             className={`w-5 h-5 border flex items-center justify-center shrink-0 transition-colors ${
                               item.packed
-                                ? 'bg-[#101010] border-[#101010] text-[#FFC5A8]'
-                                : 'border-[#101010]/35 bg-[#FFFFFF] group-hover:border-[#101010]'
+                                ? 'bg-[#0B3B40] border-[#0A0A0A] text-[#E6DFD2]'
+                                : 'border-[#0A0A0A]/35 bg-[#FBFAF8] group-hover:border-[#0A0A0A]'
                             }`}
                           >
                             {item.packed && <Check className="w-3.5 h-3.5" />}
@@ -615,12 +615,12 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
                           <div className="min-w-0">
                             <p
                               className={`text-sm font-semibold truncate ${
-                                item.packed ? 'line-through text-[#101010]/45' : 'text-[#101010]'
+                                item.packed ? 'line-through text-[#0A0A0A]/45' : 'text-[#0A0A0A]'
                               }`}
                             >
                               {item.name}
                             </p>
-                            <p className="font-mono text-[11px] text-[#101010]/55">
+                            <p className="font-mono text-[11px] text-[#0A0A0A]/55">
                               {item.category} · ×{item.quantity} · {item.volumeLiters}L · {item.weightGrams}g
                             </p>
                           </div>
@@ -630,7 +630,7 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
                           type="button"
                           onClick={() => removeItem(item.id)}
                           aria-label={`Remove ${item.name}`}
-                          className="w-9 h-9 flex items-center justify-center text-[#101010]/40 hover:text-[#101010] transition-colors shrink-0"
+                          className="w-9 h-9 flex items-center justify-center text-[#0A0A0A]/40 hover:text-[#0A0A0A] transition-colors shrink-0"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -649,9 +649,9 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
                 className="flex-1 flex flex-col p-5 sm:p-6 gap-4"
               >
                 {/* Live Trip Context Strip */}
-                <div className="p-4 bg-[#D9C9F2] text-[#101010] flex flex-wrap items-center justify-between gap-3">
+                <div className="p-4 bg-[#D5DCD9] text-[#0A0A0A] flex flex-wrap items-center justify-between gap-3">
                   <div>
-                    <p className="font-mono text-[10px] tracking-[0.12em] text-[#101010]/65">
+                    <p className="font-mono text-[10px] tracking-[0.12em] text-[#0A0A0A]/65">
                       INTELLIGENT CONTEXT
                     </p>
                     <p className="text-xs font-bold mt-0.5">
@@ -667,12 +667,12 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
                       type="button"
                       onClick={handleRefreshTripWeather}
                       disabled={weatherBusy || !isOnline}
-                      className="min-h-[34px] px-3 bg-[#101010] text-[#FFFFFF] text-[11px] font-bold inline-flex items-center gap-1.5 disabled:opacity-50"
+                      className="min-h-[34px] px-3 bg-[#0B3B40] text-[#FBFAF8] text-[11px] font-bold inline-flex items-center gap-1.5 disabled:opacity-50"
                     >
                       {weatherBusy ? (
                         <Loader2 className="w-3.5 h-3.5 animate-spin" />
                       ) : (
-                        <CloudSun className="w-3.5 h-3.5 text-[#FFC5A8]" />
+                        <CloudSun className="w-3.5 h-3.5 text-[#E6DFD2]" />
                       )}
                       <span>Sync Weather</span>
                     </button>
@@ -692,39 +692,39 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
                     value={assistantPrompt}
                     onChange={(e) => setAssistantPrompt(e.target.value)}
                     placeholder="Ask: What am I missing for rain or evening dinner?"
-                    className="flex-1 min-h-[44px] px-3.5 border border-[#101010]/25 text-xs text-[#101010]"
+                    className="flex-1 min-h-[44px] px-3.5 border border-[#0A0A0A]/25 text-xs text-[#0A0A0A]"
                   />
                   <button
                     type="submit"
                     disabled={assistantBusy}
-                    className="min-h-[44px] px-4 bg-[#101010] text-[#FFFFFF] text-xs font-bold inline-flex items-center gap-1.5 disabled:opacity-50"
+                    className="min-h-[44px] px-4 bg-[#0B3B40] text-[#FBFAF8] text-xs font-bold inline-flex items-center gap-1.5 disabled:opacity-50"
                   >
                     {assistantBusy ? (
-                      <Loader2 className="w-4 h-4 animate-spin text-[#FFC5A8]" />
+                      <Loader2 className="w-4 h-4 animate-spin text-[#E6DFD2]" />
                     ) : (
-                      <Send className="w-3.5 h-3.5 text-[#FFC5A8]" />
+                      <Send className="w-3.5 h-3.5 text-[#E6DFD2]" />
                     )}
                     <span>Advise</span>
                   </button>
                 </form>
 
                 {assistantError && (
-                  <p className="p-3 bg-[#FFC5A8] text-[#101010] text-xs font-semibold">
+                  <p className="p-3 bg-[#E6DFD2] text-[#0A0A0A] text-xs font-semibold">
                     {assistantError}
                   </p>
                 )}
 
                 {assistantReply && (
-                  <p className="text-xs text-[#101010]/80 leading-relaxed border-b border-[#101010]/10 pb-3">
+                  <p className="text-xs text-[#0A0A0A]/80 leading-relaxed border-b border-[#0A0A0A]/10 pb-3">
                     {assistantReply}
                   </p>
                 )}
 
                 {assistantAlerts.length > 0 && (
                   <div className="space-y-1.5">
-                    <p className="font-mono text-[10px] text-[#101010]/60">ESSENTIAL REMINDERS</p>
+                    <p className="font-mono text-[10px] text-[#0A0A0A]/60">ESSENTIAL REMINDERS</p>
                     {assistantAlerts.map((alert) => (
-                      <p key={alert} className="text-xs text-[#101010] bg-[#B8D9F2]/40 px-3 py-2">
+                      <p key={alert} className="text-xs text-[#0A0A0A] bg-[#BCD2CF]/40 px-3 py-2">
                         {alert}
                       </p>
                     ))}
@@ -739,12 +739,12 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
                     return (
                       <div
                         key={sug.name}
-                        className="p-3.5 border border-[#101010]/15 flex items-start justify-between gap-3"
+                        className="p-3.5 border border-[#0A0A0A]/15 flex items-start justify-between gap-3"
                       >
                         <div className="space-y-1">
-                          <p className="text-xs font-bold text-[#101010]">{sug.name}</p>
-                          <p className="text-[11px] text-[#101010]/70 leading-snug">{sug.reason}</p>
-                          <p className="font-mono text-[10px] text-[#101010]/55">
+                          <p className="text-xs font-bold text-[#0A0A0A]">{sug.name}</p>
+                          <p className="text-[11px] text-[#0A0A0A]/70 leading-snug">{sug.reason}</p>
+                          <p className="font-mono text-[10px] text-[#0A0A0A]/55">
                             {sug.category} · {sug.weightGrams}g
                           </p>
                         </div>
@@ -756,8 +756,8 @@ export const SmartPackingStudio: React.FC<SmartPackingStudioProps> = ({
                           }
                           className={`min-h-[36px] px-3 text-[11px] font-bold shrink-0 transition-colors ${
                             alreadyIn
-                              ? 'bg-[#B8D9F2]/50 text-[#101010]/50'
-                              : 'bg-[#101010] text-[#FFFFFF] hover:bg-[#FFC5A8] hover:text-[#101010]'
+                              ? 'bg-[#BCD2CF]/50 text-[#0A0A0A]/50'
+                              : 'bg-[#0B3B40] text-[#FBFAF8] hover:bg-[#E6DFD2] hover:text-[#0A0A0A]'
                           }`}
                         >
                           {alreadyIn ? 'In Bag' : '+ Add'}

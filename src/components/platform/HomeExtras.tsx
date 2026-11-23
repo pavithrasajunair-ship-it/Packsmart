@@ -27,7 +27,7 @@ const FlapCells: React.FC<{ text: string; length: number }> = ({ text, length })
         key={i}
         data-flap={ch}
         aria-hidden="true"
-        className="inline-flex items-center justify-center w-[0.78em] h-[1.25em] rounded-[3px] bg-[#FFFFFF]/10 text-[#FFFFFF] font-semibold tabular-nums"
+        className="inline-flex items-center justify-center w-[0.78em] h-[1.25em] rounded-[3px] bg-[#FBFAF8]/10 text-[#FBFAF8] font-semibold tabular-nums"
       >
         {ch === ' ' ? ' ' : ch}
       </span>
@@ -126,11 +126,11 @@ export const DepartureBoard: React.FC<{
       <div className="max-w-[1100px] mx-auto px-6 sm:px-10 space-y-8">
         <LineRevealText
           as="h2"
-          className="text-[clamp(2rem,4.6vw,3.6rem)] leading-[1.04] tracking-[-0.04em] text-[#101010]"
+          className="text-[clamp(2rem,4.6vw,3.6rem)] leading-[1.04] tracking-[-0.04em] text-[#0A0A0A]"
           lines={['Your trips,', 'on the departure board.']}
         />
-        <div ref={boardRef} className="rounded-3xl bg-[#101010] text-[#FFFFFF] p-5 sm:p-8 shadow-[0_30px_80px_-40px_rgba(16,16,16,0.6)]">
-          <div className="flex items-center justify-between pb-4 mb-3 border-b border-[#FFFFFF]/15 text-sm text-[#FFFFFF]/70">
+        <div ref={boardRef} className="rounded-3xl bg-[#0B3B40] text-[#FBFAF8] p-5 sm:p-8 shadow-[0_30px_80px_-40px_rgba(16,16,16,0.6)]">
+          <div className="flex items-center justify-between pb-4 mb-3 border-b border-[#FBFAF8]/15 text-sm text-[#FBFAF8]/70">
             <span>Destination</span>
             <span className="hidden sm:inline">Departs</span>
             <span>Status</span>
@@ -142,26 +142,26 @@ export const DepartureBoard: React.FC<{
               <button
                 type="button"
                 onClick={() => onNavigate('trip-planner')}
-                className="h-11 px-6 rounded-full bg-[#FFC5A8] text-[#101010] text-sm font-semibold"
+                className="h-11 px-6 rounded-full bg-[#E6DFD2] text-[#0A0A0A] text-sm font-semibold"
               >
                 Plan your first trip
               </button>
             </div>
           ) : (
-            <ul className="divide-y divide-[#FFFFFF]/10 text-[clamp(0.8rem,2.5vw,1.45rem)]">
+            <ul className="divide-y divide-[#FBFAF8]/10 text-[clamp(0.8rem,2.5vw,1.45rem)]">
               {rows.map((r) => (
                 <li key={r.id}>
                   <button
                     type="button"
                     onClick={() => onNavigate('trip-planner')}
-                    className="w-full flex items-center justify-between gap-3 py-3.5 text-left hover:bg-[#FFFFFF]/[0.04] transition-colors rounded-lg px-1"
+                    className="w-full flex items-center justify-between gap-3 py-3.5 text-left hover:bg-[#FBFAF8]/[0.04] transition-colors rounded-lg px-1"
                     aria-label={`${r.destination}, ${r.status.toLowerCase()}. Open Trip Planner`}
                   >
                     <FlapCells text={r.destination} length={10} />
                     <span className="hidden sm:inline-flex">
                       <FlapCells text={r.date} length={6} />
                     </span>
-                    <span className={r.status === 'BOARDING' ? 'text-[#FFC5A8]' : 'text-[#B8D9F2]'}>
+                    <span className={r.status === 'BOARDING' ? 'text-[#E6DFD2]' : 'text-[#BCD2CF]'}>
                       <FlapCells text={r.status} length={8} />
                     </span>
                   </button>
@@ -246,7 +246,7 @@ export const CapsuleCalculator: React.FC<{ onOpenSmartPacking: () => void }> = (
         <div className="lg:col-span-5 space-y-8">
           <LineRevealText
             as="h2"
-            className="text-[clamp(2rem,4.6vw,3.6rem)] leading-[1.04] tracking-[-0.04em] text-[#101010]"
+            className="text-[clamp(2rem,4.6vw,3.6rem)] leading-[1.04] tracking-[-0.04em] text-[#0A0A0A]"
             lines={['How much', 'do you really need?']}
           />
 
@@ -265,7 +265,7 @@ export const CapsuleCalculator: React.FC<{ onOpenSmartPacking: () => void }> = (
                 max={21}
                 value={days}
                 onChange={(e) => setDays(Number(e.target.value))}
-                className="w-full accent-[#101010]"
+                className="w-full accent-[#0A0A0A]"
               />
             </div>
 
@@ -281,8 +281,8 @@ export const CapsuleCalculator: React.FC<{ onOpenSmartPacking: () => void }> = (
                     onClick={() => setClimate(c.id)}
                     className={`h-10 px-5 rounded-full text-sm font-medium transition-colors ${
                       climate === c.id
-                        ? 'bg-[#101010] text-[#FFFFFF]'
-                        : 'bg-[#FFFFFF]/70 text-[#101010] hover:bg-[#FFFFFF]'
+                        ? 'bg-[#0B3B40] text-[#FBFAF8]'
+                        : 'bg-[#FBFAF8]/70 text-[#0A0A0A] hover:bg-[#FBFAF8]'
                     }`}
                   >
                     {c.label}
@@ -300,13 +300,13 @@ export const CapsuleCalculator: React.FC<{ onOpenSmartPacking: () => void }> = (
             >
               <span
                 className={`relative w-11 h-6 rounded-full transition-colors ${
-                  laundry ? 'bg-[#101010]' : 'bg-[#101010]/25'
+                  laundry ? 'bg-[#0B3B40]' : 'bg-[#0A0A0A]/25'
                 }`}
               >
                 <motion.span
                   layout
                   transition={{ type: 'spring', stiffness: 500, damping: 32 }}
-                  className={`absolute top-1 w-4 h-4 rounded-full bg-[#FFFFFF] ${laundry ? 'right-1' : 'left-1'}`}
+                  className={`absolute top-1 w-4 h-4 rounded-full bg-[#FBFAF8] ${laundry ? 'right-1' : 'left-1'}`}
                 />
               </span>
               <span>I can do laundry on the trip</span>
@@ -315,23 +315,23 @@ export const CapsuleCalculator: React.FC<{ onOpenSmartPacking: () => void }> = (
         </div>
 
         <div className="lg:col-span-7 space-y-5">
-          <div className="rounded-3xl bg-[#FFFFFF]/70 p-6 sm:p-8 space-y-6">
+          <div className="rounded-3xl bg-[#FBFAF8]/70 p-6 sm:p-8 space-y-6">
             <div className="flex items-end justify-between gap-4">
               <div>
-                <p className="text-sm text-[#101010]/70">Carry-on space used</p>
+                <p className="text-sm text-[#0A0A0A]/70">Carry-on space used</p>
                 <p className="text-4xl sm:text-5xl font-bold tracking-[-0.04em] tabular-nums">
                   <Counter value={litres} decimals={1} />
-                  <span className="text-lg font-medium text-[#101010]/70"> / {CARRY_ON_LITRES} L</span>
+                  <span className="text-lg font-medium text-[#0A0A0A]/70"> / {CARRY_ON_LITRES} L</span>
                 </p>
               </div>
-              <p className={`text-sm font-semibold ${over ? 'text-[#101010]' : 'text-[#101010]/70'}`} aria-live="polite">
+              <p className={`text-sm font-semibold ${over ? 'text-[#0A0A0A]' : 'text-[#0A0A0A]/70'}`} aria-live="polite">
                 {over ? `Over by ${(litres - CARRY_ON_LITRES).toFixed(1)} L: try laundry` : 'Fits a carry-on'}
               </p>
             </div>
 
-            <div className="h-3 rounded-full bg-[#101010]/10 overflow-hidden">
+            <div className="h-3 rounded-full bg-[#0A0A0A]/10 overflow-hidden">
               <motion.div
-                className={`h-full rounded-full ${over ? 'bg-[#FFC5A8]' : 'bg-[#101010]'}`}
+                className={`h-full rounded-full ${over ? 'bg-[#E6DFD2]' : 'bg-[#0B3B40]'}`}
                 animate={{ width: `${pct}%` }}
                 transition={{ type: 'spring', stiffness: 120, damping: 20 }}
               />
@@ -342,7 +342,7 @@ export const CapsuleCalculator: React.FC<{ onOpenSmartPacking: () => void }> = (
                 <li
                   key={l.key}
                   className="rounded-2xl p-4 space-y-1"
-                  style={{ backgroundColor: ['#B8D9F2', '#D9C9F2', '#FFC5A8'][i % 3] }}
+                  style={{ backgroundColor: ['#BCD2CF', '#D5DCD9', '#E6DFD2'][i % 3] }}
                 >
                   <p className="text-3xl font-bold tabular-nums tracking-[-0.03em]">
                     <AnimatePresence mode="popLayout" initial={false}>
@@ -367,7 +367,7 @@ export const CapsuleCalculator: React.FC<{ onOpenSmartPacking: () => void }> = (
           <button
             type="button"
             onClick={onOpenSmartPacking}
-            className="h-12 px-7 rounded-full bg-[#101010] text-[#FFFFFF] text-sm font-semibold inline-flex items-center gap-2 hover:bg-[#101010]/85 transition-colors"
+            className="h-12 px-7 rounded-full bg-[#0B3B40] text-[#FBFAF8] text-sm font-semibold inline-flex items-center gap-2 hover:bg-[#0A0A0A]/85 transition-colors"
           >
             <span>Build this list in Smart Packing</span>
             <ArrowRight className="w-4 h-4" />

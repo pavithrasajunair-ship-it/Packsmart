@@ -97,7 +97,7 @@ interface ListDetailScreenProps {
   onOpenWardrobe: () => void;
 }
 
-const MEMBER_COLORS = ['#D9C9F2', '#B8D9F2', '#FFC5A8', '#FFC5A8', '#B8D9F2', '#B8D9F2'];
+const MEMBER_COLORS = ['#D5DCD9', '#BCD2CF', '#E6DFD2', '#E6DFD2', '#BCD2CF', '#BCD2CF'];
 const TIMELINE_STAGE_ORDER: TimelineStage[] = [
   'one_week',
   'three_days',
@@ -877,7 +877,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
   return (
     <div className="space-y-5 pb-12">
       {/* Compact Hero Header */}
-      <div className="rounded-3xl overflow-hidden bg-[#101010] text-white border border-[#101010]">
+      <div className="rounded-3xl overflow-hidden bg-[#0B3B40] text-white border border-[#0A0A0A]">
         <div className="relative h-32 sm:h-36">
           <SafeImage
             src={list.coverImage}
@@ -885,14 +885,14 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
             className="w-full h-full object-cover"
             fallbackLabel={list.destination || list.title}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#101010] via-[#101010]/55 to-[#101010]/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/55 to-[#0A0A0A]/20" />
 
           <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2">
             <button
               type="button"
               onClick={onBack}
               aria-label="Back to trips"
-              className="min-h-[44px] min-w-[44px] rounded-2xl bg-[#101010]/70 backdrop-blur-md text-white flex items-center justify-center hover:bg-[#101010]"
+              className="min-h-[44px] min-w-[44px] rounded-2xl bg-[#0A0A0A]/70 backdrop-blur-md text-white flex items-center justify-center hover:bg-[#0B3B40]"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
@@ -901,7 +901,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
               <button
                 type="button"
                 onClick={() => onOpenAI(list.id)}
-                className="min-h-[40px] px-3 rounded-xl bg-[#101010] text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm whitespace-nowrap"
+                className="min-h-[40px] px-3 rounded-xl bg-[#0B3B40] text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm whitespace-nowrap"
               >
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Ask AI</span>
@@ -919,7 +919,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 }
                 className={`min-h-[40px] px-3 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors ${
                   list.completed
-                    ? 'bg-[#101010] text-white'
+                    ? 'bg-[#0B3B40] text-white'
                     : 'bg-white/15 backdrop-blur-md text-white hover:bg-white/25'
                 }`}
               >
@@ -930,7 +930,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
 
           <div className="absolute bottom-3 left-5 right-5 flex items-end justify-between gap-3">
             <div className="min-w-0">
-              <p className="text-xs text-[#D9C9F2]">
+              <p className="text-xs text-[#D5DCD9]">
                 {list.tripType} · {list.destination || 'Local'} · {list.startDate}
                 {list.isSampleData ? ' · Sample' : ''}
               </p>
@@ -942,7 +942,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
               percent={completionPct}
               size={50}
               strokeWidth={4.5}
-              progressColor="#B8D9F2"
+              progressColor="#BCD2CF"
               trackClassName="stroke-white/20"
               labelClassName="text-[11px] font-bold text-white"
             />
@@ -950,7 +950,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
         </div>
 
         {/* 8-Module Connected Sub-Navigation Strip */}
-        <div className="px-3 py-2.5 bg-[#101010] flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+        <div className="px-3 py-2.5 bg-[#0B3B40] flex items-center gap-1.5 overflow-x-auto no-scrollbar">
           {[
             { id: 'checklist', label: `Pack (${packedCount}/${totalCount})`, icon: CheckCircle2 },
             {
@@ -988,10 +988,10 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 onClick={() => setSubTab(tab.id as DetailSubTab)}
                 className={`min-h-[40px] px-3.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap shrink-0 transition-colors ${
                   active
-                    ? 'bg-white text-[#101010]'
+                    ? 'bg-white text-[#0A0A0A]'
                     : tab.alert
-                    ? 'text-[#101010] hover:bg-white/10'
-                    : 'text-[#FFFFFFc7] hover:bg-white/10 hover:text-white'
+                    ? 'text-[#0A0A0A] hover:bg-white/10'
+                    : 'text-[#FBFAF8c7] hover:bg-white/10 hover:text-white'
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -1004,12 +1004,12 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
 
       {/* Undo Delete Toast */}
       {undoToast && (
-        <div className="p-3.5 rounded-2xl bg-[#101010] text-white flex items-center justify-between gap-3 shadow-lg">
+        <div className="p-3.5 rounded-2xl bg-[#0B3B40] text-white flex items-center justify-between gap-3 shadow-lg">
           <span className="text-xs font-medium truncate">Removed "{undoToast.item.name}"</span>
           <button
             type="button"
             onClick={() => restoreDeletedItem(undoToast.item)}
-            className="min-h-[36px] px-3 rounded-xl bg-[#B8D9F2] text-[#101010] text-xs font-bold flex items-center gap-1 whitespace-nowrap shrink-0"
+            className="min-h-[36px] px-3 rounded-xl bg-[#BCD2CF] text-[#0A0A0A] text-xs font-bold flex items-center gap-1 whitespace-nowrap shrink-0"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Undo</span>
@@ -1021,11 +1021,11 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
       {subTab === 'checklist' && (
         <div className="space-y-4">
           {/* Quick link to Trip Outfit Plan */}
-          <div className="p-3.5 rounded-2xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] border border-[#D9C9F2] dark:border-[#FFFFFF24] flex items-center justify-between gap-3">
+          <div className="p-3.5 rounded-2xl bg-[#D5DCD966] dark:bg-[#FBFAF80f] border border-[#D5DCD9] dark:border-[#FBFAF824] flex items-center justify-between gap-3">
             <div className="flex items-center gap-2.5 min-w-0">
-              <Shirt className="w-4 h-4 text-[#101010] dark:text-[#D9C9F2] shrink-0" />
-              <p className="text-xs text-[#101010] dark:text-[#FFFFFF] truncate">
-                <span className="font-bold text-[#101010] dark:text-white">
+              <Shirt className="w-4 h-4 text-[#0A0A0A] dark:text-[#D5DCD9] shrink-0" />
+              <p className="text-xs text-[#0A0A0A] dark:text-[#FBFAF8] truncate">
+                <span className="font-bold text-[#0A0A0A] dark:text-white">
                   {list.dayOutfits?.length || 0} Day Outfits Planned
                 </span>{' '}
                 · Open Wardrobe Studio to mix & sync clothing
@@ -1034,7 +1034,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
             <button
               type="button"
               onClick={onOpenWardrobe}
-              className="min-h-[36px] px-3 rounded-xl bg-white dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#D9C9F2] text-xs font-semibold shrink-0"
+              className="min-h-[36px] px-3 rounded-xl bg-white dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-[#D5DCD9] text-xs font-semibold shrink-0"
             >
               Outfits
             </button>
@@ -1043,14 +1043,14 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
           {/* Toolbar */}
           <div className="flex flex-col sm:flex-row gap-2.5">
             <div className="relative flex-1">
-              <Search className="w-4 h-4 text-[#10101099] absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-[#0A0A0A99] absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search items or notes..."
                 aria-label="Search checklist items"
-                className="w-full min-h-[44px] pl-10 pr-4 rounded-2xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+                className="w-full min-h-[44px] pl-10 pr-4 rounded-2xl bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
               />
             </div>
 
@@ -1058,7 +1058,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
               <button
                 type="button"
                 onClick={openAddSheet}
-                className="flex-1 sm:flex-none min-h-[44px] px-4 rounded-2xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white text-xs font-semibold flex items-center justify-center gap-1.5 whitespace-nowrap"
+                className="flex-1 sm:flex-none min-h-[44px] px-4 rounded-2xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white text-xs font-semibold flex items-center justify-center gap-1.5 whitespace-nowrap"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add Item</span>
@@ -1067,16 +1067,16 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 type="button"
                 onClick={() => setCustomCatOpen(true)}
                 aria-label="Create custom category"
-                className="min-h-[44px] px-3.5 rounded-2xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs font-semibold text-[#101010] dark:text-[#FFFFFF] flex items-center gap-1.5 whitespace-nowrap"
+                className="min-h-[44px] px-3.5 rounded-2xl bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs font-semibold text-[#0A0A0A] dark:text-[#FBFAF8] flex items-center gap-1.5 whitespace-nowrap"
               >
-                <FolderPlus className="w-4 h-4 text-[#101010] dark:text-[#D9C9F2]" />
+                <FolderPlus className="w-4 h-4 text-[#0A0A0A] dark:text-[#D5DCD9]" />
                 <span className="hidden sm:inline">Category</span>
               </button>
               {list.deletedItems.length > 0 && (
                 <button
                   type="button"
                   onClick={() => setDeletedDrawerOpen(true)}
-                  className="min-h-[44px] px-3.5 rounded-2xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#D9C9F2] text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap"
+                  className="min-h-[44px] px-3.5 rounded-2xl bg-[#D5DCD966] dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-[#D5DCD9] text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>Restore ({list.deletedItems.length})</span>
@@ -1086,7 +1086,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
           </div>
 
           {/* Filter tabs */}
-          <div className="inline-flex p-1 rounded-xl bg-[#FFFFFF] dark:bg-[#FFFFFF0f]">
+          <div className="inline-flex p-1 rounded-xl bg-[#FBFAF8] dark:bg-[#FBFAF80f]">
             {[
               { id: 'all', label: `All (${totalCount})` },
               { id: 'unpacked', label: `Unpacked (${totalCount - packedCount})` },
@@ -1098,8 +1098,8 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 onClick={() => setPackFilter(f.id as typeof packFilter)}
                 className={`min-h-[36px] px-3 rounded-lg text-xs font-semibold transition-all tabular-nums ${
                   packFilter === f.id
-                    ? 'bg-white dark:bg-[#FFFFFF0f] text-[#101010] dark:text-white shadow-xs'
-                    : 'text-[#101010b2] dark:text-[#FFFFFFa8]'
+                    ? 'bg-white dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-white shadow-xs'
+                    : 'text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]'
                 }`}
               >
                 {f.label}
@@ -1115,18 +1115,18 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 return (
                   <section
                     key={category}
-                    className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl border border-[#1010101f] dark:border-[#FFFFFF24] overflow-hidden"
+                    className="bg-white dark:bg-[#FBFAF80f] rounded-3xl border border-[#0A0A0A1f] dark:border-[#FBFAF824] overflow-hidden"
                   >
-                    <div className="px-5 py-3.5 bg-[#FFFFFF] dark:bg-[#101010] border-b border-[#1010101f] dark:border-[#FFFFFF24] flex items-center justify-between">
-                      <h2 className="font-display font-bold text-sm text-[#101010] dark:text-white">
+                    <div className="px-5 py-3.5 bg-[#FBFAF8] dark:bg-[#0B3B40] border-b border-[#0A0A0A1f] dark:border-[#FBFAF824] flex items-center justify-between">
+                      <h2 className="font-display font-bold text-sm text-[#0A0A0A] dark:text-white">
                         {category}
                       </h2>
-                      <span className="font-mono text-xs text-[#101010b2] dark:text-[#FFFFFFa8] tabular-nums">
+                      <span className="font-mono text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] tabular-nums">
                         {catPacked}/{items.length} packed
                       </span>
                     </div>
 
-                    <div className="divide-y divide-[#1010101f] dark:divide-[#FFFFFF24]">
+                    <div className="divide-y divide-[#0A0A0A1f] dark:divide-[#FBFAF824]">
                       {items.map((item, idx) => {
                         const assignee = list.groupMembers.find((m) => m.id === item.assignedTo);
                         const vol = (
@@ -1137,7 +1137,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                           <div
                             key={item.id}
                             className={`px-4 py-3 flex items-start sm:items-center justify-between gap-3 transition-colors ${
-                              item.packed ? 'bg-[#FFFFFF] dark:bg-[#101010]/40' : ''
+                              item.packed ? 'bg-[#FBFAF8] dark:bg-[#0A0A0A]/40' : ''
                             }`}
                           >
                             <div className="flex items-start gap-3 min-w-0 flex-1">
@@ -1150,8 +1150,8 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                                 <span
                                   className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all ${
                                     item.packed
-                                      ? 'bg-[#101010] border-[#10101073] text-white scale-105'
-                                      : 'border-[#10101040] dark:border-[#FFFFFF24] bg-white dark:bg-[#101010]'
+                                      ? 'bg-[#0B3B40] border-[#0A0A0A73] text-white scale-105'
+                                      : 'border-[#0A0A0A40] dark:border-[#FBFAF824] bg-white dark:bg-[#0B3B40]'
                                   }`}
                                 >
                                   {item.packed && <Check className="w-3.5 h-3.5 stroke-[3]" />}
@@ -1162,13 +1162,13 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                                 <p
                                   className={`text-sm font-semibold leading-snug ${
                                     item.packed
-                                      ? 'line-through text-[#10101085] dark:text-[#FFFFFF]'
-                                      : 'text-[#101010] dark:text-white'
+                                      ? 'line-through text-[#0A0A0A85] dark:text-[#FBFAF8]'
+                                      : 'text-[#0A0A0A] dark:text-white'
                                   }`}
                                 >
                                   {item.name}
                                 </p>
-                                <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] mt-0.5 flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
+                                <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-0.5 flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
                                   <span className="font-mono tabular-nums">
                                     {vol}L · {Math.round((item.weightGrams * item.quantity) / 10) / 100} kg
                                   </span>
@@ -1176,7 +1176,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                                   <span
                                     className={
                                       item.priority === 'Essential'
-                                        ? 'text-[#101010] dark:text-[#FFFFFF] font-semibold'
+                                        ? 'text-[#0A0A0A] dark:text-[#FBFAF8] font-semibold'
                                         : ''
                                     }
                                   >
@@ -1185,7 +1185,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                                   {item.weatherRecommended && (
                                     <>
                                       <span aria-hidden="true">·</span>
-                                      <span className="text-[#101010] dark:text-[#D9C9F2] font-medium">Weather pick</span>
+                                      <span className="text-[#0A0A0A] dark:text-[#D5DCD9] font-medium">Weather pick</span>
                                     </>
                                   )}
                                   {assignee && (
@@ -1196,17 +1196,17 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                                   )}
                                 </p>
                                 {item.memoryPriorityReason && (
-                                  <p className="text-[11px] font-medium text-[#101010] dark:text-[#D9C9F2] mt-1">
+                                  <p className="text-[11px] font-medium text-[#0A0A0A] dark:text-[#D5DCD9] mt-1">
                                     Memory boost: {item.memoryPriorityReason}
                                   </p>
                                 )}
                                 {item.memoryUnusedWarning && (
-                                  <p className="text-[11px] font-medium text-[#101010] dark:text-[#FFC5A8] mt-1">
+                                  <p className="text-[11px] font-medium text-[#0A0A0A] dark:text-[#E6DFD2] mt-1">
                                     {item.memoryUnusedWarning}
                                   </p>
                                 )}
                                 {item.notes && (
-                                  <p className="text-xs text-[#10101099] dark:text-[#FFFFFFa8] mt-1 italic">
+                                  <p className="text-xs text-[#0A0A0A99] dark:text-[#FBFAF8a8] mt-1 italic">
                                     {item.notes}
                                   </p>
                                 )}
@@ -1215,23 +1215,23 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
 
                             {/* Quantity & Item Actions */}
                             <div className="flex items-center gap-1 shrink-0">
-                              <div className="flex items-center bg-[#FFFFFF] dark:bg-[#101010] rounded-xl p-0.5">
+                              <div className="flex items-center bg-[#FBFAF8] dark:bg-[#0B3B40] rounded-xl p-0.5">
                                 <button
                                   type="button"
                                   onClick={() => adjustQuantity(item.id, -1)}
                                   aria-label={`Decrease quantity of ${item.name}`}
-                                  className="w-8 h-8 flex items-center justify-center text-sm font-bold text-[#101010cc] dark:text-[#FFFFFFa8]"
+                                  className="w-8 h-8 flex items-center justify-center text-sm font-bold text-[#0A0A0Acc] dark:text-[#FBFAF8a8]"
                                 >
                                   −
                                 </button>
-                                <span className="w-6 text-center font-mono text-xs font-bold tabular-nums text-[#101010] dark:text-white">
+                                <span className="w-6 text-center font-mono text-xs font-bold tabular-nums text-[#0A0A0A] dark:text-white">
                                   {item.quantity}
                                 </span>
                                 <button
                                   type="button"
                                   onClick={() => adjustQuantity(item.id, 1)}
                                   aria-label={`Increase quantity of ${item.name}`}
-                                  className="w-8 h-8 flex items-center justify-center text-sm font-bold text-[#101010cc] dark:text-[#FFFFFFa8]"
+                                  className="w-8 h-8 flex items-center justify-center text-sm font-bold text-[#0A0A0Acc] dark:text-[#FBFAF8a8]"
                                 >
                                   +
                                 </button>
@@ -1242,7 +1242,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                                 onClick={() => reorderItem(item.id, -1)}
                                 disabled={idx === 0}
                                 aria-label={`Move ${item.name} up`}
-                                className="hidden sm:flex min-h-[36px] min-w-[30px] items-center justify-center rounded-lg text-[#10101085] hover:text-[#101010] disabled:opacity-30"
+                                className="hidden sm:flex min-h-[36px] min-w-[30px] items-center justify-center rounded-lg text-[#0A0A0A85] hover:text-[#0A0A0A] disabled:opacity-30"
                               >
                                 <ArrowUp className="w-3.5 h-3.5" />
                               </button>
@@ -1251,7 +1251,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                                 onClick={() => reorderItem(item.id, 1)}
                                 disabled={idx === items.length - 1}
                                 aria-label={`Move ${item.name} down`}
-                                className="hidden sm:flex min-h-[36px] min-w-[30px] items-center justify-center rounded-lg text-[#10101085] hover:text-[#101010] disabled:opacity-30"
+                                className="hidden sm:flex min-h-[36px] min-w-[30px] items-center justify-center rounded-lg text-[#0A0A0A85] hover:text-[#0A0A0A] disabled:opacity-30"
                               >
                                 <ArrowDown className="w-3.5 h-3.5" />
                               </button>
@@ -1259,7 +1259,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                                 type="button"
                                 onClick={() => openEditSheet(item)}
                                 aria-label={`Edit ${item.name}`}
-                                className="min-h-[40px] min-w-[36px] flex items-center justify-center rounded-xl text-[#10101099] hover:text-[#101010]"
+                                className="min-h-[40px] min-w-[36px] flex items-center justify-center rounded-xl text-[#0A0A0A99] hover:text-[#0A0A0A]"
                               >
                                 <Edit3 className="w-4 h-4" />
                               </button>
@@ -1267,7 +1267,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                                 type="button"
                                 onClick={() => deleteItem(item.id)}
                                 aria-label={`Delete ${item.name}`}
-                                className="min-h-[40px] min-w-[36px] flex items-center justify-center rounded-xl text-[#10101099] hover:text-[#101010]"
+                                className="min-h-[40px] min-w-[36px] flex items-center justify-center rounded-xl text-[#0A0A0A99] hover:text-[#0A0A0A]"
                               >
                                 <Trash2 className="w-4 h-4" />
                               </button>
@@ -1281,11 +1281,11 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
               })}
             </div>
           ) : (
-            <div className="rounded-3xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] p-8 text-center">
-              <p className="font-display font-bold text-base text-[#101010] dark:text-white">
+            <div className="rounded-3xl bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] p-8 text-center">
+              <p className="font-display font-bold text-base text-[#0A0A0A] dark:text-white">
                 {packFilter === 'unpacked' && totalCount > 0 ? 'Every item is packed!' : 'No items match this view'}
               </p>
-              <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] mt-1">
+              <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-1">
                 {packFilter === 'unpacked' && totalCount > 0
                   ? 'You are ready to travel with confidence.'
                   : 'Add custom items or adjust your filter.'}
@@ -1299,18 +1299,18 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
       {subTab === 'suitcase' && (
         <div className="space-y-4">
           {/* Visual Suitcase Capacity Card */}
-          <div className="rounded-3xl overflow-hidden bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24]">
+          <div className="rounded-3xl overflow-hidden bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824]">
             <div className="grid grid-cols-1 md:grid-cols-12">
-              <div className="md:col-span-4 relative min-h-[160px] bg-[#101010]">
+              <div className="md:col-span-4 relative min-h-[160px] bg-[#0B3B40]">
                 <SafeImage
                   src={ASSETS.suitcase}
                   alt="Organized suitcase space layout"
                   className="w-full h-full object-cover"
                   fallbackLabel="Suitcase Space"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#101010]/90 via-[#101010]/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/90 via-[#0A0A0A]/30 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <p className="text-[11px] font-semibold text-[#D9C9F2]">Selected Luggage</p>
+                  <p className="text-[11px] font-semibold text-[#D5DCD9]">Selected Luggage</p>
                   <p className="font-display font-bold text-base leading-tight">{list.luggageType}</p>
                 </div>
               </div>
@@ -1318,21 +1318,21 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
               <div className="md:col-span-8 p-5 space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
-                    <h2 className="font-display text-lg font-extrabold text-[#101010] dark:text-white">
+                    <h2 className="font-display text-lg font-extrabold text-[#0A0A0A] dark:text-white">
                       Smart Suitcase Space Optimizer
                     </h2>
-                    <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8]">
+                    <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]">
                       Visual compartment volume & estimated baggage weight
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="text-right">
-                      <p className="text-[11px] text-[#101010b2] dark:text-[#FFFFFFa8]">Space Used</p>
+                      <p className="text-[11px] text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]">Space Used</p>
                       <p
                         className={`font-mono text-base font-bold tabular-nums ${
                           suitcaseAnalysis.isVolumeOverloaded
-                            ? 'text-[#101010] dark:text-[#FFC5A8]'
-                            : 'text-[#101010] dark:text-[#FFFFFF]'
+                            ? 'text-[#0A0A0A] dark:text-[#E6DFD2]'
+                            : 'text-[#0A0A0A] dark:text-[#FBFAF8]'
                         }`}
                       >
                         {suitcaseAnalysis.totalVolumeLiters}L / {suitcaseAnalysis.capacityLiters}L
@@ -1342,14 +1342,14 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                       percent={Math.min(100, suitcaseAnalysis.volumePercent)}
                       size={52}
                       strokeWidth={5}
-                      progressColor={suitcaseAnalysis.isVolumeOverloaded ? '#FFC5A8' : '#D9C9F2'}
+                      progressColor={suitcaseAnalysis.isVolumeOverloaded ? '#E6DFD2' : '#D5DCD9'}
                     />
                   </div>
                 </div>
 
                 {/* Luggage Preset Selector */}
                 <div>
-                  <label className="block text-xs font-semibold text-[#101010b2] dark:text-[#FFFFFFa8] mb-2">
+                  <label className="block text-xs font-semibold text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mb-2">
                     Switch Luggage Type & Capacity
                   </label>
                   <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
@@ -1360,8 +1360,8 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                         onClick={() => handleSelectLuggagePreset(preset.type)}
                         className={`min-h-[42px] px-3 py-1.5 rounded-xl text-left text-xs shrink-0 border transition-colors ${
                           list.luggageType === preset.type
-                            ? 'bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] border-[#101010] dark:border-[#FFFFFF24] text-white font-semibold'
-                            : 'bg-[#FFFFFF] dark:bg-[#101010] border-[#1010101f] dark:border-[#FFFFFF24] text-[#101010cc] dark:text-[#FFFFFFa8]'
+                            ? 'bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] border-[#0A0A0A] dark:border-[#FBFAF824] text-white font-semibold'
+                            : 'bg-[#FBFAF8] dark:bg-[#0B3B40] border-[#0A0A0A1f] dark:border-[#FBFAF824] text-[#0A0A0Acc] dark:text-[#FBFAF8a8]'
                         }`}
                       >
                         <p className="whitespace-nowrap">{preset.type}</p>
@@ -1375,7 +1375,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
 
                 {/* Overload Alert Banner */}
                 {(suitcaseAnalysis.isVolumeOverloaded || suitcaseAnalysis.isWeightOverloaded) && (
-                  <div className="p-3.5 rounded-2xl bg-[#FFC5A866] dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] flex items-start gap-2.5 text-xs text-[#101010] dark:text-[#FFC5A8]">
+                  <div className="p-3.5 rounded-2xl bg-[#E6DFD266] dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] flex items-start gap-2.5 text-xs text-[#0A0A0A] dark:text-[#E6DFD2]">
                     <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
                     <div>
                       <p className="font-bold">Luggage Overload Detected</p>
@@ -1398,18 +1398,18 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 {/* Visual Suitcase Compartment Fill Diagram */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-semibold text-[#101010] dark:text-white">
+                    <span className="font-semibold text-[#0A0A0A] dark:text-white">
                       Visual Suitcase Fill Map
                     </span>
-                    <span className="font-mono tabular-nums text-[#101010b2] dark:text-[#FFFFFFa8]">
+                    <span className="font-mono tabular-nums text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]">
                       Est. Weight: {formatWeight(suitcaseAnalysis.totalWeightKg)} /{' '}
                       {formatWeight(suitcaseAnalysis.allowanceKg)}
                     </span>
                   </div>
 
                   {/* Proportional suitcase shell */}
-                  <div className="p-2 rounded-2xl border-2 border-[#101010]/20 dark:border-[#FFFFFF24] bg-[#FFFFFF] dark:bg-[#101010]">
-                    <div className="h-10 rounded-xl overflow-hidden flex gap-0.5 bg-[#FFC5A8] dark:bg-[#FFFFFF0f]">
+                  <div className="p-2 rounded-2xl border-2 border-[#0A0A0A]/20 dark:border-[#FBFAF824] bg-[#FBFAF8] dark:bg-[#0B3B40]">
+                    <div className="h-10 rounded-xl overflow-hidden flex gap-0.5 bg-[#E6DFD2] dark:bg-[#FBFAF80f]">
                       {suitcaseAnalysis.compartments.map((comp) => (
                         <div
                           key={comp.category}
@@ -1431,18 +1431,18 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                     {suitcaseAnalysis.compartments.map((comp) => (
                       <div
                         key={comp.category}
-                        className="p-2.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24]"
+                        className="p-2.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824]"
                       >
                         <div className="flex items-center gap-1.5">
                           <span
                             className="w-2.5 h-2.5 rounded-full shrink-0"
                             style={{ backgroundColor: comp.color }}
                           />
-                          <span className="text-[11px] font-semibold text-[#101010] dark:text-white truncate">
+                          <span className="text-[11px] font-semibold text-[#0A0A0A] dark:text-white truncate">
                             {comp.category}
                           </span>
                         </div>
-                        <p className="font-mono text-xs text-[#101010b2] dark:text-[#FFFFFFa8] tabular-nums mt-1">
+                        <p className="font-mono text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] tabular-nums mt-1">
                           {comp.volumeLiters}L · {comp.weightKg}kg
                         </p>
                       </div>
@@ -1454,36 +1454,36 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
           </div>
 
           {/* Items You Can Remove or Trim */}
-          <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 border border-[#1010101f] dark:border-[#FFFFFF24] space-y-3">
-            <h3 className="font-display text-base font-bold text-[#101010] dark:text-white">
+          <div className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-5 border border-[#0A0A0A1f] dark:border-[#FBFAF824] space-y-3">
+            <h3 className="font-display text-base font-bold text-[#0A0A0A] dark:text-white">
               Smart Space-Saving Trim Suggestions
             </h3>
             {suitcaseAnalysis.removableSuggestions.length === 0 ? (
-              <p className="text-xs text-[#101010] dark:text-[#FFFFFF]">
+              <p className="text-xs text-[#0A0A0A] dark:text-[#FBFAF8]">
                 Your suitcase is tightly optimized — no obvious low-priority bulk detected.
               </p>
             ) : (
-              <div className="divide-y divide-[#1010101f] dark:divide-[#FFFFFF24]">
+              <div className="divide-y divide-[#0A0A0A1f] dark:divide-[#FBFAF824]">
                 {suitcaseAnalysis.removableSuggestions.map((sug) => (
                   <div
                     key={sug.item.id}
                     className="py-3 first:pt-0 last:pb-0 flex items-center justify-between gap-3"
                   >
                     <div className="min-w-0">
-                      <p className="text-sm font-semibold text-[#101010] dark:text-white truncate">
+                      <p className="text-sm font-semibold text-[#0A0A0A] dark:text-white truncate">
                         {sug.item.name}{' '}
-                        <span className="font-mono text-xs text-[#101010] dark:text-[#D9C9F2]">
+                        <span className="font-mono text-xs text-[#0A0A0A] dark:text-[#D5DCD9]">
                           ({sug.spaceSavedLiters}L · ×{sug.item.quantity})
                         </span>
                       </p>
-                      <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] mt-0.5">{sug.reason}</p>
+                      <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-0.5">{sug.reason}</p>
                     </div>
                     <div className="flex items-center gap-1.5 shrink-0">
                       {sug.item.quantity > 1 && (
                         <button
                           type="button"
                           onClick={() => adjustQuantity(sug.item.id, -1)}
-                          className="min-h-[38px] px-3 rounded-xl bg-[#D9C9F266] dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#D9C9F2] text-xs font-semibold whitespace-nowrap"
+                          className="min-h-[38px] px-3 rounded-xl bg-[#D5DCD966] dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-[#D5DCD9] text-xs font-semibold whitespace-nowrap"
                         >
                           Trim −1
                         </button>
@@ -1491,7 +1491,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                       <button
                         type="button"
                         onClick={() => deleteItem(sug.item.id)}
-                        className="min-h-[38px] px-3 rounded-xl bg-[#FFC5A866] dark:bg-[#FFFFFF0f] text-[#101010] dark:text-[#FFC5A8] text-xs font-semibold whitespace-nowrap"
+                        className="min-h-[38px] px-3 rounded-xl bg-[#E6DFD266] dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-[#E6DFD2] text-xs font-semibold whitespace-nowrap"
                       >
                         Remove
                       </button>
@@ -1504,32 +1504,32 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
 
           {/* Space-Saving Alternatives & Folding/Rolling Techniques */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <section className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 border border-[#1010101f] dark:border-[#FFFFFF24] space-y-3">
-              <h3 className="font-display text-base font-bold text-[#101010] dark:text-white">
+            <section className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-5 border border-[#0A0A0A1f] dark:border-[#FBFAF824] space-y-3">
+              <h3 className="font-display text-base font-bold text-[#0A0A0A] dark:text-white">
                 Space-Saving Alternatives
               </h3>
               <div className="space-y-3">
                 {suitcaseAnalysis.spaceSavingAlternatives.map((alt) => (
                   <div
                     key={alt.title}
-                    className="p-3.5 rounded-2xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24]"
+                    className="p-3.5 rounded-2xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824]"
                   >
                     <div className="flex items-start justify-between gap-2">
-                      <p className="text-xs font-bold text-[#101010] dark:text-white">{alt.title}</p>
-                      <span className="font-mono text-[11px] font-semibold text-[#101010] dark:text-[#FFFFFF] shrink-0">
+                      <p className="text-xs font-bold text-[#0A0A0A] dark:text-white">{alt.title}</p>
+                      <span className="font-mono text-[11px] font-semibold text-[#0A0A0A] dark:text-[#FBFAF8] shrink-0">
                         {alt.savingsEstimate}
                       </span>
                     </div>
-                    <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] mt-1">{alt.detail}</p>
+                    <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-1">{alt.detail}</p>
                   </div>
                 ))}
               </div>
             </section>
 
-            <section className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 border border-[#1010101f] dark:border-[#FFFFFF24] space-y-3">
+            <section className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-5 border border-[#0A0A0A1f] dark:border-[#FBFAF824] space-y-3">
               <div className="flex items-center gap-2">
-                <Layers className="w-4 h-4 text-[#101010] dark:text-[#D9C9F2]" />
-                <h3 className="font-display text-base font-bold text-[#101010] dark:text-white">
+                <Layers className="w-4 h-4 text-[#0A0A0A] dark:text-[#D5DCD9]" />
+                <h3 className="font-display text-base font-bold text-[#0A0A0A] dark:text-white">
                   Rolling, Folding & Organizing Techniques
                 </h3>
               </div>
@@ -1537,13 +1537,13 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 {suitcaseAnalysis.packingTechniques.map((tech) => (
                   <div
                     key={tech.technique}
-                    className="p-3.5 rounded-2xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24]"
+                    className="p-3.5 rounded-2xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824]"
                   >
-                    <p className="text-xs font-bold text-[#101010] dark:text-white">{tech.technique}</p>
-                    <p className="text-[11px] font-medium text-[#101010] dark:text-[#D9C9F2] mt-0.5">
+                    <p className="text-xs font-bold text-[#0A0A0A] dark:text-white">{tech.technique}</p>
+                    <p className="text-[11px] font-medium text-[#0A0A0A] dark:text-[#D5DCD9] mt-0.5">
                       Best for: {tech.bestFor}
                     </p>
-                    <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] mt-1 leading-relaxed">
+                    <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-1 leading-relaxed">
                       {tech.howTo}
                     </p>
                   </div>
@@ -1558,10 +1558,10 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
       {subTab === 'timeline' && (
         <div className="space-y-4">
           {/* Clean Countdown Calendar Header */}
-          <div className="rounded-3xl bg-[#101010] text-white p-5 space-y-4">
+          <div className="rounded-3xl bg-[#0B3B40] text-white p-5 space-y-4">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <p className="text-xs font-semibold text-[#101010]">Smart Trip Timeline</p>
+                <p className="text-xs font-semibold text-[#0A0A0A]">Smart Trip Timeline</p>
                 <h2 className="font-display text-xl font-extrabold mt-0.5">
                   {daysUntilDeparture < 0
                     ? 'Trip Underway'
@@ -1579,7 +1579,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 }
                 size={54}
                 strokeWidth={5}
-                progressColor="#B8D9F2"
+                progressColor="#BCD2CF"
                 trackClassName="stroke-white/20"
                 labelClassName="text-xs font-bold text-white"
               />
@@ -1597,9 +1597,9 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                     key={stage}
                     className="p-2 rounded-xl bg-white/10 text-center"
                   >
-                    <p className="text-[10px] font-semibold text-[#D9C9F2] truncate">{meta.shortLabel}</p>
+                    <p className="text-[10px] font-semibold text-[#D5DCD9] truncate">{meta.shortLabel}</p>
                     <p className="font-mono text-xs font-bold mt-0.5 tabular-nums">{stageDate.slice(5)}</p>
-                    <p className="font-mono text-[10px] text-[#101010] tabular-nums mt-0.5">
+                    <p className="font-mono text-[10px] text-[#0A0A0A] tabular-nums mt-0.5">
                       {stageDone}/{stageTasks.length}
                     </p>
                   </div>
@@ -1611,19 +1611,19 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
           {/* Add Custom Timeline Task */}
           <form
             onSubmit={handleAddTimelineTask}
-            className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-4 border border-[#1010101f] dark:border-[#FFFFFF24] grid grid-cols-1 sm:grid-cols-12 gap-2.5"
+            className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-4 border border-[#0A0A0A1f] dark:border-[#FBFAF824] grid grid-cols-1 sm:grid-cols-12 gap-2.5"
           >
             <input
               type="text"
               value={newTaskTitle}
               onChange={(e) => setNewTaskTitle(e.target.value)}
               placeholder="Add preparation task (e.g., Download offline maps)"
-              className="sm:col-span-5 min-h-[44px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+              className="sm:col-span-5 min-h-[44px] px-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
             />
             <select
               value={newTaskStage}
               onChange={(e) => setNewTaskStage(e.target.value as TimelineStage)}
-              className="sm:col-span-4 min-h-[44px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs text-[#101010] dark:text-white"
+              className="sm:col-span-4 min-h-[44px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs text-[#0A0A0A] dark:text-white"
             >
               {TIMELINE_STAGE_ORDER.map((stage) => (
                 <option key={stage} value={stage}>
@@ -1633,7 +1633,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
             </select>
             <button
               type="submit"
-              className="sm:col-span-3 min-h-[44px] rounded-xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white text-xs font-semibold flex items-center justify-center gap-1.5"
+              className="sm:col-span-3 min-h-[44px] rounded-xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white text-xs font-semibold flex items-center justify-center gap-1.5"
             >
               <Plus className="w-4 h-4" />
               <span>Add Task</span>
@@ -1650,28 +1650,28 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
               return (
                 <section
                   key={stage}
-                  className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl border border-[#1010101f] dark:border-[#FFFFFF24] overflow-hidden"
+                  className="bg-white dark:bg-[#FBFAF80f] rounded-3xl border border-[#0A0A0A1f] dark:border-[#FBFAF824] overflow-hidden"
                 >
-                  <div className="px-5 py-3.5 bg-[#FFFFFF] dark:bg-[#101010] border-b border-[#1010101f] dark:border-[#FFFFFF24] flex items-center justify-between gap-2">
+                  <div className="px-5 py-3.5 bg-[#FBFAF8] dark:bg-[#0B3B40] border-b border-[#0A0A0A1f] dark:border-[#FBFAF824] flex items-center justify-between gap-2">
                     <div>
-                      <h3 className="font-display font-bold text-sm text-[#101010] dark:text-white">
+                      <h3 className="font-display font-bold text-sm text-[#0A0A0A] dark:text-white">
                         {meta.label}
                       </h3>
-                      <p className="font-mono text-[11px] text-[#101010b2] dark:text-[#FFFFFFa8]">
+                      <p className="font-mono text-[11px] text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]">
                         Target date: {stageDate}
                       </p>
                     </div>
-                    <span className="font-mono text-xs text-[#101010] dark:text-[#D9C9F2] tabular-nums">
+                    <span className="font-mono text-xs text-[#0A0A0A] dark:text-[#D5DCD9] tabular-nums">
                       {stageTasks.filter((t) => t.completed).length}/{stageTasks.length}
                     </span>
                   </div>
 
                   {stageTasks.length === 0 ? (
-                    <p className="p-4 text-xs text-[#101010b2] dark:text-[#FFFFFFa8]">
+                    <p className="p-4 text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]">
                       No tasks scheduled for this stage.
                     </p>
                   ) : (
-                    <div className="divide-y divide-[#1010101f] dark:divide-[#FFFFFF24]">
+                    <div className="divide-y divide-[#0A0A0A1f] dark:divide-[#FBFAF824]">
                       {stageTasks.map((task) => (
                         <div
                           key={task.id}
@@ -1685,8 +1685,8 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                             <span
                               className={`mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 ${
                                 task.completed
-                                  ? 'bg-[#101010] border-[#10101073] text-white'
-                                  : 'border-[#10101040] dark:border-[#FFFFFF24]'
+                                  ? 'bg-[#0B3B40] border-[#0A0A0A73] text-white'
+                                  : 'border-[#0A0A0A40] dark:border-[#FBFAF824]'
                               }`}
                             >
                               {task.completed && <Check className="w-3.5 h-3.5 stroke-[3]" />}
@@ -1695,13 +1695,13 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                               <p
                                 className={`text-sm font-semibold ${
                                   task.completed
-                                    ? 'line-through text-[#10101085]'
-                                    : 'text-[#101010] dark:text-white'
+                                    ? 'line-through text-[#0A0A0A85]'
+                                    : 'text-[#0A0A0A] dark:text-white'
                                 }`}
                               >
                                 {task.title}
                               </p>
-                              <p className="text-[11px] text-[#101010b2] dark:text-[#FFFFFFa8] mt-0.5">
+                              <p className="text-[11px] text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-0.5">
                                 Due {task.dueDate}
                                 {task.notes ? ` · ${task.notes}` : ''}
                               </p>
@@ -1713,7 +1713,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                               type="button"
                               onClick={() => setEditingTimelineTask(task)}
                               aria-label="Edit or reschedule task"
-                              className="min-h-[38px] min-w-[36px] flex items-center justify-center text-[#10101099] hover:text-[#101010]"
+                              className="min-h-[38px] min-w-[36px] flex items-center justify-center text-[#0A0A0A99] hover:text-[#0A0A0A]"
                             >
                               <Edit3 className="w-4 h-4" />
                             </button>
@@ -1727,7 +1727,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                                 })
                               }
                               aria-label="Delete timeline task"
-                              className="min-h-[38px] min-w-[36px] flex items-center justify-center text-[#10101099] hover:text-[#101010]"
+                              className="min-h-[38px] min-w-[36px] flex items-center justify-center text-[#0A0A0A99] hover:text-[#0A0A0A]"
                             >
                               <Trash2 className="w-4 h-4" />
                             </button>
@@ -1746,18 +1746,18 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
       {/* ==================== TAB 4: BEFORE YOU LEAVE MODE ==================== */}
       {subTab === 'before_leave' && (
         <div className="space-y-4">
-          <div className="rounded-3xl bg-[#101010] text-white p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="rounded-3xl bg-[#0B3B40] text-white p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3.5">
               <ProgressRing
                 percent={bylPct}
                 size={60}
                 strokeWidth={5}
-                progressColor="#B8D9F2"
+                progressColor="#BCD2CF"
                 trackClassName="stroke-white/20"
                 labelClassName="text-xs font-bold text-white"
               />
               <div>
-                <p className="text-xs font-semibold text-[#101010]">
+                <p className="text-xs font-semibold text-[#0A0A0A]">
                   {daysUntilDeparture <= 2
                     ? 'Active Departure Mode · Final Checks'
                     : 'Departure Safety & Essentials Checklist'}
@@ -1775,14 +1775,14 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 onClick={handleSendDepartureReminder}
                 className="min-h-[42px] px-3.5 rounded-xl bg-white/15 hover:bg-white/20 text-white text-xs font-semibold flex items-center gap-1.5"
               >
-                <Bell className="w-4 h-4 text-[#101010]" />
+                <Bell className="w-4 h-4 text-[#0A0A0A]" />
                 <span>Send Reminder</span>
               </button>
               <button
                 type="button"
                 onClick={() => setConfirmCompleteAllByl(true)}
                 disabled={bylDoneCount === bylTotalCount && bylTotalCount > 0}
-                className="min-h-[42px] px-4 rounded-xl bg-[#B8D9F2] text-[#101010] text-xs font-bold disabled:opacity-50"
+                className="min-h-[42px] px-4 rounded-xl bg-[#BCD2CF] text-[#0A0A0A] text-xs font-bold disabled:opacity-50"
               >
                 Mark All Completed
               </button>
@@ -1790,7 +1790,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
           </div>
 
           {bylNotice && (
-            <div className="p-3.5 rounded-2xl bg-[#B8D9F266] dark:bg-[#101010] text-[#101010] dark:text-[#FFFFFF] text-xs font-medium">
+            <div className="p-3.5 rounded-2xl bg-[#BCD2CF66] dark:bg-[#0B3B40] text-[#0A0A0A] dark:text-[#FBFAF8] text-xs font-medium">
               {bylNotice}
             </div>
           )}
@@ -1798,19 +1798,19 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
           {/* Add Custom Departure Check */}
           <form
             onSubmit={handleAddBylTask}
-            className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-4 border border-[#1010101f] dark:border-[#FFFFFF24] grid grid-cols-1 sm:grid-cols-12 gap-2.5"
+            className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-4 border border-[#0A0A0A1f] dark:border-[#FBFAF824] grid grid-cols-1 sm:grid-cols-12 gap-2.5"
           >
             <input
               type="text"
               value={newBylTitle}
               onChange={(e) => setNewBylTitle(e.target.value)}
               placeholder="Add custom check (e.g., Water indoor plants, Set AC off)"
-              className="sm:col-span-6 min-h-[44px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+              className="sm:col-span-6 min-h-[44px] px-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
             />
             <select
               value={newBylCategory}
               onChange={(e) => setNewBylCategory(e.target.value as BeforeLeaveTask['category'])}
-              className="sm:col-span-3 min-h-[44px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs text-[#101010] dark:text-white"
+              className="sm:col-span-3 min-h-[44px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs text-[#0A0A0A] dark:text-white"
             >
               <option value="Home Safety">Home Safety</option>
               <option value="Documents & Keys">Documents & Keys</option>
@@ -1819,7 +1819,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
             </select>
             <button
               type="submit"
-              className="sm:col-span-3 min-h-[44px] rounded-xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white text-xs font-semibold flex items-center justify-center gap-1.5"
+              className="sm:col-span-3 min-h-[44px] rounded-xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white text-xs font-semibold flex items-center justify-center gap-1.5"
             >
               <Plus className="w-4 h-4" />
               <span>Add Check</span>
@@ -1827,15 +1827,15 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
           </form>
 
           {/* Before You Leave Checklist Cards */}
-          <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl border border-[#1010101f] dark:border-[#FFFFFF24] divide-y divide-[#1010101f] dark:divide-[#FFFFFF24] overflow-hidden">
+          <div className="bg-white dark:bg-[#FBFAF80f] rounded-3xl border border-[#0A0A0A1f] dark:border-[#FBFAF824] divide-y divide-[#0A0A0A1f] dark:divide-[#FBFAF824] overflow-hidden">
             {(list.beforeLeaveTasks || []).map((task) => (
               <div
                 key={task.id}
                 className={`p-4 flex items-center justify-between gap-3 ${
                   task.completed
-                    ? 'bg-[#FFFFFF] dark:bg-[#101010]/40'
+                    ? 'bg-[#FBFAF8] dark:bg-[#0A0A0A]/40'
                     : task.important
-                    ? 'bg-[#FFC5A866] dark:bg-[#FFFFFF0f]'
+                    ? 'bg-[#E6DFD266] dark:bg-[#FBFAF80f]'
                     : ''
                 }`}
               >
@@ -1847,8 +1847,8 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                   <span
                     className={`mt-0.5 w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 transition-all ${
                       task.completed
-                        ? 'bg-[#101010] border-[#10101073] text-white'
-                        : 'border-[#10101040] dark:border-[#FFFFFF24]'
+                        ? 'bg-[#0B3B40] border-[#0A0A0A73] text-white'
+                        : 'border-[#0A0A0A40] dark:border-[#FBFAF824]'
                     }`}
                   >
                     {task.completed && <Check className="w-3.5 h-3.5 stroke-[3]" />}
@@ -1857,13 +1857,13 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                     <p
                       className={`text-sm font-semibold ${
                         task.completed
-                          ? 'line-through text-[#10101085]'
-                          : 'text-[#101010] dark:text-white'
+                          ? 'line-through text-[#0A0A0A85]'
+                          : 'text-[#0A0A0A] dark:text-white'
                       }`}
                     >
                       {task.title}
                     </p>
-                    <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] mt-0.5">
+                    <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-0.5">
                       {task.category}
                       {task.important && !task.completed ? ' · Important Safety Check' : ''}
                     </p>
@@ -1882,7 +1882,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                     }
                     aria-label="Toggle important"
                     className={`min-h-[38px] min-w-[38px] flex items-center justify-center rounded-xl ${
-                      task.important ? 'text-[#101010]' : 'text-[#10101085]'
+                      task.important ? 'text-[#0A0A0A]' : 'text-[#0A0A0A85]'
                     }`}
                   >
                     <Star className={`w-4 h-4 ${task.important ? 'fill-current' : ''}`} />
@@ -1897,7 +1897,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                       })
                     }
                     aria-label="Remove check"
-                    className="min-h-[38px] min-w-[38px] flex items-center justify-center rounded-xl text-[#10101085] hover:text-[#101010]"
+                    className="min-h-[38px] min-w-[38px] flex items-center justify-center rounded-xl text-[#0A0A0A85] hover:text-[#0A0A0A]"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -1911,20 +1911,20 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
       {/* ==================== TAB 5: LIVE WEATHER ==================== */}
       {subTab === 'weather' && (
         <div className="space-y-4">
-          <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 border border-[#1010101f] dark:border-[#FFFFFF24] space-y-4">
+          <div className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-5 border border-[#0A0A0A1f] dark:border-[#FBFAF824] space-y-4">
             <div className="flex flex-col sm:flex-row gap-2.5">
               <input
                 type="text"
                 value={weatherCityInput}
                 onChange={(e) => setWeatherCityInput(e.target.value)}
                 placeholder="Destination city (e.g., Kochi, Tokyo, Zurich)"
-                className="flex-1 min-h-[44px] px-4 rounded-2xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+                className="flex-1 min-h-[44px] px-4 rounded-2xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
               />
               <button
                 type="button"
                 onClick={handleFetchWeather}
                 disabled={weatherLoading}
-                className="min-h-[44px] px-5 rounded-2xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white text-xs font-semibold flex items-center justify-center gap-2 whitespace-nowrap"
+                className="min-h-[44px] px-5 rounded-2xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white text-xs font-semibold flex items-center justify-center gap-2 whitespace-nowrap"
               >
                 {weatherLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
                 <span>{list.weather ? 'Refresh Live Forecast' : 'Fetch Live Forecast'}</span>
@@ -1932,17 +1932,17 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
             </div>
 
             {weatherError && (
-              <p role="alert" className="text-xs font-medium text-[#101010] dark:text-[#FFC5A8] bg-[#FFC5A866] dark:bg-[#FFFFFF0f] px-3.5 py-2.5 rounded-xl">
+              <p role="alert" className="text-xs font-medium text-[#0A0A0A] dark:text-[#E6DFD2] bg-[#E6DFD266] dark:bg-[#FBFAF80f] px-3.5 py-2.5 rounded-xl">
                 {weatherError}
               </p>
             )}
 
             {list.weather ? (
               <>
-                <div className="rounded-2xl bg-[#101010] text-white p-5">
+                <div className="rounded-2xl bg-[#0B3B40] text-white p-5">
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>
-                      <p className="text-xs font-semibold text-[#101010]">
+                      <p className="text-xs font-semibold text-[#0A0A0A]">
                         {list.weather.source === 'live_forecast'
                           ? 'Actual Live Meteorological Forecast · Open-Meteo'
                           : 'Current Weather Preview · Trip dates beyond 16-day live window'}
@@ -1955,21 +1955,21 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                         {list.weather.summary.avgHigh}°
                         <span className="text-lg text-white/60">/{list.weather.summary.avgLow}°C</span>
                       </p>
-                      <p className="text-xs text-[#D9C9F2] mt-0.5">{list.weather.summary.primaryCondition}</p>
+                      <p className="text-xs text-[#D5DCD9] mt-0.5">{list.weather.summary.primaryCondition}</p>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-white/10 text-xs">
                     <div className="flex items-center gap-2">
-                      <CloudRain className="w-4 h-4 text-[#D9C9F2]" />
+                      <CloudRain className="w-4 h-4 text-[#D5DCD9]" />
                       <span className="font-mono tabular-nums">{list.weather.summary.maxRainChance}% max rain</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Droplets className="w-4 h-4 text-[#101010]" />
+                      <Droplets className="w-4 h-4 text-[#0A0A0A]" />
                       <span className="font-mono tabular-nums">{list.weather.summary.avgHumidity}% humidity</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Wind className="w-4 h-4 text-[#101010]" />
+                      <Wind className="w-4 h-4 text-[#0A0A0A]" />
                       <span className="font-mono tabular-nums">
                         {list.weather.current ? `${list.weather.current.windSpeed} km/h now` : 'Live wind'}
                       </span>
@@ -1981,19 +1981,19 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                   {list.weather.days.slice(0, 10).map((day) => (
                     <div
                       key={day.date}
-                      className="p-3.5 rounded-2xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] space-y-1.5"
+                      className="p-3.5 rounded-2xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] space-y-1.5"
                     >
-                      <p className="text-xs font-semibold text-[#101010] dark:text-white font-mono">
+                      <p className="text-xs font-semibold text-[#0A0A0A] dark:text-white font-mono">
                         {day.date.slice(5)}
                       </p>
-                      <div className="flex items-center gap-1.5 text-xs text-[#101010] dark:text-[#D9C9F2]">
-                        {day.precipProb >= 40 ? <CloudRain className="w-4 h-4" /> : <Sun className="w-4 h-4 text-[#101010]" />}
+                      <div className="flex items-center gap-1.5 text-xs text-[#0A0A0A] dark:text-[#D5DCD9]">
+                        {day.precipProb >= 40 ? <CloudRain className="w-4 h-4" /> : <Sun className="w-4 h-4 text-[#0A0A0A]" />}
                         <span className="truncate">{day.condition}</span>
                       </div>
-                      <p className="font-mono text-sm font-bold text-[#101010] dark:text-white tabular-nums">
+                      <p className="font-mono text-sm font-bold text-[#0A0A0A] dark:text-white tabular-nums">
                         {Math.round(day.tempMax)}° / {Math.round(day.tempMin)}°C
                       </p>
-                      <p className="text-[11px] text-[#101010b2] dark:text-[#FFFFFFa8] font-mono tabular-nums">
+                      <p className="text-[11px] text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] font-mono tabular-nums">
                         Rain {Math.round(day.precipProb)}%
                       </p>
                     </div>
@@ -2001,12 +2001,12 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 </div>
               </>
             ) : (
-              <div className="p-6 rounded-2xl bg-[#FFFFFF] dark:bg-[#101010] text-center">
-                <CloudSun className="w-8 h-8 text-[#101010] mx-auto mb-2" />
-                <p className="text-sm font-semibold text-[#101010] dark:text-white">
+              <div className="p-6 rounded-2xl bg-[#FBFAF8] dark:bg-[#0B3B40] text-center">
+                <CloudSun className="w-8 h-8 text-[#0A0A0A] mx-auto mb-2" />
+                <p className="text-sm font-semibold text-[#0A0A0A] dark:text-white">
                   No weather forecast loaded yet
                 </p>
-                <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] mt-1">
+                <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-1">
                   Enter a city above to fetch live Open-Meteo conditions and tailored gear picks.
                 </p>
               </div>
@@ -2014,11 +2014,11 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
           </div>
 
           {list.weather && list.weather.recommendations.length > 0 && (
-            <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 border border-[#1010101f] dark:border-[#FFFFFF24]">
-              <h3 className="font-display text-base font-bold text-[#101010] dark:text-white mb-3">
+            <div className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-5 border border-[#0A0A0A1f] dark:border-[#FBFAF824]">
+              <h3 className="font-display text-base font-bold text-[#0A0A0A] dark:text-white mb-3">
                 Weather-Matched Packing Gear
               </h3>
-              <div className="divide-y divide-[#1010101f] dark:divide-[#FFFFFF24]">
+              <div className="divide-y divide-[#0A0A0A1f] dark:divide-[#FBFAF824]">
                 {list.weather.recommendations.map((rec) => {
                   const inList = list.items.some(
                     (i) => i.name.trim().toLowerCase() === rec.name.trim().toLowerCase()
@@ -2026,8 +2026,8 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                   return (
                     <div key={rec.name} className="py-3 flex items-center justify-between gap-3">
                       <div className="min-w-0">
-                        <p className="text-sm font-semibold text-[#101010] dark:text-white truncate">{rec.name}</p>
-                        <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] mt-0.5">{rec.reason}</p>
+                        <p className="text-sm font-semibold text-[#0A0A0A] dark:text-white truncate">{rec.name}</p>
+                        <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-0.5">{rec.reason}</p>
                       </div>
                       <button
                         type="button"
@@ -2035,8 +2035,8 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                         onClick={() => addWeatherRecToList(rec)}
                         className={`min-h-[38px] px-3.5 rounded-xl text-xs font-semibold whitespace-nowrap shrink-0 ${
                           inList
-                            ? 'bg-[#B8D9F266] dark:bg-[#101010] text-[#101010] dark:text-[#FFFFFF]'
-                            : 'bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white'
+                            ? 'bg-[#BCD2CF66] dark:bg-[#0B3B40] text-[#0A0A0A] dark:text-[#FBFAF8]'
+                            : 'bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white'
                         }`}
                       >
                         {inList ? 'In Checklist' : '+ Add'}
@@ -2054,10 +2054,10 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
       {subTab === 'group' && (
         <div className="space-y-4">
           {/* Shared Trip Progress Dashboard & Invite Link */}
-          <div className="rounded-3xl bg-[#101010] text-white p-5 space-y-4">
+          <div className="rounded-3xl bg-[#0B3B40] text-white p-5 space-y-4">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <p className="text-xs font-semibold text-[#D9C9F2]">Group Packing · Who's Carrying What?</p>
+                <p className="text-xs font-semibold text-[#D5DCD9]">Group Packing · Who's Carrying What?</p>
                 <h2 className="font-display text-xl font-extrabold mt-0.5">
                   Shared Trip Progress Dashboard
                 </h2>
@@ -2070,7 +2070,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
               <button
                 type="button"
                 onClick={handleCopyShareLink}
-                className="min-h-[42px] px-4 rounded-xl bg-[#B8D9F2] text-[#101010] text-xs font-bold flex items-center gap-1.5 whitespace-nowrap"
+                className="min-h-[42px] px-4 rounded-xl bg-[#BCD2CF] text-[#0A0A0A] text-xs font-bold flex items-center gap-1.5 whitespace-nowrap"
               >
                 {copiedLink ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
                 <span>{copiedLink ? 'Invite Link Copied' : 'Share Invite Link'}</span>
@@ -2095,12 +2095,12 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                         </span>
                         <span className="text-xs font-bold truncate">{member.name}</span>
                       </div>
-                      <span className="font-mono text-[11px] text-[#101010] tabular-nums">
+                      <span className="font-mono text-[11px] text-[#0A0A0A] tabular-nums">
                         {done}/{assigned.length}
                       </span>
                     </div>
                     <div className="h-1.5 rounded-full bg-white/15 overflow-hidden">
-                      <div className="h-full bg-[#B8D9F2] rounded-full" style={{ width: `${pct}%` }} />
+                      <div className="h-full bg-[#BCD2CF] rounded-full" style={{ width: `${pct}%` }} />
                     </div>
                   </div>
                 );
@@ -2112,10 +2112,10 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <form
               onSubmit={handleAddMember}
-              className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-4 border border-[#1010101f] dark:border-[#FFFFFF24] space-y-2.5"
+              className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-4 border border-[#0A0A0A1f] dark:border-[#FBFAF824] space-y-2.5"
             >
-              <p className="text-xs font-bold text-[#101010] dark:text-white flex items-center gap-1.5">
-                <UserPlus className="w-4 h-4 text-[#101010] dark:text-[#D9C9F2]" />
+              <p className="text-xs font-bold text-[#0A0A0A] dark:text-white flex items-center gap-1.5">
+                <UserPlus className="w-4 h-4 text-[#0A0A0A] dark:text-[#D5DCD9]" />
                 <span>Add Trip Participant</span>
               </p>
               <div className="flex gap-2">
@@ -2124,19 +2124,19 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                   value={newMemberName}
                   onChange={(e) => setNewMemberName(e.target.value)}
                   placeholder="Participant name"
-                  className="flex-1 min-h-[42px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+                  className="flex-1 min-h-[42px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
                 />
                 <select
                   value={newMemberRole}
                   onChange={(e) => setNewMemberRole(e.target.value as 'Editor' | 'Viewer')}
-                  className="min-h-[42px] px-2.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs text-[#101010] dark:text-white"
+                  className="min-h-[42px] px-2.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs text-[#0A0A0A] dark:text-white"
                 >
                   <option value="Editor">Editor</option>
                   <option value="Viewer">Viewer</option>
                 </select>
                 <button
                   type="submit"
-                  className="min-h-[42px] px-4 rounded-xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white text-xs font-semibold"
+                  className="min-h-[42px] px-4 rounded-xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white text-xs font-semibold"
                 >
                   Add
                 </button>
@@ -2145,9 +2145,9 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
 
             <form
               onSubmit={handleGroupAssignSharedItem}
-              className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-4 border border-[#1010101f] dark:border-[#FFFFFF24] space-y-2.5"
+              className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-4 border border-[#0A0A0A1f] dark:border-[#FBFAF824] space-y-2.5"
             >
-              <p className="text-xs font-bold text-[#101010] dark:text-white">
+              <p className="text-xs font-bold text-[#0A0A0A] dark:text-white">
                 Assign Shared Essential (Duplicate-Protected)
               </p>
               <div className="flex gap-2">
@@ -2159,12 +2159,12 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                     setGroupDuplicateWarn('');
                   }}
                   placeholder="e.g., First-aid kit, Power strip, Speaker"
-                  className="flex-1 min-h-[42px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+                  className="flex-1 min-h-[42px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
                 />
                 <select
                   value={groupAddAssignee}
                   onChange={(e) => setGroupAddAssignee(e.target.value)}
-                  className="min-h-[42px] px-2.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs text-[#101010] dark:text-white"
+                  className="min-h-[42px] px-2.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs text-[#0A0A0A] dark:text-white"
                 >
                   <option value="">Unassigned</option>
                   {list.groupMembers.map((m) => (
@@ -2175,13 +2175,13 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 </select>
                 <button
                   type="submit"
-                  className="min-h-[42px] px-4 rounded-xl bg-[#101010] text-white text-xs font-semibold"
+                  className="min-h-[42px] px-4 rounded-xl bg-[#0B3B40] text-white text-xs font-semibold"
                 >
                   Assign
                 </button>
               </div>
               {groupDuplicateWarn && (
-                <p role="alert" className="text-xs font-semibold text-[#101010] dark:text-[#FFC5A8]">
+                <p role="alert" className="text-xs font-semibold text-[#0A0A0A] dark:text-[#E6DFD2]">
                   {groupDuplicateWarn}
                 </p>
               )}
@@ -2190,7 +2190,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
 
           {/* Acting As Member Selector + Filter */}
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <div className="inline-flex p-1 rounded-xl bg-[#FFFFFF] dark:bg-[#FFFFFF0f]">
+            <div className="inline-flex p-1 rounded-xl bg-[#FBFAF8] dark:bg-[#FBFAF80f]">
               {[
                 { id: 'all', label: 'All' },
                 { id: 'pending', label: 'Pending' },
@@ -2203,8 +2203,8 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                   onClick={() => setGroupFilter(f.id as typeof groupFilter)}
                   className={`min-h-[36px] px-3 rounded-lg text-xs font-semibold ${
                     groupFilter === f.id
-                      ? 'bg-white dark:bg-[#FFFFFF0f] text-[#101010] dark:text-white shadow-xs'
-                      : 'text-[#101010b2] dark:text-[#FFFFFFa8]'
+                      ? 'bg-white dark:bg-[#FBFAF80f] text-[#0A0A0A] dark:text-white shadow-xs'
+                      : 'text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]'
                   }`}
                 >
                   {f.label}
@@ -2213,11 +2213,11 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
             </div>
 
             <div className="flex items-center gap-2 text-xs">
-              <span className="text-[#101010b2] dark:text-[#FFFFFFa8]">Update as:</span>
+              <span className="text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]">Update as:</span>
               <select
                 value={activeMemberActor}
                 onChange={(e) => setActiveMemberActor(e.target.value)}
-                className="min-h-[36px] px-2.5 rounded-xl bg-white dark:bg-[#FFFFFF0f] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs font-semibold text-[#101010] dark:text-white"
+                className="min-h-[36px] px-2.5 rounded-xl bg-white dark:bg-[#FBFAF80f] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs font-semibold text-[#0A0A0A] dark:text-white"
               >
                 {list.groupMembers.map((m) => (
                   <option key={m.id} value={m.name}>
@@ -2229,7 +2229,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
           </div>
 
           {/* Assignment Matrix */}
-          <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl border border-[#1010101f] dark:border-[#FFFFFF24] divide-y divide-[#1010101f] dark:divide-[#FFFFFF24] overflow-hidden">
+          <div className="bg-white dark:bg-[#FBFAF80f] rounded-3xl border border-[#0A0A0A1f] dark:border-[#FBFAF824] divide-y divide-[#0A0A0A1f] dark:divide-[#FBFAF824] overflow-hidden">
             {groupFilteredItems.map((item) => (
               <div key={item.id} className="p-4 flex flex-wrap items-center justify-between gap-3">
                 <button
@@ -2240,8 +2240,8 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                   <span
                     className={`w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 ${
                       item.packed
-                        ? 'bg-[#101010] border-[#10101073] text-white'
-                        : 'border-[#10101040] dark:border-[#FFFFFF24]'
+                        ? 'bg-[#0B3B40] border-[#0A0A0A73] text-white'
+                        : 'border-[#0A0A0A40] dark:border-[#FBFAF824]'
                     }`}
                   >
                     {item.packed && <Check className="w-3.5 h-3.5 stroke-[3]" />}
@@ -2249,12 +2249,12 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                   <div className="min-w-0">
                     <p
                       className={`text-sm font-semibold truncate ${
-                        item.packed ? 'line-through text-[#10101085]' : 'text-[#101010] dark:text-white'
+                        item.packed ? 'line-through text-[#0A0A0A85]' : 'text-[#0A0A0A] dark:text-white'
                       }`}
                     >
                       {item.name}
                     </p>
-                    <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8]">
+                    <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]">
                       {item.category}
                       {item.isSharedEssential ? ' · Shared Essential' : ''}
                       {item.packed && item.packedBy ? ` · Packed by ${item.packedBy}` : ''}
@@ -2278,7 +2278,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                       activeMemberActor
                     );
                   }}
-                  className="min-h-[38px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs font-semibold text-[#101010] dark:text-white"
+                  className="min-h-[38px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs font-semibold text-[#0A0A0A] dark:text-white"
                 >
                   <option value="">Unassigned</option>
                   {list.groupMembers.map((m) => (
@@ -2296,9 +2296,9 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
       {/* ==================== TAB 7: LAST-MINUTE SHOPPING RADAR ==================== */}
       {subTab === 'shopping' && (
         <div className="space-y-4">
-          <div className="rounded-3xl bg-[#101010] text-white p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="rounded-3xl bg-[#0B3B40] text-white p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <p className="text-xs font-semibold text-[#101010]">
+              <p className="text-xs font-semibold text-[#0A0A0A]">
                 {daysUntilDeparture <= 3
                   ? `Urgent Window · ${Math.max(0, daysUntilDeparture)}d to Departure`
                   : 'Last-Minute Shopping Radar'}
@@ -2316,7 +2316,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
             <button
               type="button"
               onClick={handleScanMissingIntoShopping}
-              className="min-h-[44px] px-4 rounded-xl bg-[#B8D9F2] text-[#101010] text-xs font-bold flex items-center justify-center gap-1.5 whitespace-nowrap"
+              className="min-h-[44px] px-4 rounded-xl bg-[#BCD2CF] text-[#0A0A0A] text-xs font-bold flex items-center justify-center gap-1.5 whitespace-nowrap"
             >
               <Sparkles className="w-4 h-4" />
               <span>Scan Missing Checklist Items</span>
@@ -2324,7 +2324,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
           </div>
 
           {shopScanNotice && (
-            <div className="p-3.5 rounded-2xl bg-[#B8D9F266] dark:bg-[#101010] text-[#101010] dark:text-[#FFFFFF] text-xs font-medium">
+            <div className="p-3.5 rounded-2xl bg-[#BCD2CF66] dark:bg-[#0B3B40] text-[#0A0A0A] dark:text-[#FBFAF8] text-xs font-medium">
               {shopScanNotice}
             </div>
           )}
@@ -2332,14 +2332,14 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
           {/* Add Shopping Item Form */}
           <form
             onSubmit={handleAddShoppingItem}
-            className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-4 border border-[#1010101f] dark:border-[#FFFFFF24] grid grid-cols-1 sm:grid-cols-12 gap-2.5"
+            className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-4 border border-[#0A0A0A1f] dark:border-[#FBFAF824] grid grid-cols-1 sm:grid-cols-12 gap-2.5"
           >
             <input
               type="text"
               value={shopName}
               onChange={(e) => setShopName(e.target.value)}
               placeholder="Item to purchase (e.g., Universal adapter, SPF 50)"
-              className="sm:col-span-5 min-h-[44px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+              className="sm:col-span-5 min-h-[44px] px-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
             />
             <input
               type="number"
@@ -2347,12 +2347,12 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
               value={shopPrice}
               onChange={(e) => setShopPrice(e.target.value)}
               placeholder={`Est. ${preferences.currency}`}
-              className="sm:col-span-2 min-h-[44px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm font-mono text-[#101010] dark:text-white"
+              className="sm:col-span-2 min-h-[44px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm font-mono text-[#0A0A0A] dark:text-white"
             />
             <select
               value={shopPriority}
               onChange={(e) => setShopPriority(e.target.value as ShoppingPriority)}
-              className="sm:col-span-2 min-h-[44px] px-2.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs text-[#101010] dark:text-white"
+              className="sm:col-span-2 min-h-[44px] px-2.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs text-[#0A0A0A] dark:text-white"
             >
               <option value="Urgent">Urgent</option>
               <option value="High">High</option>
@@ -2360,7 +2360,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
             </select>
             <button
               type="submit"
-              className="sm:col-span-3 min-h-[44px] rounded-xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white text-xs font-semibold flex items-center justify-center gap-1.5"
+              className="sm:col-span-3 min-h-[44px] rounded-xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white text-xs font-semibold flex items-center justify-center gap-1.5"
             >
               <Plus className="w-4 h-4" />
               <span>Add to Radar</span>
@@ -2368,13 +2368,13 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
           </form>
 
           {/* Shopping List */}
-          <div className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl border border-[#1010101f] dark:border-[#FFFFFF24] divide-y divide-[#1010101f] dark:divide-[#FFFFFF24] overflow-hidden">
+          <div className="bg-white dark:bg-[#FBFAF80f] rounded-3xl border border-[#0A0A0A1f] dark:border-[#FBFAF824] divide-y divide-[#0A0A0A1f] dark:divide-[#FBFAF824] overflow-hidden">
             {list.shoppingItems.length === 0 ? (
               <div className="p-8 text-center">
-                <p className="text-sm font-bold text-[#101010] dark:text-white">
+                <p className="text-sm font-bold text-[#0A0A0A] dark:text-white">
                   No last-minute purchases needed yet
                 </p>
-                <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] mt-1">
+                <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-1">
                   Tap "Scan Missing Checklist Items" above or add any travel essentials you still need to pick up.
                 </p>
               </div>
@@ -2385,23 +2385,23 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                   <div
                     key={shop.id}
                     className={`p-4 flex flex-wrap items-center justify-between gap-3 ${
-                      isUrgent ? 'bg-[#FFC5A866] dark:bg-[#101010]/40' : ''
+                      isUrgent ? 'bg-[#E6DFD266] dark:bg-[#0A0A0A]/40' : ''
                     }`}
                   >
                     <div className="min-w-0 flex-1">
                       <p
                         className={`text-sm font-semibold ${
                           shop.status === 'Purchased' || shop.status === 'No Longer Needed'
-                            ? 'line-through text-[#10101085]'
-                            : 'text-[#101010] dark:text-white'
+                            ? 'line-through text-[#0A0A0A85]'
+                            : 'text-[#0A0A0A] dark:text-white'
                         }`}
                       >
                         {shop.name}
                       </p>
-                      <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8] mt-0.5 font-mono tabular-nums">
+                      <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8] mt-0.5 font-mono tabular-nums">
                         {shop.category} · {preferences.currency}
                         {shop.estimatedPrice} ·{' '}
-                        <span className={isUrgent ? 'text-[#101010] dark:text-[#FFC5A8] font-bold' : ''}>
+                        <span className={isUrgent ? 'text-[#0A0A0A] dark:text-[#E6DFD2] font-bold' : ''}>
                           {shop.priority}
                         </span>
                       </p>
@@ -2412,7 +2412,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                         value={shop.status}
                         aria-label={`Status for ${shop.name}`}
                         onChange={(e) => updateShoppingStatus(shop.id, e.target.value as ShoppingStatus)}
-                        className="min-h-[38px] px-2.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs font-semibold text-[#101010] dark:text-white"
+                        className="min-h-[38px] px-2.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs font-semibold text-[#0A0A0A] dark:text-white"
                       >
                         <option value="To Buy">To Buy</option>
                         <option value="Purchased">Purchased</option>
@@ -2423,7 +2423,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                         <button
                           type="button"
                           onClick={() => promoteShopToChecklist(shop)}
-                          className="min-h-[38px] px-3 rounded-xl bg-[#101010] text-white text-xs font-semibold whitespace-nowrap"
+                          className="min-h-[38px] px-3 rounded-xl bg-[#0B3B40] text-white text-xs font-semibold whitespace-nowrap"
                         >
                           Bought & Pack
                         </button>
@@ -2437,7 +2437,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                           })
                         }
                         aria-label={`Delete ${shop.name}`}
-                        className="min-h-[38px] min-w-[36px] flex items-center justify-center text-[#10101085] hover:text-[#101010]"
+                        className="min-h-[38px] min-w-[36px] flex items-center justify-center text-[#0A0A0A85] hover:text-[#0A0A0A]"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -2453,9 +2453,9 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
       {/* ==================== TAB 8: POST-TRIP MEMORY ==================== */}
       {subTab === 'memory' && (
         <div className="space-y-4">
-          <div className="rounded-3xl bg-[#101010] text-white p-5">
-            <div className="flex items-center gap-2 text-xs font-semibold text-[#D9C9F2]">
-              <Brain className="w-4 h-4 text-[#101010]" />
+          <div className="rounded-3xl bg-[#0B3B40] text-white p-5">
+            <div className="flex items-center gap-2 text-xs font-semibold text-[#D5DCD9]">
+              <Brain className="w-4 h-4 text-[#0A0A0A]" />
               <span>Post-Trip Memory Learning System</span>
             </div>
             <h2 className="font-display text-xl font-extrabold mt-1">
@@ -2467,17 +2467,17 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
           </div>
 
           {memSavedBanner && (
-            <div className="p-4 rounded-2xl bg-[#B8D9F266] dark:bg-[#101010] text-[#101010] dark:text-[#FFFFFF] text-xs font-semibold">
+            <div className="p-4 rounded-2xl bg-[#BCD2CF66] dark:bg-[#0B3B40] text-[#0A0A0A] dark:text-[#FBFAF8] text-xs font-semibold">
               {memSavedBanner}
             </div>
           )}
 
           <form
             onSubmit={handleSaveMemory}
-            className="bg-white dark:bg-[#FFFFFF0f] rounded-3xl p-5 border border-[#1010101f] dark:border-[#FFFFFF24] space-y-4"
+            className="bg-white dark:bg-[#FBFAF80f] rounded-3xl p-5 border border-[#0A0A0A1f] dark:border-[#FBFAF824] space-y-4"
           >
             <div>
-              <label className="block text-xs font-semibold text-[#101010] dark:text-white mb-1.5">
+              <label className="block text-xs font-semibold text-[#0A0A0A] dark:text-white mb-1.5">
                 Items you forgot to pack (comma-separated)
               </label>
               <input
@@ -2485,12 +2485,12 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 value={memForgotInput}
                 onChange={(e) => setMemForgotInput(e.target.value)}
                 placeholder="e.g., Portable power bank, Universal travel adapter, Lip balm"
-                className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+                className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#101010] dark:text-white mb-1.5">
+              <label className="block text-xs font-semibold text-[#0A0A0A] dark:text-white mb-1.5">
                 Items you carried but never used (comma-separated)
               </label>
               <input
@@ -2498,13 +2498,13 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 value={memUnusedInput}
                 onChange={(e) => setMemUnusedInput(e.target.value)}
                 placeholder="e.g., Extra pair of heavy jeans, Spare formal blazer"
-                className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+                className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               <div>
-                <label className="block text-xs font-semibold text-[#101010] dark:text-white mb-1.5">
+                <label className="block text-xs font-semibold text-[#0A0A0A] dark:text-white mb-1.5">
                   Items you wished you had packed
                 </label>
                 <input
@@ -2512,12 +2512,12 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                   value={memWishedInput}
                   onChange={(e) => setMemWishedInput(e.target.value)}
                   placeholder="e.g., Compact umbrella, Earplugs"
-                  className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+                  className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#101010] dark:text-white mb-1.5">
+                <label className="block text-xs font-semibold text-[#0A0A0A] dark:text-white mb-1.5">
                   Items lost or misplaced
                 </label>
                 <input
@@ -2525,13 +2525,13 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                   value={memLostInput}
                   onChange={(e) => setMemLostInput(e.target.value)}
                   placeholder="e.g., Sunglasses pouch, Hairbrush"
-                  className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+                  className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#101010] dark:text-white mb-1.5">
+              <label className="block text-xs font-semibold text-[#0A0A0A] dark:text-white mb-1.5">
                 What would you pack differently next time?
               </label>
               <textarea
@@ -2539,12 +2539,12 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 value={memNote}
                 onChange={(e) => setMemNote(e.target.value)}
                 placeholder="e.g., Stick to 2 pairs of shoes and pack quick-dry fabrics instead of heavy cotton."
-                className="w-full p-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+                className="w-full p-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#101010] dark:text-white mb-2">
+              <label className="block text-xs font-semibold text-[#0A0A0A] dark:text-white mb-2">
                 How smooth was your packing preparation? ({memRating}/5)
               </label>
               <div className="flex items-center gap-2">
@@ -2555,8 +2555,8 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                     onClick={() => setMemRating(r)}
                     className={`min-h-[42px] min-w-[42px] rounded-xl border flex items-center justify-center ${
                       r <= memRating
-                        ? 'bg-[#FFC5A866] dark:bg-[#FFFFFF0f] border-[#10101073] text-[#101010]'
-                        : 'bg-[#FFFFFF] dark:bg-[#101010] border-[#1010101f] dark:border-[#FFFFFF24] text-[#10101085]'
+                        ? 'bg-[#E6DFD266] dark:bg-[#FBFAF80f] border-[#0A0A0A73] text-[#0A0A0A]'
+                        : 'bg-[#FBFAF8] dark:bg-[#0B3B40] border-[#0A0A0A1f] dark:border-[#FBFAF824] text-[#0A0A0A85]'
                     }`}
                   >
                     <Star className={`w-4 h-4 ${r <= memRating ? 'fill-current' : ''}`} />
@@ -2567,7 +2567,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
 
             <button
               type="submit"
-              className="w-full min-h-[48px] rounded-2xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white font-semibold text-sm flex items-center justify-center gap-2"
+              className="w-full min-h-[48px] rounded-2xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white font-semibold text-sm flex items-center justify-center gap-2"
             >
               <Brain className="w-4 h-4" />
               <span>Save Post-Trip Memory & Apply to Future Trips</span>
@@ -2585,12 +2585,12 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
       >
         <form onSubmit={handleSaveItem} className="space-y-4">
           {itemFormError && (
-            <p role="alert" className="text-xs font-medium text-[#101010] bg-[#FFC5A866] p-3 rounded-xl">
+            <p role="alert" className="text-xs font-medium text-[#0A0A0A] bg-[#E6DFD266] p-3 rounded-xl">
               {itemFormError}
             </p>
           )}
           <div>
-            <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
+            <label className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1.5">
               Item Name
             </label>
             <input
@@ -2598,19 +2598,19 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
               value={itemName}
               onChange={(e) => setItemName(e.target.value)}
               placeholder="e.g., Packable rain shell"
-              className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+              className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
+              <label className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1.5">
                 Category
               </label>
               <select
                 value={itemCategory}
                 onChange={(e) => setItemCategory(e.target.value)}
-                className="w-full min-h-[44px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+                className="w-full min-h-[44px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
               >
                 {allCategories.map((c) => (
                   <option key={c} value={c}>
@@ -2621,13 +2621,13 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
+              <label className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1.5">
                 Priority
               </label>
               <select
                 value={itemPriority}
                 onChange={(e) => setItemPriority(e.target.value as PackingItem['priority'])}
-                className="w-full min-h-[44px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+                className="w-full min-h-[44px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
               >
                 <option value="Essential">Essential</option>
                 <option value="Helpful">Helpful</option>
@@ -2638,7 +2638,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
 
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
+              <label className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1.5">
                 Qty
               </label>
               <input
@@ -2647,11 +2647,11 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 max={99}
                 value={itemQty}
                 onChange={(e) => setItemQty(Math.max(1, Number(e.target.value) || 1))}
-                className="w-full min-h-[44px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm font-mono text-[#101010] dark:text-white"
+                className="w-full min-h-[44px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm font-mono text-[#0A0A0A] dark:text-white"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
+              <label className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1.5">
                 Weight (g)
               </label>
               <input
@@ -2659,11 +2659,11 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 min={0}
                 value={itemWeight}
                 onChange={(e) => setItemWeight(Math.max(0, Number(e.target.value) || 0))}
-                className="w-full min-h-[44px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm font-mono text-[#101010] dark:text-white"
+                className="w-full min-h-[44px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm font-mono text-[#0A0A0A] dark:text-white"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
+              <label className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1.5">
                 Space (L)
               </label>
               <input
@@ -2672,7 +2672,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 min={0.1}
                 value={itemVolume}
                 onChange={(e) => setItemVolume(Math.max(0.1, Number(e.target.value) || 0.5))}
-                className="w-full min-h-[44px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm font-mono text-[#101010] dark:text-white"
+                className="w-full min-h-[44px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm font-mono text-[#0A0A0A] dark:text-white"
               />
             </div>
           </div>
@@ -2680,13 +2680,13 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
           {list.groupMembers.length > 0 && (
             <div className="grid grid-cols-2 gap-3 items-end">
               <div>
-                <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
+                <label className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1.5">
                   Assign To
                 </label>
                 <select
                   value={itemAssignedTo}
                   onChange={(e) => setItemAssignedTo(e.target.value)}
-                  className="w-full min-h-[44px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs text-[#101010] dark:text-white"
+                  className="w-full min-h-[44px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs text-[#0A0A0A] dark:text-white"
                 >
                   <option value="">Unassigned</option>
                   {list.groupMembers.map((m) => (
@@ -2696,20 +2696,20 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                   ))}
                 </select>
               </div>
-              <label className="min-h-[44px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] flex items-center justify-between text-xs font-semibold text-[#101010] dark:text-white cursor-pointer">
+              <label className="min-h-[44px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] flex items-center justify-between text-xs font-semibold text-[#0A0A0A] dark:text-white cursor-pointer">
                 <span>Shared Essential</span>
                 <input
                   type="checkbox"
                   checked={itemSharedEssential}
                   onChange={(e) => setItemSharedEssential(e.target.checked)}
-                  className="w-4 h-4 accent-[#10101073]"
+                  className="w-4 h-4 accent-[#0A0A0A73]"
                 />
               </label>
             </div>
           )}
 
           <div>
-            <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
+            <label className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1.5">
               Notes (optional)
             </label>
             <input
@@ -2717,13 +2717,13 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
               value={itemNotes}
               onChange={(e) => setItemNotes(e.target.value)}
               placeholder="e.g., Pack inside outer sleeve"
-              className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+              className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full min-h-[48px] rounded-2xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white font-semibold text-sm"
+            className="w-full min-h-[48px] rounded-2xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white font-semibold text-sm"
           >
             {editingItem ? 'Save Changes' : 'Add to Checklist'}
           </button>
@@ -2742,11 +2742,11 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
             value={newCategoryName}
             onChange={(e) => setNewCategoryName(e.target.value)}
             placeholder="e.g., Photography Gear, Baby Care, Cycling"
-            className="w-full min-h-[46px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+            className="w-full min-h-[46px] px-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
           />
           <button
             type="submit"
-            className="w-full min-h-[46px] rounded-2xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white font-semibold text-sm"
+            className="w-full min-h-[46px] rounded-2xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white font-semibold text-sm"
           >
             Create Category
           </button>
@@ -2759,21 +2759,21 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
         onClose={() => setDeletedDrawerOpen(false)}
         title="Restore Deleted Items"
       >
-        <div className="divide-y divide-[#1010101f] dark:divide-[#FFFFFF24]">
+        <div className="divide-y divide-[#0A0A0A1f] dark:divide-[#FBFAF824]">
           {list.deletedItems.map((entry) => (
             <div key={entry.item.id + entry.deletedAt} className="py-3 flex items-center justify-between gap-3">
               <div className="min-w-0">
-                <p className="text-sm font-semibold text-[#101010] dark:text-white truncate">
+                <p className="text-sm font-semibold text-[#0A0A0A] dark:text-white truncate">
                   {entry.item.name}
                 </p>
-                <p className="text-xs text-[#101010b2] dark:text-[#FFFFFFa8]">
+                <p className="text-xs text-[#0A0A0Ab2] dark:text-[#FBFAF8a8]">
                   {entry.item.category} · Qty {entry.item.quantity}
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => restoreDeletedItem(entry.item)}
-                className="min-h-[38px] px-3.5 rounded-xl bg-[#B8D9F266] dark:bg-[#101010] text-[#101010] dark:text-[#FFFFFF] text-xs font-semibold"
+                className="min-h-[38px] px-3.5 rounded-xl bg-[#BCD2CF66] dark:bg-[#0B3B40] text-[#0A0A0A] dark:text-[#FBFAF8] text-xs font-semibold"
               >
                 Restore
               </button>
@@ -2791,7 +2791,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
         {editingTimelineTask && (
           <form onSubmit={handleSaveTimelineEdit} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
+              <label className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1.5">
                 Task Title
               </label>
               <input
@@ -2800,12 +2800,12 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 onChange={(e) =>
                   setEditingTimelineTask({ ...editingTimelineTask, title: e.target.value })
                 }
-                className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-sm text-[#101010] dark:text-white"
+                className="w-full min-h-[44px] px-3.5 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-sm text-[#0A0A0A] dark:text-white"
               />
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
+                <label className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1.5">
                   Stage
                 </label>
                 <select
@@ -2821,7 +2821,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                       ),
                     });
                   }}
-                  className="w-full min-h-[44px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs text-[#101010] dark:text-white"
+                  className="w-full min-h-[44px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs text-[#0A0A0A] dark:text-white"
                 >
                   {TIMELINE_STAGE_ORDER.map((s) => (
                     <option key={s} value={s}>
@@ -2831,7 +2831,7 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-semibold text-[#101010cc] dark:text-[#FFFFFFa8] mb-1.5">
+                <label className="block text-xs font-semibold text-[#0A0A0Acc] dark:text-[#FBFAF8a8] mb-1.5">
                   Due Date
                 </label>
                 <input
@@ -2840,13 +2840,13 @@ export const ListDetailScreen: React.FC<ListDetailScreenProps> = ({
                   onChange={(e) =>
                     setEditingTimelineTask({ ...editingTimelineTask, dueDate: e.target.value })
                   }
-                  className="w-full min-h-[44px] px-3 rounded-xl bg-[#FFFFFF] dark:bg-[#101010] border border-[#1010101f] dark:border-[#FFFFFF24] text-xs font-mono text-[#101010] dark:text-white"
+                  className="w-full min-h-[44px] px-3 rounded-xl bg-[#FBFAF8] dark:bg-[#0B3B40] border border-[#0A0A0A1f] dark:border-[#FBFAF824] text-xs font-mono text-[#0A0A0A] dark:text-white"
                 />
               </div>
             </div>
             <button
               type="submit"
-              className="w-full min-h-[46px] rounded-2xl bg-[#101010] dark:bg-[#D9C9F2] dark:text-[#101010] text-white font-semibold text-sm"
+              className="w-full min-h-[46px] rounded-2xl bg-[#0B3B40] dark:bg-[#D5DCD9] dark:text-[#0A0A0A] text-white font-semibold text-sm"
             >
               Save Changes
             </button>

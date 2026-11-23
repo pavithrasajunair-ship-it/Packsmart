@@ -449,12 +449,12 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
   }, [swappingPiece, wardrobe]);
 
   return (
-    <div className="min-h-screen bg-[#D9C9F2] text-[#101010] pt-20 pb-14">
+    <div className="min-h-screen bg-[#D5DCD9] text-[#0A0A0A] pt-20 pb-14">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 space-y-8">
         {/* EDITORIAL ATELIER HEADER */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end border-b border-[#101010]/15 pb-7">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end border-b border-[#0A0A0A]/15 pb-7">
           <div className="lg:col-span-7 space-y-2">
-            <p className="font-mono text-[11px] tracking-[0.16em] text-[#101010]/65">
+            <p className="font-mono text-[11px] tracking-[0.16em] text-[#0A0A0A]/65">
               02. AI OUTFIT STUDIO · OWNED-WARDROBE VISION ENGINE
             </p>
             <h1 className="font-editorial text-4xl sm:text-5xl lg:text-6xl leading-[0.98] font-normal">
@@ -462,11 +462,11 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
             </h1>
           </div>
           <div className="lg:col-span-5 flex flex-wrap items-center lg:justify-end gap-4 text-xs">
-            <span className="font-mono text-[#101010]/70 tabular-nums">
+            <span className="font-mono text-[#0A0A0A]/70 tabular-nums">
               {wardrobe.length} owned pieces · {savedOutfits.length} saved looks
             </span>
             {noticeBanner && (
-              <span className="px-3 py-1.5 bg-[#101010] text-[#FFC5A8] font-semibold">
+              <span className="px-3 py-1.5 bg-[#0B3B40] text-[#E6DFD2] font-semibold">
                 {noticeBanner}
               </span>
             )}
@@ -478,12 +478,12 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
           {/* LEFT: GARMENT UPLOAD + STYLING BRIEF CONTROLS (4 COLS) */}
           <div className="lg:col-span-4 space-y-6">
             {/* Real Gemini Vision Photo Upload Zone */}
-            <div className="bg-[#FFFFFF] border border-[#101010]/15 p-5 space-y-4">
+            <div className="bg-[#FBFAF8] border border-[#0A0A0A]/15 p-5 space-y-4">
               <div className="flex items-center justify-between">
                 <h2 className="font-display text-sm font-extrabold tracking-tight">
                   Scan Your Real Wardrobe
                 </h2>
-                <span className="font-mono text-[10px] text-[#101010]/60">
+                <span className="font-mono text-[10px] text-[#0A0A0A]/60">
                   {aiConfigured ? 'GEMINI VISION' : 'KEY NEEDED'}
                 </span>
               </div>
@@ -508,8 +508,8 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                 }}
                 className={`p-5 border border-dashed text-center cursor-pointer transition-colors space-y-2 ${
                   dragOver
-                    ? 'border-[#101010] bg-[#FFC5A8]/40'
-                    : 'border-[#101010]/35 bg-[#B8D9F2]/25 hover:bg-[#B8D9F2]/45'
+                    ? 'border-[#0A0A0A] bg-[#E6DFD2]/40'
+                    : 'border-[#0A0A0A]/35 bg-[#BCD2CF]/25 hover:bg-[#BCD2CF]/45'
                 }`}
               >
                 <input
@@ -523,11 +523,11 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                     e.target.value = '';
                   }}
                 />
-                <Upload className="w-5 h-5 mx-auto text-[#101010]" />
-                <p className="text-xs font-bold text-[#101010]">
+                <Upload className="w-5 h-5 mx-auto text-[#0A0A0A]" />
+                <p className="text-xs font-bold text-[#0A0A0A]">
                   Upload tops, bottoms, dresses, shoes, jackets or accessories
                 </p>
-                <p className="text-[11px] text-[#101010]/65">
+                <p className="text-[11px] text-[#0A0A0A]/65">
                   AI Vision reads color, pattern, fabric &amp; warmth automatically
                 </p>
               </motion.div>
@@ -538,18 +538,18 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                   {scanJobs.slice(0, 4).map((job) => (
                     <div
                       key={job.id}
-                      className="flex items-center gap-3 p-2 border border-[#101010]/12 bg-[#FFFFFF]"
+                      className="flex items-center gap-3 p-2 border border-[#0A0A0A]/12 bg-[#FBFAF8]"
                     >
                       <img loading="lazy" decoding="async"
                         src={job.previewUrl}
                         alt={job.fileName}
-                        className="w-10 h-10 object-cover border border-[#101010]/15 shrink-0"
+                        className="w-10 h-10 object-cover border border-[#0A0A0A]/15 shrink-0"
                       />
                       <div className="min-w-0 flex-1">
                         <p className="text-xs font-semibold truncate">
                           {job.detectedName || job.fileName}
                         </p>
-                        <p className="font-mono text-[10px] text-[#101010]/65 truncate">
+                        <p className="font-mono text-[10px] text-[#0A0A0A]/65 truncate">
                           {job.status === 'compressing' && 'Optimizing image...'}
                           {job.status === 'analyzing' && 'AI Vision analyzing garment...'}
                           {job.status === 'done' && 'Added to your digital wardrobe'}
@@ -568,27 +568,27 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
             </div>
 
             {/* Styling Brief Controls */}
-            <div className="bg-[#FFFFFF] border border-[#101010]/15 p-5 space-y-4">
+            <div className="bg-[#FBFAF8] border border-[#0A0A0A]/15 p-5 space-y-4">
               <h2 className="font-display text-sm font-extrabold tracking-tight">
                 Curate Trip Brief
               </h2>
 
               <div className="space-y-1.5">
-                <label className="font-mono text-[10px] text-[#101010]/60">DESTINATION</label>
+                <label className="font-mono text-[10px] text-[#0A0A0A]/60">DESTINATION</label>
                 <div className="flex gap-2">
                   <input
                     type="text"
                     value={destination}
                     onChange={(e) => setDestination(e.target.value)}
                     placeholder="Kyoto, Paris, Amalfi..."
-                    className="flex-1 min-h-[42px] px-3 border border-[#101010]/25 text-xs font-semibold"
+                    className="flex-1 min-h-[42px] px-3 border border-[#0A0A0A]/25 text-xs font-semibold"
                   />
                   <button
                     type="button"
                     onClick={fetchLiveWeatherForDestination}
                     disabled={weatherBusy || !isOnline}
                     title="Fetch live Open-Meteo weather"
-                    className="min-h-[42px] px-3 bg-[#B8D9F2] text-[#101010] text-xs font-bold inline-flex items-center gap-1 hover:bg-[#FFC5A8] transition-colors disabled:opacity-50"
+                    className="min-h-[42px] px-3 bg-[#BCD2CF] text-[#0A0A0A] text-xs font-bold inline-flex items-center gap-1 hover:bg-[#E6DFD2] transition-colors disabled:opacity-50"
                   >
                     {weatherBusy ? (
                       <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -602,11 +602,11 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1.5">
-                  <label className="font-mono text-[10px] text-[#101010]/60">DURATION</label>
+                  <label className="font-mono text-[10px] text-[#0A0A0A]/60">DURATION</label>
                   <select
                     value={durationDays}
                     onChange={(e) => setDurationDays(Number(e.target.value))}
-                    className="w-full min-h-[42px] px-3 border border-[#101010]/25 text-xs font-semibold bg-[#FFFFFF]"
+                    className="w-full min-h-[42px] px-3 border border-[#0A0A0A]/25 text-xs font-semibold bg-[#FBFAF8]"
                   >
                     {[2, 3, 4, 5, 6, 7].map((d) => (
                       <option key={d} value={d}>
@@ -617,11 +617,11 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="font-mono text-[10px] text-[#101010]/60">PREFERRED STYLE</label>
+                  <label className="font-mono text-[10px] text-[#0A0A0A]/60">PREFERRED STYLE</label>
                   <select
                     value={preferredStyle}
                     onChange={(e) => setPreferredStyle(e.target.value)}
-                    className="w-full min-h-[42px] px-3 border border-[#101010]/25 text-xs font-semibold bg-[#FFFFFF]"
+                    className="w-full min-h-[42px] px-3 border border-[#0A0A0A]/25 text-xs font-semibold bg-[#FBFAF8]"
                   >
                     {PREFERRED_STYLES.map((st) => (
                       <option key={st} value={st}>
@@ -633,13 +633,13 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
               </div>
 
               <div className="space-y-1.5">
-                <label className="font-mono text-[10px] text-[#101010]/60">WEATHER CONDITION</label>
+                <label className="font-mono text-[10px] text-[#0A0A0A]/60">WEATHER CONDITION</label>
                 <select
                   value={WEATHER_PRESETS.includes(weatherSummary) ? weatherSummary : 'custom'}
                   onChange={(e) => {
                     if (e.target.value !== 'custom') setWeatherSummary(e.target.value);
                   }}
-                  className="w-full min-h-[42px] px-3 border border-[#101010]/25 text-xs font-semibold bg-[#FFFFFF]"
+                  className="w-full min-h-[42px] px-3 border border-[#0A0A0A]/25 text-xs font-semibold bg-[#FBFAF8]"
                 >
                   {!WEATHER_PRESETS.includes(weatherSummary) && (
                     <option value="custom">{weatherSummary}</option>
@@ -653,7 +653,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
               </div>
 
               <div className="space-y-2">
-                <p className="font-mono text-[10px] text-[#101010]/60">OCCASIONS</p>
+                <p className="font-mono text-[10px] text-[#0A0A0A]/60">OCCASIONS</p>
                 <div className="flex flex-wrap gap-1.5">
                   {OCCASIONS.map((occ) => {
                     const active = selectedOccasions.includes(occ);
@@ -668,8 +668,8 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                         }
                         className={`min-h-[34px] px-2.5 text-[11px] font-semibold border transition-colors ${
                           active
-                            ? 'bg-[#101010] border-[#101010] text-[#FFFFFF]'
-                            : 'bg-[#FFFFFF] border-[#101010]/20 text-[#101010]/75 hover:border-[#101010]'
+                            ? 'bg-[#0B3B40] border-[#0A0A0A] text-[#FBFAF8]'
+                            : 'bg-[#FBFAF8] border-[#0A0A0A]/20 text-[#0A0A0A]/75 hover:border-[#0A0A0A]'
                         }`}
                       >
                         {occ}
@@ -680,7 +680,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
               </div>
 
               {matchError && (
-                <div className="p-3 bg-[#FFC5A8] text-[#101010] text-xs font-semibold">
+                <div className="p-3 bg-[#E6DFD2] text-[#0A0A0A] text-xs font-semibold">
                   {matchError}
                 </div>
               )}
@@ -689,16 +689,16 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                 type="button"
                 onClick={handleGenerateOutfits}
                 disabled={matchingBusy}
-                className="w-full min-h-[50px] bg-[#101010] text-[#FFFFFF] text-xs font-bold inline-flex items-center justify-center gap-2 hover:bg-[#101010]/85 transition-colors disabled:opacity-50"
+                className="w-full min-h-[50px] bg-[#0B3B40] text-[#FBFAF8] text-xs font-bold inline-flex items-center justify-center gap-2 hover:bg-[#0A0A0A]/85 transition-colors disabled:opacity-50"
               >
                 {matchingBusy ? (
                   <>
-                    <Loader2 className="w-4 h-4 animate-spin text-[#FFC5A8]" />
+                    <Loader2 className="w-4 h-4 animate-spin text-[#E6DFD2]" />
                     <span>Styling Owned Wardrobe...</span>
                   </>
                 ) : (
                   <>
-                    <Wand2 className="w-4 h-4 text-[#FFC5A8]" />
+                    <Wand2 className="w-4 h-4 text-[#E6DFD2]" />
                     <span>Generate Owned-Closet Outfits</span>
                   </>
                 )}
@@ -710,29 +710,29 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
           <div className="lg:col-span-8 space-y-6">
             {generatedOutfits.length === 0 ? (
               /* Luxury Pre-Generation Stage with Live Owned Wardrobe Strip */
-              <div className="bg-[#FFFFFF] border border-[#101010]/15 overflow-hidden grid grid-cols-1 md:grid-cols-12">
-                <div className="md:col-span-5 relative min-h-[320px] bg-[#101010]">
+              <div className="bg-[#FBFAF8] border border-[#0A0A0A]/15 overflow-hidden grid grid-cols-1 md:grid-cols-12">
+                <div className="md:col-span-5 relative min-h-[320px] bg-[#0B3B40]">
                   <img loading="lazy" decoding="async"
                     src={fashionStudioImg}
                     alt="Luxury travel capsule atelier"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-[#101010]/90 to-transparent text-[#FFFFFF]">
-                    <p className="font-mono text-[10px] text-[#FFC5A8]">ATELIER CAPSULE</p>
+                  <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-[#0A0A0A]/90 to-transparent text-[#FBFAF8]">
+                    <p className="font-mono text-[10px] text-[#E6DFD2]">ATELIER CAPSULE</p>
                     <p className="font-editorial text-xl">Zero repeats. Owned pieces only.</p>
                   </div>
                 </div>
 
                 <div className="md:col-span-7 p-6 sm:p-8 flex flex-col justify-between gap-6">
                   <div className="space-y-3">
-                    <p className="font-mono text-[11px] text-[#101010]/60">
+                    <p className="font-mono text-[11px] text-[#0A0A0A]/60">
                       YOUR READY CLOSET ({wardrobe.length} GARMENTS)
                     </p>
                     <h2 className="font-editorial text-3xl leading-tight">
                       Every outfit is assembled exclusively from garments in your archive.
                     </h2>
-                    <p className="text-xs text-[#101010]/70 leading-relaxed">
+                    <p className="text-xs text-[#0A0A0A]/70 leading-relaxed">
                       Upload new photos on the left or style your current {wardrobe.length} items right now. Click any piece inside a generated outfit to swap it live with another garment you own.
                     </p>
                   </div>
@@ -744,7 +744,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                       return (
                         <div
                           key={item.id}
-                          className="border border-[#101010]/15 bg-[#B8D9F2]/25 p-2 flex flex-col justify-between min-h-[88px] relative group"
+                          className="border border-[#0A0A0A]/15 bg-[#BCD2CF]/25 p-2 flex flex-col justify-between min-h-[88px] relative group"
                         >
                           {photo ? (
                             <img loading="lazy" decoding="async"
@@ -754,21 +754,21 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                             />
                           ) : (
                             <span
-                              className="w-7 h-7 border border-[#101010]/25 mb-2 flex items-center justify-center"
+                              className="w-7 h-7 border border-[#0A0A0A]/25 mb-2 flex items-center justify-center"
                               style={{ backgroundColor: item.colorHex }}
                             >
-                              <Shirt className="w-3.5 h-3.5 text-[#FFFFFF]" />
+                              <Shirt className="w-3.5 h-3.5 text-[#FBFAF8]" />
                             </span>
                           )}
                           <p className="text-[10px] font-bold truncate">{item.name}</p>
-                          <p className="font-mono text-[9px] text-[#101010]/60 truncate">
+                          <p className="font-mono text-[9px] text-[#0A0A0A]/60 truncate">
                             {item.category}
                           </p>
                           <button
                             type="button"
                             onClick={() => onDeleteWardrobeItem(item.id)}
                             aria-label={`Delete ${item.name}`}
-                            className="opacity-0 group-hover:opacity-100 absolute top-1 right-1 w-5 h-5 bg-[#101010] text-[#FFFFFF] flex items-center justify-center transition-opacity"
+                            className="opacity-0 group-hover:opacity-100 absolute top-1 right-1 w-5 h-5 bg-[#0B3B40] text-[#FBFAF8] flex items-center justify-center transition-opacity"
                           >
                             <Trash2 className="w-2.5 h-2.5" />
                           </button>
@@ -782,25 +782,25 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
               /* LIVE INTERACTIVE OUTFIT GALLERY + ANIMATED COMPOSITION STAGE */
               <div className="space-y-6">
                 {/* Outfit Calendar Strip + Rewear Optimizer Readout */}
-                <div className="bg-[#101010] text-[#FFFFFF] p-5 space-y-4">
+                <div className="bg-[#0B3B40] text-[#FBFAF8] p-5 space-y-4">
                   <div className="flex flex-wrap items-center justify-between gap-4">
                     <div>
-                      <p className="font-mono text-[10px] text-[#FFC5A8]">
+                      <p className="font-mono text-[10px] text-[#E6DFD2]">
                         OUTFIT CALENDAR · REWEAR OPTIMIZER
                       </p>
                       <p className="text-xs text-white/80 mt-1 max-w-xl">{capsuleSummary}</p>
                     </div>
                     <div className="flex items-center gap-5 font-mono tabular-nums">
                       <div>
-                        <p className="text-lg font-bold text-[#B8D9F2]">{rewearStats.totalOutfits}</p>
+                        <p className="text-lg font-bold text-[#BCD2CF]">{rewearStats.totalOutfits}</p>
                         <p className="text-[10px] text-white/60">Looks</p>
                       </div>
                       <div>
-                        <p className="text-lg font-bold text-[#D9C9F2]">{rewearStats.uniquePieces}</p>
+                        <p className="text-lg font-bold text-[#D5DCD9]">{rewearStats.uniquePieces}</p>
                         <p className="text-[10px] text-white/60">Pieces</p>
                       </div>
                       <div>
-                        <p className="text-lg font-bold text-[#FFC5A8]">{rewearStats.reusedPieces}</p>
+                        <p className="text-lg font-bold text-[#E6DFD2]">{rewearStats.reusedPieces}</p>
                         <p className="text-[10px] text-white/60">Reworn</p>
                       </div>
                     </div>
@@ -820,7 +820,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                           }}
                           className={`min-h-[44px] px-4 py-2 text-left border transition-colors shrink-0 ${
                             selected
-                              ? 'bg-[#FFFFFF] border-[#FFFFFF] text-[#101010]'
+                              ? 'bg-[#FBFAF8] border-[#FBFAF8] text-[#0A0A0A]'
                               : 'bg-white/5 border-white/15 text-white/80 hover:border-white/50'
                           }`}
                         >
@@ -844,11 +844,11 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.25 }}
-                      className="bg-[#FFFFFF] border border-[#101010]/15 p-6 space-y-6"
+                      className="bg-[#FBFAF8] border border-[#0A0A0A]/15 p-6 space-y-6"
                     >
-                      <div className="flex flex-wrap items-start justify-between gap-4 border-b border-[#101010]/10 pb-4">
+                      <div className="flex flex-wrap items-start justify-between gap-4 border-b border-[#0A0A0A]/10 pb-4">
                         <div className="space-y-1">
-                          <p className="font-mono text-[11px] text-[#101010]/60">
+                          <p className="font-mono text-[11px] text-[#0A0A0A]/60">
                             DAY {selectedDayIdx + 1} · {activeOutfit.occasion} · {activeOutfit.weatherFit}
                           </p>
                           <h2 className="font-editorial text-3xl sm:text-4xl font-medium">
@@ -860,7 +860,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                           <button
                             type="button"
                             onClick={handleCycleAlternativeSwap}
-                            className="min-h-[40px] px-3.5 border border-[#101010]/25 text-xs font-bold inline-flex items-center gap-1.5 hover:bg-[#B8D9F2]/40 transition-colors"
+                            className="min-h-[40px] px-3.5 border border-[#0A0A0A]/25 text-xs font-bold inline-flex items-center gap-1.5 hover:bg-[#BCD2CF]/40 transition-colors"
                           >
                             <RefreshCw className="w-3.5 h-3.5" />
                             <span>Swap Piece</span>
@@ -868,9 +868,9 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                           <button
                             type="button"
                             onClick={handleSaveCurrentOutfit}
-                            className="min-h-[40px] px-4 bg-[#101010] text-[#FFFFFF] text-xs font-bold inline-flex items-center gap-1.5 hover:bg-[#101010]/85 transition-colors"
+                            className="min-h-[40px] px-4 bg-[#0B3B40] text-[#FBFAF8] text-xs font-bold inline-flex items-center gap-1.5 hover:bg-[#0A0A0A]/85 transition-colors"
                           >
-                            <Heart className="w-3.5 h-3.5 text-[#FFC5A8]" />
+                            <Heart className="w-3.5 h-3.5 text-[#E6DFD2]" />
                             <span>Save Look</span>
                           </button>
                         </div>
@@ -908,11 +908,11 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                               }
                               className={`text-left border overflow-hidden transition-colors group ${
                                 isSwapping
-                                  ? 'border-[#101010] ring-2 ring-[#FFC5A8]'
-                                  : 'border-[#101010]/15 hover:border-[#101010]'
+                                  ? 'border-[#0A0A0A] ring-2 ring-[#E6DFD2]'
+                                  : 'border-[#0A0A0A]/15 hover:border-[#0A0A0A]'
                               }`}
                             >
-                              <div className="aspect-[4/3] relative bg-[#B8D9F2]/30 overflow-hidden">
+                              <div className="aspect-[4/3] relative bg-[#BCD2CF]/30 overflow-hidden">
                                 {photo ? (
                                   <img loading="lazy" decoding="async"
                                     src={photo}
@@ -922,28 +922,28 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                                 ) : (
                                   <div
                                     className="w-full h-full flex flex-col items-center justify-center p-4"
-                                    style={{ backgroundColor: '#D9C9F2' }}
+                                    style={{ backgroundColor: '#D5DCD9' }}
                                   >
                                     <span
-                                      className="w-10 h-10 border border-[#101010]/25 flex items-center justify-center mb-2"
+                                      className="w-10 h-10 border border-[#0A0A0A]/25 flex items-center justify-center mb-2"
                                       style={{ backgroundColor: piece.colorHex }}
                                     >
-                                      <Shirt className="w-5 h-5 text-[#FFFFFF]" />
+                                      <Shirt className="w-5 h-5 text-[#FBFAF8]" />
                                     </span>
-                                    <span className="font-mono text-[10px] text-[#101010]/70">
+                                    <span className="font-mono text-[10px] text-[#0A0A0A]/70">
                                       {piece.fabric || piece.style}
                                     </span>
                                   </div>
                                 )}
-                                <span className="absolute top-2 right-2 px-2 py-0.5 bg-[#101010] text-[#FFC5A8] font-mono text-[9px]">
+                                <span className="absolute top-2 right-2 px-2 py-0.5 bg-[#0B3B40] text-[#E6DFD2] font-mono text-[9px]">
                                   {isSwapping ? 'REPLACING' : 'CLICK TO SWAP'}
                                 </span>
                               </div>
-                              <div className="p-3 bg-[#FFFFFF] space-y-0.5">
-                                <p className="text-xs font-bold text-[#101010] truncate">
+                              <div className="p-3 bg-[#FBFAF8] space-y-0.5">
+                                <p className="text-xs font-bold text-[#0A0A0A] truncate">
                                   {piece.name}
                                 </p>
-                                <p className="font-mono text-[10px] text-[#101010]/60">
+                                <p className="font-mono text-[10px] text-[#0A0A0A]/60">
                                   {piece.category} · {piece.colorName}
                                   {wearCount > 1 ? ` · Worn ${wearCount}×` : ''}
                                 </p>
@@ -960,7 +960,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
-                            className="overflow-hidden border border-[#101010] bg-[#B8D9F2]/40 p-4 space-y-3"
+                            className="overflow-hidden border border-[#0A0A0A] bg-[#BCD2CF]/40 p-4 space-y-3"
                           >
                             <div className="flex items-center justify-between">
                               <p className="font-mono text-[11px] font-bold">
@@ -969,14 +969,14 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                               <button
                                 type="button"
                                 onClick={() => setSwappingPieceId(null)}
-                                className="w-7 h-7 flex items-center justify-center hover:bg-[#101010] hover:text-[#FFFFFF]"
+                                className="w-7 h-7 flex items-center justify-center hover:bg-[#0B3B40] hover:text-[#FBFAF8]"
                               >
                                 <X className="w-4 h-4" />
                               </button>
                             </div>
 
                             {swapCandidates.length === 0 ? (
-                              <p className="text-xs text-[#101010]/75">
+                              <p className="text-xs text-[#0A0A0A]/75">
                                 You currently have only this item in {swappingPiece.category}. Upload another {swappingPiece.category.toLowerCase()} photo on the left to swap here.
                               </p>
                             ) : (
@@ -990,7 +990,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                                       onClick={() =>
                                         handleReplacePieceInActiveOutfit(swappingPiece.id, cand.id)
                                       }
-                                      className="shrink-0 w-36 bg-[#FFFFFF] border border-[#101010]/20 hover:border-[#101010] p-2 text-left space-y-1.5"
+                                      className="shrink-0 w-36 bg-[#FBFAF8] border border-[#0A0A0A]/20 hover:border-[#0A0A0A] p-2 text-left space-y-1.5"
                                     >
                                       {cPhoto ? (
                                         <img loading="lazy" decoding="async"
@@ -1003,11 +1003,11 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                                           className="w-full h-16 flex items-center justify-center"
                                           style={{ backgroundColor: cand.colorHex }}
                                         >
-                                          <Shirt className="w-4 h-4 text-[#FFFFFF]" />
+                                          <Shirt className="w-4 h-4 text-[#FBFAF8]" />
                                         </div>
                                       )}
                                       <p className="text-[11px] font-bold truncate">{cand.name}</p>
-                                      <p className="font-mono text-[9px] text-[#101010]/60">
+                                      <p className="font-mono text-[9px] text-[#0A0A0A]/60">
                                         {cand.colorName}
                                       </p>
                                     </button>
@@ -1020,12 +1020,12 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                       </AnimatePresence>
 
                       {/* Stylist Note + Sync Capsule Bar */}
-                      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 pt-4 border-t border-[#101010]/10 items-center">
+                      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 pt-4 border-t border-[#0A0A0A]/10 items-center">
                         <div className="md:col-span-7 space-y-1">
-                          <p className="text-xs text-[#101010]/85 leading-relaxed">
+                          <p className="text-xs text-[#0A0A0A]/85 leading-relaxed">
                             <span className="font-bold">Why it works:</span> {activeOutfit.whyItWorks}
                           </p>
-                          <p className="font-mono text-[11px] text-[#101010]/65">
+                          <p className="font-mono text-[11px] text-[#0A0A0A]/65">
                             Styling note: {activeOutfit.stylingTip}
                           </p>
                         </div>
@@ -1036,7 +1036,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                               aria-label="Target trip for suitcase sync"
                               value={selectedTripId}
                               onChange={(e) => setSelectedTripId(e.target.value)}
-                              className="min-h-[40px] px-2.5 border border-[#101010]/25 text-xs font-semibold bg-[#FFFFFF]"
+                              className="min-h-[40px] px-2.5 border border-[#0A0A0A]/25 text-xs font-semibold bg-[#FBFAF8]"
                             >
                               {trips.map((t) => (
                                 <option key={t.id} value={t.id}>
@@ -1048,7 +1048,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                           <button
                             type="button"
                             onClick={handleSyncCapsuleToSuitcase}
-                            className="min-h-[40px] px-4 bg-[#FFC5A8] text-[#101010] text-xs font-bold inline-flex items-center gap-1.5 hover:bg-[#101010] hover:text-[#FFFFFF] transition-colors"
+                            className="min-h-[40px] px-4 bg-[#E6DFD2] text-[#0A0A0A] text-xs font-bold inline-flex items-center gap-1.5 hover:bg-[#0B3B40] hover:text-[#FBFAF8] transition-colors"
                           >
                             <Layers className="w-3.5 h-3.5" />
                             <span>Sync to Suitcase</span>
@@ -1057,7 +1057,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                             <button
                               type="button"
                               onClick={onOpenSmartPacking}
-                              className="min-h-[40px] px-3 border border-[#101010]/25 text-xs font-bold hover:bg-[#101010] hover:text-[#FFFFFF] transition-colors"
+                              className="min-h-[40px] px-3 border border-[#0A0A0A]/25 text-xs font-bold hover:bg-[#0B3B40] hover:text-[#FBFAF8] transition-colors"
                             >
                               View 3D Bag
                             </button>
@@ -1070,36 +1070,36 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
 
                 {/* Strategic Missing-Item Suggestions */}
                 {missingPieces.length > 0 && (
-                  <div className="bg-[#FFFFFF] border border-[#101010]/15 p-6 space-y-4">
+                  <div className="bg-[#FBFAF8] border border-[#0A0A0A]/15 p-6 space-y-4">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="font-mono text-[10px] text-[#101010]/60">
+                        <p className="font-mono text-[10px] text-[#0A0A0A]/60">
                           STRATEGIC CAPSULE MULTIPLIERS
                         </p>
                         <h3 className="font-editorial text-2xl">
                           Single pieces that unlock new combinations
                         </h3>
                       </div>
-                      <Sparkles className="w-5 h-5 text-[#101010]" />
+                      <Sparkles className="w-5 h-5 text-[#0A0A0A]" />
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {missingPieces.map((mp) => (
                         <div
                           key={mp.name}
-                          className="p-4 bg-[#B8D9F2]/30 border border-[#101010]/12 flex flex-col justify-between gap-3"
+                          className="p-4 bg-[#BCD2CF]/30 border border-[#0A0A0A]/12 flex flex-col justify-between gap-3"
                         >
                           <div className="space-y-1">
                             <div className="flex items-center justify-between gap-2">
-                              <p className="text-xs font-bold text-[#101010]">{mp.name}</p>
-                              <span className="font-mono text-[10px] font-bold text-[#101010]">
+                              <p className="text-xs font-bold text-[#0A0A0A]">{mp.name}</p>
+                              <span className="font-mono text-[10px] font-bold text-[#0A0A0A]">
                                 +{mp.unlockedCombosCount} looks
                               </span>
                             </div>
-                            <p className="font-mono text-[10px] text-[#101010]/60">
+                            <p className="font-mono text-[10px] text-[#0A0A0A]/60">
                               {mp.category} · {mp.colorSuggestion}
                             </p>
-                            <p className="text-[11px] text-[#101010]/75 leading-snug">
+                            <p className="text-[11px] text-[#0A0A0A]/75 leading-snug">
                               {mp.impactSummary}
                             </p>
                           </div>
@@ -1117,7 +1117,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                                     : `"${mp.name}" is already in your shopping radar.`
                                 );
                               }}
-                              className="self-start min-h-[34px] px-3 bg-[#101010] text-[#FFFFFF] text-[11px] font-bold inline-flex items-center gap-1.5 hover:bg-[#FFC5A8] hover:text-[#101010] transition-colors"
+                              className="self-start min-h-[34px] px-3 bg-[#0B3B40] text-[#FBFAF8] text-[11px] font-bold inline-flex items-center gap-1.5 hover:bg-[#E6DFD2] hover:text-[#0A0A0A] transition-colors"
                             >
                               <ShoppingBag className="w-3 h-3" />
                               <span>Add to Shopping Radar</span>
@@ -1133,9 +1133,9 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
 
             {/* Saved Favorite Outfits Ribbon */}
             {savedOutfits.length > 0 && (
-              <div className="bg-[#FFFFFF] border border-[#101010]/15 p-5 space-y-3">
+              <div className="bg-[#FBFAF8] border border-[#0A0A0A]/15 p-5 space-y-3">
                 <div className="flex items-center justify-between">
-                  <p className="font-mono text-[10px] text-[#101010]/60 flex items-center gap-1.5">
+                  <p className="font-mono text-[10px] text-[#0A0A0A]/60 flex items-center gap-1.5">
                     <BookmarkCheck className="w-3.5 h-3.5" />
                     <span>SAVED ARCHIVE LOOKS ({savedOutfits.length})</span>
                   </p>
@@ -1144,7 +1144,7 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                   {savedOutfits.slice(0, 6).map((look) => (
                     <div
                       key={look.id}
-                      className="shrink-0 w-56 p-3.5 border border-[#101010]/15 bg-[#D9C9F2]/30 flex flex-col justify-between gap-2"
+                      className="shrink-0 w-56 p-3.5 border border-[#0A0A0A]/15 bg-[#D5DCD9]/30 flex flex-col justify-between gap-2"
                     >
                       <div className="flex items-start justify-between gap-2">
                         <p className="text-xs font-bold leading-snug">{look.name}</p>
@@ -1156,12 +1156,12 @@ export const AIOutfitStudioView: React.FC<AIOutfitStudioViewProps> = ({
                         >
                           <Heart
                             className={`w-3.5 h-3.5 ${
-                              look.isFavorite ? 'fill-[#101010] text-[#101010]' : 'text-[#101010]/40'
+                              look.isFavorite ? 'fill-[#0A0A0A] text-[#0A0A0A]' : 'text-[#0A0A0A]/40'
                             }`}
                           />
                         </button>
                       </div>
-                      <p className="font-mono text-[10px] text-[#101010]/65">
+                      <p className="font-mono text-[10px] text-[#0A0A0A]/65">
                         {look.occasion} · {look.itemIds.length} pieces
                       </p>
                     </div>

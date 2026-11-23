@@ -133,17 +133,17 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#101010] text-[#FFFFFF] pt-20 pb-14">
+    <div className="min-h-screen bg-[#0B3B40] text-[#FBFAF8] pt-20 pb-14">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 space-y-9">
         {/* SHOWROOM EDITORIAL HERO STRIP */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border-b border-white/15 pb-8">
           <div className="lg:col-span-7 space-y-5">
-            <p className="font-mono text-[11px] tracking-[0.16em] text-[#D9C9F2]">
+            <p className="font-mono text-[11px] tracking-[0.16em] text-[#D5DCD9]">
               04. MY DIGITAL WARDROBE · PRIVATE ARCHIVE
             </p>
-            <h1 className="font-editorial text-4xl sm:text-5xl lg:text-6xl leading-[0.98] font-normal text-[#FFFFFF]">
+            <h1 className="font-editorial text-4xl sm:text-5xl lg:text-6xl leading-[0.98] font-normal text-[#FBFAF8]">
               Every silhouette you own,{' '}
-              <span className="italic text-[#FFC5A8]">curated in light.</span>
+              <span className="italic text-[#E6DFD2]">curated in light.</span>
             </h1>
             <p className="text-sm text-white/70 max-w-xl leading-relaxed">
               Your living digital closet. Photograph garments straight from your hangers or suitcase—AI Vision logs color, fabric, warmth, and styling versatility so every outfit is built from what you genuinely wear.
@@ -165,7 +165,7 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
                 type="button"
                 disabled={uploadBusy}
                 onClick={() => fileInputRef.current?.click()}
-                className="min-h-[48px] px-6 bg-[#FFFFFF] text-[#101010] text-xs font-bold inline-flex items-center gap-2 hover:bg-[#FFC5A8] transition-colors disabled:opacity-50"
+                className="min-h-[48px] px-6 bg-[#FBFAF8] text-[#0A0A0A] text-xs font-bold inline-flex items-center gap-2 hover:bg-[#E6DFD2] transition-colors disabled:opacity-50"
               >
                 {uploadBusy ? (
                   <>
@@ -183,7 +183,7 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
               <button
                 type="button"
                 onClick={onOpenOutfitStudio}
-                className="min-h-[48px] px-6 border border-white/25 text-[#FFFFFF] text-xs font-bold inline-flex items-center gap-2 hover:bg-[#D9C9F2] hover:text-[#101010] hover:border-[#D9C9F2] transition-colors"
+                className="min-h-[48px] px-6 border border-white/25 text-[#FBFAF8] text-xs font-bold inline-flex items-center gap-2 hover:bg-[#D5DCD9] hover:text-[#0A0A0A] hover:border-[#D5DCD9] transition-colors"
               >
                 <span>Style in AI Outfit Studio</span>
                 <ArrowRight className="w-4 h-4" />
@@ -191,7 +191,7 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
             </div>
 
             {uploadFeedback && (
-              <p className="inline-block px-3.5 py-2 bg-[#FFC5A8] text-[#101010] text-xs font-semibold">
+              <p className="inline-block px-3.5 py-2 bg-[#E6DFD2] text-[#0A0A0A] text-xs font-semibold">
                 {uploadFeedback}
               </p>
             )}
@@ -205,9 +205,9 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute bottom-0 inset-x-0 px-4 py-3 bg-[#101010]/85 flex items-center justify-between font-mono text-[11px]">
-                <span className="text-[#B8D9F2]">{wardrobe.length} ARCHIVED PIECES</span>
-                <span className="text-[#FFC5A8]">
+              <div className="absolute bottom-0 inset-x-0 px-4 py-3 bg-[#0A0A0A]/85 flex items-center justify-between font-mono text-[11px]">
+                <span className="text-[#BCD2CF]">{wardrobe.length} ARCHIVED PIECES</span>
+                <span className="text-[#E6DFD2]">
                   {wardrobe.filter((w) => w.photoId).length} PHOTO SCANNED
                 </span>
               </div>
@@ -227,8 +227,8 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
                   onClick={() => setActiveCategory(cat)}
                   className={`min-h-[40px] px-4 text-xs font-semibold transition-colors whitespace-nowrap shrink-0 border ${
                     active
-                      ? 'bg-[#D9C9F2] border-[#D9C9F2] text-[#101010] font-bold'
-                      : 'border-white/15 text-white/75 hover:border-white/50 hover:text-[#FFFFFF]'
+                      ? 'bg-[#D5DCD9] border-[#D5DCD9] text-[#0A0A0A] font-bold'
+                      : 'border-white/15 text-white/75 hover:border-white/50 hover:text-[#FBFAF8]'
                   }`}
                 >
                   {cat}
@@ -241,7 +241,7 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
             aria-label="Filter by warmth"
             value={warmthFilter}
             onChange={(e) => setWarmthFilter(e.target.value)}
-            className="min-h-[40px] px-3.5 bg-[#101010] border border-white/25 text-xs font-semibold text-[#FFFFFF]"
+            className="min-h-[40px] px-3.5 bg-[#0B3B40] border border-white/25 text-xs font-semibold text-[#FBFAF8]"
           >
             <option value="All">All Climates</option>
             <option value="Warm Weather">Warm Weather</option>
@@ -262,7 +262,7 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
                 setActiveCategory('All');
                 setWarmthFilter('All');
               }}
-              className="min-h-[42px] px-5 bg-[#B8D9F2] text-[#101010] text-xs font-bold"
+              className="min-h-[42px] px-5 bg-[#BCD2CF] text-[#0A0A0A] text-xs font-bold"
             >
               Show Entire Archive
             </button>
@@ -272,7 +272,7 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
             {filteredWardrobe.map((item, idx) => {
               const photo = item.photoId ? wardrobePhotos[item.photoId] : undefined;
               const appears = outfitAppearances.get(item.id) || 0;
-              const surfaceTints = ['#FFFFFF', '#B8D9F2', '#D9C9F2', '#FFC5A8'];
+              const surfaceTints = ['#FBFAF8', '#BCD2CF', '#D5DCD9', '#E6DFD2'];
               const swatchBg = surfaceTints[idx % surfaceTints.length];
 
               return (
@@ -285,7 +285,7 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') setInspectItem(item);
                     }}
-                    className="border border-white/15 bg-white/[0.04] hover:border-[#FFC5A8] transition-colors overflow-hidden cursor-pointer group flex flex-col h-full"
+                    className="border border-white/15 bg-white/[0.04] hover:border-[#E6DFD2] transition-colors overflow-hidden cursor-pointer group flex flex-col h-full"
                   >
                     <div className="aspect-[4/5] relative overflow-hidden bg-white/5">
                       {photo ? (
@@ -297,16 +297,16 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
                         />
                       ) : (
                         <div
-                          className="w-full h-full flex flex-col items-center justify-center p-6 text-[#101010]"
+                          className="w-full h-full flex flex-col items-center justify-center p-6 text-[#0A0A0A]"
                           style={{ backgroundColor: swatchBg }}
                         >
                           <span
-                            className="w-14 h-14 border border-[#101010]/25 flex items-center justify-center mb-4"
+                            className="w-14 h-14 border border-[#0A0A0A]/25 flex items-center justify-center mb-4"
                             style={{ backgroundColor: item.colorHex }}
                           >
-                            <Shirt className="w-6 h-6 text-[#FFFFFF]" />
+                            <Shirt className="w-6 h-6 text-[#FBFAF8]" />
                           </span>
-                          <p className="font-mono text-[10px] tracking-[0.14em] text-[#101010]/65">
+                          <p className="font-mono text-[10px] tracking-[0.14em] text-[#0A0A0A]/65">
                             {item.category.toUpperCase()}
                           </p>
                           <p className="font-editorial text-2xl text-center mt-1 leading-tight">
@@ -314,11 +314,11 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
                           </p>
                         </div>
                       )}
-                      <span className="absolute top-3 left-3 px-2.5 py-1 bg-[#101010]/90 text-[#FFFFFF] font-mono text-[10px]">
+                      <span className="absolute top-3 left-3 px-2.5 py-1 bg-[#0A0A0A]/90 text-[#FBFAF8] font-mono text-[10px]">
                         {item.warmth}
                       </span>
                       {item.aiDetected && (
-                        <span className="absolute top-3 right-3 px-2 py-1 bg-[#FFC5A8] text-[#101010] font-mono text-[9px] font-bold">
+                        <span className="absolute top-3 right-3 px-2 py-1 bg-[#E6DFD2] text-[#0A0A0A] font-mono text-[9px] font-bold">
                           AI VISION
                         </span>
                       )}
@@ -326,7 +326,7 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
 
                     <div className="p-4 flex-1 flex flex-col justify-between gap-2">
                       <div>
-                        <p className="font-display text-sm font-bold text-[#FFFFFF] truncate">
+                        <p className="font-display text-sm font-bold text-[#FBFAF8] truncate">
                           {item.name}
                         </p>
                         <p className="font-mono text-[11px] text-white/60 mt-0.5">
@@ -335,7 +335,7 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
                       </div>
                       <div className="pt-2 border-t border-white/10 flex items-center justify-between font-mono text-[10px] text-white/55 tabular-nums">
                         <span>{item.weightGrams}g · {item.volumeLiters}L</span>
-                        <span className="text-[#B8D9F2]">
+                        <span className="text-[#BCD2CF]">
                           {appears > 0 ? `In ${appears} look${appears > 1 ? 's' : ''}` : 'Ready to style'}
                         </span>
                       </div>
@@ -356,7 +356,7 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setInspectItem(null)}
-            className="fixed inset-0 z-50 bg-[#101010]/85 flex items-center justify-center p-4 sm:p-8"
+            className="fixed inset-0 z-50 bg-[#0A0A0A]/85 flex items-center justify-center p-4 sm:p-8"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.94, y: 16 }}
@@ -364,9 +364,9 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
               exit={{ opacity: 0, scale: 0.94, y: 16 }}
               transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-2xl bg-[#FFFFFF] text-[#101010] border border-[#101010] overflow-hidden grid grid-cols-1 sm:grid-cols-12"
+              className="w-full max-w-2xl bg-[#FBFAF8] text-[#0A0A0A] border border-[#0A0A0A] overflow-hidden grid grid-cols-1 sm:grid-cols-12"
             >
-              <div className="sm:col-span-5 min-h-[240px] bg-[#D9C9F2] relative flex items-center justify-center">
+              <div className="sm:col-span-5 min-h-[240px] bg-[#D5DCD9] relative flex items-center justify-center">
                 {inspectItem.photoId && wardrobePhotos[inspectItem.photoId] ? (
                   <img loading="lazy" decoding="async"
                     src={wardrobePhotos[inspectItem.photoId]}
@@ -376,10 +376,10 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
                 ) : (
                   <div className="p-8 text-center space-y-3">
                     <span
-                      className="w-16 h-16 mx-auto border border-[#101010]/25 flex items-center justify-center"
+                      className="w-16 h-16 mx-auto border border-[#0A0A0A]/25 flex items-center justify-center"
                       style={{ backgroundColor: inspectItem.colorHex }}
                     >
-                      <Shirt className="w-7 h-7 text-[#FFFFFF]" />
+                      <Shirt className="w-7 h-7 text-[#FBFAF8]" />
                     </span>
                     <p className="font-mono text-xs">{inspectItem.colorName}</p>
                   </div>
@@ -390,7 +390,7 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
                 <div className="space-y-4">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <p className="font-mono text-[10px] text-[#101010]/60">
+                      <p className="font-mono text-[10px] text-[#0A0A0A]/60">
                         {inspectItem.category.toUpperCase()} · {inspectItem.warmth}
                       </p>
                       <h3 className="font-editorial text-3xl mt-0.5">{inspectItem.name}</h3>
@@ -399,33 +399,33 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
                       type="button"
                       onClick={() => setInspectItem(null)}
                       aria-label="Close inspection panel"
-                      className="w-9 h-9 border border-[#101010]/20 flex items-center justify-center hover:bg-[#101010] hover:text-[#FFFFFF]"
+                      className="w-9 h-9 border border-[#0A0A0A]/20 flex items-center justify-center hover:bg-[#0B3B40] hover:text-[#FBFAF8]"
                     >
                       <X className="w-4 h-4" />
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3 text-xs border-y border-[#101010]/10 py-3 font-mono">
+                  <div className="grid grid-cols-2 gap-3 text-xs border-y border-[#0A0A0A]/10 py-3 font-mono">
                     <div>
-                      <span className="text-[#101010]/55 block text-[10px]">COLOR / PATTERN</span>
+                      <span className="text-[#0A0A0A]/55 block text-[10px]">COLOR / PATTERN</span>
                       <span className="font-bold">{inspectItem.colorName} · {inspectItem.pattern || 'Solid'}</span>
                     </div>
                     <div>
-                      <span className="text-[#101010]/55 block text-[10px]">STYLE / FABRIC</span>
+                      <span className="text-[#0A0A0A]/55 block text-[10px]">STYLE / FABRIC</span>
                       <span className="font-bold">{inspectItem.style || 'Tailored'} · {inspectItem.fabric || 'Cotton'}</span>
                     </div>
                     <div>
-                      <span className="text-[#101010]/55 block text-[10px]">SUITCASE FOOTPRINT</span>
+                      <span className="text-[#0A0A0A]/55 block text-[10px]">SUITCASE FOOTPRINT</span>
                       <span className="font-bold">{inspectItem.weightGrams}g · {inspectItem.volumeLiters}L</span>
                     </div>
                     <div>
-                      <span className="text-[#101010]/55 block text-[10px]">OCCASIONS</span>
+                      <span className="text-[#0A0A0A]/55 block text-[10px]">OCCASIONS</span>
                       <span className="font-bold">{(inspectItem.activities || ['Travel']).slice(0, 2).join(', ')}</span>
                     </div>
                   </div>
 
                   {inspectItem.notes && (
-                    <p className="text-xs text-[#101010]/75 leading-relaxed">
+                    <p className="text-xs text-[#0A0A0A]/75 leading-relaxed">
                       {inspectItem.notes}
                     </p>
                   )}
@@ -438,7 +438,7 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
                       onDeleteWardrobeItem(inspectItem.id);
                       setInspectItem(null);
                     }}
-                    className="min-h-[42px] px-3.5 border border-[#101010]/25 text-xs font-bold inline-flex items-center gap-1.5 hover:bg-[#FFC5A8]"
+                    className="min-h-[42px] px-3.5 border border-[#0A0A0A]/25 text-xs font-bold inline-flex items-center gap-1.5 hover:bg-[#E6DFD2]"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                     <span>Remove</span>
@@ -450,10 +450,10 @@ export const DigitalWardrobeStudio: React.FC<DigitalWardrobeStudioProps> = ({
                       setInspectItem(null);
                       onOpenOutfitStudio();
                     }}
-                    className="min-h-[42px] px-5 bg-[#101010] text-[#FFFFFF] text-xs font-bold inline-flex items-center gap-2 hover:bg-[#101010]/85"
+                    className="min-h-[42px] px-5 bg-[#0B3B40] text-[#FBFAF8] text-xs font-bold inline-flex items-center gap-2 hover:bg-[#0A0A0A]/85"
                   >
                     <span>Style This Piece</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-[#FFC5A8]" />
+                    <ArrowRight className="w-3.5 h-3.5 text-[#E6DFD2]" />
                   </button>
                 </div>
               </div>

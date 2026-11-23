@@ -21,7 +21,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         if (e.key === 'Enter' || e.key === ' ') onComplete();
       }}
       aria-label="Skip splash screen"
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#101010] text-white px-6 cursor-pointer select-none"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0B3B40] text-white px-6 cursor-pointer select-none"
     >
       <motion.div
         initial={{ scale: 0.82, opacity: 0, y: 12 }}
@@ -39,7 +39,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 0.85, y: 0 }}
           transition={{ delay: 0.25, duration: 0.35 }}
-          className="mt-2.5 text-sm sm:text-base text-[#D9C9F2] max-w-xs"
+          className="mt-2.5 text-sm sm:text-base text-[#D5DCD9] max-w-xs"
         >
           Pack less stress. Travel with confidence.
         </motion.p>
@@ -55,7 +55,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
           initial={{ x: '-100%' }}
           animate={{ x: '0%' }}
           transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-          className="h-full w-full bg-[#B8D9F2] rounded-full"
+          className="h-full w-full bg-[#BCD2CF] rounded-full"
         />
       </motion.div>
     </div>

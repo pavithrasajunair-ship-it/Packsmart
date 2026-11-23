@@ -8,10 +8,10 @@ A travel-packing workspace that plans the trip, reads the forecast, fits the sui
 
 | Page | What you can do |
 |---|---|
-| Home | Pinned 3D suitcase hero, packing story, 3D tool deck, journeys gallery, departure board of your trips, capsule calculator |
+| Home | Pinned 3D globe hero, packing story, 3D tool deck, journeys gallery, departure board of your trips, capsule calculator |
 | Dashboard | Active trip countdown, packed progress, live weather, documents |
 | Trip Planner | Create itineraries, pull a live destination forecast, track the countdown |
-| Smart Packing | Checklist by category, suitcase volume and weight, interactive open-suitcase 3D view, AI packing chat |
+| Smart Packing | Checklist by category, suitcase volume and weight, AI packing chat |
 | AI Outfit Studio | Upload clothes, get weather-ready, non-repeating outfits per day, save favourites |
 | Digital Wardrobe | Catalogue clothes with AI tagging from photos, search and filter by category and climate |
 
@@ -19,7 +19,7 @@ The original classic workspace (lists, essentials, history, profile, dark mode) 
 
 ## Design
 
-- Palette: powder blue `#B8D9F2`, soft lavender `#D9C9F2`, sunset peach `#FFC5A8`, black `#101010`, white. Wardrobe sample colours are data and keep their real garment colours.
+- Palette: deep midnight teal `#0B3B40`, soft pearl `#FBFAF8`, jet black `#0A0A0A`, with pale teal and warm pearl tints. Wardrobe sample colours are data and keep their real garment colours.
 - Type: Plus Jakarta Sans, heavy and tight for headlines.
 - Motion respects `prefers-reduced-motion`.
 

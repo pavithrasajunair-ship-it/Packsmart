@@ -310,16 +310,16 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
   };
 
   return (
-    <div ref={pageRef} className="min-h-screen bg-[#B8D9F2] text-[#101010] relative">
+    <div ref={pageRef} className="min-h-screen bg-[#BCD2CF] text-[#0A0A0A] relative">
       <EditorialCursor />
 
       {/* ==================== 9. GLOBAL SCROLL PROGRESS BAR ==================== */}
       <div
         aria-hidden="true"
-        className="fixed top-0 left-0 right-0 z-50 h-[3px] bg-[#101010]/10 pointer-events-none"
+        className="fixed top-0 left-0 right-0 z-50 h-[3px] bg-[#0A0A0A]/10 pointer-events-none"
       >
         <div
-          className="h-full bg-[#101010] origin-left transition-transform duration-75"
+          className="h-full bg-[#0B3B40] origin-left transition-transform duration-75"
           style={{ transform: `scaleX(${scrollPct})` }}
         />
       </div>
@@ -328,8 +328,8 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
       <header
         className={`fixed top-[3px] left-0 right-0 z-40 transition-colors duration-300 border-b ${
           navDarkSurface
-            ? 'bg-[#FFFFFF]/95 border-[#101010]/12'
-            : 'bg-[#B8D9F2]/92 border-[#101010]/10'
+            ? 'bg-[#FBFAF8]/95 border-[#0A0A0A]/12'
+            : 'bg-[#BCD2CF]/92 border-[#0A0A0A]/10'
         }`}
       >
         <div className="max-w-[1320px] mx-auto h-16 px-6 sm:px-10 flex items-center justify-between gap-8">
@@ -340,7 +340,7 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="font-display text-lg font-extrabold tracking-tight text-[#101010] whitespace-nowrap shrink-0"
+            className="font-display text-lg font-extrabold tracking-tight text-[#0A0A0A] whitespace-nowrap shrink-0"
           >
             PackSmart
           </a>
@@ -348,40 +348,40 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
           {/* Zone 2: 4 Clean Single-Line Nav Links */}
           <nav
             aria-label="Editorial story sections"
-            className="hidden md:flex items-center gap-7 text-xs font-semibold tracking-tight text-[#101010]/80"
+            className="hidden md:flex items-center gap-7 text-xs font-semibold tracking-tight text-[#0A0A0A]/80"
           >
             <button
               type="button"
               onClick={() => scrollToSection('packing-story')}
-              className="hover:text-[#101010] transition-colors whitespace-nowrap shrink-0 min-h-[40px]"
+              className="hover:text-[#0A0A0A] transition-colors whitespace-nowrap shrink-0 min-h-[40px]"
             >
               Story
             </button>
             <button
               type="button"
               onClick={() => scrollToSection('ai-outfit-matcher')}
-              className="hover:text-[#101010] transition-colors whitespace-nowrap shrink-0 min-h-[40px]"
+              className="hover:text-[#0A0A0A] transition-colors whitespace-nowrap shrink-0 min-h-[40px]"
             >
               AI Matcher
             </button>
             <button
               type="button"
               onClick={() => scrollToSection('curated-stories')}
-              className="hover:text-[#101010] transition-colors whitespace-nowrap shrink-0 min-h-[40px]"
+              className="hover:text-[#0A0A0A] transition-colors whitespace-nowrap shrink-0 min-h-[40px]"
             >
               Lookbook
             </button>
             <button
               type="button"
               onClick={() => scrollToSection('smart-packing')}
-              className="hover:text-[#101010] transition-colors whitespace-nowrap shrink-0 min-h-[40px]"
+              className="hover:text-[#0A0A0A] transition-colors whitespace-nowrap shrink-0 min-h-[40px]"
             >
               Smart Packing
             </button>
             <button
               type="button"
               onClick={() => scrollToSection('weather-planning')}
-              className="hover:text-[#101010] transition-colors whitespace-nowrap shrink-0 min-h-[40px]"
+              className="hover:text-[#0A0A0A] transition-colors whitespace-nowrap shrink-0 min-h-[40px]"
             >
               Weather
             </button>
@@ -393,7 +393,7 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
               type="button"
               onClick={() => onEnterWorkspace('home')}
               cursorLabel="APP"
-              className="min-h-[42px] px-5 bg-[#101010] text-[#FFFFFF] text-xs font-bold tracking-tight hover:bg-[#101010]/85 transition-colors whitespace-nowrap shrink-0"
+              className="min-h-[42px] px-5 bg-[#0B3B40] text-[#FBFAF8] text-xs font-bold tracking-tight hover:bg-[#0A0A0A]/85 transition-colors whitespace-nowrap shrink-0"
             >
               Open Workspace
             </MagneticButton>
@@ -401,22 +401,22 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
         </div>
       </header>
 
-      {/* ==================== ACT 1: CINEMATIC HERO WITH 3D SUITCASE (#B8D9F2) ==================== */}
+      {/* ==================== ACT 1: CINEMATIC HERO WITH 3D SUITCASE (#BCD2CF) ==================== */}
       <section
         id="hero"
         ref={heroRef}
-        className="relative bg-[#B8D9F2] text-[#101010] pt-24 pb-16 lg:pt-28 lg:pb-20 min-h-screen flex items-center overflow-hidden"
+        className="relative bg-[#BCD2CF] text-[#0A0A0A] pt-24 pb-16 lg:pt-28 lg:pb-20 min-h-screen flex items-center overflow-hidden"
       >
         {/* Subtle Architectural Hairline Grid Accent */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 left-1/2 w-px bg-[#101010]/8 hidden lg:block"
+          className="pointer-events-none absolute inset-y-0 left-1/2 w-px bg-[#0A0A0A]/8 hidden lg:block"
         />
 
         <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left Hero Typography & Actions */}
           <div className="lg:col-span-6 space-y-8 relative z-10">
-            <p className="font-mono text-xs tracking-[0.16em] text-[#101010]/70">
+            <p className="font-mono text-xs tracking-[0.16em] text-[#0A0A0A]/70">
               01 / INTELLIGENT FASHION-TECH PACKING
             </p>
 
@@ -431,10 +431,10 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                   Travel with confidence.
                 </span>,
               ]}
-              className="font-display text-5xl sm:text-6xl lg:text-[4.65rem] font-extrabold leading-[0.98] tracking-[-0.03em] text-[#101010]"
+              className="font-display text-5xl sm:text-6xl lg:text-[4.65rem] font-extrabold leading-[0.98] tracking-[-0.03em] text-[#0A0A0A]"
             />
 
-            <p className="text-base sm:text-lg text-[#101010]/75 max-w-lg leading-relaxed">
+            <p className="text-base sm:text-lg text-[#0A0A0A]/75 max-w-lg leading-relaxed">
               Photograph your real wardrobe, let AI Vision match weather-ready outfits with zero repeats, and organize every liter into a calm carry-on.
             </p>
 
@@ -444,38 +444,38 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                 type="button"
                 onClick={() => scrollToSection('ai-outfit-matcher')}
                 cursorLabel="STYLE"
-                className="min-h-[52px] px-7 bg-[#101010] text-[#FFFFFF] text-sm font-bold inline-flex items-center gap-2.5 hover:bg-[#101010]/85 transition-colors whitespace-nowrap"
+                className="min-h-[52px] px-7 bg-[#0B3B40] text-[#FBFAF8] text-sm font-bold inline-flex items-center gap-2.5 hover:bg-[#0A0A0A]/85 transition-colors whitespace-nowrap"
               >
                 <span>Try AI Outfit Matcher</span>
-                <ArrowRight className="w-4 h-4 text-[#FFC5A8]" />
+                <ArrowRight className="w-4 h-4 text-[#E6DFD2]" />
               </MagneticButton>
 
               <button
                 type="button"
                 onClick={onCreateTrip}
-                className="min-h-[52px] px-6 border border-[#101010] text-[#101010] text-sm font-bold inline-flex items-center gap-2 hover:bg-[#FFFFFF] transition-colors whitespace-nowrap"
+                className="min-h-[52px] px-6 border border-[#0A0A0A] text-[#0A0A0A] text-sm font-bold inline-flex items-center gap-2 hover:bg-[#FBFAF8] transition-colors whitespace-nowrap"
               >
                 <span>Create New Trip</span>
               </button>
             </div>
 
             {/* Quiet Proof Metrics Strip */}
-            <div className="grid grid-cols-3 gap-6 pt-6 border-t border-[#101010]/15 max-w-md tabular-nums">
+            <div className="grid grid-cols-3 gap-6 pt-6 border-t border-[#0A0A0A]/15 max-w-md tabular-nums">
               <div>
-                <p className="font-mono text-xl sm:text-2xl font-bold text-[#101010]">
+                <p className="font-mono text-xl sm:text-2xl font-bold text-[#0A0A0A]">
                   {wardrobe.length}
                 </p>
-                <p className="text-xs text-[#101010]/65 mt-0.5">Closet pieces</p>
+                <p className="text-xs text-[#0A0A0A]/65 mt-0.5">Closet pieces</p>
               </div>
               <div>
-                <p className="font-mono text-xl sm:text-2xl font-bold text-[#101010]">
+                <p className="font-mono text-xl sm:text-2xl font-bold text-[#0A0A0A]">
                   {lists.length}
                 </p>
-                <p className="text-xs text-[#101010]/65 mt-0.5">Active trips</p>
+                <p className="text-xs text-[#0A0A0A]/65 mt-0.5">Active trips</p>
               </div>
               <div>
-                <p className="font-mono text-xl sm:text-2xl font-bold text-[#101010]">40L</p>
-                <p className="text-xs text-[#101010]/65 mt-0.5">Carry-on target</p>
+                <p className="font-mono text-xl sm:text-2xl font-bold text-[#0A0A0A]">40L</p>
+                <p className="text-xs text-[#0A0A0A]/65 mt-0.5">Carry-on target</p>
               </div>
             </div>
           </div>
@@ -491,8 +491,8 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
             </div>
 
             {/* Compact Palette Finish Switcher (Below 3D Canvas — Zero Occlusion) */}
-            <div className="mt-2 flex flex-wrap items-center justify-center gap-3 px-4 py-2.5 bg-[#FFFFFF] border border-[#101010]/15">
-              <span className="font-mono text-[11px] text-[#101010]/60 mr-1">
+            <div className="mt-2 flex flex-wrap items-center justify-center gap-3 px-4 py-2.5 bg-[#FBFAF8] border border-[#0A0A0A]/15">
+              <span className="font-mono text-[11px] text-[#0A0A0A]/60 mr-1">
                 Shell Finish
               </span>
               {(Object.keys(SUITCASE_FINISHES) as SuitcaseFinish[]).map((key) => {
@@ -505,12 +505,12 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                     onClick={() => setSuitcaseFinish(key)}
                     className={`min-h-[36px] px-2.5 flex items-center gap-2 text-xs font-semibold transition-colors border ${
                       active
-                        ? 'border-[#101010] bg-[#101010] text-[#FFFFFF]'
-                        : 'border-transparent text-[#101010]/80 hover:border-[#101010]/30'
+                        ? 'border-[#0A0A0A] bg-[#0B3B40] text-[#FBFAF8]'
+                        : 'border-transparent text-[#0A0A0A]/80 hover:border-[#0A0A0A]/30'
                     }`}
                   >
                     <span
-                      className="w-3.5 h-3.5 border border-[#101010]/30 shrink-0"
+                      className="w-3.5 h-3.5 border border-[#0A0A0A]/30 shrink-0"
                       style={{ backgroundColor: spec.shellHex }}
                     />
                     <span className="whitespace-nowrap">{spec.label.split(' ')[0]}</span>
@@ -525,30 +525,30 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
         <button
           type="button"
           onClick={() => scrollToSection('packing-story')}
-          className="hidden lg:inline-flex items-center gap-2 absolute bottom-6 left-10 font-mono text-[11px] tracking-[0.14em] text-[#101010]/65 hover:text-[#101010] transition-colors"
+          className="hidden lg:inline-flex items-center gap-2 absolute bottom-6 left-10 font-mono text-[11px] tracking-[0.14em] text-[#0A0A0A]/65 hover:text-[#0A0A0A] transition-colors"
         >
           <span>SCROLL TO PACK</span>
           <ArrowDown className="w-3.5 h-3.5" />
         </button>
       </section>
 
-      {/* ==================== ACT 2: PINNED SCROLL TRANSFORMATION (#101010) ==================== */}
+      {/* ==================== ACT 2: PINNED SCROLL TRANSFORMATION (#0A0A0A) ==================== */}
       <PackingStorySection
         onOpenSuitcaseOptimizer={() =>
           activeTrip ? onOpenTrip(activeTrip.id, 'suitcase') : onEnterWorkspace('trips')
         }
       />
 
-      {/* ==================== ACT 3: LIVE AI OUTFIT MATCHER STUDIO (#D9C9F2) ==================== */}
+      {/* ==================== ACT 3: LIVE AI OUTFIT MATCHER STUDIO (#D5DCD9) ==================== */}
       <section
         id="ai-outfit-matcher"
-        className="relative bg-[#D9C9F2] text-[#101010] py-20 sm:py-28 overflow-hidden border-t border-[#101010]/10"
+        className="relative bg-[#D5DCD9] text-[#0A0A0A] py-20 sm:py-28 overflow-hidden border-t border-[#0A0A0A]/10"
       >
         {/* Oversized Sideways Editorial Typography */}
         <div
           ref={wardrobeSidewaysRef}
           aria-hidden="true"
-          className="hidden xl:flex pointer-events-none select-none absolute right-5 top-40 vertical-editorial font-editorial italic text-[6rem] leading-none text-[#101010]/12"
+          className="hidden xl:flex pointer-events-none select-none absolute right-5 top-40 vertical-editorial font-editorial italic text-[6rem] leading-none text-[#0A0A0A]/12"
         >
           Wardrobe Intelligence
         </div>
@@ -557,7 +557,7 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
           {/* Editorial Asymmetric Prologue */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-7 space-y-6">
-              <p className="font-mono text-xs tracking-[0.16em] text-[#101010]/70">
+              <p className="font-mono text-xs tracking-[0.16em] text-[#0A0A0A]/70">
                 03 / AI OUTFIT MATCHER · LIVE VISION STUDIO
               </p>
               <LineRevealText
@@ -568,24 +568,24 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                     the clothes you own.
                   </span>,
                 ]}
-                className="font-display text-4xl sm:text-5xl lg:text-[3.75rem] font-extrabold leading-[1.02] tracking-tight text-[#101010]"
+                className="font-display text-4xl sm:text-5xl lg:text-[3.75rem] font-extrabold leading-[1.02] tracking-tight text-[#0A0A0A]"
               />
-              <p className="text-base text-[#101010]/75 max-w-xl leading-relaxed">
+              <p className="text-base text-[#0A0A0A]/75 max-w-xl leading-relaxed">
                 Upload real photos of your shirts, trousers, dresses, jackets, and shoes below. Gemini Vision identifies colors, patterns, fabrics, and warmth—then curates non-repeating trip looks and flags single missing staples that multiply your options.
               </p>
 
-              <div className="grid grid-cols-3 gap-5 pt-4 border-t border-[#101010]/15 max-w-lg text-xs">
+              <div className="grid grid-cols-3 gap-5 pt-4 border-t border-[#0A0A0A]/15 max-w-lg text-xs">
                 <div>
-                  <p className="font-bold text-[#101010]">Real Vision AI</p>
-                  <p className="text-[#101010]/70 mt-0.5">Color, pattern &amp; fabric scan</p>
+                  <p className="font-bold text-[#0A0A0A]">Real Vision AI</p>
+                  <p className="text-[#0A0A0A]/70 mt-0.5">Color, pattern &amp; fabric scan</p>
                 </div>
                 <div>
-                  <p className="font-bold text-[#101010]">Zero Repeats</p>
-                  <p className="text-[#101010]/70 mt-0.5">Maximum looks, minimum clothes</p>
+                  <p className="font-bold text-[#0A0A0A]">Zero Repeats</p>
+                  <p className="text-[#0A0A0A]/70 mt-0.5">Maximum looks, minimum clothes</p>
                 </div>
                 <div>
-                  <p className="font-bold text-[#101010]">1-Tap Suitcase Sync</p>
-                  <p className="text-[#101010]/70 mt-0.5">Sends capsule straight to trip</p>
+                  <p className="font-bold text-[#0A0A0A]">1-Tap Suitcase Sync</p>
+                  <p className="text-[#0A0A0A]/70 mt-0.5">Sends capsule straight to trip</p>
                 </div>
               </div>
             </div>
@@ -594,7 +594,7 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
             <div className="lg:col-span-5">
               <div
                 ref={wardrobeParallaxRef}
-                className="relative aspect-[3/4] max-h-[480px] w-full overflow-hidden border border-[#101010]/15 bg-[#FFFFFF]"
+                className="relative aspect-[3/4] max-h-[480px] w-full overflow-hidden border border-[#0A0A0A]/15 bg-[#FBFAF8]"
               >
                 <img decoding="async"
                   src={fashionCapsuleImg}
@@ -603,9 +603,9 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute bottom-0 inset-x-0 px-4 py-3 bg-[#101010]/85 text-[#FFFFFF] flex items-center justify-between text-xs font-mono">
+                <div className="absolute bottom-0 inset-x-0 px-4 py-3 bg-[#0A0A0A]/85 text-[#FBFAF8] flex items-center justify-between text-xs font-mono">
                   <span>CAPSULE RATIO 4 : 9</span>
-                  <span className="text-[#FFC5A8]">OWNED ONLY</span>
+                  <span className="text-[#E6DFD2]">OWNED ONLY</span>
                 </div>
               </div>
             </div>
@@ -632,18 +632,18 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
         </div>
       </section>
 
-      {/* ==================== ACT 4: HORIZONTAL SCROLL STORYTELLING (#FFC5A8) ==================== */}
+      {/* ==================== ACT 4: HORIZONTAL SCROLL STORYTELLING (#E6DFD2) ==================== */}
       <HorizontalGallerySection onSelectBlueprint={handleBlueprintAction} />
 
-      {/* ==================== ACT 5: INTERACTIVE SMART PACKING STUDIO (#B8D9F2) ==================== */}
+      {/* ==================== ACT 5: INTERACTIVE SMART PACKING STUDIO (#BCD2CF) ==================== */}
       <section
         id="smart-packing"
-        className="relative bg-[#B8D9F2] text-[#101010] py-20 sm:py-28 overflow-hidden border-t border-[#101010]/10"
+        className="relative bg-[#BCD2CF] text-[#0A0A0A] py-20 sm:py-28 overflow-hidden border-t border-[#0A0A0A]/10"
       >
         <div
           ref={packingSidewaysRef}
           aria-hidden="true"
-          className="hidden xl:flex pointer-events-none select-none absolute right-5 top-1/2 -translate-y-1/2 vertical-editorial font-editorial italic text-[5.75rem] leading-none text-[#101010]/12"
+          className="hidden xl:flex pointer-events-none select-none absolute right-5 top-1/2 -translate-y-1/2 vertical-editorial font-editorial italic text-[5.75rem] leading-none text-[#0A0A0A]/12"
         >
           Smart Packing
         </div>
@@ -651,13 +651,13 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
             <div className="lg:col-span-7 space-y-4">
-              <p className="font-mono text-xs tracking-[0.16em] text-[#101010]/70">
+              <p className="font-mono text-xs tracking-[0.16em] text-[#0A0A0A]/70">
                 05 / INTERACTIVE SMART PACKING
               </p>
               <LineRevealText
                 as="h2"
                 lines={['Every gram accounted.', 'Every essential calm.']}
-                className="font-editorial text-4xl sm:text-5xl lg:text-[3.75rem] leading-[1.0] font-normal text-[#101010]"
+                className="font-editorial text-4xl sm:text-5xl lg:text-[3.75rem] leading-[1.0] font-normal text-[#0A0A0A]"
               />
             </div>
             <div className="lg:col-span-5 flex lg:justify-end">
@@ -667,12 +667,12 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                   activeTrip ? onOpenTrip(activeTrip.id, 'checklist') : onCreateTrip()
                 }
                 cursorLabel="OPEN"
-                className="min-h-[48px] px-6 bg-[#101010] text-[#FFFFFF] text-xs font-bold inline-flex items-center gap-2 whitespace-nowrap"
+                className="min-h-[48px] px-6 bg-[#0B3B40] text-[#FBFAF8] text-xs font-bold inline-flex items-center gap-2 whitespace-nowrap"
               >
                 <span>
                   {activeTrip ? `Open ${activeTrip.title}` : 'Create Your First Trip'}
                 </span>
-                <ArrowUpRight className="w-4 h-4 text-[#FFC5A8]" />
+                <ArrowUpRight className="w-4 h-4 text-[#E6DFD2]" />
               </MagneticButton>
             </div>
           </div>
@@ -680,18 +680,18 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
           {activeTrip && activeTripMetrics ? (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
               {/* Left: Live Interactive Packing Checklist */}
-              <div className="lg:col-span-7 bg-[#FFFFFF] border border-[#101010]/15 p-6 sm:p-7 flex flex-col justify-between gap-6">
+              <div className="lg:col-span-7 bg-[#FBFAF8] border border-[#0A0A0A]/15 p-6 sm:p-7 flex flex-col justify-between gap-6">
                 <div className="space-y-4">
-                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#101010]/10 pb-4">
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#0A0A0A]/10 pb-4">
                     <div>
-                      <p className="font-mono text-[11px] text-[#101010]/60">
+                      <p className="font-mono text-[11px] text-[#0A0A0A]/60">
                         LIVE ACTIVE TRIP · {activeTrip.destination || activeTrip.tripType}
                       </p>
-                      <h3 className="font-display text-xl font-extrabold text-[#101010] mt-0.5">
+                      <h3 className="font-display text-xl font-extrabold text-[#0A0A0A] mt-0.5">
                         {activeTrip.title}
                       </h3>
                     </div>
-                    <span className="font-mono text-xs font-bold text-[#101010] tabular-nums">
+                    <span className="font-mono text-xs font-bold text-[#0A0A0A] tabular-nums">
                       {activeTrip.items.filter((i) => i.packed).length} / {activeTrip.items.length} packed
                     </span>
                   </div>
@@ -703,7 +703,7 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                       value={quickItemName}
                       onChange={(e) => setQuickItemName(e.target.value)}
                       placeholder="Add an item directly to this trip..."
-                      className="sm:col-span-6 min-h-[44px] px-3.5 bg-[#FFFFFF] border border-[#101010]/25 text-sm text-[#101010]"
+                      className="sm:col-span-6 min-h-[44px] px-3.5 bg-[#FBFAF8] border border-[#0A0A0A]/25 text-sm text-[#0A0A0A]"
                     />
                     <select
                       aria-label="Item category"
@@ -711,7 +711,7 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                       onChange={(e) =>
                         setQuickItemCat(e.target.value as 'Clothing' | 'Electronics' | 'Documents')
                       }
-                      className="sm:col-span-3 min-h-[44px] px-3 bg-[#FFFFFF] border border-[#101010]/25 text-xs font-semibold text-[#101010]"
+                      className="sm:col-span-3 min-h-[44px] px-3 bg-[#FBFAF8] border border-[#0A0A0A]/25 text-xs font-semibold text-[#0A0A0A]"
                     >
                       <option value="Clothing">Clothing</option>
                       <option value="Electronics">Electronics</option>
@@ -719,15 +719,15 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                     </select>
                     <button
                       type="submit"
-                      className="sm:col-span-3 min-h-[44px] px-4 bg-[#101010] text-[#FFFFFF] text-xs font-bold inline-flex items-center justify-center gap-1.5 hover:bg-[#101010]/85"
+                      className="sm:col-span-3 min-h-[44px] px-4 bg-[#0B3B40] text-[#FBFAF8] text-xs font-bold inline-flex items-center justify-center gap-1.5 hover:bg-[#0A0A0A]/85"
                     >
-                      <Plus className="w-3.5 h-3.5 text-[#FFC5A8]" />
+                      <Plus className="w-3.5 h-3.5 text-[#E6DFD2]" />
                       <span>Add Item</span>
                     </button>
                   </form>
 
                   {/* Animated Interactive Checklist Rows */}
-                  <div className="divide-y divide-[#101010]/10 max-h-[340px] overflow-y-auto pr-1">
+                  <div className="divide-y divide-[#0A0A0A]/10 max-h-[340px] overflow-y-auto pr-1">
                     {activeTrip.items.slice(0, 8).map((item) => (
                       <motion.button
                         key={item.id}
@@ -741,8 +741,8 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                           <span
                             className={`w-5 h-5 border flex items-center justify-center shrink-0 transition-colors ${
                               item.packed
-                                ? 'bg-[#101010] border-[#101010] text-[#FFC5A8]'
-                                : 'border-[#101010]/40 bg-[#FFFFFF] group-hover:border-[#101010]'
+                                ? 'bg-[#0B3B40] border-[#0A0A0A] text-[#E6DFD2]'
+                                : 'border-[#0A0A0A]/40 bg-[#FBFAF8] group-hover:border-[#0A0A0A]'
                             }`}
                           >
                             {item.packed && <Check className="w-3.5 h-3.5" />}
@@ -751,18 +751,18 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                             <p
                               className={`text-sm font-semibold truncate transition-opacity ${
                                 item.packed
-                                  ? 'line-through text-[#101010]/45'
-                                  : 'text-[#101010]'
+                                  ? 'line-through text-[#0A0A0A]/45'
+                                  : 'text-[#0A0A0A]'
                               }`}
                             >
                               {item.name}
                             </p>
-                            <p className="font-mono text-[11px] text-[#101010]/55">
+                            <p className="font-mono text-[11px] text-[#0A0A0A]/55">
                               {item.category} · ×{item.quantity}
                             </p>
                           </div>
                         </div>
-                        <span className="font-mono text-xs text-[#101010]/65 shrink-0 tabular-nums">
+                        <span className="font-mono text-xs text-[#0A0A0A]/65 shrink-0 tabular-nums">
                           {item.weightGrams * item.quantity}g · {item.volumeLiters}L
                         </span>
                       </motion.button>
@@ -770,11 +770,11 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#101010]/10 flex flex-wrap items-center justify-between gap-3">
+                <div className="pt-4 border-t border-[#0A0A0A]/10 flex flex-wrap items-center justify-between gap-3">
                   <button
                     type="button"
                     onClick={() => onOpenTrip(activeTrip.id, 'before_leave')}
-                    className="text-xs font-bold text-[#101010] underline underline-offset-4 hover:opacity-75 min-h-[38px]"
+                    className="text-xs font-bold text-[#0A0A0A] underline underline-offset-4 hover:opacity-75 min-h-[38px]"
                   >
                     Before You Leave Mode ({activeTrip.beforeLeaveTasks.filter((t) => t.completed).length}/
                     {activeTrip.beforeLeaveTasks.length})
@@ -782,7 +782,7 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                   <button
                     type="button"
                     onClick={() => onOpenTrip(activeTrip.id, 'timeline')}
-                    className="text-xs font-bold text-[#101010] underline underline-offset-4 hover:opacity-75 min-h-[38px]"
+                    className="text-xs font-bold text-[#0A0A0A] underline underline-offset-4 hover:opacity-75 min-h-[38px]"
                   >
                     View Smart Timeline →
                   </button>
@@ -791,15 +791,15 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
 
               {/* Right: Visual Suitcase Capacity & Editorial Flat-Lay */}
               <div className="lg:col-span-5 flex flex-col gap-5">
-                <TiltCard maxTilt={3} className="bg-[#101010] text-[#FFFFFF] p-6 space-y-5">
+                <TiltCard maxTilt={3} className="bg-[#0B3B40] text-[#FBFAF8] p-6 space-y-5">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Luggage className="w-4 h-4 text-[#FFC5A8]" />
-                      <span className="font-mono text-xs text-[#B8D9F2]">
+                      <Luggage className="w-4 h-4 text-[#E6DFD2]" />
+                      <span className="font-mono text-xs text-[#BCD2CF]">
                         {activeTrip.luggageType}
                       </span>
                     </div>
-                    <span className="font-mono text-xs text-[#FFC5A8] tabular-nums">
+                    <span className="font-mono text-xs text-[#E6DFD2] tabular-nums">
                       {activeTripMetrics.volumePercent}% FULL
                     </span>
                   </div>
@@ -812,7 +812,7 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                         animate={{ width: `${Math.min(100, activeTripMetrics.volumePercent)}%` }}
                         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                         className={`h-full ${
-                          activeTripMetrics.isVolumeOverloaded ? 'bg-[#FFC5A8]' : 'bg-[#B8D9F2]'
+                          activeTripMetrics.isVolumeOverloaded ? 'bg-[#E6DFD2]' : 'bg-[#BCD2CF]'
                         }`}
                       />
                     </div>
@@ -825,13 +825,13 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                   <div className="grid grid-cols-2 gap-4 pt-3 border-t border-white/15 tabular-nums">
                     <div>
                       <p className="font-mono text-[11px] text-white/55">Total Weight</p>
-                      <p className="font-mono text-xl font-bold text-[#FFFFFF] mt-0.5">
+                      <p className="font-mono text-xl font-bold text-[#FBFAF8] mt-0.5">
                         {activeTripMetrics.totalWeightKg} kg
                       </p>
                     </div>
                     <div>
                       <p className="font-mono text-[11px] text-white/55">Allowance</p>
-                      <p className="font-mono text-xl font-bold text-[#D9C9F2] mt-0.5">
+                      <p className="font-mono text-xl font-bold text-[#D5DCD9] mt-0.5">
                         {activeTrip.baggageAllowanceKg} kg
                       </p>
                     </div>
@@ -840,13 +840,13 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                   <button
                     type="button"
                     onClick={() => onOpenTrip(activeTrip.id, 'suitcase')}
-                    className="w-full min-h-[44px] bg-[#FFC5A8] text-[#101010] text-xs font-bold hover:bg-[#FFFFFF] transition-colors"
+                    className="w-full min-h-[44px] bg-[#E6DFD2] text-[#0A0A0A] text-xs font-bold hover:bg-[#FBFAF8] transition-colors"
                   >
                     Optimize Suitcase Space &amp; Folding Guide
                   </button>
                 </TiltCard>
 
-                <div className="flex-1 min-h-[200px] overflow-hidden border border-[#101010]/15 bg-[#D9C9F2]">
+                <div className="flex-1 min-h-[200px] overflow-hidden border border-[#0A0A0A]/15 bg-[#D5DCD9]">
                   <img decoding="async"
                     src={packingFlatlayImg}
                     alt="Matte black carry-on neatly packed on lavender surface"
@@ -858,12 +858,12 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
               </div>
             </div>
           ) : (
-            <div className="bg-[#FFFFFF] border border-[#101010]/15 p-10 text-center space-y-4">
+            <div className="bg-[#FBFAF8] border border-[#0A0A0A]/15 p-10 text-center space-y-4">
               <p className="font-editorial text-2xl">Start your first packing list to track every liter.</p>
               <button
                 type="button"
                 onClick={onCreateTrip}
-                className="min-h-[46px] px-6 bg-[#101010] text-[#FFFFFF] text-xs font-bold"
+                className="min-h-[46px] px-6 bg-[#0B3B40] text-[#FBFAF8] text-xs font-bold"
               >
                 Create New Trip
               </button>
@@ -872,22 +872,22 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
         </div>
       </section>
 
-      {/* ==================== ACT 6: LIVE WEATHER INTELLIGENCE & FINAL CTA (#101010) ==================== */}
+      {/* ==================== ACT 6: LIVE WEATHER INTELLIGENCE & FINAL CTA (#0A0A0A) ==================== */}
       <section
         id="weather-planning"
-        className="bg-[#101010] text-[#FFFFFF] pt-20 sm:pt-28 pb-16 border-t border-white/10"
+        className="bg-[#0B3B40] text-[#FBFAF8] pt-20 sm:pt-28 pb-16 border-t border-white/10"
       >
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-24">
           {/* Interactive Live Weather Packing Intelligence */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             <div className="lg:col-span-5 space-y-5">
-              <p className="font-mono text-xs tracking-[0.16em] text-[#B8D9F2]">
+              <p className="font-mono text-xs tracking-[0.16em] text-[#BCD2CF]">
                 06 / LIVE METEOROLOGICAL PACKING
               </p>
               <LineRevealText
                 as="h2"
                 lines={['Real weather.', 'Zero guesswork.']}
-                className="font-editorial text-4xl sm:text-5xl leading-[1.02] font-normal text-[#FFFFFF]"
+                className="font-editorial text-4xl sm:text-5xl leading-[1.02] font-normal text-[#FBFAF8]"
               />
               <p className="text-sm text-white/70 leading-relaxed max-w-md">
                 Enter any destination worldwide. PackSmart queries live Open-Meteo forecasts and converts temperature swings, humidity, and rain probability into concrete packing calls.
@@ -908,13 +908,13 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                     value={weatherCity}
                     onChange={(e) => setWeatherCity(e.target.value)}
                     placeholder="Type any city (e.g., Tokyo, London)..."
-                    className="w-full min-h-[46px] pl-10 pr-3 bg-white/[0.06] border border-white/20 text-sm text-[#FFFFFF] placeholder:text-white/40"
+                    className="w-full min-h-[46px] pl-10 pr-3 bg-white/[0.06] border border-white/20 text-sm text-[#FBFAF8] placeholder:text-white/40"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={weatherBusy || !isOnline}
-                  className="min-h-[46px] px-5 bg-[#B8D9F2] text-[#101010] text-xs font-bold shrink-0 hover:bg-[#FFFFFF] transition-colors disabled:opacity-50"
+                  className="min-h-[46px] px-5 bg-[#BCD2CF] text-[#0A0A0A] text-xs font-bold shrink-0 hover:bg-[#FBFAF8] transition-colors disabled:opacity-50"
                 >
                   {weatherBusy ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Forecast'}
                 </button>
@@ -931,7 +931,7 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                     }}
                     className={`min-h-[34px] px-3 font-mono text-xs border transition-colors ${
                       weatherCity.toLowerCase() === city.toLowerCase()
-                        ? 'bg-[#D9C9F2] border-[#D9C9F2] text-[#101010] font-bold'
+                        ? 'bg-[#D5DCD9] border-[#D5DCD9] text-[#0A0A0A] font-bold'
                         : 'border-white/20 text-white/75 hover:border-white/50'
                     }`}
                   >
@@ -945,33 +945,33 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
             <div className="lg:col-span-7 bg-white/[0.04] border border-white/15 p-6 sm:p-8 space-y-6">
               {weatherBusy && !weatherReport ? (
                 <div className="py-12 text-center space-y-3">
-                  <Loader2 className="w-6 h-6 animate-spin text-[#B8D9F2] mx-auto" />
+                  <Loader2 className="w-6 h-6 animate-spin text-[#BCD2CF] mx-auto" />
                   <p className="font-mono text-xs text-white/65">
                     Fetching live forecast for {weatherCity}...
                   </p>
                 </div>
               ) : weatherErr ? (
-                <div className="p-4 bg-[#FFC5A8] text-[#101010] text-xs font-semibold">
+                <div className="p-4 bg-[#E6DFD2] text-[#0A0A0A] text-xs font-semibold">
                   {weatherErr}
                 </div>
               ) : weatherReport ? (
                 <>
                   <div className="flex flex-wrap items-start justify-between gap-4 border-b border-white/15 pb-5">
                     <div>
-                      <p className="font-mono text-[11px] text-[#FFC5A8]">
+                      <p className="font-mono text-[11px] text-[#E6DFD2]">
                         LIVE OPEN-METEO FORECAST
                       </p>
-                      <h3 className="font-editorial text-3xl font-medium text-[#FFFFFF] mt-1">
+                      <h3 className="font-editorial text-3xl font-medium text-[#FBFAF8] mt-1">
                         {weatherReport.shortLocation}
                       </h3>
                       <p className="text-xs text-white/65 mt-1">{weatherReport.note}</p>
                     </div>
                     <div className="text-right font-mono tabular-nums">
-                      <div className="flex items-center justify-end gap-2 text-2xl font-bold text-[#B8D9F2]">
+                      <div className="flex items-center justify-end gap-2 text-2xl font-bold text-[#BCD2CF]">
                         {weatherReport.summary.maxRainChance >= 45 ? (
-                          <CloudRain className="w-6 h-6 text-[#D9C9F2]" />
+                          <CloudRain className="w-6 h-6 text-[#D5DCD9]" />
                         ) : (
-                          <Sun className="w-6 h-6 text-[#FFC5A8]" />
+                          <Sun className="w-6 h-6 text-[#E6DFD2]" />
                         )}
                         <span>
                           {weatherReport.summary.avgLow}°–{weatherReport.summary.avgHigh}°C
@@ -996,8 +996,8 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                           className="p-3.5 bg-white/[0.04] border border-white/12 space-y-1"
                         >
                           <div className="flex items-center justify-between gap-2">
-                            <p className="text-xs font-bold text-[#FFFFFF]">{rec.name}</p>
-                            <span className="font-mono text-[10px] text-[#B8D9F2]">
+                            <p className="text-xs font-bold text-[#FBFAF8]">{rec.name}</p>
+                            <span className="font-mono text-[10px] text-[#BCD2CF]">
                               {rec.weightGrams}g
                             </span>
                           </div>
@@ -1009,13 +1009,13 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
 
                   <div className="pt-2 flex flex-wrap items-center justify-between gap-3">
                     <span className="font-mono text-[11px] text-white/50 flex items-center gap-1.5">
-                      <CloudSun className="w-3.5 h-3.5 text-[#D9C9F2]" />
+                      <CloudSun className="w-3.5 h-3.5 text-[#D5DCD9]" />
                       <span>Updated {new Date(weatherReport.fetchedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                     </span>
                     <button
                       type="button"
                       onClick={onCreateTrip}
-                      className="min-h-[42px] px-5 bg-[#FFC5A8] text-[#101010] text-xs font-bold hover:bg-[#FFFFFF] transition-colors"
+                      className="min-h-[42px] px-5 bg-[#E6DFD2] text-[#0A0A0A] text-xs font-bold hover:bg-[#FBFAF8] transition-colors"
                     >
                       Build Trip for {weatherReport.shortLocation.split(',')[0]}
                     </button>
@@ -1029,18 +1029,18 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
           <div className="border-t border-white/15 pt-16 sm:pt-20 space-y-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
               <div className="lg:col-span-8 space-y-4">
-                <p className="font-mono text-xs tracking-[0.16em] text-[#D9C9F2]">
+                <p className="font-mono text-xs tracking-[0.16em] text-[#D5DCD9]">
                   READY FOR DEPARTURE
                 </p>
                 <LineRevealText
                   as="h2"
                   lines={[
                     'Your next journey,',
-                    <span key="end2" className="font-editorial italic text-[#FFC5A8]">
+                    <span key="end2" className="font-editorial italic text-[#E6DFD2]">
                       edited to perfection.
                     </span>,
                   ]}
-                  className="font-display text-4xl sm:text-6xl lg:text-[4.5rem] font-extrabold leading-[0.98] tracking-tight text-[#FFFFFF]"
+                  className="font-display text-4xl sm:text-6xl lg:text-[4.5rem] font-extrabold leading-[0.98] tracking-tight text-[#FBFAF8]"
                 />
               </div>
 
@@ -1049,7 +1049,7 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
                   type="button"
                   onClick={() => onEnterWorkspace('home')}
                   cursorLabel="LAUNCH"
-                  className="min-h-[56px] px-8 bg-[#FFFFFF] text-[#101010] text-sm font-bold inline-flex items-center gap-3 hover:bg-[#B8D9F2] transition-colors whitespace-nowrap"
+                  className="min-h-[56px] px-8 bg-[#FBFAF8] text-[#0A0A0A] text-sm font-bold inline-flex items-center gap-3 hover:bg-[#BCD2CF] transition-colors whitespace-nowrap"
                 >
                   <span>Open Full PackSmart Workspace</span>
                   <ArrowRight className="w-4 h-4" />
@@ -1062,35 +1062,35 @@ export const EditorialExperience: React.FC<EditorialExperienceProps> = ({
 
             {/* Quiet Minimal Footer */}
             <footer className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-white/55">
-              <span className="font-display font-bold text-[#FFFFFF]">
+              <span className="font-display font-bold text-[#FBFAF8]">
                 PackSmart — Pack less stress. Travel with confidence.
               </span>
               <div className="flex flex-wrap items-center gap-6">
                 <button
                   type="button"
                   onClick={() => onEnterWorkspace('trips')}
-                  className="hover:text-[#FFFFFF] transition-colors"
+                  className="hover:text-[#FBFAF8] transition-colors"
                 >
                   My Trips
                 </button>
                 <button
                   type="button"
                   onClick={() => onEnterWorkspace('wardrobe')}
-                  className="hover:text-[#FFFFFF] transition-colors"
+                  className="hover:text-[#FBFAF8] transition-colors"
                 >
                   Wardrobe Studio
                 </button>
                 <button
                   type="button"
                   onClick={() => onEnterWorkspace('essentials')}
-                  className="hover:text-[#FFFFFF] transition-colors"
+                  className="hover:text-[#FBFAF8] transition-colors"
                 >
                   Document Vault
                 </button>
                 <button
                   type="button"
                   onClick={() => onEnterWorkspace('profile')}
-                  className="hover:text-[#FFFFFF] transition-colors"
+                  className="hover:text-[#FBFAF8] transition-colors"
                 >
                   Profile &amp; Backup
                 </button>

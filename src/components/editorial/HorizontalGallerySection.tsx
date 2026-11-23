@@ -22,7 +22,7 @@ export interface EditorialBlueprint {
   capsuleSpec: string;
   image: string;
   actionLabel: string;
-  surface: '#FFFFFF' | '#B8D9F2' | '#D9C9F2' | '#101010';
+  surface: '#FBFAF8' | '#BCD2CF' | '#D5DCD9' | '#0A0A0A';
   kind: 'trip_blueprint' | 'wardrobe_jump' | 'suitcase_jump' | 'vault_jump';
 }
 
@@ -38,7 +38,7 @@ export const EDITORIAL_BLUEPRINTS: EditorialBlueprint[] = [
     capsuleSpec: '9 pieces · 12 outfits · 7.6 kg',
     image: kyotoImg,
     actionLabel: 'Load Kyoto Trip',
-    surface: '#FFFFFF',
+    surface: '#FBFAF8',
     kind: 'trip_blueprint',
   },
   {
@@ -52,7 +52,7 @@ export const EDITORIAL_BLUEPRINTS: EditorialBlueprint[] = [
     capsuleSpec: '7 pieces · 10 outfits · 5.9 kg',
     image: amalfiImg,
     actionLabel: 'Load Amalfi Trip',
-    surface: '#B8D9F2',
+    surface: '#BCD2CF',
     kind: 'trip_blueprint',
   },
   {
@@ -66,7 +66,7 @@ export const EDITORIAL_BLUEPRINTS: EditorialBlueprint[] = [
     capsuleSpec: 'Visual Liters · Weight Allowance',
     image: flatlayImg,
     actionLabel: 'Open Space Optimizer',
-    surface: '#101010',
+    surface: '#0A0A0A',
     kind: 'suitcase_jump',
   },
   {
@@ -80,7 +80,7 @@ export const EDITORIAL_BLUEPRINTS: EditorialBlueprint[] = [
     capsuleSpec: 'Owned Clothes Only · Smart Gaps',
     image: fashionImg,
     actionLabel: 'Try AI Outfit Matcher',
-    surface: '#D9C9F2',
+    surface: '#D5DCD9',
     kind: 'wardrobe_jump',
   },
   {
@@ -94,7 +94,7 @@ export const EDITORIAL_BLUEPRINTS: EditorialBlueprint[] = [
     capsuleSpec: 'Expiry Alerts · Private Vault',
     image: vaultImg,
     actionLabel: 'Open Document Radar',
-    surface: '#FFFFFF',
+    surface: '#FBFAF8',
     kind: 'vault_jump',
   },
 ];
@@ -167,7 +167,7 @@ export const HorizontalGallerySection: React.FC<HorizontalGallerySectionProps> =
     <section
       id="curated-stories"
       ref={sectionRef}
-      className="relative text-[#101010] overflow-hidden"
+      className="relative text-[#0A0A0A] overflow-hidden"
     >
       <div className="min-h-screen flex flex-col justify-center py-16 lg:py-12">
         {/* Section Header */}
@@ -176,10 +176,10 @@ export const HorizontalGallerySection: React.FC<HorizontalGallerySectionProps> =
             <LineRevealText
               as="h2"
               lines={['Destinations styled', 'before you depart.']}
-              className="text-4xl sm:text-5xl lg:text-[3.75rem] leading-[1.02] tracking-[-0.035em] text-[#101010]"
+              className="text-4xl sm:text-5xl lg:text-[3.75rem] leading-[1.02] tracking-[-0.035em] text-[#0A0A0A]"
             />
           </div>
-          <p className="text-sm text-[#101010]/75 max-w-sm leading-relaxed">
+          <p className="text-sm text-[#0A0A0A]/75 max-w-sm leading-relaxed">
             Scroll horizontally through real destination capsules and preparation blueprints—load any story straight into your live PackSmart workspace.
           </p>
         </div>
@@ -190,7 +190,7 @@ export const HorizontalGallerySection: React.FC<HorizontalGallerySectionProps> =
           className="flex gap-6 lg:gap-8 px-6 sm:px-10 lg:pl-20 overflow-x-auto lg:overflow-visible no-scrollbar will-change-transform snap-x snap-mandatory lg:snap-none"
         >
           {EDITORIAL_BLUEPRINTS.map((bp) => {
-            const isDark = bp.surface === '#101010';
+            const isDark = bp.surface === '#0A0A0A';
             return (
               <TiltCard
                 key={bp.id}
@@ -200,12 +200,12 @@ export const HorizontalGallerySection: React.FC<HorizontalGallerySectionProps> =
               >
                 <article
                   style={{ backgroundColor: bp.surface }}
-                  className={`h-full rounded-3xl border border-[#101010]/10 flex flex-col justify-between overflow-hidden group ${
-                    isDark ? 'text-[#FFFFFF]' : 'text-[#101010]'
+                  className={`h-full rounded-3xl border border-[#0A0A0A]/10 flex flex-col justify-between overflow-hidden group ${
+                    isDark ? 'text-[#FBFAF8]' : 'text-[#0A0A0A]'
                   }`}
                 >
                   {/* Large Editorial Photography Frame with Hover Zoom */}
-                  <div className="relative aspect-[16/10] overflow-hidden bg-[#101010]/10">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-[#0A0A0A]/10">
                     <img decoding="async"
                       src={bp.image}
                       alt={bp.title}
@@ -220,7 +220,7 @@ export const HorizontalGallerySection: React.FC<HorizontalGallerySectionProps> =
                     <div className="space-y-3">
                       <div
                         className={`flex items-center justify-between gap-3 font-mono text-[11px] ${
-                          isDark ? 'text-[#FFC5A8]' : 'text-[#101010]/60'
+                          isDark ? 'text-[#E6DFD2]' : 'text-[#0A0A0A]/60'
                         }`}
                       >
                         <span>{bp.chapter}</span>
@@ -233,7 +233,7 @@ export const HorizontalGallerySection: React.FC<HorizontalGallerySectionProps> =
 
                       <p
                         className={`text-sm leading-relaxed ${
-                          isDark ? 'text-white/75' : 'text-[#101010]/75'
+                          isDark ? 'text-white/75' : 'text-[#0A0A0A]/75'
                         }`}
                       >
                         {bp.subtitle}
@@ -242,12 +242,12 @@ export const HorizontalGallerySection: React.FC<HorizontalGallerySectionProps> =
 
                     <div
                       className={`pt-4 border-t flex items-center justify-between gap-4 ${
-                        isDark ? 'border-white/15' : 'border-[#101010]/12'
+                        isDark ? 'border-white/15' : 'border-[#0A0A0A]/12'
                       }`}
                     >
                       <span
                         className={`font-mono text-xs tabular-nums ${
-                          isDark ? 'text-[#B8D9F2]' : 'text-[#101010]/70'
+                          isDark ? 'text-[#BCD2CF]' : 'text-[#0A0A0A]/70'
                         }`}
                       >
                         {bp.capsuleSpec}
@@ -259,8 +259,8 @@ export const HorizontalGallerySection: React.FC<HorizontalGallerySectionProps> =
                         cursorLabel="LOAD"
                         className={`min-h-[42px] px-4 rounded-full text-xs font-bold inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 transition-colors ${
                           isDark
-                            ? 'bg-[#FFC5A8] text-[#101010] hover:bg-[#FFFFFF]'
-                            : 'bg-[#101010] text-[#FFFFFF] hover:bg-[#101010]/85'
+                            ? 'bg-[#E6DFD2] text-[#0A0A0A] hover:bg-[#FBFAF8]'
+                            : 'bg-[#0B3B40] text-[#FBFAF8] hover:bg-[#0A0A0A]/85'
                         }`}
                       >
                         <span>{bp.actionLabel}</span>

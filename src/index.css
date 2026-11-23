@@ -9,24 +9,23 @@
   --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  /* PackSmart palette: five colours, nothing else. */
-  --color-black: #101010;
-  --color-white: #FFFFFF;
-  --color-powder: #B8D9F2;
-  --color-lavender: #D9C9F2;
-  --color-peach: #FFC5A8;
-  --color-ink: #101010;
-  --color-paper: #FFFFFF;
-  --color-ivory: #FFFFFF;
+  /* PackSmart palette: midnight teal, soft pearl, jet black. */
+  --color-teal: #0B3B40;
+  --color-pearl: #FBFAF8;
+  --color-jet: #0A0A0A;
+  --color-black: #0A0A0A;
+  --color-white: #FBFAF8;
+  --color-ink: #0A0A0A;
+  --color-paper: #FBFAF8;
+  --color-ivory: #FBFAF8;
 }
 
 @layer base {
   :root {
-    --ps-black: #101010;
-    --ps-white: #FFFFFF;
-    --ps-powder: #B8D9F2;
-    --ps-lavender: #D9C9F2;
-    --ps-peach: #FFC5A8;
+    --ps-black: #0A0A0A;
+    --ps-white: #FBFAF8;
+    --ps-teal: #0B3B40;
+    --ps-pearl: #ECE9E3;
     --ps-ease: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -34,7 +33,7 @@
     font-family: var(--font-sans);
     -webkit-tap-highlight-color: transparent;
     color: var(--ps-black);
-    background-color: var(--ps-white);
+    background-color: var(--ps-pearl);
     /* No CSS smooth-scroll: it fights GSAP ScrollTrigger pinning. */
     scroll-behavior: auto;
   }
@@ -42,7 +41,7 @@
   body {
     font-family: var(--font-sans);
     color: var(--ps-black);
-    background-color: var(--ps-white);
+    background-color: var(--ps-pearl);
   }
 
   /* Big headlines: heavy and tight. Small headings: semibold. */
@@ -89,8 +88,8 @@
   }
 
   ::selection {
-    background: var(--ps-lavender);
-    color: var(--ps-black);
+    background: var(--ps-teal);
+    color: var(--ps-white);
   }
 }
 
@@ -148,7 +147,7 @@
 }
 
 /* Workspace cards float above the pastel ground. */
-.ps-work [class*="rounded-3xl"][class*="bg-[#FFFFFF]"] {
+.ps-work [class*="rounded-3xl"][class*="bg-[#FBFAF8]"] {
   box-shadow: 0 24px 60px -34px rgba(16, 16, 16, 0.38);
   border-color: rgba(16, 16, 16, 0.06);
 }
