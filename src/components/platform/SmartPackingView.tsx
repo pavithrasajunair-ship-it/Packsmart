@@ -23,6 +23,7 @@ import {
 } from '../../utils/packingEngine';
 import { uid } from '../../utils/storage';
 import { PageHero, ProgressVisual } from './PageHero';
+import { PackStation } from './PackStation';
 
 interface SmartPackingViewProps {
   lists: PackingList[];
@@ -450,6 +451,8 @@ export const SmartPackingView: React.FC<SmartPackingViewProps> = ({
             </div>
           </div>
         </div>
+
+        <PackStation trip={activeTrip} onUpdateList={onUpdateList} />
 
         {/* ==================== MAIN 12-COL LAYOUT ==================== */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">

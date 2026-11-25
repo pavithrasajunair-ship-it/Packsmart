@@ -293,6 +293,28 @@ export const HomePage: React.FC<HomePageProps> = ({
 
   const current = modules[active];
 
+  // Click the front card to open its detail; any move to another card closes it.
+  const [expanded, setExpanded] = useState(false);
+  const dragMoved = useRef(false);
+  useEffect(() => {
+    setExpanded(false);
+  }, [active]);
+
+  // Light follows the pointer across a card, and the card leans toward it.
+  const handleCardMove = (e: React.PointerEvent<HTMLElement>) => {
+    if (e.pointerType === 'touch') return;
+    const el = e.currentTarget;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / Math.max(1, r.width);
+    const py = (e.clientY - r.top) / Math.max(1, r.height);
+    el.style.setProperty('--mx', `${(px * 100).toFixed(1)}%`);
+    el.style.setProperty('--my', `${(py * 100).toFixed(1)}%`);
+    el.style.setProperty('--spot', '1');
+  };
+  const handleCardLeave = (e: React.PointerEvent<HTMLElement>) => {
+    e.currentTarget.style.setProperty('--spot', '0');
+  };
+
   /* ------------------------------------------------------------------ */
   /* Scene 5: readiness ring counts up when it scrolls into view.        */
   /* ------------------------------------------------------------------ */
@@ -575,7 +597,13 @@ export const HomePage: React.FC<HomePageProps> = ({
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.2}
               dragSnapToOrigin
+              onDragStart={() => {
+                dragMoved.current = true;
+              }}
               onDragEnd={(_, info) => {
+                window.setTimeout(() => {
+                  dragMoved.current = false;
+                }, 60);
                 if (info.offset.x < -50) go(1);
                 else if (info.offset.x > 50) go(-1);
               }}
@@ -593,12 +621,26 @@ export const HomePage: React.FC<HomePageProps> = ({
                     key={m.route}
                     role="button"
                     tabIndex={0}
-                    aria-label={off === 0 ? `${m.title}, selected` : `Show ${m.title}`}
-                    onClick={() => setActive(i)}
+                    aria-label={
+                      off === 0
+                        ? `${m.title}, selected. ${expanded ? 'Press to close details' : 'Press to open details'}`
+                        : `Show ${m.title}`
+                    }
+                    aria-expanded={off === 0 ? expanded : undefined}
+                    onClick={() => {
+                      if (dragMoved.current) return;
+                      if (off === 0) setExpanded((v) => !v);
+                      else setActive(i);
+                    }}
+                    onPointerMove={handleCardMove}
+                    onPointerLeave={handleCardLeave}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
-                        setActive(i);
+                        if (off === 0) setExpanded((v) => !v);
+                        else setActive(i);
+                      } else if (e.key === 'Escape' && expanded) {
+                        setExpanded(false);
                       }
                     }}
                     animate={{
@@ -615,8 +657,18 @@ export const HomePage: React.FC<HomePageProps> = ({
                       color: m.ink,
                       gridArea: '1 / 1',
                     }}
-                    className="ps-card w-[min(72vw,330px)] h-[360px] sm:h-[430px] rounded-[28px] p-7 flex flex-col justify-between gap-6 border border-[#0A0A0A]/15 outline-none focus-visible:ring-2 focus-visible:ring-[#0A0A0A]"
+                    className="ps-card relative overflow-hidden w-[min(72vw,330px)] h-[360px] sm:h-[430px] rounded-[28px] p-7 flex flex-col justify-between gap-6 border border-[#0A0A0A]/15 outline-none focus-visible:ring-2 focus-visible:ring-[#0A0A0A]"
                   >
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 transition-opacity duration-300"
+                      style={{
+                        opacity: 'var(--spot, 0)',
+                        backgroundImage: `radial-gradient(260px circle at var(--mx, 50%) var(--my, 40%), ${
+                          m.ink === '#FBFAF8' ? 'rgba(251,250,248,0.20)' : 'rgba(11,59,64,0.14)'
+                        }, rgba(0,0,0,0) 65%)`,
+                      }}
+                    />
                     <Icon className="w-7 h-7" />
                     <ul className="space-y-2.5 text-sm font-medium">
                       {m.features.map((f) => (
@@ -631,7 +683,58 @@ export const HomePage: React.FC<HomePageProps> = ({
                       <p className="text-sm tabular-nums" style={{ opacity: 0.75 }}>
                         {m.stat}
                       </p>
+                      {off === 0 && (
+                        <p className="text-xs font-semibold" style={{ opacity: 0.7 }}>
+                          {expanded ? 'Press to close' : 'Press for details'}
+                        </p>
+                      )}
                     </div>
+                    <AnimatePresence>
+                      {off === 0 && expanded && (
+                        <motion.div
+                          key="detail"
+                          initial={{ opacity: 0, y: 24 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 24 }}
+                          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                          className="absolute inset-0 p-7 flex flex-col justify-between gap-4"
+                          style={{ backgroundColor: m.surface, color: m.ink }}
+                        >
+                          <div className="space-y-3">
+                            <h3 className="font-serif text-[1.8rem] leading-[1.05]">{m.title}</h3>
+                            <p className="text-sm leading-relaxed" style={{ opacity: 0.85 }}>
+                              {m.description}
+                            </p>
+                            <ul className="space-y-1.5 text-sm font-medium">
+                              {m.features.map((f) => (
+                                <li key={f} className="flex items-center gap-2.5">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-current shrink-0" aria-hidden="true" />
+                                  {f}
+                                </li>
+                              ))}
+                            </ul>
+                            <p className="text-sm font-semibold tabular-nums">{m.stat}</p>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onNavigate(m.route);
+                            }}
+                            onKeyDown={(e) => e.stopPropagation()}
+                            className="h-11 px-6 rounded-full text-sm font-semibold inline-flex items-center justify-center gap-2 self-start border"
+                            style={{
+                              backgroundColor: m.ink,
+                              color: m.surface,
+                              borderColor: m.ink,
+                            }}
+                          >
+                            <span>{m.cta}</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </button>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </motion.div>
                 );
               })}

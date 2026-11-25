@@ -3,7 +3,10 @@ import {
   ArrowRight,
   Calendar,
   Check,
+  ChevronDown,
+  ChevronUp,
   CloudSun,
+  GripVertical,
   Loader2,
   MapPin,
   Plus,
@@ -30,6 +33,7 @@ import {
 import { uid } from '../../utils/storage';
 import type { PlatformRoute } from './HomePage';
 import { PageHero, PhotoFan } from './PageHero';
+import { DragGhost, usePointerDrag } from './usePointerDrag';
 
 import kyotoCoverImg from '../../assets/images/editorial_destination_kyoto_1795242652961.jpg';
 import amalfiCoverImg from '../../assets/images/editorial_destination_amalfi_1795242652302.jpg';
@@ -113,6 +117,10 @@ export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
   const [creating, setCreating] = useState(false);
   const [weatherBusy, setWeatherBusy] = useState(false);
   const [weatherError, setWeatherError] = useState('');
+  const [reorderNote, setReorderNote] = useState('');
+  const taskDrag = usePointerDrag((id, zone) => {
+    if (zone.startsWith('task:')) moveTimeline(id, zone.slice(5));
+  });
 
   const coverPool = [kyotoCoverImg, amalfiCoverImg, horizonCoverImg];
 
@@ -258,6 +266,25 @@ export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
       ),
       updatedAt: new Date().toISOString(),
     });
+  };
+
+  const moveTimeline = (fromId: string, toId: string) => {
+    if (!activeTrip || fromId === toId) return;
+    const list = [...activeTrip.timelineTasks];
+    const from = list.findIndex((t) => t.id === fromId);
+    const to = list.findIndex((t) => t.id === toId);
+    if (from < 0 || to < 0) return;
+    const [moved] = list.splice(from, 1);
+    list.splice(to, 0, moved);
+    onUpdateList({ ...activeTrip, timelineTasks: list, updatedAt: new Date().toISOString() });
+    setReorderNote(`Moved ${moved.title} to position ${to + 1} of ${list.length}.`);
+  };
+  const nudgeTimeline = (id: string, dir: -1 | 1) => {
+    if (!activeTrip) return;
+    const i = activeTrip.timelineTasks.findIndex((t) => t.id === id);
+    const j = i + dir;
+    if (i < 0 || j < 0 || j >= activeTrip.timelineTasks.length) return;
+    moveTimeline(id, activeTrip.timelineTasks[j].id);
   };
 
   const handleToggleBeforeLeave = (taskId: string) => {
@@ -587,45 +614,96 @@ export const TripPlannerView: React.FC<TripPlannerViewProps> = ({
                   </span>
                 </div>
 
+                <p className="text-xs text-[#0A0A0A]/70">
+                  Drag a step by its handle, or use the arrows, to reorder your plan.
+                </p>
                 <div className="divide-y divide-[#0A0A0A]/8">
-                  {activeTrip.timelineTasks.map((task) => (
-                    <button
-                      key={task.id}
-                      type="button"
-                      onClick={() => handleToggleTimeline(task.id)}
-                      className="w-full py-3 flex items-start justify-between gap-3 text-left hover:bg-[#FBFAF8]/60 px-2 -mx-2 rounded-lg transition-colors"
-                    >
-                      <div className="flex items-start gap-3 min-w-0">
+                  {activeTrip.timelineTasks.map((task, idx) => {
+                    const dragging = taskDrag.drag?.id === task.id;
+                    const target =
+                      taskDrag.drag?.overZone === `task:${task.id}` && taskDrag.drag.id !== task.id;
+                    return (
+                      <div
+                        key={task.id}
+                        data-dropzone={`task:${task.id}`}
+                        onPointerDown={taskDrag.begin(task.id, task.title)}
+                        className={`flex items-start gap-1 -mx-2 px-2 rounded-lg transition-colors select-none ${
+                          dragging ? 'opacity-40' : ''
+                        } ${target ? 'bg-[#BCD2CF]/40 shadow-[inset_0_2px_0_#0B3B40]' : ''}`}
+                      >
                         <span
-                          className={`mt-0.5 w-4 h-4 rounded flex items-center justify-center border shrink-0 ${
-                            task.completed
-                              ? 'bg-[#0B3B40] border-[#0A0A0A] text-[#FBFAF8]'
-                              : 'border-[#0A0A0A]/30 bg-[#FBFAF8]'
-                          }`}
+                          data-grip
+                          aria-hidden="true"
+                          className="pt-3.5 text-[#0A0A0A]/45 cursor-grab"
+                          style={{ touchAction: 'none' }}
                         >
-                          {task.completed && <Check className="w-3 h-3" />}
+                          <GripVertical className="w-4 h-4" />
                         </span>
-                        <div className="min-w-0">
-                          <p
-                            className={`text-sm ${
-                              task.completed
-                                ? 'line-through text-[#0A0A0A]/45'
-                                : 'text-[#0A0A0A] font-medium'
-                            }`}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (taskDrag.wasDragged()) return;
+                            handleToggleTimeline(task.id);
+                          }}
+                          className="flex-1 min-w-0 py-3 flex items-start justify-between gap-3 text-left hover:bg-[#FBFAF8]/60 rounded-lg transition-colors"
+                        >
+                          <div className="flex items-start gap-3 min-w-0">
+                            <span
+                              className={`mt-0.5 w-4 h-4 rounded flex items-center justify-center border shrink-0 ${
+                                task.completed
+                                  ? 'bg-[#0B3B40] border-[#0A0A0A] text-[#FBFAF8]'
+                                  : 'border-[#0A0A0A]/30 bg-[#FBFAF8]'
+                              }`}
+                            >
+                              {task.completed && <Check className="w-3 h-3" />}
+                            </span>
+                            <div className="min-w-0">
+                              <p
+                                className={`text-sm ${
+                                  task.completed
+                                    ? 'line-through text-[#0A0A0A]/45'
+                                    : 'text-[#0A0A0A] font-medium'
+                                }`}
+                              >
+                                {task.title}
+                              </p>
+                              {task.notes && (
+                                <p className="text-xs text-[#0A0A0A]/75 mt-0.5">{task.notes}</p>
+                              )}
+                            </div>
+                          </div>
+                          <span className="text-xs text-[#0A0A0A]/75 tabular-nums shrink-0">
+                            {task.dueDate}
+                          </span>
+                        </button>
+                        <span data-nodrag className="flex flex-col pt-1.5 shrink-0">
+                          <button
+                            type="button"
+                            onClick={() => nudgeTimeline(task.id, -1)}
+                            disabled={idx === 0}
+                            aria-label={`Move ${task.title} up`}
+                            className="p-1 rounded text-[#0A0A0A]/60 hover:text-[#0B3B40] disabled:opacity-25"
                           >
-                            {task.title}
-                          </p>
-                          {task.notes && (
-                            <p className="text-xs text-[#0A0A0A]/75 mt-0.5">{task.notes}</p>
-                          )}
-                        </div>
+                            <ChevronUp className="w-3.5 h-3.5" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => nudgeTimeline(task.id, 1)}
+                            disabled={idx === activeTrip.timelineTasks.length - 1}
+                            aria-label={`Move ${task.title} down`}
+                            className="p-1 rounded text-[#0A0A0A]/60 hover:text-[#0B3B40] disabled:opacity-25"
+                          >
+                            <ChevronDown className="w-3.5 h-3.5" />
+                          </button>
+                        </span>
                       </div>
-                      <span className="text-xs text-[#0A0A0A]/75 tabular-nums shrink-0">
-                        {task.dueDate}
-                      </span>
-                    </button>
-                  ))}
+                    );
+                  })}
                 </div>
+                <p className="sr-only" aria-live="polite">
+                  {reorderNote}
+                </p>
+                <DragGhost drag={taskDrag.drag} />
               </div>
 
               {/* Before You Leave Mode */}
