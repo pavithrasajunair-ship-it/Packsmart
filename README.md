@@ -21,6 +21,13 @@ A travel-packing workspace that plans the trip, reads the forecast, fits the sui
 
 The original classic workspace (lists, essentials, history, profile, dark mode) is still available from the Vault & Tools menu.
 
+## Interactions
+
+- Home: drag or tap the 3D suitcase to turn it (with inertia) and open or close the lid; deck cards have a pointer spotlight and expand on click for details.
+- Smart Packing: Pack Station, drag items into a suitcase (or tap / press Enter) with live litre and kilogram meters and an over-limit warning.
+- Trip Planner: reorder the preparation timeline by dragging a handle or with the up/down buttons.
+- All of it respects prefers-reduced-motion; touch drags start from the grip handle so the page still scrolls.
+
 ## Design
 
 - Palette: deep midnight teal `#0B3B40`, soft pearl `#FBFAF8`, jet black `#0A0A0A`, with pale teal and warm pearl tints. Wardrobe sample colours are data and keep their real garment colours.

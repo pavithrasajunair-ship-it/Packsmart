@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 interface PackingCanvasProps {
@@ -48,6 +48,10 @@ function slab(w: number, h: number, d: number, radius: number, bevel: number): T
  */
 export const PackingCanvas: React.FC<PackingCanvasProps> = ({ scrollProgressRef, className }) => {
   const hostRef = useRef<HTMLDivElement | null>(null);
+  const toggleLidRef = useRef<() => void>(() => {});
+  const [ready, setReady] = useState(false);
+  const [lidClosed, setLidClosed] = useState(false);
+  const [touched, setTouched] = useState(false);
 
   useEffect(() => {
     const host = hostRef.current;
@@ -67,6 +71,7 @@ export const PackingCanvas: React.FC<PackingCanvasProps> = ({ scrollProgressRef,
     renderer.domElement.style.height = '100%';
     renderer.domElement.style.display = 'block';
     host.appendChild(renderer.domElement);
+    setReady(true);
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 50);
@@ -236,49 +241,221 @@ export const PackingCanvas: React.FC<PackingCanvasProps> = ({ scrollProgressRef,
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
+      request();
     };
-    resize();
-    const ro = new ResizeObserver(resize);
-    ro.observe(host);
 
+    const TAU = Math.PI * 2;
     const smooth = (v: number) => v * v * (3 - 2 * v);
+    const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
+
+    // Interaction state: drag to turn the case (with inertia), tap to open or close the lid.
+    let spin = 0; // extra yaw from dragging, radians
+    let spinX = 0; // extra pitch from dragging, radians
+    let vel = 0; // yaw velocity, radians per second
+    let dragging = false;
+    let pid = -1;
+    let sx = 0;
+    let sy = 0;
+    let lx = 0;
+    let ly = 0;
+    let downAt = 0;
+    let lastMoveAt = 0;
+    let moved = false;
+    let lastInteract = -1e9;
+    let closedGoal = 0; // 1 = lid shut
+    let closedAmt = 0;
+    let closedScroll = 0;
+    let idleTimer = 0;
     let raf = 0;
-    let open = 0.3;
+    let disposed = false;
+
+    const setClosed = (goal: 0 | 1) => {
+      closedGoal = goal;
+      closedScroll = scrollProgressRef.current;
+      setLidClosed(goal === 1);
+      request();
+    };
+    toggleLidRef.current = () => {
+      setTouched(true);
+      setClosed(closedGoal === 1 ? 0 : 1);
+    };
+
+    const onDown = (e: PointerEvent) => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      dragging = true;
+      moved = false;
+      pid = e.pointerId;
+      sx = lx = e.clientX;
+      sy = ly = e.clientY;
+      downAt = lastMoveAt = performance.now();
+      vel = 0;
+      window.clearTimeout(idleTimer);
+      try {
+        host.setPointerCapture(e.pointerId);
+      } catch {
+        /* capture is a nicety */
+      }
+      host.style.cursor = 'grabbing';
+      request();
+    };
+    const onMove = (e: PointerEvent) => {
+      if (!dragging || e.pointerId !== pid) return;
+      const now = performance.now();
+      let dx = e.clientX - lx;
+      let dy = e.clientY - ly;
+      if (!moved) {
+        if (Math.hypot(e.clientX - sx, e.clientY - sy) < 6) return;
+        moved = true;
+        setTouched(true);
+        dx = e.clientX - sx;
+        dy = e.clientY - sy;
+      }
+      spin += dx * 0.012;
+      spinX = clamp(spinX + dy * 0.006, -0.5, 0.5);
+      const dt = Math.max(0.001, (now - lastMoveAt) / 1000);
+      vel += (dx * 0.012 / dt - vel) * 0.4;
+      lastMoveAt = now;
+      lastInteract = now;
+      lx = e.clientX;
+      ly = e.clientY;
+      request();
+    };
+    const onUp = (e: PointerEvent) => {
+      if (!dragging || e.pointerId !== pid) return;
+      dragging = false;
+      try {
+        host.releasePointerCapture(e.pointerId);
+      } catch {
+        /* already released */
+      }
+      host.style.cursor = 'grab';
+      const now = performance.now();
+      lastInteract = now;
+      if (!moved && e.type === 'pointerup' && now - downAt < 500) {
+        toggleLidRef.current();
+      }
+      if (reduced || now - lastMoveAt > 80) vel = 0;
+      vel = clamp(vel, -9, 9);
+      if (reduced && moved) {
+        // No inertia or easing for reduced motion: settle back to the front view after a pause.
+        window.clearTimeout(idleTimer);
+        idleTimer = window.setTimeout(() => {
+          spin = Math.round(spin / TAU) * TAU;
+          spinX = 0;
+          request();
+        }, 2500);
+      }
+      request();
+    };
+    host.style.cursor = 'grab';
+    host.style.touchAction = 'pan-y';
+    host.addEventListener('pointerdown', onDown);
+    host.addEventListener('pointermove', onMove);
+    host.addEventListener('pointerup', onUp);
+    host.addEventListener('pointercancel', onUp);
+
     const start = performance.now();
+    let open = 0.3;
+    let lastT = start;
     const frame = (now: number) => {
+      raf = 0;
+      if (disposed) return;
+      const dt = Math.min(0.05, Math.max(0.001, (now - lastT) / 1000));
+      lastT = now;
       const t = reduced ? 2 : (now - start) / 1000;
       pointer.x += (pointer.tx - pointer.x) * 0.05;
       pointer.y += (pointer.ty - pointer.y) * 0.05;
+
+      if (!dragging && !reduced) {
+        // Inertia, then a gentle return to the front view once left alone.
+        spin += vel * dt;
+        vel *= Math.pow(0.03, dt);
+        if (Math.abs(vel) < 0.03) vel = 0;
+        if (vel === 0 && now - lastInteract > 2500) {
+          const k = Math.min(1, dt * 2.5);
+          spin += (Math.round(spin / TAU) * TAU - spin) * k;
+          spinX += (0 - spinX) * k;
+        }
+      }
+
+      // Scrolling away from where you shut the lid opens it again.
+      if (closedGoal === 1 && Math.abs(scrollProgressRef.current - closedScroll) > 0.12) {
+        closedGoal = 0;
+        setLidClosed(false);
+      }
+      closedAmt += (closedGoal - closedAmt) * (reduced ? 1 : Math.min(1, dt * 6));
+      if (Math.abs(closedGoal - closedAmt) < 0.002) closedAmt = closedGoal;
+      const shut = smooth(closedAmt);
 
       // Rests half open on load; scrolling swings the lid wide.
       const breathe = reduced ? 0 : 0.03 * Math.sin(t * 0.8);
       const target = Math.min(1, 0.45 + 0.55 * scrollProgressRef.current + breathe);
       open += (target - open) * (reduced ? 1 : 0.07);
 
-      const angle = THREE.MathUtils.degToRad(38 + 92 * smooth(open));
+      const angle = THREE.MathUtils.degToRad(38 + 92 * smooth(open)) * (1 - shut);
       hinge.rotation.y = -angle;
       items.forEach((it) => {
-        it.group.position.z = base + it.lift * smooth(open);
+        it.group.position.z = base + it.lift * smooth(open) * (1 - shut);
       });
 
-      rig.rotation.y = 0.2 - scrollProgressRef.current * 0.3 + pointer.x * 0.22;
-      rig.rotation.x = 0.04 + pointer.y * 0.08;
+      const follow = dragging ? 0.4 : 1;
+      rig.rotation.y = 0.2 - scrollProgressRef.current * 0.3 + pointer.x * 0.22 * follow + spin;
+      rig.rotation.x = 0.04 + pointer.y * 0.08 * follow + spinX;
       rig.position.y = reduced ? 0 : Math.sin(t * 0.7) * 0.035;
 
       renderer.render(scene, camera);
       if (!reduced) raf = requestAnimationFrame(frame);
     };
-    raf = requestAnimationFrame(frame);
+    function request() {
+      if (disposed || raf) return;
+      raf = requestAnimationFrame(frame);
+    }
+
+    resize();
+    const ro = new ResizeObserver(resize);
+    ro.observe(host);
+    request();
 
     return () => {
+      disposed = true;
       cancelAnimationFrame(raf);
+      window.clearTimeout(idleTimer);
+      toggleLidRef.current = () => {};
       ro.disconnect();
       window.removeEventListener('pointermove', onPointerMove);
+      host.removeEventListener('pointerdown', onDown);
+      host.removeEventListener('pointermove', onMove);
+      host.removeEventListener('pointerup', onUp);
+      host.removeEventListener('pointercancel', onUp);
       disposables.forEach((d) => d.dispose());
       renderer.dispose();
       if (renderer.domElement.parentNode === host) host.removeChild(renderer.domElement);
     };
   }, [scrollProgressRef]);
 
-  return <div ref={hostRef} className={className || 'w-full h-full'} aria-hidden="true" />;
+  return (
+    <div className={`relative ${className || 'w-full h-full'}`}>
+      <div ref={hostRef} className="absolute inset-0 select-none" aria-hidden="true" />
+      {ready && (
+        <>
+          <button
+            type="button"
+            onClick={() => toggleLidRef.current()}
+            aria-pressed={lidClosed}
+            className="absolute right-2 top-2 z-10 h-8 px-3.5 rounded-full border border-[#FBFAF8]/35 bg-[#0B3B40]/70 text-xs font-semibold text-[#FBFAF8] hover:bg-[#FBFAF8]/15 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#FBFAF8]"
+          >
+            {lidClosed ? 'Open the case' : 'Close the case'}
+          </button>
+          <p
+            aria-hidden="true"
+            className={`pointer-events-none absolute left-2 top-3 z-10 text-xs font-medium text-[#FBFAF8]/70 transition-opacity duration-500 ${
+              touched ? 'opacity-0' : 'opacity-100'
+            }`}
+          >
+            Drag to turn it. Tap to open or close.
+          </p>
+        </>
+      )}
+    </div>
+  );
 };
