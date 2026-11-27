@@ -74,6 +74,12 @@ src/data                 Templates and sample data
 src/utils                Packing engine, storage
 ```
 
----
+## ✈️ Travel Tip of the Day
+
+- Roll clothes instead of folding them to save luggage space.
+- Keep essential documents easily accessible.
+- Pack versatile outfits that can be mixed and matched.
+- Always leave a little extra space for souvenirs.
+
 
 The images in `docs/` are overview graphics, not screenshots. Replace them with real screenshots of the running app whenever you like (keep the same file names).
